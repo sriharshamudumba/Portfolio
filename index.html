@@ -20,40 +20,54 @@
         </nav>
     </header>
     
-    <section id="about">
+    <section id="about" class="left-align">
         <h2>About Me</h2>
-        <p>Master’s in Computer Engineering at Iowa State University, passionate about AI, Machine Learning, HPC, and Distributed Systems. Experienced in AI frameworks like TensorFlow, PyTorch, and ONNX.</p>
-        <p>I have a strong background in optimizing deep learning models, benchmarking AI workloads, and developing scalable solutions for high-performance computing environments. My expertise extends to distributed systems, model quantization, and performance optimization.</p>
-        <p>In addition to my technical skills, I have contributed to open-source projects and actively engage in research involving model efficiency, inference acceleration, and AI system architecture. I enjoy solving real-world problems through innovation and collaboration.</p>
+        <p>I am currently pursuing a Master’s in Computer Engineering at Iowa State University, with a strong passion for Artificial Intelligence, Machine Learning, High-Performance Computing (HPC), and Distributed Systems. My research interests include optimizing deep learning models, designing scalable AI architectures, and accelerating inference in real-world applications.</p>
+        <p>I have hands-on experience with leading AI frameworks such as TensorFlow, PyTorch, and ONNX, and I specialize in model compression, quantization, and performance benchmarking. My expertise extends to working with large-scale data processing pipelines, parallel computing with OpenMP and MPI, and cloud-based AI deployments.</p>
+        <p>Beyond my academic and professional endeavors, I actively contribute to open-source projects, participate in AI research, and collaborate with teams to build intelligent, scalable, and efficient machine learning solutions. I am driven by the challenge of pushing AI systems to their maximum potential while maintaining efficiency and usability.</p>
     </section>
     
-    <section id="projects">
+    <section id="projects" class="left-align">
         <h2>Projects</h2>
         <div class="project">
             <h3>Lazy Neural Network Optimization</h3>
             <p><strong>What is it?</strong> This project focuses on optimizing neural network inference by implementing adaptive early exit mechanisms. By analyzing intermediate activations, we can reduce redundant computations, improving efficiency without sacrificing accuracy.</p>
-            <p><strong>What’s happening?</strong> The model monitors confidence scores during inference and dynamically decides whether to exit early or continue processing, reducing latency and computational cost.</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li>Dynamic confidence-based early exits to reduce computation time.</li>
+                <li>Reduction in model latency while maintaining high prediction accuracy.</li>
+                <li>Implemented using TensorFlow and PyTorch with custom optimization layers.</li>
+            </ul>
+            <p><strong>What’s happening?</strong> The model continuously monitors confidence scores during inference and dynamically determines whether to exit early or continue processing, significantly reducing computational cost and improving real-time AI applications.</p>
             <p><strong>GitHub Repository:</strong> <a href="https://github.com/sriharshamudumba/Lazy-NN-Optimization" target="_blank">Lazy NN Optimization</a></p>
         </div>
         <div class="project">
             <h3>Benchmarking 1BitLLM</h3>
-            <p><strong>What is it?</strong> This project analyzes the performance of 1BitLLM models under different computing environments using ONNX and IREE compilers.</p>
-            <p><strong>What’s happening?</strong> The study evaluates latency, scalability, and throughput to optimize deployment efficiency for AI workloads in cloud and edge computing.</p>
+            <p><strong>What is it?</strong> This project systematically evaluates the performance of 1BitLLM models under various computing environments using ONNX and IREE compilers, providing insights into hardware compatibility, optimization techniques, and deployment efficiency.</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li>Performance benchmarking across multiple hardware configurations (CPU, GPU, TPU).</li>
+                <li>Latency and memory footprint analysis for efficient AI model deployment.</li>
+                <li>Implementation of quantization-aware training for reduced model size.</li>
+            </ul>
+            <p><strong>What’s happening?</strong> The project evaluates latency, scalability, and throughput across cloud-based and edge computing setups. By leveraging ONNX and IREE, we achieve better model compression, reduced inference time, and optimized AI deployment strategies.</p>
             <p><strong>GitHub Repository:</strong> <a href="https://github.com/sriharshamudumba/1BitLLM-Benchmarking" target="_blank">1BitLLM Benchmarking</a></p>
         </div>
     </section>
     
-    <section id="skills">
+    <section id="skills" class="left-align">
         <h2>Technical Skills</h2>
         <ul>
             <li><strong>Programming:</strong> Python, C++, SQL, Shell scripting</li>
             <li><strong>AI Frameworks:</strong> TensorFlow, PyTorch, ONNX</li>
             <li><strong>HPC:</strong> OpenMP, MPI, Slurm</li>
             <li><strong>Databases:</strong> Oracle 11g/12c/19c</li>
+            <li><strong>Cloud Platforms:</strong> AWS, Google Cloud, Microsoft Azure</li>
+            <li><strong>Model Optimization:</strong> Quantization, Pruning, Tensor Decomposition</li>
         </ul>
     </section>
     
-    <section id="contact">
+    <section id="contact" class="left-align">
         <h2>Contact</h2>
         <p>Email: <a href="mailto:srim@iastate.edu" style="color: white;">srim@iastate.edu</a></p>
         <p>LinkedIn: <a href="https://www.linkedin.com/in/sriharshamudumba" target="_blank" style="color: white;">sriharshamudumba</a></p>
