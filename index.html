@@ -1,9 +1,14 @@
+---
+layout: default
+title: Sri Harsha Mudumba - Portfolio
+---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sri Harsha Mudumba - Portfolio</title>
+    <title>{{ page.title }}</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,6 +19,7 @@
             <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -30,24 +36,43 @@
     <section id="projects">
         <h2>Projects</h2>
         <div class="project">
-            <h3>Lazy Neural Network Optimization</h3>
-            <p><strong>What is it?</strong> This project focuses on optimizing neural network inference by implementing adaptive early exit mechanisms. By analyzing intermediate activations, we can reduce redundant computations, improving efficiency without sacrificing accuracy.</p>
+            <h3>Benchmarking 1BitLLM Model Using ONNX and IREE Compiler</h3>
+            <p><strong>Description:</strong> Developed a comprehensive benchmarking framework for the 1BitLLM model to analyze performance across diverse hardware configurations.</p>
             <ul>
-                <li>Dynamic confidence-based early exits to reduce computation time.</li>
-                <li>Reduction in model latency while maintaining high prediction accuracy.</li>
-                <li>Implemented using TensorFlow and PyTorch with custom optimization layers.</li>
-            </ul>
-            <p><strong>GitHub Repository:</strong> <a href="https://github.com/sriharshamudumba/Lazy-NN-Optimization" target="_blank" style="color: white;">Lazy NN Optimization</a></p>
-        </div>
-        <div class="project">
-            <h3>Benchmarking 1BitLLM</h3>
-            <p><strong>What is it?</strong> This project systematically evaluates the performance of 1BitLLM models under various computing environments using ONNX and IREE compilers, providing insights into hardware compatibility, optimization techniques, and deployment efficiency.</p>
-            <ul>
-                <li>Performance benchmarking across multiple hardware configurations (CPU, GPU, TPU).</li>
-                <li>Latency and memory footprint analysis for efficient AI model deployment.</li>
-                <li>Implementation of quantization-aware training for reduced model size.</li>
+                <li>Integrated ONNX and IREE compilers to optimize model inference, focusing on improving latency and scalability.</li>
+                <li>Conducted experiments with varying token sizes and workload scenarios to derive actionable insights.</li>
             </ul>
             <p><strong>GitHub Repository:</strong> <a href="https://github.com/sriharshamudumba/1BitLLM-Benchmarking" target="_blank" style="color: white;">1BitLLM Benchmarking</a></p>
+        </div>
+        <div class="project">
+            <h3>Optimized Neural Network Inference with SnaPEA Framework</h3>
+            <p><strong>Description:</strong> Designed the SnaPEA framework to dynamically skip non-contributive activations in neural network inference.</p>
+            <ul>
+                <li>Benchmarked performance on GoogLeNet, ResNet, and VGG-Net, achieving 74% faster inference.</li>
+                <li>Analyzed energy savings and inference speed improvements through comparison with baseline methods.</li>
+            </ul>
+        </div>
+        <div class="project">
+            <h3>SimNet Computer Architecture Simulation</h3>
+            <p><strong>Description:</strong> Developed SimNet, a CNN-based simulator achieving 55x faster simulation throughput than traditional methods.</p>
+            <ul>
+                <li>Predicted fetch latency, branch predictions, and cache behavior, reducing simulation errors by 3.5%.</li>
+                <li>Optimized GPU parallelism, minimizing simulation time and improving resource utilization.</li>
+            </ul>
+        </div>
+    </section>
+    
+    <section id="experience">
+        <h2>Professional Experience</h2>
+        <div class="experience">
+            <h3>Associate Database Administrator - Cognizant Technology Solutions</h3>
+            <p><strong>Duration:</strong> Aug 2020 - Jul 2023</p>
+            <p><strong>Description:</strong> Managed Oracle 11g/12c/19c databases, supporting enterprise applications for clients like Intuit Finance APP and BioMarin.</p>
+            <ul>
+                <li>Implemented Single Sign-On (SSO) for secure system access and enhanced security protocols.</li>
+                <li>Automated ADOP patch processes, reducing patch time by 50% and optimizing Oracle concurrent manager performance.</li>
+                <li>Developed Linux scripts for Oracle database cloning, improving operational efficiency for high-volume environments.</li>
+            </ul>
         </div>
     </section>
     
@@ -59,19 +84,3 @@
             <li><strong>HPC:</strong> OpenMP, MPI, Slurm</li>
             <li><strong>Databases:</strong> Oracle 11g/12c/19c</li>
             <li><strong>Cloud Platforms:</strong> AWS, Google Cloud, Microsoft Azure</li>
-            <li><strong>Model Optimization:</strong> Quantization, Pruning, Tensor Decomposition</li>
-        </ul>
-    </section>
-    
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:srim@iastate.edu" style="color: white;">srim@iastate.edu</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/sriharshamudumba" target="_blank" style="color: white;">sriharshamudumba</a></p>
-        <p>GitHub: <a href="https://github.com/sriharshamudumba" target="_blank" style="color: white;">sriharshamudumba</a></p>
-    </section>
-    
-    <footer>
-        <p>&copy; 2024 Sri Harsha Mudumba. All rights reserved.</p>
-    </footer>
-</body>
-</html>
