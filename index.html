@@ -33,60 +33,53 @@ title: Sri Harsha Mudumba - Portfolio
         <p>I have hands-on experience with leading AI frameworks such as TensorFlow, PyTorch, and ONNX, and I specialize in model compression, quantization, and performance benchmarking. My expertise extends to working with large-scale data processing pipelines, parallel computing with OpenMP and MPI, and cloud-based AI deployments.</p>
         <p>Beyond my academic and professional endeavors, I actively contribute to open-source projects, participate in AI research, and collaborate with teams to build intelligent, scalable, and efficient machine learning solutions. I am driven by the challenge of pushing AI systems to their maximum potential while maintaining efficiency and usability.</p>
     </section>
-    
-    <section id="projects">
-        <h2>Projects</h2>
-        
-        <div class="project">
-            <h3>Lazy Neural Network Optimization</h3>
-            <p>This project focused on optimizing deep neural networks by introducing an adaptive early exit mechanism. The method allows intermediate layers to determine whether further computation is necessary based on confidence thresholds, reducing the computational overhead of deep models.</p>
-            <p>The results showed a significant reduction in inference time while maintaining high accuracy. The project was implemented in TensorFlow and PyTorch and was evaluated on large-scale datasets for various classification tasks.</p>
-        </div>
-
-        <div class="project">
-            <h3>Benchmarking 1BitLLM Model Using ONNX and IREE Compiler</h3>
-            <p>This project aimed to analyze and optimize the performance of the 1BitLLM model using ONNX and IREE compilers. The model was benchmarked across different hardware configurations, including CPU and GPU, to assess its scalability and latency.</p>
-            <p>Extensive experiments with varying token sizes and dataset complexities demonstrated that compiler optimizations could enhance model execution speed significantly. The results helped in designing more efficient inference pipelines for large-scale language models.</p>
-        </div>
-
-        <div class="project">
-            <h3>Snapea - Optimized Neural Network Inference</h3>
-            <p>Snapea is a framework designed to accelerate deep neural network inference by skipping redundant computations dynamically. By leveraging confidence-based skipping mechanisms, the system reduces unnecessary activations and computations in deep models.</p>
-            <p>Experiments conducted on GoogLeNet, ResNet, and VGG-Net demonstrated a 74% improvement in inference speed without significant loss in accuracy. The project was optimized for deployment on edge devices where computational efficiency is critical.</p>
-        </div>
-
-        <div class="project">
-            <h3>SimNet - Computer Architecture Simulation</h3>
-            <p>SimNet is a CNN-based simulation framework that predicts computer architecture behaviors, such as branch prediction and fetch latency. The model was trained to simulate microarchitecture behaviors, replacing traditional cycle-accurate simulations.</p>
-            <p>Through extensive benchmarking, SimNet achieved a 55x improvement in simulation throughput while maintaining low error rates, demonstrating the potential of deep learning in accelerating hardware simulations.</p>
-        </div>
-
-        <div class="project">
-            <h3>Music Genre Classification Using Machine Learning</h3>
-            <p>The music genre classification project utilized machine learning techniques to categorize songs based on extracted audio features. The dataset included various musical genres, and Mel-frequency cepstral coefficients (MFCCs) were employed for feature extraction.</p>
-            <p>The trained model was deployed as a web-based tool that allowed users to upload audio files for real-time genre classification. The results showed promising performance in distinguishing between major music genres, showcasing AI's role in music analysis.</p>
-        </div>
-
-        <div class="project">
-            <h3>Automatic Number Plate Recognition (ANPR) System</h3>
-            <p>The ANPR system leveraged YOLOv5 for object detection and EasyOCR for text extraction, enabling automated number plate recognition from images and video streams. The model was fine-tuned to handle different lighting conditions and occlusions.</p>
-            <p>With real-time processing capabilities, the system was deployed for traffic monitoring and automated toll collection applications. Post-processing techniques helped improve recognition accuracy in complex environments.</p>
-        </div>
-
-        <div class="project">
-            <h3>Flight Insurance on Ethereum Blockchain</h3>
-            <p>This project developed a decentralized smart contract system that automatically processes flight insurance claims based on real-time flight data. The contract was implemented on the Ethereum blockchain, ensuring transparency and automation.</p>
-            <p>By leveraging oracles for fetching flight status data, the system eliminated the need for manual claim processing, reducing delays and operational costs. The project showcased how blockchain can revolutionize the insurance sector.</p>
-        </div>
-    </section>
-    
     <section id="experience">
         <h2>Professional Experience</h2>
-        <div class="experience">
-            <h3>Associate Database Administrator - Cognizant Technology Solutions</h3>
-            <p>At Cognizant, I worked on optimizing Oracle database operations, ensuring efficient data management for enterprise applications. I played a key role in automating system patches, reducing maintenance overhead, and improving the overall performance of mission-critical databases.</p>
-            <p>My responsibilities included database performance tuning, implementing secure authentication mechanisms, and scripting automation tools for database maintenance. These optimizations significantly enhanced system reliability and operational efficiency.</p>
-        </div>
+        <h3>Associate Database Administrator - Cognizant Technology Solutions</h3>
+        <p>At Cognizant, I worked on optimizing Oracle database operations, ensuring efficient data management for enterprise applications. I played a key role in automating system patches, reducing maintenance overhead, and improving the overall performance of mission-critical databases.</p>
+        <p>My responsibilities included database performance tuning, implementing secure authentication mechanisms, and scripting automation tools for database maintenance. These optimizations significantly enhanced system reliability and operational efficiency.</p>
+    </section>
+    
+    <section id="lazy-nn">
+        <h2>Lazy Neural Network Optimization</h2>
+        <p>This project focused on optimizing deep neural networks by introducing an adaptive early exit mechanism. The method allows intermediate layers to determine whether further computation is necessary based on confidence thresholds, reducing the computational overhead of deep models.</p>
+        <p>The results showed a significant reduction in inference time while maintaining high accuracy. The project was implemented in TensorFlow and PyTorch and was evaluated on large-scale datasets for various classification tasks.</p>
+    </section>
+    
+    <section id="1bitllm">
+        <h2>Benchmarking 1BitLLM Model Using ONNX and IREE Compiler</h2>
+        <p>This project aimed to analyze and optimize the performance of the 1BitLLM model using ONNX and IREE compilers. The model was benchmarked across different hardware configurations, including CPU and GPU, to assess its scalability and latency.</p>
+        <p>Extensive experiments with varying token sizes and dataset complexities demonstrated that compiler optimizations could enhance model execution speed significantly. The results helped in designing more efficient inference pipelines for large-scale language models.</p>
+    </section>
+    
+    <section id="snapea">
+        <h2>Snapea - Optimized Neural Network Inference</h2>
+        <p>Snapea is a framework designed to accelerate deep neural network inference by skipping redundant computations dynamically. By leveraging confidence-based skipping mechanisms, the system reduces unnecessary activations and computations in deep models.</p>
+        <p>Experiments conducted on GoogLeNet, ResNet, and VGG-Net demonstrated a 74% improvement in inference speed without significant loss in accuracy. The project was optimized for deployment on edge devices where computational efficiency is critical.</p>
+    </section>
+    
+    <section id="simnet">
+        <h2>SimNet - Computer Architecture Simulation</h2>
+        <p>SimNet is a CNN-based simulation framework that predicts computer architecture behaviors, such as branch prediction and fetch latency. The model was trained to simulate microarchitecture behaviors, replacing traditional cycle-accurate simulations.</p>
+        <p>Through extensive benchmarking, SimNet achieved a 55x improvement in simulation throughput while maintaining low error rates, demonstrating the potential of deep learning in accelerating hardware simulations.</p>
+    </section>
+    
+    <section id="music-genre">
+        <h2>Music Genre Classification Using Machine Learning</h2>
+        <p>The music genre classification project utilized machine learning techniques to categorize songs based on extracted audio features. The dataset included various musical genres, and Mel-frequency cepstral coefficients (MFCCs) were employed for feature extraction.</p>
+        <p>The trained model was deployed as a web-based tool that allowed users to upload audio files for real-time genre classification. The results showed promising performance in distinguishing between major music genres, showcasing AI's role in music analysis.</p>
+    </section>
+    
+    <section id="anpr">
+        <h2>Automatic Number Plate Recognition (ANPR) System</h2>
+        <p>The ANPR system leveraged YOLOv5 for object detection and EasyOCR for text extraction, enabling automated number plate recognition from images and video streams. The model was fine-tuned to handle different lighting conditions and occlusions.</p>
+        <p>With real-time processing capabilities, the system was deployed for traffic monitoring and automated toll collection applications. Post-processing techniques helped improve recognition accuracy in complex environments.</p>
+    </section>
+    
+    <section id="ethereum-flight-insurance">
+        <h2>Flight Insurance on Ethereum Blockchain</h2>
+        <p>This project developed a decentralized smart contract system that automatically processes flight insurance claims based on real-time flight data. The contract was implemented on the Ethereum blockchain, ensuring transparency and automation.</p>
+        <p>By leveraging oracles for fetching flight status data, the system eliminated the need for manual claim processing, reducing delays and operational costs. The project showcased how blockchain can revolutionize the insurance sector.</p>
     </section>
     
     <section id="skills">
@@ -99,6 +92,7 @@ title: Sri Harsha Mudumba - Portfolio
             <li><strong>Model Optimization:</strong> Quantization, Pruning, Tensor Decomposition</li>
         </ul>
     </section>
+    
     
     <section id="contact">
         <h2>Contact</h2>
