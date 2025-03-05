@@ -3,7 +3,7 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background: url('https://raw.githubusercontent.com/sriharshamudumba/your-repo-name/main/ml.png') no-repeat center center fixed;
+    background: url('https://raw.githubusercontent.com/sriharshamudumba/Portfolio/main/ml.png') no-repeat center center fixed;
     background-size: cover;
     color: #ffffff;
     transition: background 0.5s ease-in-out;
@@ -60,7 +60,8 @@ section {
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
     overflow: hidden;
-    text-align: center;
+    text-align: left;
+    max-width: 900px;
 }
 
 section:hover {
@@ -71,10 +72,21 @@ section:hover {
 h2 {
     color: #a478e0;
     font-size: 28px;
-    text-align: center;
+    text-align: left;
     animation: fadeIn 1s ease-in-out;
     text-transform: uppercase;
     letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+p, ul {
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: left;
+}
+
+ul {
+    padding-left: 20px;
 }
 
 #contact a {
