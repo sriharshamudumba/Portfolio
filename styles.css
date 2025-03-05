@@ -1,143 +1,58 @@
 /* General Styles */
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: url('https://raw.githubusercontent.com/sriharshamudumba/your-repo-name/main/ml.png') no-repeat center center fixed;
-    background-size: cover;
+    background-color: #121212;
     color: #ffffff;
-    transition: background 0.5s ease-in-out;
 }
 
 header {
-    background: rgba(0, 0, 0, 0.9);
+    background: #222;
     color: white;
     text-align: center;
-    padding: 80px 20px;
-    font-size: 36px;
+    padding: 40px;
+    font-size: 24px;
     font-weight: bold;
-    animation: fadeIn 1s ease-in-out;
-    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
-    text-transform: uppercase;
-    letter-spacing: 3px;
 }
 
 nav ul {
     list-style: none;
-    padding: 20px;
+    padding: 0;
     text-align: center;
-    background: rgba(0, 0, 0, 0.8);
-    margin: 0;
-    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
 }
 
 nav ul li {
     display: inline;
-    margin: 0 30px;
-    font-size: 20px;
-    font-weight: bold;
-    transition: transform 0.3s, color 0.3s;
-}
-
-nav ul li:hover {
-    transform: scale(1.1);
-    color: #ffcc00;
+    margin: 0 20px;
 }
 
 nav ul li a {
     color: #ffffff;
     text-decoration: none;
     font-weight: bold;
-    font-size: 20px;
-    transition: color 0.3s;
-}
-
-nav ul li a:hover {
-    color: #ffcc00;
-}
-
-.hero-section {
-    text-align: center;
-    padding: 100px 20px;
-    background: rgba(0, 0, 0, 0.85);
-    margin: 20px;
-    border-radius: 15px;
-    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2);
-}
-
-.hero-section h1 {
-    font-size: 42px;
-    font-weight: bold;
-    color: #ffcc00;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    animation: fadeIn 1s ease-in-out;
-}
-
-.hero-section p {
-    font-size: 22px;
-    color: #ffffff;
-    margin-top: 10px;
-    animation: fadeIn 1.5s ease-in-out;
-}
-
-button.cta {
-    padding: 15px 40px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #ffffff;
-    background: #ffcc00;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin-top: 20px;
-}
-
-button.cta:hover {
-    background: #e6b800;
-    transform: scale(1.1);
 }
 
 section {
     padding: 60px;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(255, 255, 255, 0.1);
     margin: 40px auto;
-    width: 80%;
+    width: 75%;
     border-radius: 12px;
     box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    transition: transform 0.3s, box-shadow 0.3s;
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-}
-
-section:hover {
-    transform: scale(1.02);
-    box-shadow: 0px 0px 25px rgba(255, 255, 255, 0.2);
 }
 
 h2 {
     color: #ffcc00;
-    font-size: 32px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    animation: fadeIn 1s ease-in-out;
+    font-size: 28px;
+    text-align: center;
 }
 
 footer {
     text-align: center;
-    padding: 30px;
-    background: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    background: #222;
     color: white;
     margin-top: 20px;
-    font-size: 18px;
-    animation: fadeIn 1s ease-in-out;
-    box-shadow: 0px -4px 10px rgba(255, 255, 255, 0.2);
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    font-size: 16px;
 }
