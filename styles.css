@@ -1,5 +1,24 @@
-/* General Styles */
-body {
+<!-- Add this section to your portfolio HTML where appropriate -->
+<section id="paper-reviews" class="section">
+  <div class="container">
+    <h2 class="section-title">📄 Recent Paper Reviews</h2>
+    <p class="section-description">
+      I regularly post paper reviews and technical insights on my LinkedIn as part of my engagement with the ML/AI research community. You can explore my thoughts on trending topics in Generative AI, model optimization, and healthcare AI.
+    </p>
+
+    <div class="review-entry">
+      <h3>Follow My Paper Reviews</h3>
+      <p>
+        See full reviews, visual summaries, and research commentary on my LinkedIn:
+      </p>
+      <a href="https://www.linkedin.com/in/sriharshamudumba/" target="_blank" class="button">🔗 Visit LinkedIn Profile</a>
+    </div>
+  </div>
+</section>
+
+<!-- Suggested CSS additions (to your main CSS file) -->
+<style>
+  body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
@@ -7,9 +26,9 @@ body {
     background-size: cover;
     color: #ffffff;
     transition: background 0.5s ease-in-out;
-}
+  }
 
-header {
+  header {
     background: rgba(0, 0, 0, 0.85);
     color: white;
     text-align: center;
@@ -17,38 +36,38 @@ header {
     font-size: 24px;
     font-weight: bold;
     box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
-}
+  }
 
-nav ul {
+  nav ul {
     list-style: none;
     padding: 0;
     text-align: center;
-}
+  }
 
-nav ul li {
+  nav ul li {
     display: inline;
     margin: 0 20px;
     transition: transform 0.3s, color 0.3s;
-}
+  }
 
-nav ul li:hover {
+  nav ul li:hover {
     transform: scale(1.1);
     color: #a478e0;
-}
+  }
 
-nav ul li a {
+  nav ul li a {
     color: #ffffff;
     text-decoration: none;
     font-weight: bold;
     font-size: 18px;
     transition: color 0.3s;
-}
+  }
 
-nav ul li a:hover {
+  nav ul li a:hover {
     color: #a478e0;
-}
+  }
 
-section {
+  section {
     padding: 60px;
     background: rgba(0, 0, 0, 0.85);
     margin: 40px auto;
@@ -59,22 +78,22 @@ section {
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
     overflow: hidden;
-}
+  }
 
-section:hover {
+  section:hover {
     transform: scale(1.02);
     box-shadow: 0px 0px 25px rgba(255, 255, 255, 0.2);
-}
+  }
 
-h2 {
+  h2 {
     color: #a478e0;
     font-size: 28px;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
-}
+  }
 
-.project-img {
+  .project-img {
     width: 100%;
     max-width: 500px;
     display: block;
@@ -82,23 +101,23 @@ h2 {
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
     transition: transform 0.3s ease-in-out;
-}
+  }
 
-.project-img:hover {
+  .project-img:hover {
     transform: scale(1.1);
-}
+  }
 
-#contact a {
+  #contact a {
     color: #ffffff;
     text-decoration: underline;
     transition: color 0.3s;
-}
+  }
 
-#contact a:hover {
+  #contact a:hover {
     color: #a478e0;
-}
+  }
 
-footer {
+  footer {
     text-align: center;
     padding: 20px;
     background: rgba(0, 0, 0, 0.8);
@@ -106,9 +125,36 @@ footer {
     margin-top: 20px;
     font-size: 16px;
     box-shadow: 0px -4px 10px rgba(255, 255, 255, 0.2);
-}
+  }
 
-@keyframes fadeIn {
+  @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
-}
+  }
+
+  #paper-reviews {
+    padding: 2rem 0;
+    background-color: #f9f9f9;
+  }
+
+  .review-entry {
+    background: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid #007acc;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+
+  .review-entry h3 {
+    margin-bottom: 0.5rem;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #007acc;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+</style>
