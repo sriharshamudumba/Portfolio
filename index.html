@@ -220,7 +220,9 @@
         <li><a href="#projects">Projects</a></li>
         <li><a href="#tech">Tech Stack</a></li>
         <li><a href="#experience">Experience</a></li>
+         <li><a href="#Paper Reviews">Paper Reviews</a></li>
         <li><a href="#contact">Contact</a></li>
+        
       </ul>
     </nav>
   </header>
@@ -369,56 +371,50 @@
     <ul>
       <li>Maintained Oracle EBS environments for clients like Intuit and BioMarin</li>
       <li>Automated patching and upgrades using Shell scripts</li>
-      <li>Managed cloning, user-role audits, and SOX compliance</li>
+      <li>Managed cloning, user-role audits, and SOA software design approach</li>
     </ul>
   </section>
 <section id="papers" class="section">
-  <h2 style="text-align:center">📚 Paper Review & Research Alignment</h2>
-  <div class="scroll-wrapper">
-    <div class="scroll-container">
-      <!-- Paper 1 -->
-      <div class="paper-slide">
-        <h3>💡 Memory is the New Compute – And It’s Getting Smarter</h3>
-        <p><strong>Paper:</strong> "An Overview of Processing-in-Memory Circuits for AI and ML" (IEEE JETCAS 2022)</p>
-        <p>🔹 PIM is no longer science fiction — real SRAM/DRAM/ReRAM-based chips compute directly in memory. Perfect for ML workloads where data movement is the bottleneck.<br>
-        🔹 SRAM-PIM enables in-place MACs for fast inference; DRAM-PIM offers high bandwidth; ReRAM-PIM is promising for edge AI due to low power.<br>
-        🔹 The paper also covers offloading strategies, runtime scheduling, and cache coherence — integration is tough, but possible.</p>
-        <p>📌 <strong>My thesis</strong> explores heterogeneous analog+digital PIM with early exits in deep neural nets to enable:<br>
-        ➤ Dynamic resource allocation<br>
-        ➤ Reduced energy per inference<br>
-        ➤ Smarter entropy-based layer skipping</p>
-        <p><strong>TL;DR:</strong> We’re not just moving compute closer to memory — we’re making compute smarter, leaner, and adaptable.</p>
-      </div>
+  <h2>📚 Paper Review & Research Alignment</h2>
 
-      <!-- Paper 2 -->
-      <div class="paper-slide">
-        <h3>🚀 NeuPIMs: Revolutionizing LLM Inference</h3>
-        <p><strong>Why it matters:</strong> LLMs like GPT-4 and LLaMA require high memory bandwidth. NeuPIMs proposes a heterogeneous acceleration design combining NPUs and PIMs.</p>
-        <p>🔹 NPUs excel at GEMMs but underperform for GEMVs (bandwidth-heavy).<br>
-        🔹 PIMs complement this by handling GEMVs efficiently.<br>
-        🔹 NeuPIMs allows <strong>concurrent execution</strong> of GEMMs (via NPU) and GEMVs (via PIM) with:</p>
-        <ul>
-          <li>✔ Dual row-buffer architecture</li>
-          <li>✔ Sub-batch interleaving</li>
-          <li>✔ Runtime optimization for throughput</li>
-        </ul>
-        <p><strong>Results:</strong> Achieved up to <strong>3× higher throughput</strong> than GPU/NPU-only systems — critical for real-time LLM inference at scale.</p>
-      </div>
+  <div class="paper-card">
+    <h3>💡 Memory is the New Compute – And It’s Getting Smarter</h3>
+    <p><strong>Paper:</strong> "An Overview of Processing-in-Memory Circuits for AI and ML" (IEEE JETCAS 2022)</p>
+    <ul>
+      <li>🔹 PIM is no longer science fiction — real SRAM/DRAM/ReRAM-based chips compute directly in memory.</li>
+      <li>🔹 SRAM-PIM enables in-place MACs; DRAM-PIM offers bandwidth; ReRAM-PIM suits low-power edge AI.</li>
+      <li>🔹 Covers offloading strategies, runtime scheduling, and cache coherence challenges.</li>
+    </ul>
+    <p>📌 <strong>My thesis:</strong> Combines heterogeneous analog+digital PIM with early exits to enable:</p>
+    <ul>
+      <li>➤ Dynamic resource allocation</li>
+      <li>➤ Reduced energy per inference</li>
+      <li>➤ Entropy-based layer skipping</li>
+    </ul>
+    <p><strong>TL;DR:</strong> Smarter, leaner, and adaptable compute through memory-centric design.</p>
+  </div>
 
-      <!-- Paper 3 -->
-      <div class="paper-slide">
-        <h3>🧠 Coop: Memory is not a Commodity (NeurIPS 2023)</h3>
-        <p>Efficient memory management is crucial for scaling LLMs. This paper presents Coop, a runtime system that reduces fragmentation and improves tensor reuse.</p>
-        <p>Key Techniques:</p>
-        <ul>
-          <li>1️⃣ Sliding window algorithm for low-cost, contiguous memory blocks</li>
-          <li>2️⃣ Cheap Tensor Partitioning reduces fragmentation</li>
-          <li>3️⃣ Recomputation-based in-place ops reuse memory</li>
-        </ul>
-        <p><strong>Results:</strong> 35% compute overhead reduction, 30% less fragmentation, 22% latency improvement under tight GPU budgets.</p>
-        <p><strong>Limitations:</strong> Hardware-dependent; needs integration with CUDA pools and adaptive tuning. But a major step for exascale training systems.</p>
-      </div>
-    </div>
+  <div class="paper-card">
+    <h3>🚀 NeuPIMs: Revolutionizing LLM Inference</h3>
+    <p><strong>Why it matters:</strong> LLMs like GPT-4 and LLaMA need memory-heavy inference. NeuPIMs proposes hybrid NPU+PIM design.</p>
+    <ul>
+      <li>🔹 NPUs handle GEMMs well, but struggle with GEMVs.</li>
+      <li>🔹 PIMs excel at GEMVs and support parallel GEMM+GEMV execution.</li>
+      <li>✔ Dual row-buffer, sub-batch interleaving, and optimized runtime.</li>
+    </ul>
+    <p><strong>Results:</strong> Up to <strong>3× throughput</strong> over GPU/NPU-only baselines — ideal for real-time inference.</p>
+  </div>
+
+  <div class="paper-card">
+    <h3>🧠 Coop: Memory is not a Commodity (NeurIPS 2023)</h3>
+    <p>Modern LLM training hits GPU memory limits. Coop optimizes memory allocation to reduce overhead and latency.</p>
+    <ul>
+      <li>1️⃣ Sliding window algorithm for contiguous memory blocks</li>
+      <li>2️⃣ Tensor partitioning to reduce fragmentation</li>
+      <li>3️⃣ In-place ops that reduce memory allocations</li>
+    </ul>
+    <p><strong>Results:</strong> 35% compute overhead drop, 30% fragmentation cut, and 22% better latency.</p>
+    <p><strong>Limitations:</strong> Still hardware-aware and needs CUDA pool integration for dynamic adaptability.</p>
   </div>
 </section>
 
