@@ -4,43 +4,54 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sri Harsha Mudumba | ML Engineer</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('ml.png') no-repeat center center fixed;
+      background: url('ml.png') no-repeat center center fixed;
       background-size: cover;
-      color: #f8f8f8;
+      color: white;
       scroll-behavior: smooth;
+      position: relative;
+      z-index: 0;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: -1;
     }
 
     header {
-      background: rgba(0, 0, 0, 0.85);
+      background: transparent;
+      color: white;
       text-align: center;
       padding: 40px 20px;
       box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+      position: relative;
     }
 
     .typing {
       font-size: 20px;
       font-weight: bold;
-      overflow: hidden;
-      border-right: .15em solid #fff;
+      border-right: 2px solid #fff;
       white-space: nowrap;
-      margin: 0 auto;
-      animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-      width: 0;
+      overflow: hidden;
+      width: fit-content;
+      animation: typing 3.5s steps(40, end) forwards;
+      margin: 10px auto;
     }
 
     @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-
-    @keyframes blink-caret {
-      from, to { border-color: transparent }
-      50% { border-color: white; }
+      from { width: 0; }
+      to { width: 100%; }
     }
 
     nav ul {
@@ -70,9 +81,9 @@
       padding: 60px 20px;
       max-width: 1000px;
       margin: auto;
-      background: rgba(0, 0, 0, 0.7);
-      border-radius: 10px;
-      margin-bottom: 40px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+      margin-bottom: 30px;
     }
 
     h2 {
@@ -89,30 +100,43 @@
     }
 
     .project-card {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.08);
+      padding: 20px;
       border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      background-size: cover;
+      background-position: center;
+      color: white;
       height: 200px;
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      background-size: cover;
-      background-position: center;
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
       position: relative;
     }
 
+    .project-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+      border-radius: 10px;
+      z-index: 0;
+    }
+
     .project-card button {
-      background-color: rgba(0, 0, 0, 0.7);
+      position: relative;
+      z-index: 1;
+      background-color: rgba(0, 0, 0, 0.6);
       color: #a478e0;
       border: none;
       padding: 10px 20px;
       font-size: 16px;
-      margin-bottom: 20px;
       border-radius: 5px;
       cursor: pointer;
-      position: relative;
-      z-index: 1;
+      transition: background 0.3s;
     }
 
     .project-card button:hover {
@@ -120,51 +144,30 @@
       color: white;
     }
 
-    .tech-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 15px;
-      justify-content: center;
+    .project-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
     }
 
-    .tech-stack span {
-      background-color: #a478e0;
-      color: #fff;
-      padding: 6px 12px;
-      border-radius: 15px;
-      font-size: 14px;
-      animation: fadeIn 0.5s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Tech Tools Section */
-    .tech-badges {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 20px;
+    .project-card h3 a {
+      color: #a478e0;
+      text-decoration: none;
     }
 
     .tech-badge {
-      background: #2b2b2b;
-      color: #fff;
-      font-weight: bold;
-      padding: 12px 16px;
-      border-radius: 8px;
-      font-size: 14px;
+      background: #333;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 6px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      transition: transform 0.3s ease;
-      animation: fadeUp 0.5s ease forwards;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform 0.3s ease-in-out;
       opacity: 0;
       transform: translateY(15px);
+      animation: fadeUp 0.5s forwards;
     }
 
     .tech-badge:hover {
@@ -172,16 +175,57 @@
       background: #a478e0;
     }
 
-    .tech-badge img {
-      width: 20px;
-      height: 20px;
-    }
-
     @keyframes fadeUp {
       to {
         opacity: 1;
         transform: translateY(0);
       }
+    }
+
+    #contact a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    #contact a:hover {
+      text-decoration: underline;
+    }
+
+    .scroll-wrapper {
+      overflow-x: auto;
+      white-space: nowrap;
+      padding-bottom: 20px;
+    }
+
+    .scroll-container {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 20px;
+      padding: 10px;
+    }
+
+    .paper-slide {
+      flex: 0 0 auto;
+      background-color: rgba(255, 255, 255, 0.08);
+      padding: 20px;
+      border-radius: 12px;
+      min-width: 320px;
+      max-width: 500px;
+      height: auto;
+      box-sizing: border-box;
+      white-space: normal;
+      overflow: hidden;
+      color: white;
+      line-height: 1.6;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      transition: transform 0.3s ease;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .paper-slide:hover {
+      transform: scale(1.03);
+      background-color: rgba(255, 255, 255, 0.1);
     }
 
     footer {
@@ -197,27 +241,21 @@
       display: block;
       margin-bottom: 15px;
     }
-    #contact a {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-#contact a:hover {
-  text-decoration: underline;
-}
   </style>
 </head>
-<body>
+<body><body>
   <header>
     <h1>Sri Harsha Mudumba</h1>
-    <p class="typing">Machine Learning Engineer | HPC | Systems | AI Infra</p>
+    <p class="typing">Aspiring ML Engineer | HPC | AI Models | Model Optimization </p>
+
     <nav>
       <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#tech">Tech Stack</a></li>
         <li><a href="#experience">Experience</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#papers">Paper Review</a></li>
+       <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -288,34 +326,89 @@
 </section>
 
 
- <section id="projects" class="section">
+  <section id="projects" class="section">
     <h2>Projects</h2>
     <div class="project-list">
-      <div class="project-card" style="background-image:url('LEXA.png');">
-        <button onclick="location.href='projects/lexa.html'">LEXA - Lightweight RAG</button>
-      </div>
-      <div class="project-card" style="background-image:url('1bit.png');">
-        <button onclick="location.href='projects/1bitllm.html'">1BitLLM Benchmark</button>
-      </div>
-      <div class="project-card" style="background-image:url('Snapea_1.png');">
-        <button onclick="location.href='projects/snapea.html'">Snapea - Efficient Inference</button>
-      </div>
-      <div class="project-card" style="background-image:url('Simnet.png');">
-        <button onclick="location.href='projects/simnet.html'">SimNet Predictor</button>
-      </div>
-      <div class="project-card" style="background-image:url('Music.png');">
-        <button onclick="location.href='projects/music.html'">Music Genre Classifier</button>
-      </div>
-      <div class="project-card" style="background-image:url('Number_plate.png');">
-        <button onclick="location.href='projects/anpr.html'">Number Plate Detection</button>
-      </div>
-      <div class="project-card" style="background-image:url('Blockchain.png');">
-        <button onclick="location.href='projects/blockchain.html'">Blockchain Insurance</button>
-      </div>
+      <div class="project-card" style="background-image:url('Lexa.png');"><button onclick="location.href='#lexa'">LEXA - Lightweight RAG</button></div>
+      <div class="project-card" style="background-image:url('1bit.png');"><button onclick="location.href='#1bitllm'">1BitLLM Benchmark</button></div>
+      <div class="project-card" style="background-image:url('Snapea_1.png');"><button onclick="location.href='#snapea'">Snapea - Efficient Inference</button></div>
+      <div class="project-card" style="background-image:url('Simnet.png');"><button onclick="location.href='#simnet'">SimNet Predictor</button></div>
+      <div class="project-card" style="background-image:url('Music.png');"><button onclick="location.href='#music'">Music Genre Classifier</button></div>
+      <div class="project-card" style="background-image:url('Number_plate.png');"><button onclick="location.href='#anpr'">Number Plate Detection</button></div>
+      <div class="project-card" style="background-image:url('Blockchain.png');"><button onclick="location.href='#blockchain'">Blockchain Insurance</button></div>
     </div>
   </section>
+
+  <!-- LEXA Project -->
+  <section id="lexa" class="section">
+    <h2>LEXA – Lightweight RAG with Early Exit</h2>
+    <p>LEXA is a Retrieval-Augmented Generation (RAG) framework tailored for efficient, local deployment on consumer-grade GPUs. It leverages MiniLM for fast document embedding and cosine similarity for retrieval, coupled with a TinyLlama 1.1B model for generation. The architecture is optimized for offline use with no cloud dependency.</p>
+    <p>The system integrates entropy-based early-exit logic to reduce token generation latency. FastAPI powers the backend, with visual debugging for token-level entropy. Benchmarks focused on latency, energy, and utilization across devices.</p>
+    <p><strong>Results:</strong> 40% latency reduction, 30% energy savings, fully offline and open-source stack.</p>
+    <div class="tech-stack"><span>MiniLM</span><span>TinyLlama</span><span>FastAPI</span><span>Entropy Filter</span><span>RAG</span></div>
+  </section>
+
+  <!-- 1BitLLM -->
+  <section id="1bitllm" class="section">
+    <h2>1BitLLM – Benchmarking and Optimization</h2>
+    <p>Benchmarked 1-bit quantized LLMs using ONNX and IREE. Focused on profiling latency, memory usage, and compiler optimizations for ternary weights. Traced execution with nvprof and IREE tools to evaluate performance on CPUs and GPUs.</p>
+    <p><strong>Results:</strong> 2.5×–3.2× speedup, 60% memory reduction, reproducible compiler benchmark suite.</p>
+    <div class="tech-stack"><span>ONNX</span><span>IREE</span><span>BitNet</span><span>Quantization</span><span>Profiling</span></div>
+  </section>
+
+  <!-- Snapea -->
+  <section id="snapea" class="section">
+    <h2>Snapea – Efficient Inference Framework</h2>
+    <p>Snapea uses entropy-based skipping of CNN layers during inference. The model dynamically exits based on low-uncertainty conditions. Evaluation on CIFAR and TinyImageNet showed significant gains.</p>
+    <p><strong>Results:</strong> 25%–35% latency reduction, <1.5% accuracy drop, real-time on Jetson Nano.</p>
+    <div class="tech-stack"><span>PyTorch</span><span>CNN</span><span>Entropy Skipping</span><span>Edge AI</span></div>
+  </section>
+
+  <!-- SimNet -->
+  <section id="simnet" class="section">
+    <h2>SimNet – Microarchitecture Behavior Simulation</h2>
+    <p>Used LSTM + 1D CNNs to predict IPC, cache behavior, and stalls from instruction traces. Trained on SPEC and gem5 data. Enabled rapid architectural exploration without RTL simulation.</p>
+    <p><strong>Results:</strong> 96.1% correlation, replaced 1,000-cycle simulations with 1ms predictions.</p>
+    <div class="tech-stack"><span>LSTM</span><span>GEM5</span><span>SPEC</span><span>Simulation</span></div>
+  </section>
+
+  <!-- Music -->
+  <section id="music" class="section">
+    <h2>Music Genre Classification</h2>
+    <p>Built an audio genre classifier using MFCC + CNN, trained on GTZAN and FMA datasets. Includes real-time web UI built with Flask and deployed locally.</p>
+    <p><strong>Results:</strong> 93.4% accuracy, resolved genre overlap with confidence filtering.</p>
+    <div class="tech-stack"><span>PyTorch</span><span>Librosa</span><span>Flask</span><span>GTZAN</span><span>FMA</span></div>
+  </section>
+
+  <!-- ANPR -->
+  <section id="anpr" class="section">
+    <h2>Automatic Number Plate Recognition (ANPR)</h2>
+    <p>YOLOv5 + EasyOCR-based pipeline for real-time video plate recognition. Supports Jetson deployment, OCR preprocessing, and backend CSV logging.</p>
+    <p><strong>Results:</strong> 98% accuracy, 30 FPS on GTX 1050Ti, integrated logging.</p>
+    <div class="tech-stack"><span>YOLOv5</span><span>EasyOCR</span><span>OpenCV</span><span>Jetson</span></div>
+  </section>
+
+  <!-- Blockchain -->
+  <section id="blockchain" class="section">
+    <h2>Flight Insurance on Blockchain</h2>
+    <p>Smart contract automation using Solidity and Chainlink. Claims disbursed automatically based on real-time flight delay data. Integrated with MetaMask and flight oracles.</p>
+    <p><strong>Results:</strong> Claims processed in under 10 mins, 0 manual steps, secure & auditable.</p>
+    <div class="tech-stack"><span>Solidity</span><span>Chainlink</span><span>MetaMask</span><span>Web3</span><span>Smart Contracts</span></div>
+  </section>
+
+  <!-- Work Experience -->
+  <section id="experience" class="section">
+    <h2>Professional Experience</h2>
+    <img src="CTS_image.jpg" alt="CTSS Logo" class="job-logo"/>
+    <h3>Associate Database Administrator – Cognizant Technology Solutions</h3>
+    <ul>
+      <li>Maintained Oracle EBS environments for clients like Intuit and BioMarin</li>
+      <li>Automated patching and upgrades using Shell scripts</li>
+      <li>Managed cloning, user-role audits, and SOX compliance</li>
+    </ul>
+  </section>
 <section id="papers" class="section">
-  <h2 style="text-align:center">📚 Paper Review & Research Alignment</h2>
+  <h2 style="text-align:center">📚 Paper Reviews </h2>
   <div class="scroll-wrapper">
     <div class="scroll-container">
       <!-- Paper 1 -->
@@ -364,41 +457,6 @@
   </div>
 </section>
 
-<style>
-.scroll-wrapper {
-  overflow-x: auto;
-  white-space: nowrap;
-  padding-bottom: 20px;
-}
-
-.scroll-container {
-  display: flex;
-  gap: 20px;
-}
-
-.paper-slide {
-  flex: 0 0 90%;
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 20px;
-  border-radius: 12px;
-  min-width: 300px;
-  max-width: 600px;
-  transition: transform 0.3s ease;
-  animation: fadeIn 0.8s ease-in-out;
-}
-
-.paper-slide:hover {
-  transform: scale(1.03);
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-</style>
-
-
   <!-- Contact -->
   <section id="contact" class="section">
     <h2>Contact</h2>
@@ -410,8 +468,5 @@
   <footer>
     <p>&copy; 2024 Sri Harsha Mudumba. All rights reserved.</p>
   </footer>
-</body>
-</html>
-  
 </body>
 </html>
