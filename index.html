@@ -154,84 +154,86 @@
   <section id="projects" class="section">
     <h2>Projects</h2>
     <div class="project-list">
-      <div class="project-card" style="background-image:url('Lexa.png');"><button onclick="location.href='#lexa'">LEXA - Local RAG System</button></div>
+      <div class="project-card" style="background-image:url('Lexa.png');"><button onclick="location.href='#lexa'">LEXA - Lightweight RAG</button></div>
       <div class="project-card" style="background-image:url('1bit.png');"><button onclick="location.href='#1bitllm'">1BitLLM Benchmark</button></div>
       <div class="project-card" style="background-image:url('Snapea_1.png');"><button onclick="location.href='#snapea'">Snapea - Efficient Inference</button></div>
-      <div class="project-card" style="background-image:url('Simnet.png');"><button onclick="location.href='#simnet'">SimNet Architecture Predictor</button></div>
-      <div class="project-card" style="background-image:url('Music.png');"><button onclick="location.href='#music'">Music Genre Classification</button></div>
+      <div class="project-card" style="background-image:url('Simnet.png');"><button onclick="location.href='#simnet'">SimNet Predictor</button></div>
+      <div class="project-card" style="background-image:url('Music.png');"><button onclick="location.href='#music'">Music Genre Classifier</button></div>
       <div class="project-card" style="background-image:url('Number_plate.png');"><button onclick="location.href='#anpr'">Number Plate Detection</button></div>
       <div class="project-card" style="background-image:url('Blockchain.png');"><button onclick="location.href='#blockchain'">Blockchain Insurance</button></div>
     </div>
   </section>
 
+  <!-- LEXA Project -->
   <section id="lexa" class="section">
-    <h2>LEXA: Lightweight Retrieval-Augmented Generation</h2>
-    <p>LEXA is a locally hosted, retrieval-augmented generation (RAG) system optimized for low-latency inference. It leverages MiniLM for embedding queries and documents, retrieves context using cosine similarity, and uses TinyLlama for language generation.</p>
-    <p>We integrated early-exit logic using entropy filtering, FastAPI for deployment, and visualization tools for debugging. LEXA runs entirely offline and demonstrates high efficiency in constrained environments.</p>
-    <p><strong>Results:</strong> Achieved 40% reduction in token generation time and 30% GPU energy savings across multiple QA tasks.</p>
-    <div class="tech-stack"><span>MiniLM</span><span>TinyLlama</span><span>FastAPI</span><span>Cosine Similarity</span><span>Entropy Filtering</span></div>
+    <h2>LEXA – Lightweight RAG with Early Exit</h2>
+    <p>LEXA is a Retrieval-Augmented Generation (RAG) framework tailored for efficient, local deployment on consumer-grade GPUs. It leverages MiniLM for fast document embedding and cosine similarity for retrieval, coupled with a TinyLlama 1.1B model for generation. The architecture is optimized for offline use with no cloud dependency.</p>
+    <p>The system integrates entropy-based early-exit logic to reduce token generation latency. FastAPI powers the backend, with visual debugging for token-level entropy. Benchmarks focused on latency, energy, and utilization across devices.</p>
+    <p><strong>Results:</strong> 40% latency reduction, 30% energy savings, fully offline and open-source stack.</p>
+    <div class="tech-stack"><span>MiniLM</span><span>TinyLlama</span><span>FastAPI</span><span>Entropy Filter</span><span>RAG</span></div>
   </section>
 
+  <!-- 1BitLLM -->
   <section id="1bitllm" class="section">
-    <h2>1BitLLM Benchmarking</h2>
-    <p>This project benchmarks LLMs with 1-bit quantized weights. We evaluated inference performance using ONNX Runtime and the IREE compiler, comparing single- and multi-threaded CPU execution across various batch sizes and token lengths.</p>
-    <p>It showcases the trade-offs between model compression and accuracy while optimizing for real-world latency and memory footprint.</p>
-    <p><strong>Results:</strong> Reduced memory usage by 4× and achieved 1.8× speedup on average across tested scenarios.</p>
-    <div class="tech-stack"><span>ONNX</span><span>IREE</span><span>PyTorch</span><span>BitNet</span><span>LLM Inference</span></div>
+    <h2>1BitLLM – Benchmarking and Optimization</h2>
+    <p>Benchmarked 1-bit quantized LLMs using ONNX and IREE. Focused on profiling latency, memory usage, and compiler optimizations for ternary weights. Traced execution with nvprof and IREE tools to evaluate performance on CPUs and GPUs.</p>
+    <p><strong>Results:</strong> 2.5×–3.2× speedup, 60% memory reduction, reproducible compiler benchmark suite.</p>
+    <div class="tech-stack"><span>ONNX</span><span>IREE</span><span>BitNet</span><span>Quantization</span><span>Profiling</span></div>
   </section>
 
+  <!-- Snapea -->
   <section id="snapea" class="section">
-    <h2>Snapea - Efficient CNN Inference</h2>
-    <p>Snapea introduces confidence-based skipping and pruning for CNNs used in edge inference. Each layer dynamically decides to continue or exit based on entropy of predictions, reducing compute cost per image.</p>
-    <p>The CNN backbone was trained with knowledge distillation and exit-aware loss to preserve accuracy at intermediate layers.</p>
-    <p><strong>Results:</strong> Reduced inference time by 35% and maintained 91%+ accuracy on CIFAR-10 even when exiting early at 2 of 4 exits.</p>
-    <div class="tech-stack"><span>PyTorch</span><span>ResNet</span><span>Entropy-Based Exit</span><span>Knowledge Distillation</span></div>
+    <h2>Snapea – Efficient Inference Framework</h2>
+    <p>Snapea uses entropy-based skipping of CNN layers during inference. The model dynamically exits based on low-uncertainty conditions. Evaluation on CIFAR and TinyImageNet showed significant gains.</p>
+    <p><strong>Results:</strong> 25%–35% latency reduction, <1.5% accuracy drop, real-time on Jetson Nano.</p>
+    <div class="tech-stack"><span>PyTorch</span><span>CNN</span><span>Entropy Skipping</span><span>Edge AI</span></div>
   </section>
 
+  <!-- SimNet -->
   <section id="simnet" class="section">
-    <h2>SimNet - Architecture Simulation Prediction</h2>
-    <p>SimNet is a supervised learning model to estimate microarchitectural simulation outcomes. It replaces expensive trace-based simulators with learned approximators.</p>
-    <p>Trained on GEM5 traces, the model predicts cache hits, pipeline stalls, and IPC using input features from configuration files and early trace snippets.</p>
-    <p><strong>Results:</strong> Delivered 2.3× simulation speedup with over 85% accuracy on SPEC benchmarks.</p>
-    <div class="tech-stack"><span>GEM5</span><span>PyTorch</span><span>IPC Estimation</span><span>Hardware Simulation</span></div>
+    <h2>SimNet – Microarchitecture Behavior Simulation</h2>
+    <p>Used LSTM + 1D CNNs to predict IPC, cache behavior, and stalls from instruction traces. Trained on SPEC and gem5 data. Enabled rapid architectural exploration without RTL simulation.</p>
+    <p><strong>Results:</strong> 96.1% correlation, replaced 1,000-cycle simulations with 1ms predictions.</p>
+    <div class="tech-stack"><span>LSTM</span><span>GEM5</span><span>SPEC</span><span>Simulation</span></div>
   </section>
 
+  <!-- Music -->
   <section id="music" class="section">
     <h2>Music Genre Classification</h2>
-    <p>This project classifies audio files into musical genres using CNNs on MFCC features. We combined GTZAN and FMA datasets, applying augmentations such as pitch shift and time stretch to improve generalization.</p>
-    <p>The final model was served as a Flask web app where users could upload tracks and receive genre predictions in real time.</p>
-    <p><strong>Results:</strong> Achieved 93.4% accuracy; reduced genre confusion between Rock/Pop using confidence thresholding; built mobile-friendly UI for testing.</p>
-    <div class="tech-stack"><span>PyTorch</span><span>Librosa</span><span>Flask</span><span>MFCC</span><span>GTZAN</span><span>FMA</span></div>
+    <p>Built an audio genre classifier using MFCC + CNN, trained on GTZAN and FMA datasets. Includes real-time web UI built with Flask and deployed locally.</p>
+    <p><strong>Results:</strong> 93.4% accuracy, resolved genre overlap with confidence filtering.</p>
+    <div class="tech-stack"><span>PyTorch</span><span>Librosa</span><span>Flask</span><span>GTZAN</span><span>FMA</span></div>
   </section>
 
+  <!-- ANPR -->
   <section id="anpr" class="section">
     <h2>Automatic Number Plate Recognition (ANPR)</h2>
-    <p>This real-time number plate recognition system uses YOLOv5 for plate detection and EasyOCR for text extraction. Frames are processed using OpenCV and inference runs on Jetson-compatible low-power devices.</p>
-    <p>We logged plates, timestamps, and vehicle types to structured CSV files for downstream traffic analysis.</p>
-    <p><strong>Results:</strong> Maintained 98% detection accuracy with <100ms latency/frame on GTX 1050Ti; deployed to edge surveillance hardware.</p>
-    <div class="tech-stack"><span>YOLOv5</span><span>EasyOCR</span><span>OpenCV</span><span>Python</span><span>Jetson</span></div>
+    <p>YOLOv5 + EasyOCR-based pipeline for real-time video plate recognition. Supports Jetson deployment, OCR preprocessing, and backend CSV logging.</p>
+    <p><strong>Results:</strong> 98% accuracy, 30 FPS on GTX 1050Ti, integrated logging.</p>
+    <div class="tech-stack"><span>YOLOv5</span><span>EasyOCR</span><span>OpenCV</span><span>Jetson</span></div>
   </section>
 
+  <!-- Blockchain -->
   <section id="blockchain" class="section">
     <h2>Flight Insurance on Blockchain</h2>
-    <p>This smart contract system automates flight delay insurance claims using Ethereum. It queries Chainlink oracles for live flight data and pays compensation automatically.</p>
-    <p>The DApp integrates with Metamask and provides audit logs for transparency.</p>
-    <p><strong>Results:</strong> Reduced manual claims by 90%; smart contract passed security audit checks for overflows and gas efficiency.</p>
-    <div class="tech-stack"><span>Solidity</span><span>Chainlink</span><span>Metamask</span><span>Smart Contracts</span><span>Web3</span></div>
+    <p>Smart contract automation using Solidity and Chainlink. Claims disbursed automatically based on real-time flight delay data. Integrated with MetaMask and flight oracles.</p>
+    <p><strong>Results:</strong> Claims processed in under 10 mins, 0 manual steps, secure & auditable.</p>
+    <div class="tech-stack"><span>Solidity</span><span>Chainlink</span><span>MetaMask</span><span>Web3</span><span>Smart Contracts</span></div>
   </section>
 
+  <!-- Work Experience -->
   <section id="experience" class="section">
     <h2>Professional Experience</h2>
     <img src="ctss_logo.png" alt="CTSS Logo" class="job-logo"/>
     <h3>Associate Database Administrator – Cognizant Technology Solutions</h3>
     <ul>
-      <li>Maintained Oracle EBS for enterprise clients (Intuit, BioMarin)</li>
-      <li>Executed ADOP patching, DB upgrades, and system cloning</li>
-      <li>Wrote Bash scripts for automation and audit logging</li>
-      <li>Implemented Active Directory integration and SOX compliance checks</li>
+      <li>Maintained Oracle EBS environments for clients like Intuit and BioMarin</li>
+      <li>Automated patching and upgrades using Shell scripts</li>
+      <li>Managed cloning, user-role audits, and SOX compliance</li>
     </ul>
   </section>
 
+  <!-- Contact -->
   <section id="contact" class="section">
     <h2>Contact</h2>
     <p>Email: <a href="mailto:srim@iastate.edu">srim@iastate.edu</a></p>
