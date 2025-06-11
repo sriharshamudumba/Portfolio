@@ -37,37 +37,16 @@ header {
   white-space: nowrap;
   overflow: hidden;
   width: 0;
-  animation: typing 4s steps(40, end) forwards;
+  animation: typing 3.5s steps(40, end) forwards;
   margin: 10px auto;
 }
 
+/* Remove blinking caret forever */
 @keyframes typing {
   from { width: 0; }
   to { width: 100%; }
 }
 
-nav ul {
-  list-style: none;
-  padding: 0;
-  text-align: center;
-  margin-top: 20px;
-}
-
-nav ul li {
-  display: inline-block;
-  margin: 0 15px;
-}
-
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-nav ul li a:hover {
-  color: #a478e0;
-}
 
 .section {
   padding: 60px 20px;
