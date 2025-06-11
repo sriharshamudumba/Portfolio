@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LEXA - Lightweight RAG</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header>
+    <h1>LEXA - Lightweight RAG with Early Exit</h1>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section class="section">
+    <img src="../Lexa.png" alt="LEXA Illustration" style="width:100%; max-width:800px; border-radius:10px; display:block; margin:auto;" />
+    <p>LEXA is a Retrieval-Augmented Generation (RAG) framework tailored for efficient, local deployment on consumer-grade GPUs. It leverages MiniLM for fast document embedding and cosine similarity for retrieval, coupled with a TinyLlama 1.1B model for generation. The architecture is optimized for offline use with no cloud dependency.</p>
+    <p>The system integrates entropy-based early-exit logic to reduce token generation latency. FastAPI powers the backend, with visual debugging for token-level entropy. Benchmarks focused on latency, energy, and utilization across devices.</p>
+    <p><strong>Results:</strong> 40% latency reduction, 30% energy savings, fully offline and open-source stack.</p>
+    <div class="tech-stack">
+      <span>MiniLM</span>
+      <span>TinyLlama</span>
+      <span>FastAPI</span>
+      <span>Entropy Filter</span>
+      <span>RAG</span>
+    </div>
+  </section>
+</body>
+</html>
