@@ -185,13 +185,41 @@ footer {
   display: block;
   margin-bottom: 15px;
 }
+<style>
+  .scroll-wrapper {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 20px;
+  }
 
-/* Optional Contact Styling */
-#contact a {
-  color: #ffffff;
-  text-decoration: none;
-}
+  .scroll-container {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    padding: 10px;
+  }
 
-#contact a:hover {
-  text-decoration: underline;
-}
+  .paper-slide {
+    flex: 0 0 auto;
+    background-color: rgba(255, 255, 255, 0.08);
+    padding: 20px;
+    border-radius: 12px;
+    min-width: 320px;
+    max-width: 500px;
+    height: auto;
+    box-sizing: border-box;
+    white-space: normal; /* important to allow wrapping */
+    overflow: hidden;
+    color: white;
+    line-height: 1.6;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    transition: transform 0.3s ease;
+    animation: fadeIn 0.8s ease-in-out;
+  }
+
+  .paper-slide:hover {
+    transform: scale(1.03);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+</style>
