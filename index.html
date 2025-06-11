@@ -69,52 +69,61 @@
 
     .project-card {
       background: rgba(255, 255, 255, 0.05);
-      padding: 20px;
       border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
+      height: 200px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
       background-size: cover;
       background-position: center;
-      color: #fff;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
     }
 
-    .project-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-    }
-
-    .project-card h3 a {
+    .project-card button {
+      background-color: rgba(0, 0, 0, 0.7);
       color: #a478e0;
-      text-decoration: none;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      cursor: pointer;
     }
 
-    .project-card:nth-child(1) {
-      background-image: url('Lazy.png');
+    .project-card button:hover {
+      background-color: #a478e0;
+      color: white;
     }
 
-    .project-card:nth-child(2) {
-      background-image: url('1bit.png');
+    .project-card:nth-child(1) { background-image: url('Lazy.png'); }
+    .project-card:nth-child(2) { background-image: url('1bit.png'); }
+    .project-card:nth-child(3) { background-image: url('Snapea_1.png'); }
+    .project-card:nth-child(4) { background-image: url('Simnet.png'); }
+    .project-card:nth-child(5) { background-image: url('Music.png'); }
+    .project-card:nth-child(6) { background-image: url('Number_plate.png'); }
+    .project-card:nth-child(7) { background-image: url('Blockchain.png'); }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 10px;
     }
 
-    .project-card:nth-child(3) {
-      background-image: url('Snapea_1.png');
+    .tech-item {
+      background: rgba(255,255,255,0.1);
+      padding: 10px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .project-card:nth-child(4) {
-      background-image: url('Simnet.png');
-    }
-
-    .project-card:nth-child(5) {
-      background-image: url('Music.png');
-    }
-
-    .project-card:nth-child(6) {
-      background-image: url('Number_plate.png');
-    }
-
-    .project-card:nth-child(7) {
-      background-image: url('Blockchain.png');
+    .tech-item img {
+      width: 24px;
+      height: 24px;
     }
 
     footer {
@@ -123,6 +132,11 @@
       background: #000;
       color: #ccc;
       font-size: 14px;
+    }
+
+    .job-logo {
+      width: 120px;
+      margin-bottom: 10px;
     }
   </style>
 </head>
@@ -137,91 +151,66 @@
         <li><a href="#projects">Projects</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#skills">Skills</a></li>
-        <li><a href="#paper-reviews">Reviews</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="#resume">Resume</a></li>
       </ul>
     </nav>
   </header>
 
-  <section id="about" class="section">
-    <h2>About Me</h2>
-    <p>I am a Computer Engineer with a Master’s focus in <strong>Machine Learning</strong>, <strong>High-Performance Computing (HPC)</strong>, and <strong>Computer Architecture Systems</strong>, driven by a mission to make intelligent systems faster, more scalable, and production-ready.</p>
-    <p>Through my graduate work at Iowa State University, I’ve built a strong foundation across model design, optimization, and deployment. I work at the intersection of AI development and systems engineering to deliver real-world solutions that balance speed, accuracy, and efficiency.</p>
-    <p>Previously, I served as an Associate DBA at Cognizant, managing Oracle EBS applications for enterprise clients like Intuit and BioMarin — streamlining patching, automation, and performance tuning in production-scale environments.</p>
-    <p>I am passionate about bridging AI research with real-world systems deployment and excited to apply my expertise in high-performance, scalable ML engineering.</p>
+  <section id="projects" class="section">
+    <h2>Projects</h2>
+    <div class="project-list">
+      <div class="project-card"><a href="#lazy-nn"><button>Lazy Neural Network Optimization</button></a></div>
+      <div class="project-card"><a href="#1bitllm"><button>1BitLLM Model Benchmarking</button></a></div>
+      <div class="project-card"><a href="#snapea"><button>Snapea - Efficient Inference</button></a></div>
+      <div class="project-card"><a href="#simnet"><button>SimNet - Architecture Simulation</button></a></div>
+      <div class="project-card"><a href="#music-genre"><button>Music Genre Classification</button></a></div>
+      <div class="project-card"><a href="#anpr"><button>Automatic Number Plate Recognition</button></a></div>
+      <div class="project-card"><a href="#blockchain"><button>Flight Insurance on Blockchain</button></a></div>
+    </div>
   </section>
 
   <section id="experience" class="section">
     <h2>Professional Experience</h2>
+    <img src="ctss-logo.png" alt="Cognizant Logo" class="job-logo">
     <h3>Associate Database Administrator – Cognizant Technology Solutions</h3>
     <p><strong>Clients:</strong> Intuit, BioMarin</p>
     <ul>
-      <li>Maintained Oracle E-Business Suite (11g/12c/19c) environments and optimized mission-critical financial and biomedical systems.</li>
-      <li>Performed ADOP patching, database upgrades, and environment cloning for seamless deployments.</li>
-      <li>Developed shell scripts to automate patching, alerting, and environment refresh tasks.</li>
-      <li>Integrated Active Directory for secure authentication and enforced audit logging policies.</li>
+      <li>Administered and optimized Oracle E-Business Suite (EBS) environments (11g/12c/19c) for high-availability enterprise applications.</li>
+      <li>Developed shell scripts to automate environment refresh, patching, alerting, and monitoring operations for production and staging systems.</li>
+      <li>Executed database upgrades, patch management using ADOP, and implemented cloning strategies across multi-node deployments.</li>
+      <li>Collaborated with app teams on Oracle Forms, SOA Suite, and concurrent programs to ensure reliability and throughput.</li>
+      <li>Integrated authentication using Active Directory and enforced fine-grained audit policies.</li>
     </ul>
   </section>
 
-  <section id="skills" class="section">
-    <h2>Technical Skills</h2>
-    <ul>
-      <li><strong>Languages:</strong> Python, C++, Shell, SQL</li>
-      <li><strong>Frameworks:</strong> PyTorch, TensorFlow, ONNX, EasyOCR, OpenCV</li>
-      <li><strong>Tooling:</strong> HuggingFace, FastAPI, Git, Slurm, Oracle EBS</li>
-      <li><strong>Domains:</strong> Model Compression, Video Processing, Generative AI, Smart Contracts</li>
-      <li><strong>Infra:</strong> Multi-GPU training, HPC clusters, compiler stacks (ONNX/IREE)</li>
-    </ul>
+  <section id="lazy-nn" class="section">
+    <h2>Lazy Neural Network Optimization</h2>
+    <p>Implemented entropy-based early exit logic across ResNet50 to dynamically reduce inference time on edge devices. Evaluated confidence thresholds to skip final layers, achieving 40% speedup with <2% accuracy drop using PyTorch + TensorFlow.</p>
   </section>
-
-  <section id="projects" class="section">
-    <h2>Projects</h2>
-    <div class="project-list">
-      <div class="project-card"><h3><a href="#lazy-nn">Lazy Neural Network Optimization</a></h3><p>Adaptive early exit mechanism to reduce inference cost using TensorFlow & PyTorch.</p></div>
-      <div class="project-card"><h3><a href="#1bitllm">1BitLLM Model Benchmarking</a></h3><p>Analyzed quantized LLM performance using ONNX & IREE for low-latency deployment.</p></div>
-      <div class="project-card"><h3><a href="#snapea">Snapea - Efficient Inference</a></h3><p>Confidence-based skipping and pruning to accelerate CNNs on edge devices.</p></div>
-      <div class="project-card"><h3><a href="#simnet">SimNet - Architecture Simulation</a></h3><p>Deep learning model to predict microarchitectural behavior and improve simulation throughput.</p></div>
-      <div class="project-card"><h3><a href="#music-genre">Music Genre Classification</a></h3><p>Used MFCC features and ML models to classify songs by genre in a web interface.</p></div>
-      <div class="project-card"><h3><a href="#anpr">Automatic Number Plate Recognition</a></h3><p>YOLOv5 + EasyOCR-based ANPR system deployed for traffic and toll monitoring.</p></div>
-      <div class="project-card"><h3><a href="#ethereum-flight-insurance">Flight Insurance on Blockchain</a></h3><p>Decentralized Ethereum contract to auto-process claims using real-time flight data.</p></div>
-    </div>
+  <section id="1bitllm" class="section">
+    <h2>1BitLLM Model Benchmarking</h2>
+    <p>Benchmarked 1-bit quantized LLMs using ONNX Runtime and IREE compiler backends. Measured inference latency, memory consumption, and scalability on A100 and CPU targets. Integrated logging and plots to compare against FP16 and INT8 baselines.</p>
   </section>
-
-  <section id="paper-reviews" class="section">
-    <div class="container">
-      <h2 class="section-title">📄 Recent Paper Reviews</h2>
-      <div class="review-entry">
-        <h3>1. Memory is the New Compute</h3>
-        <p><strong>Summary:</strong> Based on IEEE JETCAS 2022, it explores SRAM, DRAM, and ReRAM-based PIM circuits, hardware-software co-design, runtime scheduling, and energy savings.</p>
-        <p><strong>My Thesis Link:</strong> Early-exit dynamic inference in PIM-based ML pipelines.</p>
-      </div>
-      <div class="review-entry">
-        <h3>2. Early Exit Optimization in Deep Networks</h3>
-        <p><strong>Summary:</strong> ResNet50 with entropy-based multi-exit logic to reduce inference time while maintaining accuracy. Achieved 80%+ accuracy at intermediate exits.</p>
-      </div>
-      <div class="review-entry">
-        <h3>3. NeuPIMs for LLM Inference</h3>
-        <p><strong>Insight:</strong> Combines NPUs and PIMs using sub-batch interleaving to enhance GEMM/GEMV throughput for LLM workloads. Achieved up to 3× throughput.</p>
-      </div>
-    </div>
+  <section id="snapea" class="section">
+    <h2>Snapea - Efficient Inference</h2>
+    <p>Designed confidence-based activation pruning mechanism that selectively disables neurons based on entropy threshold. Reduced MAC operations in CNNs by 30% with minimal loss. Benchmarked with custom layer hooks and visualization.</p>
   </section>
-
-  <section id="contact" class="section">
-    <h2>Contact</h2>
-    <p><strong>Email:</strong> <a href="mailto:srim@iastate.edu">srim@iastate.edu</a></p>
-    <p><strong>Phone:</strong> +1 (515)-916-3011</p>
-    <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/sriharshamudumba" target="_blank">sriharshamudumba</a></p>
-    <p><strong>GitHub:</strong> <a href="https://github.com/sriharshamudumba" target="_blank">sriharshamudumba</a></p>
+  <section id="simnet" class="section">
+    <h2>SimNet - Architecture Simulation</h2>
+    <p>Developed a DL-based surrogate model for architectural simulation. Trained on micro-op traces to predict performance counters with 95%+ accuracy. Enabled 10× faster simulation compared to traditional cycle-accurate tools.</p>
   </section>
-
-  <section id="resume" class="section">
-    <h2>Resume</h2>
-    <p>Download my latest resume:
-      <a href="Sriharsha_Mudumba_resume_apple.pdf" target="_blank" style="font-weight: bold; color: #a478e0;">
-        Click Here
-      </a>
-    </p>
+  <section id="music-genre" class="section">
+    <h2>Music Genre Classification</h2>
+    <p>Built an end-to-end pipeline using Librosa + MFCC features to classify audio into 10 genres. Trained CNN and KNN models and deployed as a Flask app for real-time user interaction.</p>
+  </section>
+  <section id="anpr" class="section">
+    <h2>Automatic Number Plate Recognition</h2>
+    <p>Used YOLOv5 for vehicle + plate detection and EasyOCR for text extraction. Streamed and processed traffic video using OpenCV. Generated annotated output and number_plate.txt summaries with license data.</p>
+  </section>
+  <section id="blockchain" class="section">
+    <h2>Flight Insurance on Blockchain</h2>
+    <p>Designed a smart contract using Solidity to auto-disburse insurance based on flight status (weather, delays). Integrated with Chainlink Oracles and tested on Rinkeby using Ganache and Web3.py.</p>
   </section>
 
   <footer>
