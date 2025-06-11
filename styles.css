@@ -17,7 +17,7 @@ body::before {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.75); /* dark overlay */
+  background: rgba(0, 0, 0, 0.75);
   z-index: -1;
 }
 
@@ -37,18 +37,13 @@ header {
   white-space: nowrap;
   overflow: hidden;
   width: 0;
-  animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+  animation: typing 4s steps(40, end) forwards;
   margin: 10px auto;
 }
 
 @keyframes typing {
   from { width: 0; }
   to { width: 100%; }
-}
-
-@keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: white; }
 }
 
 nav ul {
@@ -151,7 +146,7 @@ h2 {
   text-decoration: none;
 }
 
-/* Tech Stack Badge Styling */
+/* Tech Stack */
 .tech-section {
   text-align: center;
   padding: 60px 20px;
@@ -175,7 +170,7 @@ h2 {
   gap: 10px;
   font-weight: 600;
   font-size: 14px;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease-in-out;
   opacity: 0;
   transform: translateY(15px);
   animation: fadeUp 0.5s forwards;
@@ -210,4 +205,14 @@ footer {
   width: 100px;
   display: block;
   margin-bottom: 15px;
+}
+
+/* Optional Contact Styling */
+#contact a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+#contact a:hover {
+  text-decoration: underline;
 }
