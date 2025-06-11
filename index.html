@@ -326,74 +326,32 @@
 </section>
 
 
+  <!-- Project section with external links -->
   <section id="projects" class="section">
     <h2>Projects</h2>
     <div class="project-list">
-      <div class="project-card" style="background-image:url('LEXA.png');"><button onclick="location.href='#lexa'">LEXA - Lightweight RAG</button></div>
-      <div class="project-card" style="background-image:url('1bit.png');"><button onclick="location.href='#1bitllm'">1BitLLM Benchmark</button></div>
-      <div class="project-card" style="background-image:url('Snapea_1.png');"><button onclick="location.href='#snapea'">Snapea - Efficient Inference</button></div>
-      <div class="project-card" style="background-image:url('Simnet.png');"><button onclick="location.href='#simnet'">SimNet Predictor</button></div>
-      <div class="project-card" style="background-image:url('Music.png');"><button onclick="location.href='#music'">Music Genre Classifier</button></div>
-      <div class="project-card" style="background-image:url('Number_plate.png');"><button onclick="location.href='#anpr'">Number Plate Detection</button></div>
-      <div class="project-card" style="background-image:url('Blockchain.png');"><button onclick="location.href='#blockchain'">Blockchain Insurance</button></div>
+      <div class="project-card" style="background-image:url('Lexa.png');">
+        <button onclick="location.href='projects/lexa.html'">LEXA - Lightweight RAG</button>
+      </div>
+      <div class="project-card" style="background-image:url('1bit.png');">
+        <button onclick="location.href='projects/1bitllm.html'">1BitLLM Benchmark</button>
+      </div>
+      <div class="project-card" style="background-image:url('Snapea_1.png');">
+        <button onclick="location.href='projects/snapea.html'">Snapea - Efficient Inference</button>
+      </div>
+      <div class="project-card" style="background-image:url('Simnet.png');">
+        <button onclick="location.href='projects/simnet.html'">SimNet Predictor</button>
+      </div>
+      <div class="project-card" style="background-image:url('Music.png');">
+        <button onclick="location.href='projects/music.html'">Music Genre Classifier</button>
+      </div>
+      <div class="project-card" style="background-image:url('Number_plate.png');">
+        <button onclick="location.href='projects/anpr.html'">Number Plate Detection</button>
+      </div>
+      <div class="project-card" style="background-image:url('Blockchain.png');">
+        <button onclick="location.href='projects/blockchain.html'">Blockchain Insurance</button>
+      </div>
     </div>
-  </section>
-
-  <!-- LEXA Project -->
-  <section id="lexa" class="section">
-    <h2>LEXA – Lightweight RAG with Early Exit</h2>
-    <p>LEXA is a Retrieval-Augmented Generation (RAG) framework tailored for efficient, local deployment on consumer-grade GPUs. It leverages MiniLM for fast document embedding and cosine similarity for retrieval, coupled with a TinyLlama 1.1B model for generation. The architecture is optimized for offline use with no cloud dependency.</p>
-    <p>The system integrates entropy-based early-exit logic to reduce token generation latency. FastAPI powers the backend, with visual debugging for token-level entropy. Benchmarks focused on latency, energy, and utilization across devices.</p>
-    <p><strong>Results:</strong> 40% latency reduction, 30% energy savings, fully offline and open-source stack.</p>
-    <div class="tech-stack"><span>MiniLM</span><span>TinyLlama</span><span>FastAPI</span><span>Entropy Filter</span><span>RAG</span></div>
-  </section>
-
-  <!-- 1BitLLM -->
-  <section id="1bitllm" class="section">
-    <h2>1BitLLM – Benchmarking and Optimization</h2>
-    <p>Benchmarked 1-bit quantized LLMs using ONNX and IREE. Focused on profiling latency, memory usage, and compiler optimizations for ternary weights. Traced execution with nvprof and IREE tools to evaluate performance on CPUs and GPUs.</p>
-    <p><strong>Results:</strong> 2.5×–3.2× speedup, 60% memory reduction, reproducible compiler benchmark suite.</p>
-    <div class="tech-stack"><span>ONNX</span><span>IREE</span><span>BitNet</span><span>Quantization</span><span>Profiling</span></div>
-  </section>
-
-  <!-- Snapea -->
-  <section id="snapea" class="section">
-    <h2>Snapea – Efficient Inference Framework</h2>
-    <p>Snapea uses entropy-based skipping of CNN layers during inference. The model dynamically exits based on low-uncertainty conditions. Evaluation on CIFAR and TinyImageNet showed significant gains.</p>
-    <p><strong>Results:</strong> 25%–35% latency reduction, <1.5% accuracy drop, real-time on Jetson Nano.</p>
-    <div class="tech-stack"><span>PyTorch</span><span>CNN</span><span>Entropy Skipping</span><span>Edge AI</span></div>
-  </section>
-
-  <!-- SimNet -->
-  <section id="simnet" class="section">
-    <h2>SimNet – Microarchitecture Behavior Simulation</h2>
-    <p>Used LSTM + 1D CNNs to predict IPC, cache behavior, and stalls from instruction traces. Trained on SPEC and gem5 data. Enabled rapid architectural exploration without RTL simulation.</p>
-    <p><strong>Results:</strong> 96.1% correlation, replaced 1,000-cycle simulations with 1ms predictions.</p>
-    <div class="tech-stack"><span>LSTM</span><span>GEM5</span><span>SPEC</span><span>Simulation</span></div>
-  </section>
-
-  <!-- Music -->
-  <section id="music" class="section">
-    <h2>Music Genre Classification</h2>
-    <p>Built an audio genre classifier using MFCC + CNN, trained on GTZAN and FMA datasets. Includes real-time web UI built with Flask and deployed locally.</p>
-    <p><strong>Results:</strong> 93.4% accuracy, resolved genre overlap with confidence filtering.</p>
-    <div class="tech-stack"><span>PyTorch</span><span>Librosa</span><span>Flask</span><span>GTZAN</span><span>FMA</span></div>
-  </section>
-
-  <!-- ANPR -->
-  <section id="anpr" class="section">
-    <h2>Automatic Number Plate Recognition (ANPR)</h2>
-    <p>YOLOv5 + EasyOCR-based pipeline for real-time video plate recognition. Supports Jetson deployment, OCR preprocessing, and backend CSV logging.</p>
-    <p><strong>Results:</strong> 98% accuracy, 30 FPS on GTX 1050Ti, integrated logging.</p>
-    <div class="tech-stack"><span>YOLOv5</span><span>EasyOCR</span><span>OpenCV</span><span>Jetson</span></div>
-  </section>
-
-  <!-- Blockchain -->
-  <section id="blockchain" class="section">
-    <h2>Flight Insurance on Blockchain</h2>
-    <p>Smart contract automation using Solidity and Chainlink. Claims disbursed automatically based on real-time flight delay data. Integrated with MetaMask and flight oracles.</p>
-    <p><strong>Results:</strong> Claims processed in under 10 mins, 0 manual steps, secure & auditable.</p>
-    <div class="tech-stack"><span>Solidity</span><span>Chainlink</span><span>MetaMask</span><span>Web3</span><span>Smart Contracts</span></div>
   </section>
 
   <!-- Work Experience -->
