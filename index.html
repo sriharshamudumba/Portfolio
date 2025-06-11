@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sri Harsha Mudumba | ML Engineer</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -17,6 +18,7 @@
 
     header {
       background: rgba(0, 0, 0, 0.8);
+      color: white;
       text-align: center;
       padding: 40px 20px;
       box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
@@ -25,8 +27,8 @@
     nav ul {
       list-style: none;
       padding: 0;
-      margin-top: 20px;
       text-align: center;
+      margin-top: 20px;
     }
 
     nav ul li {
@@ -66,6 +68,7 @@
     }
 
     .project-card {
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 10px;
       height: 200px;
       display: flex;
@@ -102,17 +105,9 @@
     .project-card:nth-child(6) { background-image: url('Number_plate.png'); }
     .project-card:nth-child(7) { background-image: url('Blockchain.png'); }
 
-    .tech-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-top: 10px;
-    }
-
-    .tech-item {
-      background: rgba(255,255,255,0.1);
-      padding: 10px;
-      border-radius: 8px;
+    .job-logo {
+      width: 120px;
+      margin-bottom: 10px;
     }
 
     footer {
@@ -122,18 +117,13 @@
       color: #ccc;
       font-size: 14px;
     }
-
-    .job-logo {
-      width: 120px;
-      margin-bottom: 10px;
-    }
   </style>
 </head>
 <body>
   <header>
     <h1>Sri Harsha Mudumba</h1>
-    <p style="font-size: 20px; font-weight: bold;">Aspiring Machine Learning Engineer</p>
-    <p>HPC | AI Researcher</p>
+    <p class="subtitle">Aspiring Machine Learning Engineer</p>
+    <p class="subtitle">HPC | AI Researcher</p>
     <nav>
       <ul>
         <li><a href="#about">About</a></li>
@@ -148,7 +138,24 @@
 
   <section id="about" class="section">
     <h2>About Me</h2>
-    <p>I am a Computer Engineer with a Master’s focus in <strong>Machine Learning</strong>, <strong>High-Performance Computing (HPC)</strong>, and <strong>Computer Architecture Systems</strong>. I aim to build intelligent systems that are efficient, scalable, and deployable in production.</p>
+    <p>I am a Computer Engineer with a Master’s focus in <strong>Machine Learning</strong>, <strong>High-Performance Computing (HPC)</strong>, and <strong>Computer Architecture Systems</strong>, driven by a mission to make intelligent systems faster, more scalable, and production-ready. Through my graduate studies at Iowa State University, I’ve built a strong foundation across both theoretical and applied dimensions of AI — from model design and optimization to deployment across advanced hardware platforms.</p>
+    <p><strong>🧠 What I Do:</strong></p>
+    <ul>
+      <li>Design and implement ML workflows focused on efficiency, scalability, and inference performance</li>
+      <li>Deploy models on multi-GPU/distributed systems using parallelization techniques</li>
+      <li>Integrate RAG pipelines for context-aware NLP systems</li>
+      <li>Optimize and benchmark models using ONNX Runtime and IREE</li>
+      <li>Apply quantization, pruning, and early exits for efficient inference</li>
+    </ul>
+    <p><strong>🔧 Technical Toolbox:</strong></p>
+    <ul>
+      <li><strong>Languages:</strong> Python, C++, Shell, SQL</li>
+      <li><strong>Libraries:</strong> PyTorch, TensorFlow, ONNX, OpenCV, EasyOCR</li>
+      <li><strong>Tooling:</strong> Git, FastAPI, HuggingFace, Slurm, Oracle EBS</li>
+      <li><strong>Infra:</strong> Multi-GPU, Linux, HPC clusters, IREE/LLVM stack</li>
+    </ul>
+    <p><strong>🏢 Prior Industry Experience:</strong> Previously at Cognizant, I maintained Oracle EBS for clients like Intuit and BioMarin, performing ADOP patching, upgrades, and automation. This sharpened my focus on performance, compliance, and system reliability — skills I now bring to ML engineering.</p>
+    <p><strong>🚀 Looking Ahead:</strong> I seek opportunities where I can combine ML, HPC, and systems optimization to innovate in real-world AI deployments.</p>
   </section>
 
   <section id="projects" class="section">
