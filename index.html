@@ -1,880 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sriharsha Mudumba - Developer Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
-            color: #ffffff;
-            min-height: 100vh;
-        }
-
-        .container {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        .sidebar {
-            width: 280px;
-            background: #000000;
-            padding: 24px;
-            border-right: 1px solid #2a2a2a;
-            position: fixed;
-            height: 100vh;
-            overflow-y: auto;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: #1db954;
-            margin-bottom: 32px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logo::before {
-            content: "♪";
-            font-size: 32px;
-        }
-
-        .nav-section {
-            margin-bottom: 32px;
-        }
-
-        .nav-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: #b3b3b3;
-            margin-bottom: 16px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 0;
-            cursor: pointer;
-            transition: color 0.3s ease;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .nav-item:hover {
-            color: #1db954;
-        }
-
-        .nav-item.active {
-            color: #1db954;
-        }
-
-        .nav-item::before {
-            content: "";
-            width: 20px;
-            height: 20px;
-            margin-right: 12px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            filter: brightness(0) invert(1);
-            transition: filter 0.3s ease;
-        }
-
-        .nav-item.active::before,
-        .nav-item:hover::before {
-            filter: brightness(0) invert(1) hue-rotate(120deg) saturate(3);
-        }
-
-        .main-content {
-            flex: 1;
-            margin-left: 280px;
-            padding: 24px;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 32px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid #2a2a2a;
-        }
-
-        .profile-section {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
-
-        .profile-image {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #1db954, #1ed760);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            font-weight: bold;
-            color: #000;
-        }
-
-        .profile-info h1 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .profile-info p {
-            color: #b3b3b3;
-            font-size: 16px;
-        }
-
-        .status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #1db954;
-            font-size: 14px;
-        }
-
-        .status::before {
-            content: "●";
-            color: #1db954;
-        }
-
-        .playlist-section {
-            margin-bottom: 48px;
-        }
-
-        .playlist-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-        }
-
-        .playlist-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        .playlist-subtitle {
-            color: #b3b3b3;
-            font-size: 14px;
-            margin-top: 4px;
-        }
-
-        .play-button {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: #1db954;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            color: #000;
-            transition: all 0.3s ease;
-        }
-
-        .play-button:hover {
-            background: #1ed760;
-            transform: scale(1.05);
-        }
-
-        .track-list {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .track {
-            display: flex;
-            align-items: center;
-            padding: 16px;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-        }
-
-        .track:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .track-number {
-            width: 24px;
-            font-size: 14px;
-            color: #b3b3b3;
-            margin-right: 16px;
-        }
-
-        .track-image {
-            width: 48px;
-            height: 48px;
-            border-radius: 4px;
-            background: linear-gradient(135deg, #1db954, #1ed760);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 16px;
-            font-size: 20px;
-            color: #000;
-        }
-
-        .track-info {
-            flex: 1;
-        }
-
-        .track-title {
-            font-size: 16px;
-            font-weight: 500;
-            color: #ffffff;
-            margin-bottom: 4px;
-        }
-
-        .track-artist {
-            font-size: 14px;
-            color: #b3b3b3;
-        }
-
-        .track-duration {
-            font-size: 14px;
-            color: #b3b3b3;
-            margin-left: 16px;
-        }
-
-        .track-actions {
-            display: flex;
-            gap: 8px;
-            margin-left: 16px;
-        }
-
-        .action-button {
-            width: 32px;
-            height: 32px;
-            border: none;
-            background: transparent;
-            color: #b3b3b3;
-            cursor: pointer;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .action-button:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
-            margin-bottom: 48px;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 24px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .stat-value {
-            font-size: 32px;
-            font-weight: 700;
-            color: #1db954;
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            font-size: 14px;
-            color: #b3b3b3;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 8px;
-        }
-
-        .tech-tag {
-            background: rgba(29, 185, 84, 0.2);
-            color: #1db954;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        .floating-player {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(90deg, #181818 0%, #1e1e1e 100%);
-            border-top: 1px solid #2a2a2a;
-            padding: 16px 24px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            z-index: 1000;
-        }
-
-        .current-track {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            min-width: 200px;
-        }
-
-        .current-track-image {
-            width: 40px;
-            height: 40px;
-            border-radius: 4px;
-            background: linear-gradient(135deg, #1db954, #1ed760);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            color: #000;
-        }
-
-        .current-track-info {
-            font-size: 14px;
-        }
-
-        .current-track-title {
-            color: #ffffff;
-            font-weight: 500;
-        }
-
-        .current-track-artist {
-            color: #b3b3b3;
-        }
-
-        .player-controls {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            flex: 1;
-            justify-content: center;
-        }
-
-        .control-button {
-            width: 40px;
-            height: 40px;
-            border: none;
-            background: transparent;
-            color: #b3b3b3;
-            cursor: pointer;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .control-button:hover {
-            color: #ffffff;
-        }
-
-        .control-button.play {
-            background: #1db954;
-            color: #000;
-        }
-
-        .control-button.play:hover {
-            background: #1ed760;
-            transform: scale(1.05);
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 4px;
-            background: #3e3e3e;
-            border-radius: 2px;
-            margin: 8px 0;
-            cursor: pointer;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: #1db954;
-            border-radius: 2px;
-            width: 30%;
-            transition: width 0.3s ease;
-        }
-
-        .volume-controls {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            min-width: 120px;
-        }
-
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 100%;
-                position: relative;
-                height: auto;
-            }
-
-            .main-content {
-                margin-left: 0;
-            }
-
-            .container {
-                flex-direction: column;
-            }
-
-            .profile-section {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .floating-player {
-                padding: 12px 16px;
-            }
-
-            .player-controls {
-                display: none;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sriharsha Mudumba - Code Symphony</title>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const trackList = document.querySelectorAll('.track');
+      const nowPlayingTitle = document.querySelector('.now-playing-title');
+      const nowPlayingArtist = document.querySelector('.now-playing-artist');
+      const nowPlayingCover = document.querySelector('.now-playing-cover');
+
+      trackList.forEach(track => {
+        track.addEventListener('click', () => {
+          trackList.forEach(t => t.classList.remove('playing'));
+          track.classList.add('playing');
+
+          const title = track.dataset.title;
+          const artist = track.dataset.artist;
+          const cover = track.dataset.cover;
+
+          nowPlayingTitle.textContent = title;
+          nowPlayingArtist.textContent = artist;
+          nowPlayingCover.textContent = cover;
+        });
+      });
+    });
+  </script>
 </head>
 <body>
-    <div class="container">
-        <div class="sidebar">
-            <div class="logo">DevTunes</div>
-            
-            <div class="nav-section">
-                <div class="nav-title">Library</div>
-                <div class="nav-item active">Projects</div>
-                <div class="nav-item">Skills</div>
-                <div class="nav-item">Experience</div>
-                <div class="nav-item">Education</div>
-            </div>
-
-            <div class="nav-section">
-                <div class="nav-title">Made for You</div>
-                <div class="nav-item">Recently Created</div>
-                <div class="nav-item">Favorites</div>
-                <div class="nav-item">Liked Code</div>
-            </div>
+  <!-- Add project cards -->
+  <div class="track-list">
+    <div class="track" data-title="DURACIM" data-artist="CiM Symphony" data-cover="⚙️">
+      <div class="track-number">01</div>
+      <div class="track-cover">⚙️</div>
+      <div class="track-info">
+        <div class="track-title">DURACIM</div>
+        <div class="track-artist">CiM Symphony</div>
+        <div class="track-tags">
+          <span class="tech-tag">PyTorch</span>
+          <span class="tech-tag">ResNet50</span>
+          <span class="tech-tag">Reinforcement Learning</span>
         </div>
-
-        <div class="main-content">
-            <div class="header">
-                <div class="profile-section">
-                    <div class="profile-image">SM</div>
-                    <div class="profile-info">
-                        <h1>Sriharsha Mudumba</h1>
-                        <p>Full Stack Developer</p>
-                    </div>
-                </div>
-                <div class="status">Currently Available</div>
-            </div>
-
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value">15+</div>
-                    <div class="stat-label">Projects Completed</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">8</div>
-                    <div class="stat-label">Technologies Mastered</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">2+</div>
-                    <div class="stat-label">Years Experience</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">500+</div>
-                    <div class="stat-label">Commits This Year</div>
-                </div>
-            </div>
-
-            <div class="playlist-section">
-                <div class="playlist-header">
-                    <div>
-                        <div class="playlist-title">Featured Projects</div>
-                        <div class="playlist-subtitle">My best work • Updated recently</div>
-                    </div>
-                    <button class="play-button">▶</button>
-                </div>
-                
-                <div class="track-list">
-                    <div class="track">
-                        <div class="track-number">1</div>
-                        <div class="track-image">🚀</div>
-                        <div class="track-info">
-                            <div class="track-title">E-Commerce Platform</div>
-                            <div class="track-artist">Full Stack Web Application</div>
-                            <div class="tech-tags">
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">Node.js</span>
-                                <span class="tech-tag">MongoDB</span>
-                            </div>
-                        </div>
-                        <div class="track-duration">3:42</div>
-                        <div class="track-actions">
-                            <button class="action-button">👁</button>
-                            <button class="action-button">💻</button>
-                            <button class="action-button">❤</button>
-                        </div>
-                    </div>
-
-                    <div class="track">
-                        <div class="track-number">2</div>
-                        <div class="track-image">📱</div>
-                        <div class="track-info">
-                            <div class="track-title">Task Management App</div>
-                            <div class="track-artist">Mobile & Web Application</div>
-                            <div class="tech-tags">
-                                <span class="tech-tag">React Native</span>
-                                <span class="tech-tag">Firebase</span>
-                                <span class="tech-tag">Redux</span>
-                            </div>
-                        </div>
-                        <div class="track-duration">2:58</div>
-                        <div class="track-actions">
-                            <button class="action-button">👁</button>
-                            <button class="action-button">💻</button>
-                            <button class="action-button">❤</button>
-                        </div>
-                    </div>
-
-                    <div class="track">
-                        <div class="track-number">3</div>
-                        <div class="track-image">🤖</div>
-                        <div class="track-info">
-                            <div class="track-title">AI Chat Bot</div>
-                            <div class="track-artist">Machine Learning Project</div>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">TensorFlow</span>
-                                <span class="tech-tag">Flask</span>
-                            </div>
-                        </div>
-                        <div class="track-duration">4:15</div>
-                        <div class="track-actions">
-                            <button class="action-button">👁</button>
-                            <button class="action-button">💻</button>
-                            <button class="action-button">❤</button>
-                        </div>
-                    </div>
-
-                    <div class="track">
-                        <div class="track-number">4</div>
-                        <div class="track-image">📊</div>
-                        <div class="track-info">
-                            <div class="track-title">Data Visualization Dashboard</div>
-                            <div class="track-artist">Analytics Platform</div>
-                            <div class="tech-tags">
-                                <span class="tech-tag">D3.js</span>
-                                <span class="tech-tag">Vue.js</span>
-                                <span class="tech-tag">PostgreSQL</span>
-                            </div>
-                        </div>
-                        <div class="track-duration">3:21</div>
-                        <div class="track-actions">
-                            <button class="action-button">👁</button>
-                            <button class="action-button">💻</button>
-                            <button class="action-button">❤</button>
-                        </div>
-                    </div>
-
-                    <div class="track">
-                        <div class="track-number">5</div>
-                        <div class="track-image">🌐</div>
-                        <div class="track-info">
-                            <div class="track-title">Social Media API</div>
-                            <div class="track-artist">Backend Service</div>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Express.js</span>
-                                <span class="tech-tag">JWT</span>
-                                <span class="tech-tag">Redis</span>
-                            </div>
-                        </div>
-                        <div class="track-duration">2:47</div>
-                        <div class="track-actions">
-                            <button class="action-button">👁</button>
-                            <button class="action-button">💻</button>
-                            <button class="action-button">❤</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="playlist-section">
-                <div class="playlist-header">
-                    <div>
-                        <div class="playlist-title">Core Skills</div>
-                        <div class="playlist-subtitle">Technologies I work with • Always learning</div>
-                    </div>
-                    <button class="play-button">▶</button>
-                </div>
-                
-                <div class="track-list">
-                    <div class="track">
-                        <div class="track-number">1</div>
-                        <div class="track-image">⚛️</div>
-                        <div class="track-info">
-                            <div class="track-title">React.js</div>
-                            <div class="track-artist">Frontend Framework • Expert Level</div>
-                        </div>
-                        <div class="track-duration">★★★★★</div>
-                    </div>
-
-                    <div class="track">
-                        <div class="track-number">2</div>
-                        <div class="track-image">🟢</div>
-                        <div class="track-info">
-                            <div class="track-title">Node.js</div>
-                            <div class="track-artist">Backend Runtime • Advanced</div>
-                        </div>
-                        <div class="track-duration">★★★★☆</div>
-                    </div>
-
-                    <div class="track">
-                        <div class="track-number">3</div>
-                        <div class="track-image">🐍</div>
-                        <div class="track-info">
-                            <div class="track-title">Python</div>
-                            <div class="track-artist">Programming Language • Advanced</div>
-                        </div>
-                        <div class="track-duration">★★★★☆</div>
-                    </div>
-
-                    <div class="track">
-                        <div class="track-number">4</div>
-                        <div class="track-image">🗃️</div>
-                        <div class="track-info">
-                            <div class="track-title">MongoDB</div>
-                            <div class="track-artist">NoSQL Database • Intermediate</div>
-                        </div>
-                        <div class="track-duration">★★★☆☆</div>
-                    </div>
-
-                    <div class="track">
-                        <div class="track-number">5</div>
-                        <div class="track-image">☁️</div>
-                        <div class="track-info">
-                            <div class="track-title">AWS</div>
-                            <div class="track-artist">Cloud Platform • Intermediate</div>
-                        </div>
-                        <div class="track-duration">★★★☆☆</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="playlist-section">
-                <div class="playlist-header">
-                    <div>
-                        <div class="playlist-title">Professional Experience</div>
-                        <div class="playlist-subtitle">Career highlights • Building the future</div>
-                    </div>
-                    <button class="play-button">▶</button>
-                </div>
-                
-                <div class="track-list">
-                    <div class="track">
-                        <div class="track-number">1</div>
-                        <div class="track-image">💼</div>
-                        <div class="track-info">
-                            <div class="track-title">Full Stack Developer</div>
-                            <div class="track-artist">TechCorp Solutions • 2023 - Present</div>
-                            <div class="tech-tags">
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">Node.js</span>
-                                <span class="tech-tag">AWS</span>
-                            </div>
-                        </div>
-                        <div class="track-duration">1.5 years</div>
-                    </div>
-
-                    <div class="track">
-                        <div class="track-number">2</div>
-                        <div class="track-image">🚀</div>
-                        <div class="track-info">
-                            <div class="track-title">Frontend Developer Intern</div>
-                            <div class="track-artist">StartupXYZ • 2022 - 2023</div>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Vue.js</span>
-                                <span class="tech-tag">TypeScript</span>
-                                <span class="tech-tag">Docker</span>
-                            </div>
-                        </div>
-                        <div class="track-duration">8 months</div>
-                    </div>
-
-                    <div class="track">
-                        <div class="track-number">3</div>
-                        <div class="track-image">🎓</div>
-                        <div class="track-info">
-                            <div class="track-title">CS Teaching Assistant</div>
-                            <div class="track-artist">University • 2021 - 2022</div>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Java</span>
-                                <span class="tech-tag">Data Structures</span>
-                                <span class="tech-tag">Algorithms</span>
-                            </div>
-                        </div>
-                        <div class="track-duration">1 year</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
+      <div class="track-duration">4:59</div>
+      <div class="track-actions">
+        <a href="https://github.com/sriharshamudumba" class="action-btn" target="_blank">👁</a>
+        <a href="mailto:srim@iastate.edu" class="action-btn">📧</a>
+        <button class="action-btn">💖</button>
+      </div>
     </div>
 
-    <div class="floating-player">
-        <div class="current-track">
-            <div class="current-track-image">🚀</div>
-            <div class="current-track-info">
-                <div class="current-track-title">E-Commerce Platform</div>
-                <div class="current-track-artist">Currently featuring</div>
-            </div>
+    <div class="track" data-title="ARGUS" data-artist="Retrieval Beats" data-cover="🔍">
+      <div class="track-number">02</div>
+      <div class="track-cover">🔍</div>
+      <div class="track-info">
+        <div class="track-title">ARGUS</div>
+        <div class="track-artist">Retrieval Beats</div>
+        <div class="track-tags">
+          <span class="tech-tag">LangChain</span>
+          <span class="tech-tag">FAISS</span>
+          <span class="tech-tag">FastAPI</span>
+          <span class="tech-tag">Docker</span>
         </div>
-        
-        <div class="player-controls">
-            <button class="control-button">⏮</button>
-            <button class="control-button play">⏸</button>
-            <button class="control-button">⏭</button>
-            <div class="progress-bar">
-                <div class="progress-fill"></div>
-            </div>
-        </div>
-        
-        <div class="volume-controls">
-            <button class="control-button">🔊</button>
-            <div class="progress-bar" style="width: 100px;">
-                <div class="progress-fill" style="width: 70%;"></div>
-            </div>
-        </div>
+      </div>
+      <div class="track-duration">4:12</div>
+      <div class="track-actions">
+        <a href="https://github.com/sriharshamudumba/ARGUS" class="action-btn" target="_blank">👁</a>
+        <a href="mailto:srim@iastate.edu" class="action-btn">📧</a>
+        <button class="action-btn">💖</button>
+      </div>
     </div>
 
-    <script>
-        // Add interactivity
-        document.addEventListener('DOMContentLoaded', function() {
-            const tracks = document.querySelectorAll('.track');
-            const playButton = document.querySelector('.play-button');
-            const currentTrackTitle = document.querySelector('.current-track-title');
-            const currentTrackArtist = document.querySelector('.current-track-artist');
-            const currentTrackImage = document.querySelector('.current-track-image');
-            const playerPlayButton = document.querySelector('.control-button.play');
-            const progressFill = document.querySelector('.progress-fill');
-            
-            let isPlaying = false;
-            let currentTrack = null;
+    <div class="track" data-title="LEXA" data-artist="Edge Whisper" data-cover="🧠">
+      <div class="track-number">03</div>
+      <div class="track-cover">🧠</div>
+      <div class="track-info">
+        <div class="track-title">LEXA</div>
+        <div class="track-artist">Edge Whisper</div>
+        <div class="track-tags">
+          <span class="tech-tag">TinyLlama</span>
+          <span class="tech-tag">MiniLM</span>
+          <span class="tech-tag">FastAPI</span>
+        </div>
+      </div>
+      <div class="track-duration">3:33</div>
+      <div class="track-actions">
+        <a href="https://github.com/sriharshamudumba/LEXA" class="action-btn" target="_blank">👁</a>
+        <a href="mailto:srim@iastate.edu" class="action-btn">📧</a>
+        <button class="action-btn">💖</button>
+      </div>
+    </div>
 
-            // Track click handlers
-            tracks.forEach(track => {
-                track.addEventListener('click', function() {
-                    const title = this.querySelector('.track-title').textContent;
-                    const artist = this.querySelector('.track-artist').textContent;
-                    const emoji = this.querySelector('.track-image').textContent;
-                    
-                    currentTrackTitle.textContent = title;
-                    currentTrackArtist.textContent = artist;
-                    currentTrackImage.textContent = emoji;
-                    
-                    currentTrack = this;
-                    isPlaying = true;
-                    playerPlayButton.textContent = '⏸';
-                    
-                    // Remove active class from all tracks
-                    tracks.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
+    <div class="track" data-title="1BitLLM Benchmarking" data-artist="Quant Symphony" data-cover="🧮">
+      <div class="track-number">04</div>
+      <div class="track-cover">🧮</div>
+      <div class="track-info">
+        <div class="track-title">1BitLLM Benchmarking</div>
+        <div class="track-artist">Quant Symphony</div>
+        <div class="track-tags">
+          <span class="tech-tag">ONNX</span>
+          <span class="tech-tag">IREE</span>
+          <span class="tech-tag">PyTorch</span>
+        </div>
+      </div>
+      <div class="track-duration">3:58</div>
+      <div class="track-actions">
+        <a href="https://github.com/sriharshamudumba/Benchmark-1BitLLM" class="action-btn" target="_blank">👁</a>
+        <a href="mailto:srim@iastate.edu" class="action-btn">📧</a>
+        <button class="action-btn">💖</button>
+      </div>
+    </div>
 
-            // Play button handler
-            playButton.addEventListener('click', function() {
-                if (currentTrack) {
-                    isPlaying = !isPlaying;
-                    playerPlayButton.textContent = isPlaying ? '⏸' : '▶';
-                } else {
-                    // Play first track if none selected
-                    tracks[0].click();
-                }
-            });
+    <div class="track" data-title="SnaPEA Accelerator" data-artist="Sparse Grooves" data-cover="🌿">
+      <div class="track-number">05</div>
+      <div class="track-cover">🌿</div>
+      <div class="track-info">
+        <div class="track-title">SnaPEA Accelerator</div>
+        <div class="track-artist">Sparse Grooves</div>
+        <div class="track-tags">
+          <span class="tech-tag">TensorFlow</span>
+          <span class="tech-tag">PyTorch</span>
+          <span class="tech-tag">Early Exit</span>
+        </div>
+      </div>
+      <div class="track-duration">3:11</div>
+      <div class="track-actions">
+        <a href="https://github.com/sriharshamudumba/SnaPEA" class="action-btn" target="_blank">👁</a>
+        <a href="mailto:srim@iastate.edu" class="action-btn">📧</a>
+        <button class="action-btn">💖</button>
+      </div>
+    </div>
 
-            // Player controls
-            playerPlayButton.addEventListener('click', function() {
-                isPlaying = !isPlaying;
-                this.textContent = isPlaying ? '⏸' : '▶';
-            });
-
-            // Navigation
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    navItems.forEach(nav => nav.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-
-            // Simulate progress bar animation
-            setInterval(() => {
-                if (isPlaying) {
-                    const current = parseInt(progressFill.style.width) || 30;
-                    if (current < 100) {
-                        progressFill.style.width = (current + 1) + '%';
-                    } else {
-                        progressFill.style.width = '0%';
-                        // Auto-play next track
-                        if (currentTrack && currentTrack.nextElementSibling) {
-                            currentTrack.nextElementSibling.click();
-                        }
-                    }
-                }
-            }, 1000);
-
-            // Action buttons
-            document.querySelectorAll('.action-button').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const action = this.textContent;
-                    
-                    if (action === '👁') {
-                        alert('Opening live demo...');
-                    } else if (action === '💻') {
-                        alert('Opening GitHub repository...');
-                    } else if (action === '❤') {
-                        this.textContent = this.textContent === '❤' ? '💚' : '❤';
-                    }
-                });
-            });
-        });
-    </script>
+    <div class="track" data-title="Real-Time Number Plate Detection" data-artist="Vision Tempo" data-cover="🚗">
+      <div class="track-number">06</div>
+      <div class="track-cover">🚗</div>
+      <div class="track-info">
+        <div class="track-title">Real-Time Number Plate Detection</div>
+        <div class="track-artist">Vision Tempo</div>
+        <div class="track-tags">
+          <span class="tech-tag">OpenCV</span>
+          <span class="tech-tag">C++</span>
+          <span class="tech-tag">MPI</span>
+        </div>
+      </div>
+      <div class="track-duration">4:04</div>
+      <div class="track-actions">
+        <a href="https://github.com/sriharshamudumba/Real-Time-Video-Processing-and-Analysis-MPI-" class="action-btn" target="_blank">👁</a>
+        <a href="mailto:srim@iastate.edu" class="action-btn">📧</a>
+        <button class="action-btn">💖</button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
