@@ -1,1038 +1,656 @@
+Of course. Here is a redesigned version of your portfolio with a theme that merges the aesthetics of Netflix and Spotify.
+
+### Key Changes:
+
+  * **Netflix-Inspired UI:** The projects are now displayed in horizontally-scrolling carousels, similar to Browse titles on Netflix. Clicking on a project opens a detailed modal view. The color scheme uses a dark background with a vibrant red accent.
+  * **Spotify-Inspired Elements:** A fixed footer mimics a music player, providing persistent links to your socials and contact information. The overall typography and layout are clean and modern, drawing inspiration from Spotify's interface.
+  * **New "Skills" Section:** A dedicated section now showcases your technical skills in a visually organized manner.
+  * **Enhanced Interactivity:** The portfolio is more dynamic with modals for project details and smooth scrolling navigation.
+
+Here is the complete code for your new portfolio:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sriharsha Mudumba - Neural Networks & Digital Dreams</title>
+    <title>Sriharsha Mudumba - Portfolio</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap');
+
+        :root {
+            --netflix-red: #E50914;
+            --spotify-green: #1DB954;
+            --background-color: #141414;
+            --card-color: #222222;
+            --text-primary: #FFFFFF;
+            --text-secondary: #a0a0a0;
+            --font-family: 'Montserrat', sans-serif;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --neural-blue: #00d4ff;
-            --electric-purple: #b537ff;
-            --neon-green: #39ff14;
-            --deep-black: #0a0a0a;
-            --rich-black: #1a1a1a;
-            --space-gray: #2a2a2a;
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Space Grotesk', sans-serif;
-            background: #000;
-            color: #fff;
-            overflow-x: hidden;
-            cursor: none;
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            padding-bottom: 80px; /* Space for the footer */
         }
 
-        /* Custom Cursor */
-        .cursor {
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--neural-blue);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: all 0.1s ease;
-            box-shadow: 0 0 20px var(--neural-blue);
-        }
-
-        .cursor-follower {
-            width: 8px;
-            height: 8px;
-            background: var(--neural-blue);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: all 0.15s ease;
-            box-shadow: 0 0 10px var(--neural-blue);
-        }
-
-        /* Matrix Background */
-        .matrix-bg {
+        /* --- Navigation --- */
+        .navbar {
             position: fixed;
             top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            z-index: -2;
-            background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.03) 0%, transparent 70%);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(180deg, rgba(20, 20, 20, 0.7) 0%, transparent 100%);
+            transition: background-color 0.3s ease;
         }
 
-        .matrix-rain {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+        .navbar.scrolled {
+            background-color: var(--background-color);
         }
 
-        .matrix-column {
-            position: absolute;
-            top: -100%;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            color: var(--neural-blue);
-            opacity: 0.1;
-            animation: matrixFall linear infinite;
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--netflix-red);
+            text-decoration: none;
         }
 
-        @keyframes matrixFall {
-            0% { top: -100%; opacity: 0; }
-            10% { opacity: 0.3; }
-            90% { opacity: 0.3; }
-            100% { top: 100%; opacity: 0; }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
         }
 
-        /* Neural Network Background */
-        .neural-network {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
-        .neural-node {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: var(--neural-blue);
-            border-radius: 50%;
-            box-shadow: 0 0 15px var(--neural-blue);
-            animation: neuralPulse 3s ease-in-out infinite;
+        .nav-links a:hover {
+            color: var(--netflix-red);
         }
 
-        .neural-connection {
-            position: absolute;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--neural-blue), transparent);
-            opacity: 0.3;
-            animation: neuralFlow 2s ease-in-out infinite;
-        }
-
-        @keyframes neuralPulse {
-            0%, 100% { transform: scale(1); opacity: 0.6; }
-            50% { transform: scale(1.5); opacity: 1; }
-        }
-
-        @keyframes neuralFlow {
-            0% { opacity: 0; }
-            50% { opacity: 0.6; }
-            100% { opacity: 0; }
-        }
-
-        /* Main Container */
-        .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Hero Section */
+        /* --- Hero Section --- */
         .hero {
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            background: radial-gradient(circle at center, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
-        }
-
-        .hero-content {
             text-align: center;
-            max-width: 1000px;
             padding: 0 20px;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, var(--background-color) 70%), url('https://i.imgur.com/3Q3SoKk.jpeg') no-repeat center center/cover;
+        }
+        
+        .hero-content {
+            max-width: 800px;
         }
 
         .hero-title {
-            font-size: clamp(3rem, 8vw, 8rem);
-            font-weight: 700;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, var(--neural-blue), var(--electric-purple), var(--neon-green));
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 3s ease-in-out infinite;
-            text-shadow: 0 0 50px rgba(0, 212, 255, 0.5);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 10px;
         }
 
         .hero-subtitle {
-            font-size: clamp(1.2rem, 3vw, 2rem);
-            color: rgba(255, 255, 255, 0.8);
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            color: var(--text-secondary);
             margin-bottom: 30px;
-            font-weight: 300;
-            letter-spacing: 2px;
         }
 
-        .hero-description {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.6);
-            max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 1.6;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 40px;
-        }
-
-        .cta-btn {
+        .hero-cta {
             padding: 15px 35px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            background-color: var(--netflix-red);
+            color: var(--text-primary);
             text-decoration: none;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
+            font-weight: 700;
+            border-radius: 5px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
-        .cta-btn.primary {
-            background: var(--primary-gradient);
-            color: #fff;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        .hero-cta:hover {
+            transform: scale(1.05);
+            background-color: #f40612;
         }
 
-        .cta-btn.secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
-        }
-
-        .cta-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .cta-btn:hover::before {
-            left: 100%;
-        }
-
-        /* Floating Elements */
-        .floating-shapes {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .floating-shape {
-            position: absolute;
-            background: var(--accent-gradient);
-            border-radius: 50%;
-            opacity: 0.1;
-            animation: float 15s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        /* Projects Section */
-        .projects-section {
-            padding: 100px 20px;
-            background: linear-gradient(180deg, transparent 0%, rgba(0, 212, 255, 0.02) 100%);
+        /* --- Section Styling --- */
+        .section {
+            padding: 80px 50px;
         }
 
         .section-title {
-            text-align: center;
-            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 20px;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            margin-bottom: 40px;
+            padding-left: 15px;
+            border-left: 5px solid var(--netflix-red);
         }
 
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 80px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+        /* --- Projects Section (Netflix Carousel) --- */
+        .projects-carousel {
+            position: relative;
         }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            max-width: 1400px;
-            margin: 0 auto;
+        .carousel-track {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 20px;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
         }
 
         .project-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 0;
+            flex: 0 0 280px;
+            height: 160px;
+            background-color: var(--card-color);
+            border-radius: 8px;
             overflow: hidden;
-            transition: all 0.5s ease;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
-            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: flex-end;
+            padding: 15px;
         }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--primary-gradient);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .project-card:hover::before {
-            opacity: 0.1;
-        }
-
+        
         .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--neural-blue);
-            box-shadow: 0 25px 50px rgba(0, 212, 255, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .project-header {
-            padding: 30px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-        }
-
-        .project-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            display: block;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .project-category {
-            color: var(--neural-blue);
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .project-body {
-            padding: 30px;
-        }
-
-        .project-description {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        .tech-tag {
-            background: rgba(0, 212, 255, 0.1);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            color: var(--neural-blue);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .project-actions {
-            display: flex;
-            gap: 15px;
-        }
-
-        .action-btn {
-            padding: 12px 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            border-radius: 10px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .action-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--neural-blue);
-            transform: translateY(-2px);
-        }
-
-        /* Stats Section */
-        .stats-section {
-            padding: 100px 20px;
-            background: radial-gradient(circle at center, rgba(181, 55, 255, 0.05) 0%, transparent 70%);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            transition: all 0.5s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--secondary-gradient);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .stat-card:hover::before {
-            opacity: 0.1;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--electric-purple);
-            box-shadow: 0 20px 40px rgba(181, 55, 255, 0.2);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            background: var(--secondary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-            position: relative;
-        }
-
-        .stat-label {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.1rem;
-            font-weight: 500;
-            position: relative;
-        }
-
-        /* About Me Section */
-        .about-section {
-            padding: 100px 20px;
-            background: linear-gradient(180deg, transparent 0%, rgba(0, 212, 255, 0.02) 100%);
-        }
-
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-description {
+        .project-card .card-title {
             font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-            margin-bottom: 40px;
+            font-weight: 700;
+            z-index: 2;
         }
         
-        /* Resume Section */
-        .resume-section {
-            padding: 100px 20px;
-            background: radial-gradient(circle at center, rgba(102, 126, 234, 0.05) 0%, transparent 70%);
-        }
-
-        .resume-content {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .resume-timeline {
-            position: relative;
-            padding-left: 50px;
-            border-left: 2px solid var(--neural-blue);
-        }
-
-        .timeline-item {
-            margin-bottom: 50px;
-            position: relative;
-        }
-
-        .timeline-item::before {
+        .project-card::after {
             content: '';
             position: absolute;
-            left: -58px;
-            top: 5px;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: var(--neural-blue);
-            border: 3px solid #000;
-        }
-        
-        .timeline-title {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .timeline-subtitle {
-            font-size: 1.1rem;
-            color: var(--neural-blue);
-            margin-bottom: 15px;
-        }
-
-        .timeline-date {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 20px;
-        }
-
-        .timeline-description {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
-        }
-
-        .resume-download {
-            text-align: center;
-            margin-top: 60px;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            padding: 100px 20px;
-            background: linear-gradient(180deg, transparent 0%, rgba(0, 212, 255, 0.03) 100%);
-        }
-
-        .contact-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .form-input, .form-textarea {
-            width: 100%;
-            padding: 15px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            color: #fff;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-input:focus, .form-textarea:focus {
-            outline: none;
-            border-color: var(--neural-blue);
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .submit-btn {
-            align-self: center;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 60px;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 25px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            color: #fff;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .contact-link:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--neural-blue);
-            transform: translateY(-3px);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Scroll Indicators */
-        .scroll-indicator {
-            position: fixed;
             top: 0;
             left: 0;
-            height: 4px;
-            background: var(--accent-gradient);
-            z-index: 9999;
-            transition: width 0.3s ease;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 50%);
+            z-index: 1;
         }
 
-        /* Loading Animation */
-        .loading {
+
+        /* --- Skills Section --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background-color: var(--card-color);
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .skill-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--spotify-green);
+        }
+
+        .skill-card ul {
+            list-style: none;
+        }
+
+        .skill-card li {
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        
+        /* --- About Section --- */
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            max-width: 900px;
+        }
+
+        /* --- Footer (Spotify Player) --- */
+        .spotify-player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background-color: #181818;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            z-index: 200;
+        }
+
+        .player-left {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .player-left span {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .player-center {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .player-center a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1.8rem;
+            transition: color 0.3s ease;
+        }
+        
+        .player-center a:hover {
+            color: var(--text-primary);
+        }
+
+        .player-right a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            padding: 10px 20px;
+            border: 2px solid var(--spotify-green);
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .player-right a:hover {
+            background-color: var(--spotify-green);
+        }
+
+        /* --- Project Modal --- */
+        .modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #000;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 300;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 10000;
-            transition: opacity 0.5s ease;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
         }
 
-        .loading-text {
-            font-size: 2rem;
-            font-weight: 600;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-    </style>
-</head>
-<body>
-    <div class="loading" id="loading">
-        <div class="loading-text">INITIALIZING NEURAL NETWORK...</div>
-    </div>
-
-    <div class="scroll-indicator" id="scrollIndicator"></div>
-
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-follower" id="cursorFollower"></div>
-
-    <div class="matrix-bg">
-        <div class="matrix-rain" id="matrixRain"></div>
-    </div>
-
-    <div class="neural-network" id="neuralNetwork"></div>
-
-    <div class="floating-shapes" id="floatingShapes"></div>
-
-    <div class="container">
-        <section class="hero">
-            <div class="hero-content">
-                <h1 class="hero-title">SRIHARSHA MUDUMBA</h1>
-                <p class="hero-subtitle">ML ENGINEER & AI ARCHITECT</p>
-                <p class="hero-description">
-                    Crafting intelligent systems that bridge the gap between human creativity and machine intelligence. 
-                    Specializing in deep learning, computer vision, and neural network optimization.
-                </p>
-                <div class="cta-buttons">
-                    <a href="#projects" class="cta-btn primary">Explore My Work</a>
-                    <a href="#resume" class="cta-btn secondary">View My Resume</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="stats-section">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">15+</div>
-                    <div class="stat-label">ML Projects</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">25+</div>
-                    <div class="stat-label">Technologies</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">3+</div>
-                    <div class="stat-label">Years Experience</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">∞</div>
-                    <div class="stat-label">Innovation</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="about-section" id="about">
-            <h2 class="section-title">ABOUT ME</h2>
-            <div class="about-content">
-                <p class="about-description">
-                    I am a passionate and driven ML Engineer with a Master's degree in Computer Engineering from Iowa State University. My focus is on developing and optimizing machine learning models, particularly in the realms of computer vision and large language models. I thrive on solving complex problems and am constantly exploring new techniques to enhance model efficiency and performance. My experience spans from architecting durable compute-in-memory frameworks to building real-time, high-performance systems. I am dedicated to pushing the boundaries of what's possible with artificial intelligence.
-                </p>
-            </div>
-        </section>
-
-        <section class="projects-section" id="projects">
-            <h2 class="section-title">NEURAL ARCHITECTURES</h2>
-            <p class="section-subtitle">
-                Each project represents a unique neural pathway in my journey through artificial intelligence
-            </p>
-            
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-header">
-                        <span class="project-icon">⚙️</span>
-                        <h3 class="project-title">DURACIM</h3>
-                        <p class="project-category">Durable Compute-in-Memory Framework</p>
-                    </div>
-                    <div class="project-body">
-                        <p class="project-description">
-                            Architected an early-exit ResNet-50 for CiM platforms, achieving a 3.8x latency reduction and implementing entropy-based threshold optimization with reinforcement learning.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">PyTorch</span>
-                            <span class="tech-tag">ResNet</span>
-                            <span class="tech-tag">Reinforcement Learning</span>
-                            <span class="tech-tag">Compute-in-Memory</span>
-                        </div>
-                        <div class="project-actions">
-                            <a href="https://github.com/sriharshamudumba" class="action-btn">
-                                <span>👁️</span> View Code
-                            </a>
-                            <a href="mailto:srim@iastate.edu" class="action-btn">
-                                <span>📧</span> Contact
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <span class="project-icon">🔍</span>
-                        <h3 class="project-title">ARGUS</h3>
-                        <p class="project-category">Adaptive RAG System</p>
-                    </div>
-                    <div class="project-body">
-                        <p class="project-description">
-                            Designed a scalable Retrieval-Augmented Generation pipeline with semantic search and a modular paper recommendation engine, deployed on AWS.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">LangChain</span>
-                            <span class="tech-tag">FAISS</span>
-                            <span class="tech-tag">FastAPI</span>
-                            <span class="tech-tag">AWS</span>
-                            <span class="tech-tag">Docker</span>
-                        </div>
-                        <div class="project-actions">
-                            <a href="https://github.com/sriharshamudumba/ARGUS" class="action-btn">
-                                <span>👁️</span> View Code
-                            </a>
-                            <a href="mailto:srim@iastate.edu" class="action-btn">
-                                <span>📧</span> Contact
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <span class="project-icon">🧠</span>
-                        <h3 class="project-title">LEXA</h3>
-                        <p class="project-category">Lightweight Edge Execution Assistant</p>
-                    </div>
-                    <div class="project-body">
-                        <p class="project-description">
-                            Built an edge-optimized RAG system with TinyLlama and an adaptive early-exit mechanism, significantly reducing response time and power consumption.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">TinyLlama</span>
-                            <span class="tech-tag">HuggingFace</span>
-                            <span class="tech-tag">FastAPI</span>
-                            <span class="tech-tag">Edge AI</span>
-                        </div>
-                        <div class="project-actions">
-                            <a href="https://github.com/sriharshamudumba/LEXA" class="action-btn">
-                                <span>👁️</span> View Code
-                            </a>
-                            <a href="mailto:srim@iastate.edu" class="action-btn">
-                                <span>📧</span> Contact
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <span class="project-icon">🧮</span>
-                        <h3 class="project-title">1BitLLM Performance Optimization</h3>
-                        <p class="project-category">Benchmarking Framework</p>
-                    </div>
-                    <div class="project-body">
-                        <p class="project-description">
-                            Engineered a benchmarking suite for 1-bit quantized LLMs, achieving significant speedup and memory reduction compared to baseline models.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">ONNX</span>
-                            <span class="tech-tag">IREE</span>
-                            <span class="tech-tag">PyTorch</span>
-                            <span class="tech-tag">Quantization</span>
-                        </div>
-                        <div class="project-actions">
-                            <a href="https://github.com/sriharshamudumba/Benchmark-1BitLLM" class="action-btn">
-                                <span>👁️</span> View Code
-                            </a>
-                            <a href="mailto:srim@iastate.edu" class="action-btn">
-                                <span>📧</span> Contact
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="resume-section" id="resume">
-            <h2 class="section-title">MY RESUME</h2>
-            <div class="resume-content">
-                <div class="resume-timeline">
-                    <div class="timeline-item">
-                        <h3 class="timeline-title">Master of Science in Computer Engineering</h3>
-                        <p class="timeline-subtitle">Iowa State University, Ames, IA</p>
-                        <p class="timeline-date">Aug 2023 - Aug 2025</p>
-                        <p class="timeline-description">GPA: 3.77/4.0</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3 class="timeline-title">Research Experience</h3>
-                        <p class="timeline-subtitle">DURACIM: Durable Compute-in-Memory Framework</p>
-                        <p class="timeline-date">Jan 2025 - Present</p>
-                        <p class="timeline-description">
-                            • Architected early-exit ResNet-50 for CiM platforms, achieving 3.8x latency reduction.<br>
-                            • Implemented entropy-based threshold optimization using policy-gradient RL.<br>
-                            • Conducted comprehensive analysis across various memory technologies.
-                        </p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3 class="timeline-title">Professional Experience</h3>
-                        <p class="timeline-subtitle">Associate Database Administrator</p>
-                        <p class="timeline-date">Aug 2020 - Jul 2023</p>
-                        <p class="timeline-description">
-                            • Managed mission-critical Oracle databases for major clients.<br>
-                            • Engineered an automated patch deployment system, reducing cycle time by 50%.<br>
-                            • Led successful database migration projects with zero data loss.
-                        </p>
-                    </div>
-                </div>
-                <div class="resume-download">
-                    <a href="Sriharsha_Mudumba_resume.pdf" class="cta-btn primary" download>Download Full Resume</a>
-                </div>
-            </div>
-        </section>
-
-
-        <section class="contact-section" id="contact">
-            <div class="contact-content">
-                <h2 class="section-title">GET IN TOUCH</h2>
-                <p class="section-subtitle">
-                    Ready to collaborate on the next breakthrough in AI? Let's build something extraordinary together.
-                </p>
-                <form class="contact-form" action="mailto:srim@iastate.edu" method="post" enctype="text/plain">
-                    <input type="text" name="name" class="form-input" placeholder="Your Name" required>
-                    <input type="email" name="email" class="form-input" placeholder="Your Email" required>
-                    <textarea name="message" class="form-textarea" placeholder="Your Message" required></textarea>
-                    <button type="submit" class="cta-btn primary submit-btn">Send Message</button>
-                </form>
-                <div class="contact-links">
-                    <a href="https://github.com/sriharshamudumba" class="contact-link" target="_blank">
-                        <span>🐙</span> GitHub
-                    </a>
-                    <a href="mailto:srim@iastate.edu" class="contact-link">
-                        <span>📧</span> Email
-                    </a>
-                    <a href="https://www.linkedin.com/in/sriharshamudumba/" class="contact-link" target="_blank">
-                        <span>💼</span> LinkedIn
-                    </a>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <script>
-        // Loading screen
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loading').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('loading').style.display = 'none';
-                }, 500);
-            }, 1500);
-        });
-
-        // Custom cursor
-        const cursor = document.getElementById('cursor');
-        const cursorFollower = document.getElementById('cursorFollower');
-
-        document.addEventListener('mousemove', e => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            cursorFollower.style.left = e.clientX + 'px';
-            cursorFollower.style.top = e.clientY + 'px';
-        });
-
-        // Matrix Rain
-        const matrixRain = document.getElementById('matrixRain');
-        const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%^&*()_+-=[]{}|;:",./<>?';
-        const columns = Math.floor(window.innerWidth / 15);
-
-        for (let i = 0; i < columns; i++) {
-            const column = document.createElement('div');
-            column.classList.add('matrix-column');
-            column.style.left = `${i * 15}px`;
-            column.style.animationDuration = `${Math.random() * 8 + 4}s`;
-            column.style.animationDelay = `${Math.random() * 5}s`;
-            
-            let columnContent = '';
-            for (let j = 0; j < 50; j++) {
-                columnContent += characters.charAt(Math.floor(Math.random() * characters.length)) + '<br>';
-            }
-            column.innerHTML = columnContent;
-            matrixRain.appendChild(column);
-        }
-
-        // Neural Network
-        const neuralNetwork = document.getElementById('neuralNetwork');
-        const numNodes = 30;
-        const nodes = [];
-
-        for (let i = 0; i < numNodes; i++) {
-            const node = document.createElement('div');
-            node.classList.add('neural-node');
-            const x = Math.random() * 100;
-            const y = Math.random() * 100;
-            node.style.left = `${x}%`;
-            node.style.top = `${y}%`;
-            node.style.animationDelay = `${Math.random() * 3}s`;
-            neuralNetwork.appendChild(node);
-            nodes.push({ el: node, x: x, y: y });
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
         }
         
-        // Floating Shapes
-        const floatingShapes = document.getElementById('floatingShapes');
-        const numShapes = 10;
-        for (let i = 0; i < numShapes; i++) {
-            const shape = document.createElement('div');
-            shape.classList.add('floating-shape');
-            const size = Math.random() * 100 + 20;
-            shape.style.width = `${size}px`;
-            shape.style.height = `${size}px`;
-            shape.style.left = `${Math.random() * 100}%`;
-            shape.style.top = `${Math.random() * 100}%`;
-            shape.style.animationDuration = `${Math.random() * 10 + 10}s`;
-            shape.style.animationDelay = `${Math.random() * 5}s`;
-            floatingShapes.appendChild(shape);
+        .modal-content {
+            background-color: #181818;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            border-radius: 8px;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.4s ease;
+        }
+        
+        .modal.active .modal-content {
+            transform: scale(1);
         }
 
-        // Scroll Indicator
-        const scrollIndicator = document.getElementById('scrollIndicator');
-        window.addEventListener('scroll', () => {
-            const scrollTop = document.documentElement.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrollPercent = (scrollTop / scrollHeight) * 100;
-            scrollIndicator.style.width = `${scrollPercent}%`;
+        .modal-header {
+            padding: 30px 40px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .modal-header::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(0deg, #181818 0%, transparent 100%);
+        }
+
+        .modal-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            position: relative;
+            z-index: 2;
+        }
+
+        .modal-body {
+            padding: 30px 40px;
+        }
+        
+        .modal-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .modal-tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .tech-tag {
+            background-color: #333;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .modal-actions a {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--text-primary);
+            background-color: var(--netflix-red);
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 700;
+            margin-right: 15px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .modal-actions a:hover {
+            background-color: #f40612;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            z-index: 3;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+<body>
+
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-logo">SM</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">Sriharsha Mudumba</h1>
+            <p class="hero-subtitle">ML Engineer & AI Architect | Building the Next Generation of Intelligent Systems</p>
+            <a href="#projects" class="hero-cta">View My Work</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="section" id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>
+                    I am a passionate and results-driven ML Engineer, currently pursuing a Master's in Computer Engineering at Iowa State University. My expertise lies in designing and optimizing sophisticated machine learning models, with a strong focus on computer vision and large language models. I thrive on tackling complex challenges, from architecting durable compute-in-memory frameworks that slash latency, to building real-time, high-performance detection systems. With a solid foundation in database administration and a relentless drive for innovation, I am committed to pushing the boundaries of artificial intelligence to create efficient, scalable, and impactful solutions.
+                </p>
+            </div>
+        </section>
+
+        <section class="section" id="skills">
+            <h2 class="section-title">My Toolkit</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Programming & Scripting</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>C++ / C</li>
+                        <li>SQL</li>
+                        <li>Shell Scripting</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>AI Frameworks</h3>
+                    <ul>
+                        <li>PyTorch</li>
+                        <li>TensorFlow</li>
+                        <li>Scikit-learn</li>
+                        <li>Langchain</li>
+                        <li>ONNX</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>HPC & Systems</h3>
+                    <ul>
+                        <li>OpenMP / MPI</li>
+                        <li>Slurm</li>
+                        <li>Distributed Systems</li>
+                        <li>Linux</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Databases & DevOps</h3>
+                    <ul>
+                        <li>Oracle 11g/12c/19c</li>
+                        <li>AWS</li>
+                        <li>Docker</li>
+                        <li>FastAPI</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="projects">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-carousel">
+                <div class="carousel-track">
+                    <div class="project-card" data-project="duracim">
+                        <div class="card-title">DURACIM</div>
+                    </div>
+                    <div class="project-card" data-project="argus">
+                        <div class="card-title">ARGUS</div>
+                    </div>
+                    <div class="project-card" data-project="lexa">
+                        <div class="card-title">LEXA</div>
+                    </div>
+                    <div class="project-card" data-project="1bitllm">
+                        <div class="card-title">1BitLLM Optimization</div>
+                    </div>
+                     <div class="project-card" data-project="snapea">
+                        <div class="card-title">SnaPEA Accelerator</div>
+                    </div>
+                    <div class="project-card" data-project="license">
+                        <div class="card-title">License Plate Detection</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="spotify-player">
+        <div class="player-left">
+            Now Viewing: <span id="now-viewing">Home</span>
+        </div>
+        <div class="player-center">
+            <a href="https://github.com/sriharshamudumba" target="_blank" title="GitHub"><i class="ri-github-fill"></i></a>
+            <a href="https://www.linkedin.com/in/sriharshamudumba/" target="_blank" title="LinkedIn"><i class="ri-linkedin-box-fill"></i></a>
+            <a href="mailto:srim@iastate.edu" title="Email"><i class="ri-mail-fill"></i></a>
+        </div>
+        <div class="player-right">
+            <a href="Sriharsha_Mudumba_resume.pdf" download>Get My Resume</a>
+        </div>
+    </footer>
+
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <div class="modal-close" id="modalClose">&times;</div>
+            <div class="modal-header" id="modalHeader">
+                 <h2 class="modal-title" id="modalTitle"></h2>
+            </div>
+            <div class="modal-body">
+                <p class="modal-description" id="modalDescription"></p>
+                <div class="modal-tech-stack" id="modalTechStack"></div>
+                <div class="modal-actions" id="modalActions"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const projectData = {
+            duracim: {
+                title: "DURACIM Framework",
+                description: "Architected an early-exit ResNet-50 with dynamic branches for Compute-in-Memory platforms, achieving a 3.8x latency reduction while preserving baseline model accuracy. Implemented entropy-based threshold optimization using policy-gradient RL, enabling a 78% early exit rate.",
+                tech: ["PyTorch", "ResNet", "Reinforcement Learning", "CiM"],
+                links: {
+                    github: "https://github.com/sriharshamudumba"
+                }
+            },
+            argus: {
+                title: "ARGUS RAG System",
+                description: "Designed and implemented a Retrieval-Augmented Generation (RAG) pipeline with semantic search and chunk-based processing, tested on 100+ research documents and architected to scale to over 100,000 documents. Deployed on AWS EC2 with a FastAPI interface.",
+                tech: ["Python", "LangChain", "Cohere", "FAISS", "AWS", "Docker"],
+                links: {
+                    github: "https://github.com/sriharshamudumba/ARGUS"
+                }
+            },
+            lexa: {
+                title: "LEXA Edge Assistant",
+                description: "Built an edge-optimized RAG system with the TinyLlama 1.1B model and MiniLM embeddings for privacy-first applications. Implemented an adaptive early-exit mechanism that reduced mean response time by 40% and GPU power consumption by 30%.",
+                tech: ["Python", "FastAPI", "TinyLlama", "HuggingFace"],
+                links: {
+                    github: "https://github.com/sriharshamudumba/LEXA"
+                }
+            },
+            "1bitllm": {
+                title: "1BitLLM Optimization",
+                description: "Engineered a comprehensive benchmarking suite for 1-bit quantized LLMs across ONNX and IREE compilation backends. Achieved a 2.3x inference speedup and a 44% memory reduction compared to the PyTorch baseline through aggressive quantization.",
+                tech: ["Python", "ONNX", "IREE", "PyTorch", "Quantization"],
+                links: {
+                    github: "https://github.com/sriharshamudumba/Benchmark-1BitLLM"
+                }
+            },
+            snapea: {
+                title: "SnaPEA Accelerator",
+                description: "Developed a sparse activation pruning with an early-exit architecture for efficient edge inference. Combined pruning and early termination strategies for a 74% FLOP reduction while maintaining 98.5% accuracy on CIFAR-100.",
+                tech: ["TensorFlow", "PyTorch", "Neural Architecture Optimization"],
+                links: {
+                    github: "https://github.com/sriharshamudumba/SnaPEA"
+                }
+            },
+            license: {
+                title: "Real-Time License Plate Detection",
+                description: "Architected a real-time license plate detection system using OpenCV and EasyOCR with MPI-based parallel processing. Scaled processing across a 16-process HPC cluster, achieving an 18x speedup for video analysis.",
+                tech: ["C++", "OpenCV", "Python", "MPI", "Computer Vision"],
+                links: {
+                    github: "https://github.com/sriharshamudumba/Real-Time-Video-Processing-and-Analysis-MPI-"
+                }
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectCards = document.querySelectorAll('.project-card');
+            const modal = document.getElementById('projectModal');
+            const modalClose = document.getElementById('modalClose');
+
+            projectCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const projectId = card.dataset.project;
+                    const data = projectData[projectId];
+                    
+                    document.getElementById('modalTitle').textContent = data.title;
+                    document.getElementById('modalDescription').textContent = data.description;
+                    
+                    const techStackContainer = document.getElementById('modalTechStack');
+                    techStackContainer.innerHTML = '';
+                    data.tech.forEach(tech => {
+                        const tag = document.createElement('span');
+                        tag.className = 'tech-tag';
+                        tag.textContent = tech;
+                        techStackContainer.appendChild(tag);
+                    });
+                    
+                    const actionsContainer = document.getElementById('modalActions');
+                    actionsContainer.innerHTML = '';
+                    if(data.links.github) {
+                        const link = document.createElement('a');
+                        link.href = data.links.github;
+                        link.target = '_blank';
+                        link.innerHTML = 'View on GitHub <i class="ri-external-link-line"></i>';
+                        actionsContainer.appendChild(link);
+                    }
+
+                    modal.classList.add('active');
+                });
+            });
+
+            modalClose.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+            
+            modal.addEventListener('click', (e) => {
+                if(e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // "Now Viewing" update
+            const nowViewing = document.getElementById('now-viewing');
+            const sections = document.querySelectorAll('section, header');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        let sectionName = entry.target.id.charAt(0).toUpperCase() + entry.target.id.slice(1);
+                        nowViewing.textContent = sectionName;
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            sections.forEach(section => observer.observe(section));
+
         });
     </script>
 </body>
