@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sriharsha Mudumba - AI Content Stream</title>
+    <title>Sriharsha Mudumba - AI-Core Platform</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap'); /* For bold titles */
@@ -42,7 +42,7 @@
             position: relative; /* For the animated background */
         }
 
-        /* --- Animated Background --- */
+        /* --- Animated Background: Abstract Data Flow --- */
         body::before {
             content: '';
             position: fixed;
@@ -50,7 +50,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('data:image/svg+xml,%3Csvg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%236C42F7" fill-opacity="0.05" fill-rule="evenodd"%3E%3Cpath d="M0 0h40v40H0V0zm40 40h40v40H40V40z"/%3E%3C/g%3E%3C/svg%3E'); /* Subtle grid */
+            background-image: url('data:image/svg+xml,%3Csvg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%2300F0FF" fill-opacity="0.05" fill-rule="evenodd"%3E%3Cpath d="M0 0h40v40H0V0zm40 40h40v40H40V40z"/%3E%3C/g%3E%3C/svg%3E'); /* Electric blue grid */
             background-size: 80px 80px;
             opacity: 0.1;
             z-index: -1;
@@ -70,8 +70,8 @@
             }
         }
 
-        /* --- Navigation Bar: Platform UI --- */
-        .navbar {
+        /* --- Navigation Bar: System Menu --- */
+        .system-menu { /* Renamed from navbar */
             position: fixed;
             top: 0;
             width: 100%;
@@ -84,13 +84,13 @@
             border-bottom: 1px solid transparent;
         }
 
-        .navbar.scrolled {
+        .system-menu.scrolled {
             background-color: rgba(10, 10, 15, 0.9);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .nav-logo {
+        .system-logo { /* Renamed from nav-logo */
             font-family: var(--font-title);
             font-size: 2.5rem;
             font-weight: 700;
@@ -100,13 +100,13 @@
             text-shadow: 0 0 10px rgba(108, 66, 247, 0.7);
         }
 
-        .nav-links {
+        .menu-links { /* Renamed from nav-links */
             list-style: none;
             display: flex;
             gap: 45px;
         }
 
-        .nav-links a {
+        .menu-links a {
             color: var(--text-light);
             text-decoration: none;
             font-weight: 500;
@@ -115,7 +115,7 @@
             position: relative;
         }
 
-        .nav-links a::after {
+        .menu-links a::after {
             content: '';
             position: absolute;
             width: 0;
@@ -128,16 +128,16 @@
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover::after {
+        .menu-links a:hover::after {
             width: 100%;
         }
-        .nav-links a:hover {
+        .menu-links a:hover {
             color: var(--secondary-accent);
             transform: translateY(-2px);
         }
 
-        /* --- Hero Section: Now Playing --- */
-        .hero {
+        /* --- Hero Section: Active Profile / Live Feed --- */
+        .platform-display { /* Renamed from hero */
             height: 100vh;
             display: flex;
             align-items: center;
@@ -149,7 +149,7 @@
             border-bottom: 2px solid rgba(255, 255, 255, 0.05);
         }
 
-        .hero-content {
+        .display-content { /* Renamed from hero-content */
             display: flex;
             align-items: center;
             gap: 60px;
@@ -161,7 +161,7 @@
             animation: fadeIn 1s forwards ease-out 0.5s;
         }
 
-        .profile-picture-container {
+        .profile-matrix { /* Renamed from profile-picture-container */
             position: relative;
             width: 280px; /* Larger size */
             height: 280px;
@@ -180,7 +180,7 @@
             to { box-shadow: 0 0 50px rgba(0, 240, 255, 0.8); }
         }
 
-        .profile-picture {
+        .profile-avatar { /* Renamed from profile-picture */
             width: 100%;
             height: 100%;
             border-radius: 50%;
@@ -188,7 +188,7 @@
             border: 4px solid var(--background-dark); /* Inner border */
         }
 
-        .now-playing-tag {
+        .status-indicator { /* Renamed from now-playing-tag */
             position: absolute;
             bottom: -20px;
             left: 50%;
@@ -203,13 +203,19 @@
             letter-spacing: 1px;
             text-transform: uppercase;
             box-shadow: 0 5px 20px rgba(108, 66, 247, 0.5);
+            animation: blinkEffect 1.5s infinite step-end;
         }
 
-        .hero-text {
+        @keyframes blinkEffect {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .display-text { /* Renamed from hero-text */
             text-align: left;
         }
 
-        .hero-title {
+        .display-title { /* Renamed from hero-title */
             font-family: var(--font-title);
             font-size: clamp(3rem, 7vw, 5.5rem);
             font-weight: 900;
@@ -219,7 +225,7 @@
             text-shadow: 0 0 15px rgba(0, 240, 255, 0.7);
         }
         
-        .hero-subtitle {
+        .display-subtitle { /* Renamed from hero-subtitle */
             font-size: clamp(1.2rem, 2.5vw, 1.6rem);
             color: var(--text-medium);
             margin-bottom: 30px;
@@ -227,7 +233,7 @@
             max-width: 700px;
         }
         
-        .hero-cta {
+        .access-button { /* Renamed from hero-cta */
             padding: 18px 45px;
             background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
             color: var(--background-dark);
@@ -243,24 +249,24 @@
             box-shadow: 0 5px 25px rgba(0, 240, 255, 0.3);
         }
 
-        .hero-cta:hover {
+        .access-button:hover {
             transform: scale(1.05);
             box-shadow: 0 0 40px rgba(0, 240, 255, 0.8), 0 0 15px rgba(108, 66, 247, 0.6);
         }
 
         /* --- Section Styling --- */
-        .section {
+        .platform-section { /* Renamed from section */
             padding: 100px 60px;
             overflow: hidden;
             position: relative;
         }
         
-        .section.darker {
+        .platform-section.darker {
             background-color: #08080C; /* Slightly different dark */
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .section-title {
+        .section-header { /* Renamed from section-title */
             font-family: var(--font-title);
             font-size: clamp(2.5rem, 5vw, 3.8rem);
             font-weight: 700;
@@ -273,17 +279,17 @@
             letter-spacing: -1px;
         }
         
-        .section-title span {
+        .section-header span {
             color: var(--secondary-accent);
             font-size: 1.2em; /* Emphasize */
         }
 
-        /* --- Projects Section: My Content Library --- */
-        .projects-carousel {
+        /* --- Projects Section: Computational Modules --- */
+        .modules-grid-container { /* Renamed from projects-carousel */
             position: relative;
         }
 
-        .carousel-track {
+        .module-track { /* Renamed from carousel-track */
             display: flex;
             gap: 25px;
             overflow-x: auto;
@@ -292,20 +298,20 @@
             scrollbar-color: var(--primary-accent) var(--card-base);
         }
 
-        .carousel-track::-webkit-scrollbar {
+        .module-track::-webkit-scrollbar {
             height: 8px;
         }
-        .carousel-track::-webkit-scrollbar-track {
+        .module-track::-webkit-scrollbar-track {
             background: var(--card-base);
             border-radius: 10px;
         }
-        .carousel-track::-webkit-scrollbar-thumb {
+        .module-track::-webkit-scrollbar-thumb {
             background-color: var(--primary-accent);
             border-radius: 10px;
             border: 2px solid var(--card-base);
         }
 
-        .project-card {
+        .project-module { /* Renamed from project-card */
             flex: 0 0 300px; /* Fixed width for card */
             height: 180px;
             border-radius: 12px;
@@ -324,39 +330,45 @@
             background-size: cover;
             background-position: center;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            /* Add subtle internal patterns for uniqueness */
+            background-image: linear-gradient(45deg, rgba(108,66,247,0.05), rgba(0,240,255,0.05)),
+                              url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M0 10L10 0L20 10L10 20Z" fill="%2300F0FF" opacity="0.05"/%3E%3C/svg%3E'); /* Subtle diamond pattern */
+            background-repeat: repeat;
+            background-blend-mode: overlay;
         }
 
-        /* Dynamic background for project cards (replace with actual images in production) */
-        .project-card[data-project="duracim"] { background: linear-gradient(to top right, #3C004F, #001030); }
-        .project-card[data-project="argus"] { background: linear-gradient(to bottom left, #004F40, #001030); }
-        .project-card[data-project="lexa"] { background: linear-gradient(to top, #4F3000, #100030); }
-        .project-card[data-project="1bitllm"] { background: linear-gradient(to bottom, #20004F, #001030); }
-        .project-card[data-project="snapea"] { background: linear-gradient(to top right, #400000, #001030); }
-        .project-card[data-project="license"] { background: linear-gradient(to bottom right, #00204F, #001030); }
-        /* Overlay for text readability on card */
-        .project-card::before {
+        /* Specific module backgrounds for visual variety */
+        .project-module[data-project="duracim"] { background-color: #3C004F; }
+        .project-module[data-project="argus"] { background-color: #004F40; }
+        .project-module[data-project="lexa"] { background-color: #4F3000; }
+        .project-module[data-project="1bitllm"] { background-color: #20004F; }
+        .project-module[data-project="snapea"] { background-color: #400000; }
+        .project-module[data-project="license"] { background-color: #00204F; }
+
+        /* Overlay for text readability on module */
+        .project-module::before {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 100%; /* Cover full card for hover effect */
+            height: 100%; /* Cover full module for hover effect */
             background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%);
             transition: background 0.3s ease;
             z-index: 1;
         }
 
-        .project-card:hover::before {
+        .project-module:hover::before {
             background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%);
         }
 
-        .project-card:hover {
+        .project-module:hover {
             transform: translateY(-10px) scale(1.05);
             box-shadow: 0 0 40px rgba(108, 66, 247, 0.5), 0 0 15px rgba(0, 240, 255, 0.4); /* Dual color glow */
             border-color: var(--secondary-accent);
         }
 
-        .card-title {
+        .module-title { /* Renamed from card-title */
             font-family: var(--font-title);
             font-size: 1.6rem;
             font-weight: 700;
@@ -367,14 +379,14 @@
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
         }
 
-        /* --- Skills Section: Your Channels --- */
-        .skills-grid-container {
+        /* --- Skills Section: Core Competencies --- */
+        .competencies-grid { /* Renamed from skills-grid-container */
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
 
-        .channel-tile { /* Renamed from capability-block */
+        .competency-card { /* Renamed from channel-tile */
             background-color: var(--card-base);
             border-radius: 16px; /* More rounded */
             padding: 30px;
@@ -388,8 +400,8 @@
             overflow: hidden; /* For background effect */
         }
         
-        /* Subtle background pattern for channels - using the new background property */
-        .channel-tile::before {
+        /* Subtle background pattern for competencies */
+        .competency-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -402,18 +414,18 @@
             transition: opacity 0.3s ease;
         }
 
-        .channel-tile:hover::before {
+        .competency-card:hover::before {
             opacity: 0.2;
         }
 
-        .channel-tile:hover {
+        .competency-card:hover {
             background-color: var(--card-hover);
             transform: translateY(-8px) scale(1.02);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 240, 255, 0.5);
             border-color: var(--secondary-accent);
         }
 
-        .tile-header { /* Renamed from block-header */
+        .competency-header { /* Renamed from tile-header */
             display: flex;
             align-items: center;
             gap: 18px;
@@ -422,13 +434,13 @@
             z-index: 1;
         }
 
-        .tile-icon { /* Renamed from block-icon */
+        .competency-icon { /* Renamed from tile-icon */
             font-size: 2.8rem; /* Larger icon */
             color: var(--secondary-accent);
             text-shadow: 0 0 15px rgba(0, 240, 255, 0.8);
         }
 
-        .tile-title { /* Renamed from block-title */
+        .competency-title { /* Renamed from tile-title */
             font-family: var(--font-title);
             font-size: 1.8rem;
             font-weight: 700;
@@ -436,14 +448,14 @@
             letter-spacing: -0.5px;
         }
 
-        .skill-list {
+        .skill-set { /* Renamed from skill-list */
             list-style: none;
             counter-reset: skill-counter;
             position: relative;
             z-index: 1;
         }
 
-        .skill-list li {
+        .skill-set li {
             color: var(--text-medium);
             margin-bottom: 15px; /* More spacing */
             display: flex;
@@ -453,26 +465,26 @@
             font-size: 1.05rem;
         }
         
-        .skill-list li::before {
+        .skill-set li::before {
             counter-increment: skill-counter;
-            content: "S" counter(skill-counter); /* "S1", "S2" for stream/skill */
+            content: "ID:" counter(skill-counter, decimal-leading-zero); /* "ID:01", "ID:02" for skill IDs */
             font-weight: 500;
             color: var(--primary-accent);
             font-family: var(--font-mono);
             font-size: 0.95em;
-            width: 30px;
+            width: 50px;
             text-align: right;
             opacity: 0.8;
         }
 
-        /* --- Journey Section: Bonus Content --- */
-        .journey-grid {
+        /* --- Journey Section: System Log / Development Timeline --- */
+        .timeline-grid { /* Renamed from journey-grid */
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 40px;
         }
 
-        .journey-card {
+        .log-entry-card { /* Renamed from journey-card */
             background-color: var(--card-base);
             border-radius: 16px;
             padding: 35px;
@@ -486,14 +498,14 @@
             animation: fadeIn 0.5s ease forwards;
         }
 
-        .journey-card:hover {
+        .log-entry-card:hover {
             background-color: var(--card-hover);
             transform: translateY(-8px) scale(1.02);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(108, 66, 247, 0.5);
             border-color: var(--primary-accent);
         }
 
-        .journey-card::before {
+        .log-entry-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -505,7 +517,7 @@
             border-top-right-radius: 15px;
         }
 
-        .journey-card h3 {
+        .log-entry-card h3 {
             font-family: var(--font-title);
             font-size: 2rem;
             color: var(--text-light);
@@ -513,27 +525,27 @@
             padding-top: 15px; /* Space for the colored bar */
         }
 
-        .journey-card h4 {
+        .log-entry-card h4 {
             font-size: 1.2rem;
             color: var(--secondary-accent);
             margin-bottom: 5px;
         }
 
-        .journey-card .duration {
+        .log-entry-card .timeline-date { /* Renamed from duration */
             font-size: 0.95rem;
             color: var(--text-medium);
             margin-bottom: 20px;
             font-family: var(--font-mono);
         }
 
-        .journey-card p {
+        .log-entry-card p {
             font-size: 1.05rem;
             line-height: 1.6;
             color: var(--text-medium);
         }
         
-        /* --- Get In Touch Section --- */
-        .contact-container {
+        /* --- Get In Touch Section: Connect Protocol --- */
+        .contact-module { /* Renamed from contact-container */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -543,20 +555,20 @@
             margin: 0 auto;
         }
 
-        .contact-container p {
+        .contact-module p {
             font-size: 1.3rem;
             color: var(--text-medium);
             line-height: 1.7;
         }
 
-        .contact-links {
+        .connection-links { /* Renamed from contact-links */
             display: flex;
             gap: 30px;
             flex-wrap: wrap;
             justify-content: center;
         }
 
-        .contact-links a {
+        .connection-links a {
             display: flex;
             align-items: center;
             gap: 10px;
@@ -572,26 +584,26 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .contact-links a i {
+        .connection-links a i {
             font-size: 1.8rem;
             color: var(--secondary-accent);
             transition: color 0.3s ease;
         }
 
-        .contact-links a:hover {
+        .connection-links a:hover {
             background-color: var(--card-hover);
             transform: translateY(-5px) scale(1.02);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 240, 255, 0.4);
             border-color: var(--secondary-accent);
         }
 
-        .contact-links a:hover i {
+        .connection-links a:hover i {
             color: var(--primary-accent);
         }
 
 
-        /* --- Footer: Control Panel --- */
-        .control-panel-footer { /* Renamed from ai-console-footer */
+        /* --- Footer: System Status Bar --- */
+        .system-status-bar { /* Renamed from control-panel-footer */
             position: fixed;
             bottom: 0;
             left: 0;
@@ -607,7 +619,7 @@
             box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.4);
         }
 
-        .footer-left-status { /* Renamed from console-left */
+        .status-left-info { /* Renamed from footer-left-status */
             display: flex;
             align-items: center;
             gap: 15px;
@@ -618,38 +630,38 @@
             font-family: var(--font-mono);
             font-size: 0.9rem;
         }
-        #current-content-focus { /* Renamed from current-focus */
+        #active-module-focus { /* Renamed from current-content-focus */
             color: var(--secondary-accent);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        .footer-center-controls { /* Renamed from console-center */
+        .status-center-links { /* Renamed from footer-center-controls */
             display: flex;
             justify-content: center;
             gap: 40px;
         }
         
-        .footer-center-controls a {
+        .status-center-links a {
             color: var(--text-medium);
             text-decoration: none;
             font-size: 2.2rem; /* Larger icons */
             transition: all 0.3s ease;
         }
         
-        .footer-center-controls a:hover {
+        .status-center-links a:hover {
             color: var(--secondary-accent);
             transform: scale(1.2);
             text-shadow: 0 0 15px rgba(0, 240, 255, 0.8);
         }
         
-        .footer-right-action { /* Renamed from console-right */
+        .status-right-action { /* Renamed from footer-right-action */
             display: flex;
             justify-content: flex-end;
         }
 
-        .footer-right-action a {
+        .status-right-action a {
             text-decoration: none;
             color: var(--background-dark);
             background: linear-gradient(90deg, var(--secondary-accent), var(--primary-accent));
@@ -664,14 +676,14 @@
             box-shadow: 0 3px 15px rgba(0, 240, 255, 0.3);
         }
 
-        .footer-right-action a:hover {
+        .status-right-action a:hover {
             transform: scale(1.05);
             background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
             box-shadow: 0 0 25px rgba(108, 66, 247, 0.6);
         }
         
-        /* --- Project Modal --- */
-        .modal {
+        /* --- Project Detail Modal (Retaining similar functionality) --- */
+        .data-modal { /* Renamed from modal */
             position: fixed;
             top: 0;
             left: 0;
@@ -687,7 +699,7 @@
             visibility: hidden;
             transition: opacity 0.5s ease, visibility 0.5s ease;
         }
-        .modal.active { opacity: 1; visibility: visible; }
+        .data-modal.active { opacity: 1; visibility: visible; }
         .modal-content {
             background-color: var(--card-base);
             width: 90%;
@@ -701,7 +713,7 @@
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8);
             border: 2px solid var(--primary-accent); /* Stronger accent border */
         }
-        .modal.active .modal-content { transform: translateY(0) scale(1); }
+        .data-modal.active .modal-content { transform: translateY(0) scale(1); }
         .modal-header { 
             padding: 40px 50px; /* More padding */
             border-bottom: 1px solid rgba(255, 255, 255, 0.15);
@@ -782,49 +794,49 @@
 
         /* Responsive adjustments */
         @media (max-width: 900px) {
-            .hero-content {
+            .display-content {
                 flex-direction: column;
                 text-align: center;
                 gap: 40px;
             }
-            .profile-picture-container {
+            .profile-matrix {
                 width: 220px;
                 height: 220px;
             }
-            .hero-title {
+            .display-title {
                 font-size: clamp(2.8rem, 8vw, 4.5rem);
             }
-            .hero-subtitle {
+            .display-subtitle {
                 font-size: clamp(1rem, 2.8vw, 1.3rem);
             }
-            .section {
+            .platform-section {
                 padding: 80px 30px;
             }
-            .navbar {
+            .system-menu {
                 padding: 15px 30px;
             }
-            .nav-links {
+            .menu-links {
                 gap: 25px;
             }
-            .section-title {
+            .section-header {
                 font-size: clamp(2rem, 6vw, 3.2rem);
             }
-            .skills-grid-container {
+            .competencies-grid {
                 grid-template-columns: 1fr;
             }
-            .journey-grid {
+            .timeline-grid {
                 grid-template-columns: 1fr;
             }
-            .control-panel-footer {
+            .system-status-bar {
                 grid-template-columns: 1fr;
                 height: auto;
                 padding: 15px 20px;
                 gap: 15px;
             }
-            .footer-center-controls, .footer-right-action {
+            .status-center-links, .status-right-action {
                 justify-content: center;
             }
-            .footer-left-status {
+            .status-left-info {
                 justify-content: center;
             }
             .modal-header, .modal-body {
@@ -836,36 +848,36 @@
         }
 
         @media (max-width: 600px) {
-            .navbar {
+            .system-menu {
                 flex-direction: column;
                 gap: 15px;
                 padding: 15px 20px;
             }
-            .nav-links {
+            .menu-links {
                 gap: 15px;
             }
-            .hero-content {
+            .display-content {
                 gap: 30px;
             }
-            .profile-picture-container {
+            .profile-matrix {
                 width: 180px;
                 height: 180px;
             }
-            .hero-cta {
+            .access-button {
                 padding: 12px 25px;
                 font-size: 0.9rem;
             }
-            .project-card {
+            .project-module {
                 flex: 0 0 260px;
                 height: 160px;
             }
-            .card-title {
+            .module-title {
                 font-size: 1.3rem;
             }
-            .channel-tile {
+            .competency-card {
                 padding: 20px;
             }
-            .tile-title {
+            .competency-title {
                 font-size: 1.5rem;
             }
             .modal-title {
@@ -878,72 +890,74 @@
 </head>
 <body>
 
-    <nav class="navbar" id="navbar">
-        <a href="#home" class="nav-logo">SM</a>
-        <ul class="nav-links">
+    <nav class="system-menu" id="navbar">
+        <a href="#home" class="system-logo">SM</a>
+        <ul class="menu-links">
             <li><a href="#home">Home</a></li>
-            <li><a href="#projects">My Content</a></li>
-            <li><a href="#skills">Tech Stack</a></li>
-            <li><a href="#journey">My Journey</a></li>
+            <li><a href="#projects">Modules</a></li>
+            <li><a href="#skills">Competencies</a></li>
+            <li><a href="#journey">Timeline</a></li>
             <li><a href="#contact">Connect</a></li>
         </ul>
     </nav>
 
-    <header class="hero" id="home">
-        <div class="hero-content">
-            <div class="profile-picture-container">
-                <img src="https://via.placeholder.com/300/404040/FFFFFF?text=YOUR+PIC" alt="Sriharsha Mudumba" class="profile-picture">
-                <span class="now-playing-tag">Now Playing</span>
+    <header class="platform-display" id="home">
+        <div class="display-content">
+            <div class="profile-matrix">
+                <img src="https://via.placeholder.com/300/404040/FFFFFF?text=SRIHARSHA" alt="Sriharsha Mudumba" class="profile-avatar">
+                <span class="status-indicator">Active Profile</span>
             </div>
-            <div class="hero-text">
-                <h1 class="hero-title">Sriharsha Mudumba</h1>
-                <p class="hero-subtitle">
+            <div class="display-text">
+                <h1 class="display-title">Sriharsha Mudumba</h1>
+                <p class="display-subtitle">
                     **AI Architect & ML Engineer** – Crafting high-performance intelligent systems from **compute-in-memory frameworks** to scalable **RAG pipelines**. I build the solutions that power tomorrow's innovations.
                 </p>
-                <a href="#projects" class="hero-cta">Watch My Story</a>
+                <a href="#projects" class="access-button">Initiate Data Stream</a>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="section" id="projects">
-            <h2 class="section-title">Top Picks for You: My ML & AI <span>Originals</span></h2>
-            <div class="projects-carousel">
-                <div class="carousel-track">
-                    <div class="project-card" data-project="duracim"><div class="card-title">DURACIM</div></div>
-                    <div class="project-card" data-project="argus"><div class="card-title">ARGUS RAG System</div></div>
-                    <div class="project-card" data-project="lexa"><div class="card-title">LEXA Edge Assistant</div></div>
-                    <div class="project-card" data-project="1bitllm"><div class="card-title">1BitLLM Optimization</div></div>
-                    <div class="project-card" data-project="snapea"><div class="card-title">SnaPEA Accelerator</div></div>
-                    <div class="project-card" data-project="license"><div class="card-title">License Plate Detection</div></div>
+        <section class="platform-section" id="projects">
+            <h2 class="section-header">Computational <span>Modules</span></h2>
+            <div class="modules-grid-container">
+                <div class="module-track">
+                    <div class="project-module" data-project="duracim"><div class="module-title">DURACIM</div></div>
+                    <div class="project-module" data-project="argus"><div class="module-title">ARGUS RAG System</div></div>
+                    <div class="project-module" data-project="lexa"><div class="module-title">LEXA Edge Assistant</div></div>
+                    <div class="project-module" data-project="1bitllm"><div class="module-title">1BitLLM Optimization</div></div>
+                    <div class="project-module" data-project="snapea"><div class="module-title">SnaPEA Accelerator</div></div>
+                    <div class="project-module" data-project="license"><div class="module-title">License Plate Detection</div></div>
                 </div>
             </div>
         </section>
 
-        <section class="section darker" id="skills">
-            <h2 class="section-title">Your Channels: Deep Dive into My <span>Expertise</span></h2>
-            <div class="skills-grid-container">
-                <div class="channel-tile">
-                    <div class="tile-header"><i class="ri-braces-line tile-icon"></i><h3 class="tile-title">AI Frameworks</h3></div>
-                    <ol class="skill-list">
+        ---
+
+        <section class="platform-section darker" id="skills">
+            <h2 class="section-header">Core <span>Competencies</span></h2>
+            <div class="competencies-grid">
+                <div class="competency-card">
+                    <div class="competency-header"><i class="ri-braces-line competency-icon"></i><h3 class="competency-title">AI Frameworks</h3></div>
+                    <ol class="skill-set">
                         <li>PyTorch</li><li>TensorFlow</li><li>Scikit-learn</li><li>Langchain</li><li>ONNX</li>
                     </ol>
                 </div>
-                <div class="channel-tile">
-                    <div class="tile-header"><i class="ri-terminal-box-line tile-icon"></i><h3 class="tile-title">Languages & Data Systems</h3></div>
-                    <ol class="skill-list">
+                <div class="competency-card">
+                    <div class="competency-header"><i class="ri-terminal-box-line competency-icon"></i><h3 class="competency-title">Languages & Data Systems</h3></div>
+                    <ol class="skill-set">
                         <li>Python</li><li>C++ / C</li><li>SQL</li><li>Shell Scripting</li><li>Oracle 11g/12c/19c</li>
                     </ol>
                 </div>
-                <div class="channel-tile">
-                    <div class="tile-header"><i class="ri-server-line tile-icon"></i><h3 class="tile-title">HPC & System Design</h3></div>
-                    <ol class="skill-list">
+                <div class="competency-card">
+                    <div class="competency-header"><i class="ri-server-line competency-icon"></i><h3 class="competency-title">HPC & System Design</h3></div>
+                    <ol class="skill-set">
                        <li>OpenMP / MPI</li><li>Slurm</li><li>Distributed Systems</li><li>Linux</li>
                     </ol>
                 </div>
-                <div class="channel-tile">
-                    <div class="tile-header"><i class="ri-cloud-fill tile-icon"></i><h3 class="tile-title">Cloud & MLOps</h3></div>
-                    <ol class="skill-list">
+                <div class="competency-card">
+                    <div class="competency-header"><i class="ri-cloud-fill competency-icon"></i><h3 class="competency-title">Cloud & MLOps</h3></div>
+                    <ol class="skill-set">
                         <li>AWS</li><li>Docker</li><li>FastAPI</li><li>Benchmarking</li>
                     </ol>
                 </div>
@@ -952,47 +966,47 @@
 
         ---
 
-        <section class="section" id="journey">
-            <h2 class="section-title">My Journey: <span>Bonus Content</span></h2>
-            <div class="journey-grid">
-                <div class="journey-card">
+        <section class="platform-section" id="journey">
+            <h2 class="section-header">System Log: <span>Development Timeline</span></h2>
+            <div class="timeline-grid">
+                <div class="log-entry-card">
                     <h3>Master's Degree</h3>
                     <h4>Iowa State University</h4>
-                    <p class="duration">August 2023 – May 2025</p>
-                    <p>Pursued a Master's in **Computer Engineering** with a focus on **Machine Learning and High-Performance Computing**. Conducted extensive research in areas like Compute-in-Memory architectures and Retrieval-Augmented Generation (RAG) systems.</p>
+                    <p class="timeline-date">August 2023 – May 2025</p>
+                    <p>Focused on **Machine Learning and High-Performance Computing**, researching **Compute-in-Memory architectures** and **Retrieval-Augmented Generation (RAG) systems**. Gained advanced skills in complex system design.</p>
                 </div>
-                <div class="journey-card">
+                <div class="log-entry-card">
                     <h3>AI/ML Architect</h3>
                     <h4>(Your Company Name Here)</h4>
-                    <p class="duration">July 2025 – Present</p>
-                    <p>Leading the design and implementation of next-generation AI solutions, focusing on scalable infrastructure, model optimization, and deployment strategies for critical business applications.</p>
+                    <p class="timeline-date">July 2025 – Present</p>
+                    <p>Spearheading the design and deployment of cutting-edge AI solutions, with emphasis on **scalable infrastructure**, **model optimization**, and **production-ready AI pipelines** for critical enterprise applications.</p>
                 </div>
-                <div class="journey-card">
+                <div class="log-entry-card">
                     <h3>Software Engineer (ML Focus)</h3>
                     <h4>(Previous Company Name)</h4>
-                    <p class="duration">June 2021 – July 2023</p>
-                    <p>Developed and deployed machine learning models, optimized data pipelines, and contributed to the integration of AI functionalities into core product offerings.</p>
+                    <p class="timeline-date">June 2021 – July 2023</p>
+                    <p>Developed and deployed machine learning models, optimized **data ingestion pipelines**, and integrated AI functionalities, enhancing product capabilities and user experience.</p>
                 </div>
-                 <div class="journey-card">
+                 <div class="log-entry-card">
                     <h3>Bachelor's Degree</h3>
                     <h4>(Your University Name Here)</h4>
-                    <p class="duration">August 2017 – May 2021</p>
-                    <p>Completed a Bachelor's in **Computer Science** (or relevant field), building foundational knowledge in algorithms, data structures, and software development, with early exposure to AI concepts.</p>
+                    <p class="timeline-date">August 2017 – May 2021</p>
+                    <p>Built a strong foundation in **Computer Science**, including **algorithms**, **data structures**, and core software engineering principles, with early exploration into AI/ML concepts.</p>
                 </div>
             </div>
         </section>
 
         ---
 
-        <section class="section darker" id="contact">
-            <h2 class="section-title">Get in Touch: <span>Access Pass</span></h2>
-            <div class="contact-container">
+        <section class="platform-section darker" id="contact">
+            <h2 class="section-header">Connect <span>Protocol</span></h2>
+            <div class="contact-module">
                 <p>
-                    Ready to discuss your next AI project or explore collaboration opportunities? Feel free to reach out. I'm always looking for innovative challenges and meaningful connections in the world of Machine Learning and AI.
+                    Seeking to initiate a new project, discuss a complex AI challenge, or explore collaboration on future innovations? Establish a secure connection through the channels below.
                 </p>
-                <div class="contact-links">
+                <div class="connection-links">
                     <a href="mailto:srim@iastate.edu" target="_blank">
-                        <i class="ri-mail-fill"></i> Email Me
+                        <i class="ri-mail-fill"></i> Email
                     </a>
                     <a href="https://www.linkedin.com/in/sriharshamudumba/" target="_blank">
                         <i class="ri-linkedin-box-fill"></i> LinkedIn
@@ -1001,30 +1015,30 @@
                         <i class="ri-github-fill"></i> GitHub
                     </a>
                     <a href="Sriharsha_Mudumba_resume.pdf" download>
-                        <i class="ri-file-download-line"></i> Resume (PDF)
+                        <i class="ri-file-download-line"></i> Download Resume
                     </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="control-panel-footer">
-        <div class="footer-left-status">
+    <footer class="system-status-bar">
+        <div class="status-left-info">
             <div class="status-text">
-                Current Content: <span id="current-content-focus">Home</span>
+                Active Module: <span id="active-module-focus">Home</span>
             </div>
         </div>
-        <div class="footer-center-controls">
+        <div class="status-center-links">
             <a href="https://github.com/sriharshamudumba" target="_blank" title="GitHub"><i class="ri-github-fill"></i></a>
             <a href="https://www.linkedin.com/in/sriharshamudumba/" target="_blank" title="LinkedIn"><i class="ri-linkedin-box-fill"></i></a>
             <a href="mailto:srim@iastate.edu" title="Email"><i class="ri-mail-fill"></i></a>
         </div>
-        <div class="footer-right-action">
-            <a href="#home">Browse Home</a>
+        <div class="status-right-action">
+            <a href="#home">Initiate Home Protocol</a>
         </div>
     </footer>
 
-    <div class="modal" id="projectModal">
+    <div class="data-modal" id="projectModal">
         <div class="modal-content">
             <div class="modal-close" id="modalClose">&times;</div>
             <div class="modal-header"><h2 class="modal-title" id="modalTitle"></h2></div>
@@ -1080,7 +1094,7 @@
             const modal = document.getElementById('projectModal');
             const modalClose = document.getElementById('modalClose');
 
-            document.querySelectorAll('.project-card').forEach(card => {
+            document.querySelectorAll('.project-module').forEach(card => { // Changed selector
                 card.addEventListener('click', () => {
                     const data = projectData[card.dataset.project];
                     document.getElementById('modalTitle').textContent = data.title;
@@ -1101,36 +1115,35 @@
             modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
             // Navbar scroll effect
-            const navbar = document.getElementById('navbar');
+            const navbar = document.getElementById('navbar'); // Still 'navbar' ID on the element
             window.addEventListener('scroll', () => {
                 navbar.classList.toggle('scrolled', window.scrollY > 50);
             });
             
             // Intersection Observer for scroll animations and "Current Content" update
-            const observerOptions = { threshold: 0.2 }; // Increased threshold for more reliable updates
+            const observerOptions = { threshold: 0.2 }; 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Apply fade-in animation
                         entry.target.style.animationDelay = entry.target.dataset.delay || '0s';
                         entry.target.classList.add('visible');
                         
                         let sectionName = '';
-                        if (entry.target.id === 'home') sectionName = 'Now Playing';
-                        else if (entry.target.id === 'projects') sectionName = 'My Content';
-                        else if (entry.target.id === 'skills') sectionName = 'Tech Stack';
-                        else if (entry.target.id === 'journey') sectionName = 'My Journey';
-                        else if (entry.target.id === 'contact') sectionName = 'Get in Touch';
+                        if (entry.target.id === 'home') sectionName = 'Active Profile'; // Renamed
+                        else if (entry.target.id === 'projects') sectionName = 'Computational Modules'; // Renamed
+                        else if (entry.target.id === 'skills') sectionName = 'Core Competencies'; // Renamed
+                        else if (entry.target.id === 'journey') sectionName = 'Development Timeline'; // Renamed
+                        else if (entry.target.id === 'contact') sectionName = 'Connect Protocol'; // Renamed
 
-                        if (sectionName) { // Only update if a valid section is found
-                           document.getElementById('current-content-focus').textContent = sectionName;
+                        if (sectionName) { 
+                           document.getElementById('active-module-focus').textContent = sectionName; // Renamed
                         }
                     }
                 });
             }, observerOptions);
             
             // Observe elements for staggered fade-in animation
-            document.querySelectorAll('.project-card, .channel-tile, .journey-card, .contact-links a').forEach((el, i) => {
+            document.querySelectorAll('.project-module, .competency-card, .log-entry-card, .connection-links a').forEach((el, i) => { // Updated selectors
                 el.dataset.delay = `${i * 0.1}s`;
                 observer.observe(el);
             });
