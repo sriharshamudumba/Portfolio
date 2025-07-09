@@ -39,6 +39,27 @@
             color: var(--text-light);
             padding-bottom: 90px;
             overflow-x: hidden; /* Prevent horizontal scroll from subtle animations */
+            position: relative; /* For the animated background */
+        }
+
+        /* --- Animated Background --- */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,%3Csvg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%236C42F7" fill-opacity="0.05" fill-rule="evenodd"%3E%3Cpath d="M0 0h40v40H0V0zm40 40h40v40H40V40z"/%3E%3C/g%3E%3C/svg%3E'); /* Subtle grid */
+            background-size: 80px 80px;
+            opacity: 0.1;
+            z-index: -1;
+            animation: backgroundPan 60s linear infinite; /* Slow pan animation */
+        }
+
+        @keyframes backgroundPan {
+            from { background-position: 0 0; }
+            to { background-position: 80px 80px; } /* Move by one grid cell */
         }
 
         /* Utility for fade-in animation */
@@ -47,20 +68,6 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
-
-        /* Background grid/dots effect (optional, subtle) */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: radial-gradient(circle at center, rgba(108, 66, 247, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.1;
-            z-index: -1;
         }
 
         /* --- Navigation Bar: Platform UI --- */
@@ -381,7 +388,7 @@
             overflow: hidden; /* For background effect */
         }
         
-        /* Subtle background pattern for channels */
+        /* Subtle background pattern for channels - using the new background property */
         .channel-tile::before {
             content: '';
             position: absolute;
@@ -458,6 +465,131 @@
             opacity: 0.8;
         }
 
+        /* --- Journey Section: Bonus Content --- */
+        .journey-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .journey-card {
+            background-color: var(--card-base);
+            border-radius: 16px;
+            padding: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .journey-card:hover {
+            background-color: var(--card-hover);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(108, 66, 247, 0.5);
+            border-color: var(--primary-accent);
+        }
+
+        .journey-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(to right, var(--primary-accent), var(--secondary-accent));
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .journey-card h3 {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            padding-top: 15px; /* Space for the colored bar */
+        }
+
+        .journey-card h4 {
+            font-size: 1.2rem;
+            color: var(--secondary-accent);
+            margin-bottom: 5px;
+        }
+
+        .journey-card .duration {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            margin-bottom: 20px;
+            font-family: var(--font-mono);
+        }
+
+        .journey-card p {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: var(--text-medium);
+        }
+        
+        /* --- Get In Touch Section --- */
+        .contact-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-container p {
+            font-size: 1.3rem;
+            color: var(--text-medium);
+            line-height: 1.7;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .contact-links a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-light);
+            background-color: var(--card-base);
+            padding: 15px 30px;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-links a i {
+            font-size: 1.8rem;
+            color: var(--secondary-accent);
+            transition: color 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            background-color: var(--card-hover);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 240, 255, 0.4);
+            border-color: var(--secondary-accent);
+        }
+
+        .contact-links a:hover i {
+            color: var(--primary-accent);
+        }
+
+
         /* --- Footer: Control Panel --- */
         .control-panel-footer { /* Renamed from ai-console-footer */
             position: fixed;
@@ -519,7 +651,7 @@
 
         .footer-right-action a {
             text-decoration: none;
-            color: var(--text-light);
+            color: var(--background-dark);
             background: linear-gradient(90deg, var(--secondary-accent), var(--primary-accent));
             font-weight: 700;
             padding: 14px 30px;
@@ -680,6 +812,9 @@
             .skills-grid-container {
                 grid-template-columns: 1fr;
             }
+            .journey-grid {
+                grid-template-columns: 1fr;
+            }
             .control-panel-footer {
                 grid-template-columns: 1fr;
                 height: auto;
@@ -749,6 +884,8 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#projects">My Content</a></li>
             <li><a href="#skills">Tech Stack</a></li>
+            <li><a href="#journey">My Journey</a></li>
+            <li><a href="#contact">Connect</a></li>
         </ul>
     </nav>
 
@@ -809,6 +946,63 @@
                     <ol class="skill-list">
                         <li>AWS</li><li>Docker</li><li>FastAPI</li><li>Benchmarking</li>
                     </ol>
+                </div>
+            </div>
+        </section>
+
+        ---
+
+        <section class="section" id="journey">
+            <h2 class="section-title">My Journey: <span>Bonus Content</span></h2>
+            <div class="journey-grid">
+                <div class="journey-card">
+                    <h3>Master's Degree</h3>
+                    <h4>Iowa State University</h4>
+                    <p class="duration">August 2023 – May 2025</p>
+                    <p>Pursued a Master's in **Computer Engineering** with a focus on **Machine Learning and High-Performance Computing**. Conducted extensive research in areas like Compute-in-Memory architectures and Retrieval-Augmented Generation (RAG) systems.</p>
+                </div>
+                <div class="journey-card">
+                    <h3>AI/ML Architect</h3>
+                    <h4>(Your Company Name Here)</h4>
+                    <p class="duration">July 2025 – Present</p>
+                    <p>Leading the design and implementation of next-generation AI solutions, focusing on scalable infrastructure, model optimization, and deployment strategies for critical business applications.</p>
+                </div>
+                <div class="journey-card">
+                    <h3>Software Engineer (ML Focus)</h3>
+                    <h4>(Previous Company Name)</h4>
+                    <p class="duration">June 2021 – July 2023</p>
+                    <p>Developed and deployed machine learning models, optimized data pipelines, and contributed to the integration of AI functionalities into core product offerings.</p>
+                </div>
+                 <div class="journey-card">
+                    <h3>Bachelor's Degree</h3>
+                    <h4>(Your University Name Here)</h4>
+                    <p class="duration">August 2017 – May 2021</p>
+                    <p>Completed a Bachelor's in **Computer Science** (or relevant field), building foundational knowledge in algorithms, data structures, and software development, with early exposure to AI concepts.</p>
+                </div>
+            </div>
+        </section>
+
+        ---
+
+        <section class="section darker" id="contact">
+            <h2 class="section-title">Get in Touch: <span>Access Pass</span></h2>
+            <div class="contact-container">
+                <p>
+                    Ready to discuss your next AI project or explore collaboration opportunities? Feel free to reach out. I'm always looking for innovative challenges and meaningful connections in the world of Machine Learning and AI.
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:srim@iastate.edu" target="_blank">
+                        <i class="ri-mail-fill"></i> Email Me
+                    </a>
+                    <a href="https://www.linkedin.com/in/sriharshamudumba/" target="_blank">
+                        <i class="ri-linkedin-box-fill"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/sriharshamudumba" target="_blank">
+                        <i class="ri-github-fill"></i> GitHub
+                    </a>
+                    <a href="Sriharsha_Mudumba_resume.pdf" download>
+                        <i class="ri-file-download-line"></i> Resume (PDF)
+                    </a>
                 </div>
             </div>
         </section>
@@ -917,6 +1111,7 @@
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
+                        // Apply fade-in animation
                         entry.target.style.animationDelay = entry.target.dataset.delay || '0s';
                         entry.target.classList.add('visible');
                         
@@ -924,6 +1119,8 @@
                         if (entry.target.id === 'home') sectionName = 'Now Playing';
                         else if (entry.target.id === 'projects') sectionName = 'My Content';
                         else if (entry.target.id === 'skills') sectionName = 'Tech Stack';
+                        else if (entry.target.id === 'journey') sectionName = 'My Journey';
+                        else if (entry.target.id === 'contact') sectionName = 'Get in Touch';
 
                         if (sectionName) { // Only update if a valid section is found
                            document.getElementById('current-content-focus').textContent = sectionName;
@@ -932,7 +1129,8 @@
                 });
             }, observerOptions);
             
-            document.querySelectorAll('.project-card, .channel-tile').forEach((el, i) => {
+            // Observe elements for staggered fade-in animation
+            document.querySelectorAll('.project-card, .channel-tile, .journey-card, .contact-links a').forEach((el, i) => {
                 el.dataset.delay = `${i * 0.1}s`;
                 observer.observe(el);
             });
