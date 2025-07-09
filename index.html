@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sriharsha Mudumba - Portfolio</title>
+    <title>Sriharsha Mudumba - AI Architect Portfolio</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap'); /* Adding a monospace font for technical feel */
 
         :root {
-            --accent-primary: #007bff; /* A vibrant blue */
-            --accent-secondary: #00bcd4; /* A teal for subtle accents */
-            --background-color: #121212;
-            --card-color: #181818;
-            --card-hover-color: #282828;
-            --text-primary: #FFFFFF;
-            --text-secondary: #b3b3b3;
-            --font-family: 'Inter', sans-serif;
+            --primary-accent: #00C4CC; /* Deep Teal/Cyan */
+            --secondary-accent: #8C00FF; /* Subtle Violet/Magenta */
+            --background-dark: #0A0A0A; /* Even darker background */
+            --card-base: #1A1A1A;
+            --card-hover: #2A2A2A;
+            --text-light: #F0F0F0;
+            --text-medium: #B0B0B0;
+            --text-dark: #666666;
+            --font-main: 'Inter', sans-serif;
+            --font-mono: 'Space Mono', monospace;
         }
 
         * {
@@ -29,10 +32,18 @@
         }
 
         body {
-            font-family: var(--font-family);
-            background-color: var(--background-color);
-            color: var(--text-primary);
-            padding-bottom: 90px; /* Space for the footer */
+            font-family: var(--font-main);
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            padding-bottom: 90px;
+        }
+
+        /* Utility for fade-in animation */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* --- Navigation --- */
@@ -49,15 +60,17 @@
         }
 
         .navbar.scrolled {
-            background-color: rgba(18, 18, 18, 0.8);
+            background-color: rgba(10, 10, 10, 0.8);
             backdrop-filter: blur(10px);
         }
 
         .nav-logo {
-            font-size: 2rem;
-            font-weight: 900;
-            color: var(--accent-primary); /* Using accent primary */
+            font-family: var(--font-mono);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-accent);
             text-decoration: none;
+            text-shadow: 0 0 8px rgba(0, 196, 204, 0.5); /* Subtle glow */
         }
 
         .nav-links {
@@ -67,7 +80,7 @@
         }
 
         .nav-links a {
-            color: var(--text-primary);
+            color: var(--text-light);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
@@ -82,7 +95,7 @@
             bottom: -5px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: var(--accent-primary); /* Using accent primary */
+            background-color: var(--primary-accent);
             transition: width 0.3s ease;
         }
 
@@ -90,7 +103,7 @@
             width: 100%;
         }
 
-        /* --- Hero Section --- */
+        /* --- Hero Section: Neural Gateway --- */
         .hero {
             height: 100vh;
             display: flex;
@@ -99,74 +112,111 @@
             justify-content: center;
             text-align: center;
             padding: 0 20px;
-            background: linear-gradient(rgba(18,18,18,0) 0%, #121212 100%), radial-gradient(circle at top, rgba(0, 123, 255, 0.15) 0%, transparent 40%); /* Generalized gradient */
+            background: 
+                linear-gradient(to bottom, rgba(10,10,10,0) 0%, var(--background-dark) 100%),
+                radial-gradient(circle at top, rgba(0, 196, 204, 0.1) 0%, transparent 40%); /* Abstract gradient */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle background animation for tech feel */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at center, rgba(0, 196, 204, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.1;
+            animation: backgroundFlow 60s linear infinite;
+        }
+
+        @keyframes backgroundFlow {
+            from { background-position: 0 0; }
+            to { background-position: 100% 100%; }
         }
         
         .hero-content {
             max-width: 900px;
+            position: relative; /* Ensure content is above the pseudo-element */
+            z-index: 2;
         }
 
         .hero-title {
+            font-family: var(--font-main);
             font-size: clamp(3.5rem, 8vw, 6.5rem);
             font-weight: 900;
             letter-spacing: -2px;
             margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(0, 196, 204, 0.7); /* Stronger glow for title */
         }
 
-        .hero-subtitle {
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
-        
-        .journey-intro-title { /* Renamed from now-streaming-title */
-            color: var(--accent-secondary); /* Using accent secondary */
+        .journey-intro-title {
+            font-family: var(--font-mono);
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: var(--secondary-accent);
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             margin-bottom: 15px;
         }
 
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            color: var(--text-medium);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
         .hero-cta {
             padding: 15px 35px;
-            background-color: var(--text-primary);
-            color: #000;
+            background-color: var(--primary-accent);
+            color: var(--background-dark);
             text-decoration: none;
             font-weight: 700;
             border-radius: 50px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
             display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: var(--font-main);
         }
 
         .hero-cta:hover {
             transform: scale(1.05);
-            background-color: var(--accent-primary); /* Using accent primary for hover */
-            color: var(--text-primary);
+            background-color: var(--secondary-accent);
+            color: var(--text-light);
+            box-shadow: 0 0 20px rgba(140, 0, 255, 0.6);
         }
 
         /* --- Section Styling --- */
         .section {
             padding: 100px 60px;
             overflow: hidden;
+            position: relative; /* For potential future section-specific effects */
         }
         
         .section.darker {
-            background-color: #000;
+            background-color: #050505; /* Slightly different dark */
         }
 
         .section-title {
+            font-family: var(--font-main);
             font-size: 2.8rem;
             font-weight: 700;
             margin-bottom: 50px;
             display: inline-block;
+            position: relative;
+            z-index: 1;
         }
         
         .section-title span {
-            color: var(--accent-primary); /* Using accent primary */
+            color: var(--primary-accent);
         }
 
-        /* --- Projects Section --- */
+        /* --- Projects Section: Model Gallery --- */
         .projects-carousel {
             position: relative;
         }
@@ -177,102 +227,137 @@
             overflow-x: auto;
             padding: 20px 0;
             scrollbar-width: none;
+            /* Custom scrollbar for subtle tech look */
+            scrollbar-color: var(--primary-accent) var(--card-base);
         }
 
-        .carousel-track::-webkit-scrollbar { display: none; }
+        .carousel-track::-webkit-scrollbar {
+            height: 8px;
+        }
+        .carousel-track::-webkit-scrollbar-track {
+            background: var(--card-base);
+            border-radius: 10px;
+        }
+        .carousel-track::-webkit-scrollbar-thumb {
+            background-color: var(--primary-accent);
+            border-radius: 10px;
+            border: 2px solid var(--card-base);
+        }
 
         .project-card {
             flex: 0 0 320px;
             height: 180px;
-            background-color: var(--card-color);
-            border-radius: 8px;
+            background-color: var(--card-base);
+            border-radius: 10px; /* Slightly more rounded */
             overflow: hidden;
             cursor: pointer;
             transition: all 0.4s ease;
             position: relative;
             display: flex;
-            align-items: flex-end;
+            flex-direction: column; /* Allow content to stack */
+            align-items: center;
             justify-content: center;
             padding: 20px;
-            border: 1px solid #222;
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
             opacity: 0;
             transform: translateY(20px);
             animation: fadeIn 0.5s ease forwards;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Soft initial shadow */
         }
 
         .project-card:hover {
             transform: translateY(-10px) scale(1.03);
-            background-color: var(--card-hover-color);
-            box-shadow: 0 0 30px rgba(0, 123, 255, 0.4); /* Using accent primary for glow */
+            background-color: var(--card-hover);
+            box-shadow: 0 0 30px rgba(0, 196, 204, 0.6), 0 0 5px rgba(140, 0, 255, 0.4); /* Dual color glow */
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--primary-accent);
+            margin-bottom: 10px;
         }
 
         .card-title {
-            font-size: 1.3rem;
+            font-family: var(--font-main);
+            font-size: 1.4rem;
             font-weight: 700;
             text-align: center;
+            color: var(--text-light);
         }
 
-        /* --- Skills Section --- */
-        .skills-playlist-container {
+        /* --- Skills Section: Computational Spectrum --- */
+        .skills-grid-container { /* Renamed for clarity */
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
 
-        .skill-playlist {
-            background-color: var(--card-color);
+        .capability-block { /* Renamed from skill-playlist */
+            background-color: var(--card-base);
             border-radius: 12px;
             padding: 25px;
             transition: all 0.4s ease;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeIn 0.5s ease forwards;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
         
-        .skill-playlist:hover {
-            background-color: var(--card-hover-color);
+        .capability-block:hover {
+            background-color: var(--card-hover);
             transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 196, 204, 0.3);
         }
 
-        .playlist-header {
+        .block-header { /* Renamed from playlist-header */
             display: flex;
             align-items: center;
             gap: 15px;
             margin-bottom: 25px;
         }
 
-        .skill-icon { /* Renamed from playlist-icon */
-            font-size: 2rem;
-            color: var(--accent-secondary); /* Using accent secondary */
+        .block-icon { /* Renamed from skill-icon */
+            font-size: 2.2rem;
+            color: var(--primary-accent);
+            text-shadow: 0 0 10px rgba(0, 196, 204, 0.5);
         }
 
-        .playlist-title {
-            font-size: 1.4rem;
+        .block-title { /* Renamed from playlist-title */
+            font-family: var(--font-main);
+            font-size: 1.5rem;
             font-weight: 700;
+            color: var(--text-light);
         }
 
-        .playlist-tracks {
+        .skill-list { /* Renamed from playlist-tracks */
             list-style: none;
-            counter-reset: track-counter;
+            counter-reset: skill-counter;
         }
 
-        .playlist-tracks li {
-            color: var(--text-secondary);
+        .skill-list li {
+            color: var(--text-medium);
             margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 15px;
+            font-family: var(--font-main);
+            font-size: 1rem;
         }
         
-        .playlist-tracks li::before {
-            counter-increment: track-counter;
-            content: counter(track-counter);
+        .skill-list li::before {
+            counter-increment: skill-counter;
+            content: counter(skill-counter);
             font-weight: 500;
-            color: var(--text-secondary);
+            color: var(--primary-accent); /* Numbering with accent color */
+            font-family: var(--font-mono);
+            font-size: 0.9em;
+            width: 20px; /* Align numbers */
+            text-align: right;
         }
 
-        /* --- Footer Navigation --- */
-        .footer-navigation { /* Renamed from spotify-player */
+        /* --- Footer: AI Console --- */
+        .ai-console-footer { /* Renamed from footer-navigation */
             position: fixed;
             bottom: 0;
             left: 0;
@@ -285,64 +370,69 @@
             align-items: center;
             padding: 0 30px;
             z-index: 200;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .footer-left {
+        .console-left { /* Renamed from footer-left */
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
-        .now-viewing-text {
-            color: var(--text-secondary);
+        .status-text { /* Renamed from now-viewing-text */
+            color: var(--text-medium);
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
         }
-        #now-viewing { color: var(--text-primary); font-weight: 700; }
+        #current-focus { /* Renamed from now-viewing */
+            color: var(--text-light);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
 
-        .footer-center { /* Renamed from player-center */
+        .console-center { /* Renamed from footer-center */
             display: flex;
             justify-content: center;
             gap: 30px;
         }
         
-        .footer-center a {
-            color: var(--text-secondary);
+        .console-center a {
+            color: var(--text-medium);
             text-decoration: none;
             font-size: 1.8rem;
             transition: all 0.3s ease;
         }
         
-        .footer-center a:hover {
-            color: var(--accent-secondary); /* Using accent secondary for hover */
+        .console-center a:hover {
+            color: var(--primary-accent);
             transform: scale(1.1);
+            text-shadow: 0 0 10px rgba(0, 196, 204, 0.6);
         }
         
-        .footer-right { /* Renamed from player-right */
+        .console-right { /* Renamed from footer-right */
             display: flex;
             justify-content: flex-end;
         }
 
-        .footer-right a {
+        .console-right a {
             text-decoration: none;
-            color: var(--text-primary);
-            background-color: var(--accent-secondary); /* Using accent secondary */
+            color: var(--text-light);
+            background-color: var(--secondary-accent);
             font-weight: 700;
             padding: 12px 25px;
             border-radius: 30px;
             transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-family: var(--font-main);
+            letter-spacing: 1px;
         }
 
-        .footer-right a:hover {
+        .console-right a:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 189, 212, 0.5); /* Using accent secondary for glow */
+            background-color: var(--primary-accent);
+            box-shadow: 0 0 20px rgba(0, 196, 204, 0.5);
         }
         
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         /* --- Project Modal --- */
         .modal {
             position: fixed;
@@ -350,8 +440,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            backdrop-filter: blur(10px);
+            background-color: rgba(0,0,0,0.85); /* Slightly darker overlay */
+            backdrop-filter: blur(12px); /* Stronger blur */
             z-index: 300;
             display: flex;
             align-items: center;
@@ -362,27 +452,91 @@
         }
         .modal.active { opacity: 1; visibility: visible; }
         .modal-content {
-            background-color: #181818;
+            background-color: var(--card-base);
             width: 90%;
             max-width: 800px;
             max-height: 90vh;
-            border-radius: 8px;
+            border-radius: 12px; /* Slightly more rounded */
             overflow-y: auto;
             position: relative;
             transform: translateY(20px) scale(0.95);
             transition: transform 0.4s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 196, 204, 0.2); /* Subtle accent border */
         }
         .modal.active .modal-content { transform: translateY(0) scale(1); }
-        .modal-header { padding: 40px; }
-        .modal-title { font-size: 2.8rem; font-weight: 900; }
-        .modal-body { padding: 0 40px 40px; }
-        .modal-description { font-size: 1.1rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 30px; }
-        .modal-tech-stack { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
-        .tech-tag { background-color: #333; padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 500; }
-        .modal-actions a { display: inline-block; text-decoration: none; color: #000; background-color: var(--text-primary); padding: 12px 25px; border-radius: 30px; font-weight: 700; margin-right: 15px; transition: all 0.3s ease; }
-        .modal-actions a:hover { background-color: var(--accent-primary); color: var(--text-primary); } /* Using accent primary for modal link hover */
-        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: var(--text-secondary); cursor: pointer; transition: color 0.3s ease; }
-        .modal-close:hover { color: var(--text-primary); }
+        .modal-header { 
+            padding: 40px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separator */
+            position: sticky;
+            top: 0;
+            background-color: var(--card-base);
+            z-index: 10;
+        }
+        .modal-title { 
+            font-family: var(--font-main);
+            font-size: 2.8rem; 
+            font-weight: 900; 
+            color: var(--primary-accent);
+            text-shadow: 0 0 10px rgba(0, 196, 204, 0.5);
+        }
+        .modal-body { padding: 30px 40px 40px; } /* Adjusted padding */
+        .modal-description { 
+            font-size: 1.1rem; 
+            line-height: 1.7; 
+            color: var(--text-medium); 
+            margin-bottom: 30px; 
+        }
+        .modal-tech-stack { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 12px; /* Increased gap */
+            margin-bottom: 30px; 
+        }
+        .tech-tag { 
+            background-color: #333; 
+            padding: 8px 18px; /* Slightly larger tags */
+            border-radius: 25px; /* More rounded */
+            font-size: 0.95rem; /* Slightly larger text */
+            font-weight: 500; 
+            color: var(--text-light);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-family: var(--font-mono);
+        }
+        .modal-actions a { 
+            display: inline-block; 
+            text-decoration: none; 
+            color: var(--background-dark); 
+            background-color: var(--primary-accent); 
+            padding: 14px 30px; /* Larger buttons */
+            border-radius: 30px; 
+            font-weight: 700; 
+            margin-right: 15px; 
+            transition: all 0.3s ease; 
+            text-transform: uppercase;
+            font-family: var(--font-main);
+            letter-spacing: 1px;
+        }
+        .modal-actions a:hover { 
+            background-color: var(--secondary-accent); 
+            color: var(--text-light); 
+            box-shadow: 0 0 20px rgba(140, 0, 255, 0.6);
+        }
+        .modal-close { 
+            position: absolute; 
+            top: 20px; /* Adjusted position */
+            right: 25px; /* Adjusted position */
+            font-size: 2.5rem; /* Larger close button */
+            color: var(--text-dark); 
+            cursor: pointer; 
+            transition: color 0.3s ease; 
+            z-index: 11; /* Ensure it's above header content */
+        }
+        .modal-close:hover { 
+            color: var(--primary-accent); 
+            transform: scale(1.1);
+            text-shadow: 0 0 10px rgba(0, 196, 204, 0.5);
+        }
 
     </style>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
@@ -400,44 +554,51 @@
     <header class="hero" id="home">
         <div class="hero-content">
             <h1 class="hero-title">Sriharsha Mudumba</h1>
-            <p class="journey-intro-title">My Journey in Motion</p> <p class="hero-subtitle">An ML Engineer & AI Architect crafting the next generation of intelligent systems. From high-performance compute-in-memory frameworks to scalable RAG pipelines, I build solutions that bridge the gap between data and discovery.</p>
-            <a href="Sriharsha_Mudumba_resume.pdf" class="hero-cta" download>Download My Resume</a>
+            <p class="journey-intro-title">Architecting the Future of Intelligence</p> 
+            <p class="hero-subtitle">As an **ML Engineer** and **AI Architect**, I specialize in crafting the next generation of intelligent systems. From high-performance **compute-in-memory frameworks** to scalable **RAG pipelines**, I build solutions that bridge the gap between data and discovery.</p>
+            <a href="Sriharsha_Mudumba_resume.pdf" class="hero-cta" download>Download My AI Blueprint</a>
         </div>
     </header>
 
     <main>
         <section class="section" id="projects">
-            <h2 class="section-title">My Creative Ventures<span>.</span></h2> <div class="projects-carousel">
+            <h2 class="section-title">My Project Synapse<span>.</span></h2>
+            <div class="projects-carousel">
                 <div class="carousel-track">
-                    <div class="project-card" data-project="duracim"><div class="card-title">DURACIM</div></div>
-                    <div class="project-card" data-project="argus"><div class="card-title">ARGUS</div></div>
-                    <div class="project-card" data-project="lexa"><div class="card-title">LEXA</div></div>
-                    <div class="project-card" data-project="1bitllm"><div class="card-title">1BitLLM Optimization</div></div>
-                    <div class="project-card" data-project="snapea"><div class="card-title">SnaPEA Accelerator</div></div>
-                    <div class="project-card" data-project="license"><div class="card-title">License Plate Detection</div></div>
+                    <div class="project-card" data-project="duracim"><i class="ri-chip-line card-icon"></i><div class="card-title">DURACIM</div></div>
+                    <div class="project-card" data-project="argus"><i class="ri-brain-line card-icon"></i><div class="card-title">ARGUS</div></div>
+                    <div class="project-card" data-project="lexa"><i class="ri-device-line card-icon"></i><div class="card-title">LEXA</div></div>
+                    <div class="project-card" data-project="1bitllm"><i class="ri-speed-line card-icon"></i><div class="card-title">1BitLLM Optimization</div></div>
+                    <div class="project-card" data-project="snapea"><i class="ri-node-tree card-icon"></i><div class="card-title">SnaPEA Accelerator</div></div>
+                    <div class="project-card" data-project="license"><i class="ri-car-line card-icon"></i><div class="card-title">License Plate Detection</div></div>
                 </div>
             </div>
         </section>
 
         <section class="section darker" id="skills">
-            <h2 class="section-title">My Core Competencies<span>.</span></h2> <div class="skills-playlist-container">
-                <div class="skill-playlist">
-                    <div class="playlist-header"><i class="ri-code-s-slash-line skill-icon"></i><h3 class="playlist-title">AI Frameworks</h3></div> <ol class="playlist-tracks">
+            <h2 class="section-title">My Computational Spectrum<span>.</span></h2>
+            <div class="skills-grid-container">
+                <div class="capability-block">
+                    <div class="block-header"><i class="ri-braces-line block-icon"></i><h3 class="block-title">AI Frameworks</h3></div>
+                    <ol class="skill-list">
                         <li>PyTorch</li><li>TensorFlow</li><li>Scikit-learn</li><li>Langchain</li><li>ONNX</li>
                     </ol>
                 </div>
-                   <div class="skill-playlist">
-                    <div class="playlist-header"><i class="ri-file-text-line skill-icon"></i><h3 class="playlist-title">Languages & Databases</h3></div> <ol class="playlist-tracks">
+                <div class="capability-block">
+                    <div class="block-header"><i class="ri-terminal-box-line block-icon"></i><h3 class="block-title">Languages & Data Systems</h3></div>
+                    <ol class="skill-list">
                         <li>Python</li><li>C++ / C</li><li>SQL</li><li>Shell Scripting</li><li>Oracle 11g/12c/19c</li>
                     </ol>
                 </div>
-                <div class="skill-playlist">
-                    <div class="playlist-header"><i class="ri-cpu-line skill-icon"></i><h3 class="playlist-title">HPC & Systems</h3></div> <ol class="playlist-tracks">
+                <div class="capability-block">
+                    <div class="block-header"><i class="ri-server-line block-icon"></i><h3 class="block-title">HPC & System Design</h3></div>
+                    <ol class="skill-list">
                        <li>OpenMP / MPI</li><li>Slurm</li><li>Distributed Systems</li><li>Linux</li>
                     </ol>
                 </div>
-                <div class="skill-playlist">
-                    <div class="playlist-header"><i class="ri-cloud-line skill-icon"></i><h3 class="playlist-title">DevOps & Cloud</h3></div> <ol class="playlist-tracks">
+                <div class="capability-block">
+                    <div class="block-header"><i class="ri-cloud-fill block-icon"></i><h3 class="block-title">Cloud & MLOps</h3></div>
+                    <ol class="skill-list">
                         <li>AWS</li><li>Docker</li><li>FastAPI</li><li>Benchmarking</li>
                     </ol>
                 </div>
@@ -445,16 +606,19 @@
         </section>
     </main>
 
-    <footer class="footer-navigation"> <div class="footer-left">
-            <div class="now-viewing-text">
-                Currently Viewing: <span id="now-viewing">Home</span>
+    <footer class="ai-console-footer">
+        <div class="console-left">
+            <div class="status-text">
+                Current Focus: <span id="current-focus">Home</span>
             </div>
         </div>
-        <div class="footer-center"> <a href="https://github.com/sriharshamudumba" target="_blank" title="GitHub"><i class="ri-github-fill"></i></a>
+        <div class="console-center">
+            <a href="https://github.com/sriharshamudumba" target="_blank" title="GitHub"><i class="ri-github-fill"></i></a>
             <a href="https://www.linkedin.com/in/sriharshamudumba/" target="_blank" title="LinkedIn"><i class="ri-linkedin-box-fill"></i></a>
             <a href="mailto:srim@iastate.edu" title="Email"><i class="ri-mail-fill"></i></a>
         </div>
-        <div class="footer-right"> <a href="#home">Back to Top</a>
+        <div class="console-right">
+            <a href="#home">Return to Gateway</a>
         </div>
     </footer>
 
@@ -547,25 +711,24 @@
                         entry.target.style.animationDelay = entry.target.dataset.delay || '0s';
                         entry.target.classList.add('visible');
                         
-                        // Update Now Viewing
+                        // Update Current Focus
                         let sectionName = entry.target.id.charAt(0).toUpperCase() + entry.target.id.slice(1);
-                        // Adjusting section names for clarity in the footer
-                        if (entry.target.id === 'home') sectionName = 'Home';
-                        else if (entry.target.id === 'projects') sectionName = 'Projects';
-                        else if (entry.target.id === 'skills') sectionName = 'Skills';
+                        if (entry.target.id === 'home') sectionName = 'Gateway'; // Renamed for new theme
+                        else if (entry.target.id === 'projects') sectionName = 'Project Synapse'; // Renamed
+                        else if (entry.target.id === 'skills') sectionName = 'Computational Spectrum'; // Renamed
 
-                        document.getElementById('now-viewing').textContent = sectionName;
+                        document.getElementById('current-focus').textContent = sectionName;
                     }
                 });
             }, { threshold: 0.1 });
             
             // Staggered animation for cards
-            document.querySelectorAll('.project-card, .skill-playlist').forEach((el, i) => {
+            document.querySelectorAll('.project-card, .capability-block').forEach((el, i) => { // Updated class name
                 el.dataset.delay = `${i * 0.1}s`;
                 observer.observe(el);
             });
             
-            // Now viewing observer
+            // Current Focus observer
             document.querySelectorAll('section, header').forEach(section => {
                     observer.observe(section);
             });
@@ -573,4 +736,3 @@
     </script>
 </body>
 </html>
-
