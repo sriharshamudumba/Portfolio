@@ -97,7 +97,7 @@
             color: var(--primary-accent);
             text-decoration: none;
             letter-spacing: -1px;
-            text-shadow: 0 0 10px rgba(108, 66, 247, 0.7);
+            /* Removed text-shadow glow */
         }
 
         .menu-links { /* Renamed from nav-links */
@@ -171,13 +171,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 40px rgba(0, 240, 255, 0.4);
-            animation: pulseGlow 2s infinite alternate ease-in-out;
-        }
-
-        @keyframes pulseGlow {
-            from { box-shadow: 0 0 30px rgba(0, 240, 255, 0.4); }
-            to { box-shadow: 0 0 50px rgba(0, 240, 255, 0.8); }
+            /* Removed box-shadow glow */
+            /* Removed pulseGlow animation */
         }
 
         .profile-avatar { /* Renamed from profile-picture */
@@ -202,7 +197,7 @@
             font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
-            box-shadow: 0 5px 20px rgba(108, 66, 247, 0.5);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); /* Soft shadow, no glow */
             animation: blinkEffect 1.5s infinite step-end;
         }
 
@@ -222,7 +217,7 @@
             letter-spacing: -2px;
             margin-bottom: 15px;
             line-height: 1.1;
-            text-shadow: 0 0 15px rgba(0, 240, 255, 0.7);
+            /* Removed text-shadow glow */
         }
         
         .display-subtitle { /* Renamed from hero-subtitle */
@@ -246,12 +241,12 @@
             letter-spacing: 1.5px;
             font-family: var(--font-main);
             font-size: 1.1rem;
-            box-shadow: 0 5px 25px rgba(0, 240, 255, 0.3);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3); /* Soft shadow, no glow */
         }
 
         .access-button:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(0, 240, 255, 0.8), 0 0 15px rgba(108, 66, 247, 0.6);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover, no glow */
         }
 
         /* --- Section Styling --- */
@@ -275,7 +270,7 @@
             position: relative;
             z-index: 1;
             color: var(--text-light);
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+            /* Removed text-shadow glow */
             letter-spacing: -1px;
         }
         
@@ -329,7 +324,7 @@
             animation: fadeIn 0.5s ease forwards;
             background-size: cover;
             background-position: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); /* Soft shadow */
             /* Add subtle internal patterns for uniqueness */
             background-image: linear-gradient(45deg, rgba(108,66,247,0.05), rgba(0,240,255,0.05)),
                               url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M0 10L10 0L20 10L10 20Z" fill="%2300F0FF" opacity="0.05"/%3E%3C/svg%3E'); /* Subtle diamond pattern */
@@ -364,7 +359,7 @@
 
         .project-module:hover {
             transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 0 40px rgba(108, 66, 247, 0.5), 0 0 15px rgba(0, 240, 255, 0.4); /* Dual color glow */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover, no glow */
             border-color: var(--secondary-accent);
         }
 
@@ -376,7 +371,7 @@
             color: var(--text-light);
             position: relative; /* Ensure it's above overlay */
             z-index: 2;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Soft shadow for readability */
         }
 
         /* --- Skills Section: Core Competencies --- */
@@ -395,7 +390,7 @@
             transform: translateY(20px);
             animation: fadeIn 0.5s ease forwards;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Soft shadow */
             position: relative;
             overflow: hidden; /* For background effect */
         }
@@ -421,7 +416,7 @@
         .competency-card:hover {
             background-color: var(--card-hover);
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 240, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover, no glow */
             border-color: var(--secondary-accent);
         }
 
@@ -437,7 +432,7 @@
         .competency-icon { /* Renamed from tile-icon */
             font-size: 2.8rem; /* Larger icon */
             color: var(--secondary-accent);
-            text-shadow: 0 0 15px rgba(0, 240, 255, 0.8);
+            /* Removed text-shadow glow */
         }
 
         .competency-title { /* Renamed from tile-title */
@@ -489,7 +484,7 @@
             border-radius: 16px;
             padding: 35px;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Soft shadow */
             position: relative;
             overflow: hidden;
             transition: all 0.4s ease;
@@ -501,7 +496,7 @@
         .log-entry-card:hover {
             background-color: var(--card-hover);
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(108, 66, 247, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover, no glow */
             border-color: var(--primary-accent);
         }
 
@@ -581,7 +576,7 @@
             font-weight: 500;
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
         }
 
         .connection-links a i {
@@ -593,7 +588,7 @@
         .connection-links a:hover {
             background-color: var(--card-hover);
             transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 240, 255, 0.4);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover, no glow */
             border-color: var(--secondary-accent);
         }
 
@@ -616,7 +611,7 @@
             align-items: center;
             padding: 0 40px;
             z-index: 200;
-            box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.4); /* Soft shadow */
         }
 
         .status-left-info { /* Renamed from footer-left-status */
@@ -653,7 +648,7 @@
         .status-center-links a:hover {
             color: var(--secondary-accent);
             transform: scale(1.2);
-            text-shadow: 0 0 15px rgba(0, 240, 255, 0.8);
+            /* Removed text-shadow glow */
         }
         
         .status-right-action { /* Renamed from footer-right-action */
@@ -673,13 +668,13 @@
             font-family: var(--font-main);
             letter-spacing: 1px;
             font-size: 1rem;
-            box-shadow: 0 3px 15px rgba(0, 240, 255, 0.3);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3); /* Soft shadow */
         }
 
         .status-right-action a:hover {
             transform: scale(1.05);
             background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
-            box-shadow: 0 0 25px rgba(108, 66, 247, 0.6);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover, no glow */
         }
         
         /* --- Project Detail Modal (Retaining similar functionality) --- */
@@ -710,7 +705,7 @@
             position: relative;
             transform: translateY(30px) scale(0.9);
             transition: transform 0.5s ease;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8); /* Soft shadow */
             border: 2px solid var(--primary-accent); /* Stronger accent border */
         }
         .data-modal.active .modal-content { transform: translateY(0) scale(1); }
@@ -727,7 +722,7 @@
             font-size: 3.5rem; /* Larger title */
             font-weight: 900; 
             color: var(--secondary-accent);
-            text-shadow: 0 0 15px rgba(0, 240, 255, 0.7);
+            /* Removed text-shadow glow */
             letter-spacing: -1px;
         }
         .modal-body { padding: 30px 50px 50px; }
@@ -752,7 +747,7 @@
             color: var(--text-light);
             border: 1px solid rgba(108, 66, 247, 0.3); /* Accent border for tags */
             font-family: var(--font-mono);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
         }
         .modal-actions a { 
             display: inline-block; 
@@ -768,12 +763,12 @@
             font-family: var(--font-main);
             letter-spacing: 1.2px;
             font-size: 1.05rem;
-            box-shadow: 0 5px 20px rgba(0, 240, 255, 0.4);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); /* Soft shadow */
         }
         .modal-actions a:hover { 
             transform: scale(1.05);
             background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
-            box-shadow: 0 0 30px rgba(108, 66, 247, 0.7), 0 0 10px rgba(0, 240, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover, no glow */
             color: var(--text-light);
         }
         .modal-close { 
@@ -789,7 +784,7 @@
         .modal-close:hover { 
             color: var(--secondary-accent); 
             transform: rotate(90deg) scale(1.1);
-            text-shadow: 0 0 15px rgba(0, 240, 255, 0.7);
+            /* Removed text-shadow glow */
         }
 
         /* Responsive adjustments */
@@ -973,25 +968,31 @@
                     <h3>Master's Degree</h3>
                     <h4>Iowa State University</h4>
                     <p class="timeline-date">August 2023 – May 2025</p>
-                    <p>Focused on **Machine Learning and High-Performance Computing**, researching **Compute-in-Memory architectures** and **Retrieval-Augmented Generation (RAG) systems**. Gained advanced skills in complex system design.</p>
+                    <p>Focused on **Computer Engineering** with specialization in **Machine Learning and High-Performance Computing**. Researched **Compute-in-Memory (CiM) architectures** and **Retrieval-Augmented Generation (RAG) systems**, contributing to the design and optimization of advanced AI hardware and software systems.</p>
                 </div>
                 <div class="log-entry-card">
-                    <h3>AI/ML Architect</h3>
-                    <h4>(Your Company Name Here)</h4>
-                    <p class="timeline-date">July 2025 – Present</p>
-                    <p>Spearheading the design and deployment of cutting-edge AI solutions, with emphasis on **scalable infrastructure**, **model optimization**, and **production-ready AI pipelines** for critical enterprise applications.</p>
+                    <h3>Associate Database Administrator</h3>
+                    <h4>Cognizant</h4>
+                    <p class="timeline-date">July 2021 – July 2023</p>
+                    <p>Managed and maintained critical database infrastructure, ensuring high availability, performance, and security. Focused on **Oracle 11g/12c/19c administration**, including **database patching, backup/recovery, performance tuning, and incident resolution**. Collaborated with development teams to optimize SQL queries and schema designs.</p>
                 </div>
                 <div class="log-entry-card">
-                    <h3>Software Engineer (ML Focus)</h3>
-                    <h4>(Previous Company Name)</h4>
-                    <p class="timeline-date">June 2021 – July 2023</p>
-                    <p>Developed and deployed machine learning models, optimized **data ingestion pipelines**, and integrated AI functionalities, enhancing product capabilities and user experience.</p>
+                    <h3>Intern</h3>
+                    <h4>ISRO - Indian Space Research Organization</h4>
+                    <p class="timeline-date">February 2019 – June 2019 (5 months)</p>
+                    <p>Interned at Laboratory for Electro-Optics Systems (LEOS), where I worked on the implementation of **Serial Peripheral Interface (SPI) protocols** for a **Micro Digital Sun Sensor (MDSS)**. My work involved communicating with a ProASIC FPGA via Arduino Uno, developing strong skills in **VHDL coding** and embedded systems integration.</p>
                 </div>
-                 <div class="log-entry-card">
+                <div class="log-entry-card">
+                    <h3>Intern</h3>
+                    <h4>DRDO, Ministry of Defence, Govt. of India</h4>
+                    <p class="timeline-date">May 2018 – July 2018 (3 months)</p>
+                    <p>Interned at Research Centre Imarat (RCI), focusing on **RTL-SDR and Xilinx FPGA programming**. Performed simulations of analog frontend components (filters, mixers, ADC, DAC). Conducted baseband processing for **digital up/down converters**, **DC offset correction**, and various **modulation/demodulation techniques**. Also gained experience in **Telemetry, Tracking, Commanding, and Monitoring (TTCM)** systems.</p>
+                </div>
+                <div class="log-entry-card">
                     <h3>Bachelor's Degree</h3>
                     <h4>(Your University Name Here)</h4>
                     <p class="timeline-date">August 2017 – May 2021</p>
-                    <p>Built a strong foundation in **Computer Science**, including **algorithms**, **data structures**, and core software engineering principles, with early exploration into AI/ML concepts.</p>
+                    <p>Completed a Bachelor's in **Computer Science** (or relevant field), building foundational knowledge in algorithms, data structures, and software development, with early exposure to AI concepts.</p>
                 </div>
             </div>
         </section>
