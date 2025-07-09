@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sriharsha Mudumba - Portfolio</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
 
         :root {
             --netflix-red: #E50914;
             --spotify-green: #1DB954;
-            --background-color: #141414;
-            --card-color: #222222;
+            --background-color: #121212;
+            --card-color: #181818;
+            --card-hover-color: #282828;
             --text-primary: #FFFFFF;
-            --text-secondary: #a0a0a0;
-            --font-family: 'Montserrat', sans-serif;
+            --text-secondary: #b3b3b3;
+            --font-family: 'Inter', sans-serif;
         }
 
         * {
@@ -31,9 +32,15 @@
             font-family: var(--font-family);
             background-color: var(--background-color);
             color: var(--text-primary);
-            padding-bottom: 80px; /* Space for the footer */
+            padding-bottom: 90px; /* Space for the footer */
         }
 
+        @keyframes backgroundGlow {
+            0% { background-color: rgba(229, 9, 20, 0.1); }
+            50% { background-color: rgba(229, 9, 20, 0.05); }
+            100% { background-color: rgba(229, 9, 20, 0.1); }
+        }
+        
         /* --- Navigation --- */
         .navbar {
             position: fixed;
@@ -44,16 +51,16 @@
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            background: linear-gradient(180deg, rgba(20, 20, 20, 0.7) 0%, transparent 100%);
-            transition: background-color 0.3s ease;
+            transition: background-color 0.4s ease;
         }
 
         .navbar.scrolled {
-            background-color: var(--background-color);
+            background-color: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
         }
 
         .nav-logo {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 900;
             color: var(--netflix-red);
             text-decoration: none;
@@ -62,7 +69,7 @@
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 30px;
+            gap: 40px;
         }
 
         .nav-links a {
@@ -70,65 +77,99 @@
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
+            position: relative;
         }
 
-        .nav-links a:hover {
-            color: var(--netflix-red);
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--netflix-red);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         /* --- Hero Section --- */
         .hero {
             height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
             padding: 0 20px;
-            background: radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, var(--background-color) 70%), url('https://i.imgur.com/3Q3SoKk.jpeg') no-repeat center center/cover;
+            background: linear-gradient(rgba(18,18,18,0) 0%, #121212 100%), radial-gradient(circle at top, rgba(229, 9, 20, 0.15) 0%, transparent 40%);
         }
         
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
         }
 
         .hero-title {
-            font-size: clamp(3rem, 8vw, 6rem);
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
             font-weight: 900;
+            letter-spacing: -2px;
             margin-bottom: 10px;
         }
 
         .hero-subtitle {
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
             color: var(--text-secondary);
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .now-streaming-title {
+            color: var(--spotify-green);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
         }
 
         .hero-cta {
             padding: 15px 35px;
-            background-color: var(--netflix-red);
-            color: var(--text-primary);
+            background-color: var(--text-primary);
+            color: #000;
             text-decoration: none;
             font-weight: 700;
-            border-radius: 5px;
+            border-radius: 50px;
             transition: transform 0.3s ease, background-color 0.3s ease;
+            display: inline-block;
         }
 
         .hero-cta:hover {
             transform: scale(1.05);
-            background-color: #f40612;
+            background-color: var(--spotify-green);
+            color: var(--text-primary);
         }
 
         /* --- Section Styling --- */
         .section {
-            padding: 80px 50px;
+            padding: 100px 60px;
+            overflow: hidden;
+        }
+        
+        .section.darker {
+            background-color: #000;
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
-            margin-bottom: 40px;
-            padding-left: 15px;
-            border-left: 5px solid var(--netflix-red);
+            margin-bottom: 50px;
+            display: inline-block;
+        }
+        
+        .section-title span {
+            color: var(--netflix-red);
         }
 
         /* --- Projects Section (Netflix Carousel) --- */
@@ -138,87 +179,102 @@
 
         .carousel-track {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             overflow-x: auto;
-            padding-bottom: 20px;
-            scrollbar-width: none; /* Firefox */
+            padding: 20px 0;
+            scrollbar-width: none;
         }
 
-        .carousel-track::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Opera */
-        }
+        .carousel-track::-webkit-scrollbar { display: none; }
 
         .project-card {
-            flex: 0 0 280px;
-            height: 160px;
+            flex: 0 0 320px;
+            height: 180px;
             background-color: var(--card-color);
             border-radius: 8px;
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.4s ease;
             position: relative;
             display: flex;
             align-items: flex-end;
-            padding: 15px;
+            justify-content: center;
+            padding: 20px;
+            border: 1px solid #222;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s ease forwards;
         }
-        
+
         .project-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: translateY(-10px) scale(1.03);
+            background-color: var(--card-hover-color);
+            box-shadow: 0 0 30px rgba(229, 9, 20, 0.4);
         }
 
-        .project-card .card-title {
-            font-size: 1.2rem;
+        .card-title {
+            font-size: 1.3rem;
             font-weight: 700;
-            z-index: 2;
+            text-align: center;
+        }
+
+        /* --- Skills Section (Spotify Playlist) --- */
+        .skills-playlist-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-playlist {
+            background-color: var(--card-color);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s ease forwards;
         }
         
-        .project-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 50%);
-            z-index: 1;
+        .skill-playlist:hover {
+            background-color: var(--card-hover-color);
+            transform: translateY(-5px);
         }
 
-
-        /* --- Skills Section --- */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+        .playlist-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
-        .skill-card {
-            background-color: var(--card-color);
-            padding: 25px;
-            border-radius: 8px;
-        }
-
-        .skill-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
+        .playlist-icon {
+            font-size: 2rem;
             color: var(--spotify-green);
         }
 
-        .skill-card ul {
-            list-style: none;
+        .playlist-title {
+            font-size: 1.4rem;
+            font-weight: 700;
         }
 
-        .skill-card li {
+        .playlist-tracks {
+            list-style: none;
+            counter-reset: track-counter;
+        }
+
+        .playlist-tracks li {
             color: var(--text-secondary);
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
         
-        /* --- About Section --- */
-        .about-content p {
-            font-size: 1.1rem;
-            line-height: 1.8;
+        .playlist-tracks li::before {
+            counter-increment: track-counter;
+            content: counter(track-counter);
+            font-weight: 500;
             color: var(--text-secondary);
-            max-width: 900px;
         }
 
         /* --- Footer (Spotify Player) --- */
@@ -227,53 +283,91 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 80px;
-            background-color: #181818;
-            display: flex;
+            height: 90px;
+            background-color: #000;
+            border-top: 1px solid #282828;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
             align-items: center;
-            justify-content: space-between;
             padding: 0 30px;
             z-index: 200;
         }
 
         .player-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .visualizer {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 20px;
+        }
+
+        .visualizer span {
+            width: 4px;
+            background-color: var(--spotify-green);
+            animation: visualize 1.2s infinite ease-in-out alternate;
+        }
+        .visualizer span:nth-child(2) { animation-delay: 0.2s; }
+        .visualizer span:nth-child(3) { animation-delay: 0.4s; }
+        .visualizer span:nth-child(4) { animation-delay: 0.6s; }
+
+        @keyframes visualize {
+            from { height: 2px; }
+            to { height: 20px; }
+        }
+
+        .now-viewing-text {
             color: var(--text-secondary);
-            font-weight: 500;
         }
-        
-        .player-left span {
-            color: var(--text-primary);
-            font-weight: 700;
-        }
+        #now-viewing { color: var(--text-primary); font-weight: 700; }
 
         .player-center {
             display: flex;
-            gap: 25px;
+            justify-content: center;
+            gap: 30px;
         }
         
         .player-center a {
             color: var(--text-secondary);
             text-decoration: none;
             font-size: 1.8rem;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
         }
         
         .player-center a:hover {
             color: var(--text-primary);
+            transform: scale(1.1);
+        }
+        
+        .player-right {
+            display: flex;
+            justify-content: flex-end;
         }
 
         .player-right a {
             text-decoration: none;
             color: var(--text-primary);
+            background-color: var(--spotify-green);
             font-weight: 700;
-            padding: 10px 20px;
-            border: 2px solid var(--spotify-green);
+            padding: 12px 25px;
             border-radius: 30px;
             transition: all 0.3s ease;
         }
 
         .player-right a:hover {
-            background-color: var(--spotify-green);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(29, 185, 84, 0.5);
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* --- Project Modal --- */
@@ -283,7 +377,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.8);
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
             z-index: 300;
             display: flex;
             align-items: center;
@@ -292,12 +387,7 @@
             visibility: hidden;
             transition: opacity 0.4s ease, visibility 0.4s ease;
         }
-
-        .modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
+        .modal.active { opacity: 1; visibility: visible; }
         .modal-content {
             background-color: #181818;
             width: 90%;
@@ -306,183 +396,84 @@
             border-radius: 8px;
             overflow-y: auto;
             position: relative;
-            transform: scale(0.9);
+            transform: translateY(20px) scale(0.95);
             transition: transform 0.4s ease;
         }
-        
-        .modal.active .modal-content {
-            transform: scale(1);
-        }
+        .modal.active .modal-content { transform: translateY(0) scale(1); }
+        .modal-header { padding: 40px; }
+        .modal-title { font-size: 2.8rem; font-weight: 900; }
+        .modal-body { padding: 0 40px 40px; }
+        .modal-description { font-size: 1.1rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 30px; }
+        .modal-tech-stack { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+        .tech-tag { background-color: #333; padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 500; }
+        .modal-actions a { display: inline-block; text-decoration: none; color: #000; background-color: var(--text-primary); padding: 12px 25px; border-radius: 30px; font-weight: 700; margin-right: 15px; transition: all 0.3s ease; }
+        .modal-actions a:hover { background-color: var(--netflix-red); color: var(--text-primary); }
+        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: var(--text-secondary); cursor: pointer; transition: color 0.3s ease; }
+        .modal-close:hover { color: var(--text-primary); }
 
-        .modal-header {
-            padding: 30px 40px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        
-        .modal-header::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(0deg, #181818 0%, transparent 100%);
-        }
-
-        .modal-title {
-            font-size: 2.5rem;
-            font-weight: 900;
-            position: relative;
-            z-index: 2;
-        }
-
-        .modal-body {
-            padding: 30px 40px;
-        }
-        
-        .modal-description {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: var(--text-secondary);
-            margin-bottom: 30px;
-        }
-
-        .modal-tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-
-        .tech-tag {
-            background-color: #333;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .modal-actions a {
-            display: inline-block;
-            text-decoration: none;
-            color: var(--text-primary);
-            background-color: var(--netflix-red);
-            padding: 12px 25px;
-            border-radius: 5px;
-            font-weight: 700;
-            margin-right: 15px;
-            transition: background-color 0.3s ease;
-        }
-        
-        .modal-actions a:hover {
-            background-color: #f40612;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 2rem;
-            color: var(--text-primary);
-            cursor: pointer;
-            z-index: 3;
-        }
     </style>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
 <body>
 
     <nav class="navbar" id="navbar">
-        <a href="#" class="nav-logo">SM</a>
+        <a href="#home" class="nav-logo">SM</a>
         <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Toolkit</a></li>
         </ul>
     </nav>
 
     <header class="hero" id="home">
         <div class="hero-content">
             <h1 class="hero-title">Sriharsha Mudumba</h1>
-            <p class="hero-subtitle">ML Engineer & AI Architect | Building the Next Generation of Intelligent Systems</p>
-            <a href="#projects" class="hero-cta">View My Work</a>
+            <p class="now-streaming-title">Now Streaming: My Professional Journey</p>
+            <p class="hero-subtitle">An ML Engineer & AI Architect crafting the next generation of intelligent systems. From high-performance compute-in-memory frameworks to scalable RAG pipelines, I build solutions that bridge the gap between data and discovery.</p>
+            <a href="Sriharsha_Mudumba_resume.pdf" class="hero-cta" download>Download My Resume</a>
         </div>
     </header>
 
     <main>
-        <section class="section" id="about">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <p>
-                    I am a passionate and results-driven ML Engineer, currently pursuing a Master's in Computer Engineering at Iowa State University. My expertise lies in designing and optimizing sophisticated machine learning models, with a strong focus on computer vision and large language models. I thrive on tackling complex challenges, from architecting durable compute-in-memory frameworks that slash latency, to building real-time, high-performance detection systems. With a solid foundation in database administration and a relentless drive for innovation, I am committed to pushing the boundaries of artificial intelligence to create efficient, scalable, and impactful solutions.
-                </p>
-            </div>
-        </section>
-
-        <section class="section" id="skills">
-            <h2 class="section-title">My Toolkit</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>Programming & Scripting</h3>
-                    <ul>
-                        <li>Python</li>
-                        <li>C++ / C</li>
-                        <li>SQL</li>
-                        <li>Shell Scripting</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3>AI Frameworks</h3>
-                    <ul>
-                        <li>PyTorch</li>
-                        <li>TensorFlow</li>
-                        <li>Scikit-learn</li>
-                        <li>Langchain</li>
-                        <li>ONNX</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3>HPC & Systems</h3>
-                    <ul>
-                        <li>OpenMP / MPI</li>
-                        <li>Slurm</li>
-                        <li>Distributed Systems</li>
-                        <li>Linux</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3>Databases & DevOps</h3>
-                    <ul>
-                        <li>Oracle 11g/12c/19c</li>
-                        <li>AWS</li>
-                        <li>Docker</li>
-                        <li>FastAPI</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
         <section class="section" id="projects">
-            <h2 class="section-title">Featured Projects</h2>
+            <h2 class="section-title">My Collection<span>.</span></h2>
             <div class="projects-carousel">
                 <div class="carousel-track">
-                    <div class="project-card" data-project="duracim">
-                        <div class="card-title">DURACIM</div>
-                    </div>
-                    <div class="project-card" data-project="argus">
-                        <div class="card-title">ARGUS</div>
-                    </div>
-                    <div class="project-card" data-project="lexa">
-                        <div class="card-title">LEXA</div>
-                    </div>
-                    <div class="project-card" data-project="1bitllm">
-                        <div class="card-title">1BitLLM Optimization</div>
-                    </div>
-                     <div class="project-card" data-project="snapea">
-                        <div class="card-title">SnaPEA Accelerator</div>
-                    </div>
-                    <div class="project-card" data-project="license">
-                        <div class="card-title">License Plate Detection</div>
-                    </div>
+                    <div class="project-card" data-project="duracim"><div class="card-title">DURACIM</div></div>
+                    <div class="project-card" data-project="argus"><div class="card-title">ARGUS</div></div>
+                    <div class="project-card" data-project="lexa"><div class="card-title">LEXA</div></div>
+                    <div class="project-card" data-project="1bitllm"><div class="card-title">1BitLLM Optimization</div></div>
+                    <div class="project-card" data-project="snapea"><div class="card-title">SnaPEA Accelerator</div></div>
+                    <div class="project-card" data-project="license"><div class="card-title">License Plate Detection</div></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section darker" id="skills">
+            <h2 class="section-title">My Toolkit<span>.</span></h2>
+            <div class="skills-playlist-container">
+                <div class="skill-playlist">
+                    <div class="playlist-header"><i class="ri-play-circle-fill playlist-icon"></i><h3 class="playlist-title">AI Frameworks</h3></div>
+                    <ol class="playlist-tracks">
+                        <li>PyTorch</li><li>TensorFlow</li><li>Scikit-learn</li><li>Langchain</li><li>ONNX</li>
+                    </ol>
+                </div>
+                 <div class="skill-playlist">
+                    <div class="playlist-header"><i class="ri-play-circle-fill playlist-icon"></i><h3 class="playlist-title">Languages & Databases</h3></div>
+                    <ol class="playlist-tracks">
+                        <li>Python</li><li>C++ / C</li><li>SQL</li><li>Shell Scripting</li><li>Oracle 11g/12c/19c</li>
+                    </ol>
+                </div>
+                <div class="skill-playlist">
+                    <div class="playlist-header"><i class="ri-play-circle-fill playlist-icon"></i><h3 class="playlist-title">HPC & Systems</h3></div>
+                    <ol class="playlist-tracks">
+                       <li>OpenMP / MPI</li><li>Slurm</li><li>Distributed Systems</li><li>Linux</li>
+                    </ol>
+                </div>
+                <div class="skill-playlist">
+                    <div class="playlist-header"><i class="ri-play-circle-fill playlist-icon"></i><h3 class="playlist-title">DevOps & Cloud</h3></div>
+                    <ol class="playlist-tracks">
+                        <li>AWS</li><li>Docker</li><li>FastAPI</li><li>Benchmarking</li>
+                    </ol>
                 </div>
             </div>
         </section>
@@ -490,7 +481,10 @@
 
     <footer class="spotify-player">
         <div class="player-left">
-            Now Viewing: <span id="now-viewing">Home</span>
+            <div class="visualizer"><span></span><span></span><span></span><span></span></div>
+            <div class="now-viewing-text">
+                <span id="now-viewing">Home</span>
+            </div>
         </div>
         <div class="player-center">
             <a href="https://github.com/sriharshamudumba" target="_blank" title="GitHub"><i class="ri-github-fill"></i></a>
@@ -498,16 +492,14 @@
             <a href="mailto:srim@iastate.edu" title="Email"><i class="ri-mail-fill"></i></a>
         </div>
         <div class="player-right">
-            <a href="Sriharsha_Mudumba_resume.pdf" download>Get My Resume</a>
+            <a href="#home">Back to Top</a>
         </div>
     </footer>
 
     <div class="modal" id="projectModal">
         <div class="modal-content">
             <div class="modal-close" id="modalClose">&times;</div>
-            <div class="modal-header" id="modalHeader">
-                 <h2 class="modal-title" id="modalTitle"></h2>
-            </div>
+            <div class="modal-header"><h2 class="modal-title" id="modalTitle"></h2></div>
             <div class="modal-body">
                 <p class="modal-description" id="modalDescription"></p>
                 <div class="modal-tech-stack" id="modalTechStack"></div>
@@ -516,131 +508,101 @@
         </div>
     </div>
 
-
     <script>
         const projectData = {
             duracim: {
                 title: "DURACIM Framework",
                 description: "Architected an early-exit ResNet-50 with dynamic branches for Compute-in-Memory platforms, achieving a 3.8x latency reduction while preserving baseline model accuracy. Implemented entropy-based threshold optimization using policy-gradient RL, enabling a 78% early exit rate.",
                 tech: ["PyTorch", "ResNet", "Reinforcement Learning", "CiM"],
-                links: {
-                    github: "https://github.com/sriharshamudumba"
-                }
+                links: { github: "https://github.com/sriharshamudumba" }
             },
             argus: {
                 title: "ARGUS RAG System",
                 description: "Designed and implemented a Retrieval-Augmented Generation (RAG) pipeline with semantic search and chunk-based processing, tested on 100+ research documents and architected to scale to over 100,000 documents. Deployed on AWS EC2 with a FastAPI interface.",
                 tech: ["Python", "LangChain", "Cohere", "FAISS", "AWS", "Docker"],
-                links: {
-                    github: "https://github.com/sriharshamudumba/ARGUS"
-                }
+                links: { github: "https://github.com/sriharshamudumba/ARGUS" }
             },
             lexa: {
                 title: "LEXA Edge Assistant",
                 description: "Built an edge-optimized RAG system with the TinyLlama 1.1B model and MiniLM embeddings for privacy-first applications. Implemented an adaptive early-exit mechanism that reduced mean response time by 40% and GPU power consumption by 30%.",
                 tech: ["Python", "FastAPI", "TinyLlama", "HuggingFace"],
-                links: {
-                    github: "https://github.com/sriharshamudumba/LEXA"
-                }
+                links: { github: "https://github.com/sriharshamudumba/LEXA" }
             },
             "1bitllm": {
                 title: "1BitLLM Optimization",
                 description: "Engineered a comprehensive benchmarking suite for 1-bit quantized LLMs across ONNX and IREE compilation backends. Achieved a 2.3x inference speedup and a 44% memory reduction compared to the PyTorch baseline through aggressive quantization.",
                 tech: ["Python", "ONNX", "IREE", "PyTorch", "Quantization"],
-                links: {
-                    github: "https://github.com/sriharshamudumba/Benchmark-1BitLLM"
-                }
+                links: { github: "https://github.com/sriharshamudumba/Benchmark-1BitLLM" }
             },
             snapea: {
                 title: "SnaPEA Accelerator",
                 description: "Developed a sparse activation pruning with an early-exit architecture for efficient edge inference. Combined pruning and early termination strategies for a 74% FLOP reduction while maintaining 98.5% accuracy on CIFAR-100.",
                 tech: ["TensorFlow", "PyTorch", "Neural Architecture Optimization"],
-                links: {
-                    github: "https://github.com/sriharshamudumba/SnaPEA"
-                }
+                links: { github: "https://github.com/sriharshamudumba/SnaPEA" }
             },
             license: {
                 title: "Real-Time License Plate Detection",
                 description: "Architected a real-time license plate detection system using OpenCV and EasyOCR with MPI-based parallel processing. Scaled processing across a 16-process HPC cluster, achieving an 18x speedup for video analysis.",
                 tech: ["C++", "OpenCV", "Python", "MPI", "Computer Vision"],
-                links: {
-                    github: "https://github.com/sriharshamudumba/Real-Time-Video-Processing-and-Analysis-MPI-"
-                }
+                links: { github: "https://github.com/sriharshamudumba/Real-Time-Video-Processing-and-Analysis-MPI-" }
             }
         };
 
         document.addEventListener('DOMContentLoaded', () => {
-            const projectCards = document.querySelectorAll('.project-card');
             const modal = document.getElementById('projectModal');
             const modalClose = document.getElementById('modalClose');
 
-            projectCards.forEach(card => {
+            document.querySelectorAll('.project-card').forEach(card => {
                 card.addEventListener('click', () => {
-                    const projectId = card.dataset.project;
-                    const data = projectData[projectId];
-                    
+                    const data = projectData[card.dataset.project];
                     document.getElementById('modalTitle').textContent = data.title;
                     document.getElementById('modalDescription').textContent = data.description;
                     
                     const techStackContainer = document.getElementById('modalTechStack');
-                    techStackContainer.innerHTML = '';
-                    data.tech.forEach(tech => {
-                        const tag = document.createElement('span');
-                        tag.className = 'tech-tag';
-                        tag.textContent = tech;
-                        techStackContainer.appendChild(tag);
-                    });
+                    techStackContainer.innerHTML = data.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('');
                     
                     const actionsContainer = document.getElementById('modalActions');
-                    actionsContainer.innerHTML = '';
-                    if(data.links.github) {
-                        const link = document.createElement('a');
-                        link.href = data.links.github;
-                        link.target = '_blank';
-                        link.innerHTML = 'View on GitHub <i class="ri-external-link-line"></i>';
-                        actionsContainer.appendChild(link);
-                    }
+                    actionsContainer.innerHTML = data.links.github ? `<a href="${data.links.github}" target="_blank">View on GitHub <i class="ri-external-link-line"></i></a>` : '';
 
                     modal.classList.add('active');
                 });
             });
 
-            modalClose.addEventListener('click', () => {
-                modal.classList.remove('active');
-            });
-            
-            modal.addEventListener('click', (e) => {
-                if(e.target === modal) {
-                    modal.classList.remove('active');
-                }
-            });
+            const closeModal = () => modal.classList.remove('active');
+            modalClose.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
             // Navbar scroll effect
             const navbar = document.getElementById('navbar');
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
+                navbar.classList.toggle('scrolled', window.scrollY > 50);
             });
             
-            // "Now Viewing" update
-            const nowViewing = document.getElementById('now-viewing');
-            const sections = document.querySelectorAll('section, header');
+            // Intersection Observer for scroll animations
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
+                        entry.target.style.animationDelay = entry.target.dataset.delay || '0s';
+                        entry.target.classList.add('visible');
+                        
+                        // Update Now Viewing
                         let sectionName = entry.target.id.charAt(0).toUpperCase() + entry.target.id.slice(1);
-                        nowViewing.textContent = sectionName;
+                        document.getElementById('now-viewing').textContent = sectionName;
                     }
                 });
-            }, { threshold: 0.5 });
-
-            sections.forEach(section => observer.observe(section));
-
+            }, { threshold: 0.1 });
+            
+            // Staggered animation for cards
+            document.querySelectorAll('.project-card, .skill-playlist').forEach((el, i) => {
+                el.dataset.delay = `${i * 0.1}s`;
+                observer.observe(el);
+            });
+            
+            // Now viewing observer
+            document.querySelectorAll('section, header').forEach(section => {
+                 observer.observe(section);
+            });
         });
     </script>
 </body>
 </html>
-
