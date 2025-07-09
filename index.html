@@ -1,472 +1,880 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sri Harsha Mudumba | ML Engineer</title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sriharsha Mudumba - Developer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: url('ml.png') no-repeat center center fixed;
-      background-size: cover;
-      color: white;
-      scroll-behavior: smooth;
-      position: relative;
-      z-index: 0;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
 
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.75);
-      z-index: -1;
-    }
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
 
-    header {
-      background: transparent;
-      color: white;
-      text-align: center;
-      padding: 40px 20px;
-      box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
-      position: relative;
-    }
+        .sidebar {
+            width: 280px;
+            background: #000000;
+            padding: 24px;
+            border-right: 1px solid #2a2a2a;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
 
-    .typing {
-      font-size: 20px;
-      font-weight: bold;
-      border-right: 2px solid #fff;
-      white-space: nowrap;
-      overflow: hidden;
-      width: fit-content;
-      animation: typing 3.5s steps(40, end) forwards;
-      margin: 10px auto;
-    }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1db954;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
+        .logo::before {
+            content: "♪";
+            font-size: 32px;
+        }
 
-    nav ul {
-      list-style: none;
-      padding: 0;
-      text-align: center;
-      margin-top: 20px;
-    }
+        .nav-section {
+            margin-bottom: 32px;
+        }
 
-    nav ul li {
-      display: inline-block;
-      margin: 0 15px;
-    }
+        .nav-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #b3b3b3;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+        }
 
-    nav ul li a:hover {
-      color: #a478e0;
-    }
+        .nav-item:hover {
+            color: #1db954;
+        }
 
-    .section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-      background-color: rgba(0, 0, 0, 0.6);
-      border-radius: 12px;
-      margin-bottom: 30px;
-    }
+        .nav-item.active {
+            color: #1db954;
+        }
 
-    h2 {
-      color: #a478e0;
-      font-size: 28px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
+        .nav-item::before {
+            content: "";
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            filter: brightness(0) invert(1);
+            transition: filter 0.3s ease;
+        }
 
-    .project-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
-    }
+        .nav-item.active::before,
+        .nav-item:hover::before {
+            filter: brightness(0) invert(1) hue-rotate(120deg) saturate(3);
+        }
 
-    .project-card {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-      background-size: cover;
-      background-position: center;
-      color: white;
-      height: 200px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      position: relative;
-    }
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 24px;
+        }
 
-    .project-card::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.4);
-      border-radius: 10px;
-      z-index: 0;
-    }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #2a2a2a;
+        }
 
-    .project-card button {
-      position: relative;
-      z-index: 1;
-      background-color: rgba(0, 0, 0, 0.6);
-      color: #a478e0;
-      border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
 
-    .project-card button:hover {
-      background-color: #a478e0;
-      color: white;
-    }
+        .profile-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1db954, #1ed760);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: #000;
+        }
 
-    .project-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-    }
+        .profile-info h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
 
-    .project-card h3 a {
-      color: #a478e0;
-      text-decoration: none;
-    }
+        .profile-info p {
+            color: #b3b3b3;
+            font-size: 16px;
+        }
 
-    .tech-badge {
-      background: #333;
-      color: white;
-      padding: 10px 18px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 600;
-      font-size: 14px;
-      transition: transform 0.3s ease-in-out;
-      opacity: 0;
-      transform: translateY(15px);
-      animation: fadeUp 0.5s forwards;
-    }
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #1db954;
+            font-size: 14px;
+        }
 
-    .tech-badge:hover {
-      transform: scale(1.1);
-      background: #a478e0;
-    }
+        .status::before {
+            content: "●";
+            color: #1db954;
+        }
 
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+        .playlist-section {
+            margin-bottom: 48px;
+        }
 
-    #contact a {
-      color: #ffffff;
-      text-decoration: none;
-    }
+        .playlist-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
 
-    #contact a:hover {
-      text-decoration: underline;
-    }
+        .playlist-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+        }
 
-    .scroll-wrapper {
-      overflow-x: auto;
-      white-space: nowrap;
-      padding-bottom: 20px;
-    }
+        .playlist-subtitle {
+            color: #b3b3b3;
+            font-size: 14px;
+            margin-top: 4px;
+        }
 
-    .scroll-container {
-      display: flex;
-      flex-wrap: nowrap;
-      gap: 20px;
-      padding: 10px;
-    }
+        .play-button {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #1db954;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #000;
+            transition: all 0.3s ease;
+        }
 
-    .paper-slide {
-      flex: 0 0 auto;
-      background-color: rgba(255, 255, 255, 0.08);
-      padding: 20px;
-      border-radius: 12px;
-      min-width: 320px;
-      max-width: 500px;
-      height: auto;
-      box-sizing: border-box;
-      white-space: normal;
-      overflow: hidden;
-      color: white;
-      line-height: 1.6;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-      transition: transform 0.3s ease;
-      animation: fadeIn 0.8s ease-in-out;
-    }
+        .play-button:hover {
+            background: #1ed760;
+            transform: scale(1.05);
+        }
 
-    .paper-slide:hover {
-      transform: scale(1.03);
-      background-color: rgba(255, 255, 255, 0.1);
-    }
+        .track-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #000;
-      color: #ccc;
-      font-size: 14px;
-    }
+        .track {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
 
-    .job-logo {
-      width: 100px;
-      display: block;
-      margin-bottom: 15px;
-    }
-  </style>
+        .track:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .track-number {
+            width: 24px;
+            font-size: 14px;
+            color: #b3b3b3;
+            margin-right: 16px;
+        }
+
+        .track-image {
+            width: 48px;
+            height: 48px;
+            border-radius: 4px;
+            background: linear-gradient(135deg, #1db954, #1ed760);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            font-size: 20px;
+            color: #000;
+        }
+
+        .track-info {
+            flex: 1;
+        }
+
+        .track-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .track-artist {
+            font-size: 14px;
+            color: #b3b3b3;
+        }
+
+        .track-duration {
+            font-size: 14px;
+            color: #b3b3b3;
+            margin-left: 16px;
+        }
+
+        .track-actions {
+            display: flex;
+            gap: 8px;
+            margin-left: 16px;
+        }
+
+        .action-button {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: transparent;
+            color: #b3b3b3;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .action-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1db954;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #b3b3b3;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .tech-tag {
+            background: rgba(29, 185, 84, 0.2);
+            color: #1db954;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .floating-player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(90deg, #181818 0%, #1e1e1e 100%);
+            border-top: 1px solid #2a2a2a;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            z-index: 1000;
+        }
+
+        .current-track {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 200px;
+        }
+
+        .current-track-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            background: linear-gradient(135deg, #1db954, #1ed760);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #000;
+        }
+
+        .current-track-info {
+            font-size: 14px;
+        }
+
+        .current-track-title {
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .current-track-artist {
+            color: #b3b3b3;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .control-button {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: transparent;
+            color: #b3b3b3;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .control-button:hover {
+            color: #ffffff;
+        }
+
+        .control-button.play {
+            background: #1db954;
+            color: #000;
+        }
+
+        .control-button.play:hover {
+            background: #1ed760;
+            transform: scale(1.05);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #3e3e3e;
+            border-radius: 2px;
+            margin: 8px 0;
+            cursor: pointer;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #1db954;
+            border-radius: 2px;
+            width: 30%;
+            transition: width 0.3s ease;
+        }
+
+        .volume-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 120px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .container {
+                flex-direction: column;
+            }
+
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-player {
+                padding: 12px 16px;
+            }
+
+            .player-controls {
+                display: none;
+            }
+        }
+    </style>
 </head>
-<body><body>
-  <header>
-    <h1>Sri Harsha Mudumba</h1>
-    <p class="typing">Aspiring ML Engineer | HPC | Model Optimization enthusiast </p>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">DevTunes</div>
+            
+            <div class="nav-section">
+                <div class="nav-title">Library</div>
+                <div class="nav-item active">Projects</div>
+                <div class="nav-item">Skills</div>
+                <div class="nav-item">Experience</div>
+                <div class="nav-item">Education</div>
+            </div>
 
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#tech">Tech Stack</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#papers">Paper Review</a></li>
-       <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+            <div class="nav-section">
+                <div class="nav-title">Made for You</div>
+                <div class="nav-item">Recently Created</div>
+                <div class="nav-item">Favorites</div>
+                <div class="nav-item">Liked Code</div>
+            </div>
+        </div>
 
-  
+        <div class="main-content">
+            <div class="header">
+                <div class="profile-section">
+                    <div class="profile-image">SM</div>
+                    <div class="profile-info">
+                        <h1>Sriharsha Mudumba</h1>
+                        <p>Full Stack Developer</p>
+                    </div>
+                </div>
+                <div class="status">Currently Available</div>
+            </div>
 
-  <section id="about" class="section">
-    <h2>About Me</h2>
-    <p>I am a Machine Learning Engineer with a strong foundation in computer engineering and a research-driven mindset focused on optimizing AI systems for performance, scalability, and deployment. With hands-on experience in both academic research and real-world systems, I specialize in building ML pipelines that are efficient, reproducible, and tuned for modern hardware. My graduate work centers on high-performance computing (HPC), inference optimization, and compiler-level ML acceleration, often exploring techniques like quantization, early exits, and model pruning to push the limits of real-time deployment.</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">15+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Technologies Mastered</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">2+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">500+</div>
+                    <div class="stat-label">Commits This Year</div>
+                </div>
+            </div>
 
-<p>I’ve contributed to a range of projects spanning LLM benchmarking, RAG systems, CNN inference optimization, and microarchitecture simulation. These experiences have taught me how to bridge the gap between theory and deployment—from training and evaluating models in PyTorch to compiling and benchmarking them using tools like IREE, ONNX Runtime, and LLVM. Whether it’s deploying a TinyLlama-based retrieval system on local GPUs or compiling 1-bit LLMs for low-latency use cases, I consistently focus on making systems lighter, smarter, and faster.</p>
+            <div class="playlist-section">
+                <div class="playlist-header">
+                    <div>
+                        <div class="playlist-title">Featured Projects</div>
+                        <div class="playlist-subtitle">My best work • Updated recently</div>
+                    </div>
+                    <button class="play-button">▶</button>
+                </div>
+                
+                <div class="track-list">
+                    <div class="track">
+                        <div class="track-number">1</div>
+                        <div class="track-image">🚀</div>
+                        <div class="track-info">
+                            <div class="track-title">E-Commerce Platform</div>
+                            <div class="track-artist">Full Stack Web Application</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MongoDB</span>
+                            </div>
+                        </div>
+                        <div class="track-duration">3:42</div>
+                        <div class="track-actions">
+                            <button class="action-button">👁</button>
+                            <button class="action-button">💻</button>
+                            <button class="action-button">❤</button>
+                        </div>
+                    </div>
 
-<p>I am also passionate about open-source development and reproducible ML workflows. I believe in designing with clarity, optimizing with precision, and delivering insights that are actionable and scalable. My long-term goal is to lead efforts in ML systems engineering where research and infrastructure converge to create fast, interpretable, and sustainable AI technologies.</p>
-  </section>
+                    <div class="track">
+                        <div class="track-number">2</div>
+                        <div class="track-image">📱</div>
+                        <div class="track-info">
+                            <div class="track-title">Task Management App</div>
+                            <div class="track-artist">Mobile & Web Application</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">React Native</span>
+                                <span class="tech-tag">Firebase</span>
+                                <span class="tech-tag">Redux</span>
+                            </div>
+                        </div>
+                        <div class="track-duration">2:58</div>
+                        <div class="track-actions">
+                            <button class="action-button">👁</button>
+                            <button class="action-button">💻</button>
+                            <button class="action-button">❤</button>
+                        </div>
+                    </div>
 
-  <section id="tech" class="section">
-  <h2>🧰 Tech Stack & Tools</h2>
-  <div class="tech-badges">
-    <!-- Icon-based -->
-    <div class="tech-badge" style="animation-delay: 0.1s">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
-      PYTHON
+                    <div class="track">
+                        <div class="track-number">3</div>
+                        <div class="track-image">🤖</div>
+                        <div class="track-info">
+                            <div class="track-title">AI Chat Bot</div>
+                            <div class="track-artist">Machine Learning Project</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">TensorFlow</span>
+                                <span class="tech-tag">Flask</span>
+                            </div>
+                        </div>
+                        <div class="track-duration">4:15</div>
+                        <div class="track-actions">
+                            <button class="action-button">👁</button>
+                            <button class="action-button">💻</button>
+                            <button class="action-button">❤</button>
+                        </div>
+                    </div>
+
+                    <div class="track">
+                        <div class="track-number">4</div>
+                        <div class="track-image">📊</div>
+                        <div class="track-info">
+                            <div class="track-title">Data Visualization Dashboard</div>
+                            <div class="track-artist">Analytics Platform</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">D3.js</span>
+                                <span class="tech-tag">Vue.js</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                            </div>
+                        </div>
+                        <div class="track-duration">3:21</div>
+                        <div class="track-actions">
+                            <button class="action-button">👁</button>
+                            <button class="action-button">💻</button>
+                            <button class="action-button">❤</button>
+                        </div>
+                    </div>
+
+                    <div class="track">
+                        <div class="track-number">5</div>
+                        <div class="track-image">🌐</div>
+                        <div class="track-info">
+                            <div class="track-title">Social Media API</div>
+                            <div class="track-artist">Backend Service</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Express.js</span>
+                                <span class="tech-tag">JWT</span>
+                                <span class="tech-tag">Redis</span>
+                            </div>
+                        </div>
+                        <div class="track-duration">2:47</div>
+                        <div class="track-actions">
+                            <button class="action-button">👁</button>
+                            <button class="action-button">💻</button>
+                            <button class="action-button">❤</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="playlist-section">
+                <div class="playlist-header">
+                    <div>
+                        <div class="playlist-title">Core Skills</div>
+                        <div class="playlist-subtitle">Technologies I work with • Always learning</div>
+                    </div>
+                    <button class="play-button">▶</button>
+                </div>
+                
+                <div class="track-list">
+                    <div class="track">
+                        <div class="track-number">1</div>
+                        <div class="track-image">⚛️</div>
+                        <div class="track-info">
+                            <div class="track-title">React.js</div>
+                            <div class="track-artist">Frontend Framework • Expert Level</div>
+                        </div>
+                        <div class="track-duration">★★★★★</div>
+                    </div>
+
+                    <div class="track">
+                        <div class="track-number">2</div>
+                        <div class="track-image">🟢</div>
+                        <div class="track-info">
+                            <div class="track-title">Node.js</div>
+                            <div class="track-artist">Backend Runtime • Advanced</div>
+                        </div>
+                        <div class="track-duration">★★★★☆</div>
+                    </div>
+
+                    <div class="track">
+                        <div class="track-number">3</div>
+                        <div class="track-image">🐍</div>
+                        <div class="track-info">
+                            <div class="track-title">Python</div>
+                            <div class="track-artist">Programming Language • Advanced</div>
+                        </div>
+                        <div class="track-duration">★★★★☆</div>
+                    </div>
+
+                    <div class="track">
+                        <div class="track-number">4</div>
+                        <div class="track-image">🗃️</div>
+                        <div class="track-info">
+                            <div class="track-title">MongoDB</div>
+                            <div class="track-artist">NoSQL Database • Intermediate</div>
+                        </div>
+                        <div class="track-duration">★★★☆☆</div>
+                    </div>
+
+                    <div class="track">
+                        <div class="track-number">5</div>
+                        <div class="track-image">☁️</div>
+                        <div class="track-info">
+                            <div class="track-title">AWS</div>
+                            <div class="track-artist">Cloud Platform • Intermediate</div>
+                        </div>
+                        <div class="track-duration">★★★☆☆</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="playlist-section">
+                <div class="playlist-header">
+                    <div>
+                        <div class="playlist-title">Professional Experience</div>
+                        <div class="playlist-subtitle">Career highlights • Building the future</div>
+                    </div>
+                    <button class="play-button">▶</button>
+                </div>
+                
+                <div class="track-list">
+                    <div class="track">
+                        <div class="track-number">1</div>
+                        <div class="track-image">💼</div>
+                        <div class="track-info">
+                            <div class="track-title">Full Stack Developer</div>
+                            <div class="track-artist">TechCorp Solutions • 2023 - Present</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">AWS</span>
+                            </div>
+                        </div>
+                        <div class="track-duration">1.5 years</div>
+                    </div>
+
+                    <div class="track">
+                        <div class="track-number">2</div>
+                        <div class="track-image">🚀</div>
+                        <div class="track-info">
+                            <div class="track-title">Frontend Developer Intern</div>
+                            <div class="track-artist">StartupXYZ • 2022 - 2023</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Vue.js</span>
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">Docker</span>
+                            </div>
+                        </div>
+                        <div class="track-duration">8 months</div>
+                    </div>
+
+                    <div class="track">
+                        <div class="track-number">3</div>
+                        <div class="track-image">🎓</div>
+                        <div class="track-info">
+                            <div class="track-title">CS Teaching Assistant</div>
+                            <div class="track-artist">University • 2021 - 2022</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Java</span>
+                                <span class="tech-tag">Data Structures</span>
+                                <span class="tech-tag">Algorithms</span>
+                            </div>
+                        </div>
+                        <div class="track-duration">1 year</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="tech-badge" style="animation-delay: 0.2s">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" />
-      PYTORCH
-    </div>
-    <div class="tech-badge" style="animation-delay: 0.3s">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" />
-      TENSORFLOW
-    </div>
-    <div class="tech-badge" style="animation-delay: 0.4s">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" />
-      GIT
-    </div>
-    <div class="tech-badge" style="animation-delay: 0.5s">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" />
-      LINUX
-    </div>
-    <div class="tech-badge" style="animation-delay: 0.6s">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle" />
-      ORACLE
-    </div>
-    <div class="tech-badge" style="animation-delay: 0.7s">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" alt="OpenCV" />
-      OPENCV
-    </div>
-    <!-- Text-only -->
-    <div class="tech-badge" style="animation-delay: 0.8s">
-      <span>FASTAPI</span>
-    </div>
-    <div class="tech-badge" style="animation-delay: 0.9s">
-      <span>ONNX</span>
-    </div>
-    <div class="tech-badge" style="animation-delay: 1s">
-      <span>IREE</span>
-    </div>
-    <div class="tech-badge" style="animation-delay: 1.1s">
-      <span>TRANSFORMERS</span>
-    </div>
-    <div class="tech-badge" style="animation-delay: 1.2s">
-      <span>SLURM</span>
-    </div>
-    <div class="tech-badge" style="animation-delay: 1.3s">
-      <span>MPI</span>
-    </div>
-  </div>
-</section>
 
-
-  <section id="projects" class="section">
-    <h2>Projects</h2>
-    <div class="project-list">
-      <div class="project-card" style="background-image:url('LEXA.png');"><button onclick="location.href='#lexa'">LEXA - Lightweight RAG</button></div>
-      <div class="project-card" style="background-image:url('1bit.png');"><button onclick="location.href='#1bitllm'">1BitLLM Benchmark</button></div>
-      <div class="project-card" style="background-image:url('Snapea_1.png');"><button onclick="location.href='#snapea'">Snapea - Efficient Inference</button></div>
-      <div class="project-card" style="background-image:url('Simnet.png');"><button onclick="location.href='#simnet'">SimNet Predictor</button></div>
-      <div class="project-card" style="background-image:url('Music.png');"><button onclick="location.href='#music'">Music Genre Classifier</button></div>
-      <div class="project-card" style="background-image:url('Number_plate.png');"><button onclick="location.href='#anpr'">Number Plate Detection</button></div>
-      <div class="project-card" style="background-image:url('Blockchain.png');"><button onclick="location.href='#blockchain'">Blockchain Insurance</button></div>
+    <div class="floating-player">
+        <div class="current-track">
+            <div class="current-track-image">🚀</div>
+            <div class="current-track-info">
+                <div class="current-track-title">E-Commerce Platform</div>
+                <div class="current-track-artist">Currently featuring</div>
+            </div>
+        </div>
+        
+        <div class="player-controls">
+            <button class="control-button">⏮</button>
+            <button class="control-button play">⏸</button>
+            <button class="control-button">⏭</button>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+        
+        <div class="volume-controls">
+            <button class="control-button">🔊</button>
+            <div class="progress-bar" style="width: 100px;">
+                <div class="progress-fill" style="width: 70%;"></div>
+            </div>
+        </div>
     </div>
-  </section>
 
-  <!-- LEXA Project -->
-  <section id="lexa" class="section">
-    <h2>LEXA – Lightweight RAG with Early Exit</h2>
-    <p>LEXA is a Retrieval-Augmented Generation (RAG) framework tailored for efficient, local deployment on consumer-grade GPUs. It leverages MiniLM for fast document embedding and cosine similarity for retrieval, coupled with a TinyLlama 1.1B model for generation. The architecture is optimized for offline use with no cloud dependency.</p>
-    <p>The system integrates entropy-based early-exit logic to reduce token generation latency. FastAPI powers the backend, with visual debugging for token-level entropy. Benchmarks focused on latency, energy, and utilization across devices.</p>
-    <p><strong>Results:</strong> 40% latency reduction, 30% energy savings, fully offline and open-source stack.</p>
-    <div class="tech-stack"><span>MiniLM</span><span>TinyLlama</span><span>FastAPI</span><span>Entropy Filter</span><span>RAG</span></div>
-  </section>
+    <script>
+        // Add interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            const tracks = document.querySelectorAll('.track');
+            const playButton = document.querySelector('.play-button');
+            const currentTrackTitle = document.querySelector('.current-track-title');
+            const currentTrackArtist = document.querySelector('.current-track-artist');
+            const currentTrackImage = document.querySelector('.current-track-image');
+            const playerPlayButton = document.querySelector('.control-button.play');
+            const progressFill = document.querySelector('.progress-fill');
+            
+            let isPlaying = false;
+            let currentTrack = null;
 
-  <!-- 1BitLLM -->
-  <section id="1bitllm" class="section">
-    <h2>1BitLLM – Benchmarking and Optimization</h2>
-    <p>Benchmarked 1-bit quantized LLMs using ONNX and IREE. Focused on profiling latency, memory usage, and compiler optimizations for ternary weights. Traced execution with nvprof and IREE tools to evaluate performance on CPUs and GPUs.</p>
-    <p><strong>Results:</strong> 2.5×–3.2× speedup, 60% memory reduction, reproducible compiler benchmark suite.</p>
-    <div class="tech-stack"><span>ONNX</span><span>IREE</span><span>BitNet</span><span>Quantization</span><span>Profiling</span></div>
-  </section>
+            // Track click handlers
+            tracks.forEach(track => {
+                track.addEventListener('click', function() {
+                    const title = this.querySelector('.track-title').textContent;
+                    const artist = this.querySelector('.track-artist').textContent;
+                    const emoji = this.querySelector('.track-image').textContent;
+                    
+                    currentTrackTitle.textContent = title;
+                    currentTrackArtist.textContent = artist;
+                    currentTrackImage.textContent = emoji;
+                    
+                    currentTrack = this;
+                    isPlaying = true;
+                    playerPlayButton.textContent = '⏸';
+                    
+                    // Remove active class from all tracks
+                    tracks.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
 
-  <!-- Snapea -->
-  <section id="snapea" class="section">
-    <h2>Snapea – Efficient Inference Framework</h2>
-    <p>Snapea uses entropy-based skipping of CNN layers during inference. The model dynamically exits based on low-uncertainty conditions. Evaluation on CIFAR and TinyImageNet showed significant gains.</p>
-    <p><strong>Results:</strong> 25%–35% latency reduction, <1.5% accuracy drop, real-time on Jetson Nano.</p>
-    <div class="tech-stack"><span>PyTorch</span><span>CNN</span><span>Entropy Skipping</span><span>Edge AI</span></div>
-  </section>
+            // Play button handler
+            playButton.addEventListener('click', function() {
+                if (currentTrack) {
+                    isPlaying = !isPlaying;
+                    playerPlayButton.textContent = isPlaying ? '⏸' : '▶';
+                } else {
+                    // Play first track if none selected
+                    tracks[0].click();
+                }
+            });
 
-  <!-- SimNet -->
-  <section id="simnet" class="section">
-    <h2>SimNet – Microarchitecture Behavior Simulation</h2>
-    <p>Used LSTM + 1D CNNs to predict IPC, cache behavior, and stalls from instruction traces. Trained on SPEC and gem5 data. Enabled rapid architectural exploration without RTL simulation.</p>
-    <p><strong>Results:</strong> 96.1% correlation, replaced 1,000-cycle simulations with 1ms predictions.</p>
-    <div class="tech-stack"><span>LSTM</span><span>GEM5</span><span>SPEC</span><span>Simulation</span></div>
-  </section>
+            // Player controls
+            playerPlayButton.addEventListener('click', function() {
+                isPlaying = !isPlaying;
+                this.textContent = isPlaying ? '⏸' : '▶';
+            });
 
-  <!-- Music -->
-  <section id="music" class="section">
-    <h2>Music Genre Classification</h2>
-    <p>Built an audio genre classifier using MFCC + CNN, trained on GTZAN and FMA datasets. Includes real-time web UI built with Flask and deployed locally.</p>
-    <p><strong>Results:</strong> 93.4% accuracy, resolved genre overlap with confidence filtering.</p>
-    <div class="tech-stack"><span>PyTorch</span><span>Librosa</span><span>Flask</span><span>GTZAN</span><span>FMA</span></div>
-  </section>
+            // Navigation
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
 
-  <!-- ANPR -->
-  <section id="anpr" class="section">
-    <h2>Automatic Number Plate Recognition (ANPR)</h2>
-    <p>YOLOv5 + EasyOCR-based pipeline for real-time video plate recognition. Supports Jetson deployment, OCR preprocessing, and backend CSV logging.</p>
-    <p><strong>Results:</strong> 98% accuracy, 30 FPS on GTX 1050Ti, integrated logging.</p>
-    <div class="tech-stack"><span>YOLOv5</span><span>EasyOCR</span><span>OpenCV</span><span>Jetson</span></div>
-  </section>
+            // Simulate progress bar animation
+            setInterval(() => {
+                if (isPlaying) {
+                    const current = parseInt(progressFill.style.width) || 30;
+                    if (current < 100) {
+                        progressFill.style.width = (current + 1) + '%';
+                    } else {
+                        progressFill.style.width = '0%';
+                        // Auto-play next track
+                        if (currentTrack && currentTrack.nextElementSibling) {
+                            currentTrack.nextElementSibling.click();
+                        }
+                    }
+                }
+            }, 1000);
 
-  <!-- Blockchain -->
-  <section id="blockchain" class="section">
-    <h2>Flight Insurance on Blockchain</h2>
-    <p>Smart contract automation using Solidity and Chainlink. Claims disbursed automatically based on real-time flight delay data. Integrated with MetaMask and flight oracles.</p>
-    <p><strong>Results:</strong> Claims processed in under 10 mins, 0 manual steps, secure & auditable.</p>
-    <div class="tech-stack"><span>Solidity</span><span>Chainlink</span><span>MetaMask</span><span>Web3</span><span>Smart Contracts</span></div>
-  </section>
-
-  <!-- Work Experience -->
-  <section id="experience" class="section">
-    <h2>Professional Experience</h2>
-    <img src="CTS_image.jpg" alt="CTSS Logo" class="job-logo"/>
-    <h3>Associate Database Administrator – Cognizant Technology Solutions</h3>
-    <ul>
-      <li>Maintained Oracle EBS environments for clients like Intuit and BioMarin</li>
-      <li>Automated patching and upgrades using Shell scripts</li>
-      <li>Managed cloning, user-role audits, and SOX compliance</li>
-    </ul>
-  </section>
-<section id="papers" class="section">
-  <h2 style="text-align:center">📚 Paper Reviews </h2>
-  <div class="scroll-wrapper">
-    <div class="scroll-container">
-      <!-- Paper 1 -->
-      <div class="paper-slide">
-        <h3>💡 Memory is the New Compute – And It’s Getting Smarter</h3>
-        <p><strong>Paper:</strong> "An Overview of Processing-in-Memory Circuits for AI and ML" (IEEE JETCAS 2022)</p>
-        <p>🔹 PIM is no longer science fiction — real SRAM/DRAM/ReRAM-based chips compute directly in memory. Perfect for ML workloads where data movement is the bottleneck.<br>
-        🔹 SRAM-PIM enables in-place MACs for fast inference; DRAM-PIM offers high bandwidth; ReRAM-PIM is promising for edge AI due to low power.<br>
-        🔹 The paper also covers offloading strategies, runtime scheduling, and cache coherence — integration is tough, but possible.</p>
-        <p>📌 <strong>My thesis</strong> explores heterogeneous analog+digital PIM with early exits in deep neural nets to enable:<br>
-        ➤ Dynamic resource allocation<br>
-        ➤ Reduced energy per inference<br>
-        ➤ Smarter entropy-based layer skipping</p>
-        <p><strong>TL;DR:</strong> We’re not just moving compute closer to memory — we’re making compute smarter, leaner, and adaptable.</p>
-      </div>
-
-      <!-- Paper 2 -->
-      <div class="paper-slide">
-        <h3>🚀 NeuPIMs: Revolutionizing LLM Inference</h3>
-        <p><strong>Why it matters:</strong> LLMs like GPT-4 and LLaMA require high memory bandwidth. NeuPIMs proposes a heterogeneous acceleration design combining NPUs and PIMs.</p>
-        <p>🔹 NPUs excel at GEMMs but underperform for GEMVs (bandwidth-heavy).<br>
-        🔹 PIMs complement this by handling GEMVs efficiently.<br>
-        🔹 NeuPIMs allows <strong>concurrent execution</strong> of GEMMs (via NPU) and GEMVs (via PIM) with:</p>
-        <ul>
-          <li>✔ Dual row-buffer architecture</li>
-          <li>✔ Sub-batch interleaving</li>
-          <li>✔ Runtime optimization for throughput</li>
-        </ul>
-        <p><strong>Results:</strong> Achieved up to <strong>3× higher throughput</strong> than GPU/NPU-only systems — critical for real-time LLM inference at scale.</p>
-      </div>
-
-      <!-- Paper 3 -->
-      <div class="paper-slide">
-        <h3>🧠 Coop: Memory is not a Commodity (NeurIPS 2023)</h3>
-        <p>Efficient memory management is crucial for scaling LLMs. This paper presents Coop, a runtime system that reduces fragmentation and improves tensor reuse.</p>
-        <p>Key Techniques:</p>
-        <ul>
-          <li>1️⃣ Sliding window algorithm for low-cost, contiguous memory blocks</li>
-          <li>2️⃣ Cheap Tensor Partitioning reduces fragmentation</li>
-          <li>3️⃣ Recomputation-based in-place ops reuse memory</li>
-        </ul>
-        <p><strong>Results:</strong> 35% compute overhead reduction, 30% less fragmentation, 22% latency improvement under tight GPU budgets.</p>
-        <p><strong>Limitations:</strong> Hardware-dependent; needs integration with CUDA pools and adaptive tuning. But a major step for exascale training systems.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-  <!-- Contact -->
-  <section id="contact" class="section">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:srim@iastate.edu">srim@iastate.edu</a></p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/sriharshamudumba" target="_blank">linkedin.com/in/sriharshamudumba</a></p>
-    <p>GitHub: <a href="https://github.com/sriharshamudumba" target="_blank">github.com/sriharshamudumba</a></p>
-  </section>
-
-  <footer>
-    <p>&copy; 2024 Sri Harsha Mudumba. All rights reserved.</p>
-  </footer>
+            // Action buttons
+            document.querySelectorAll('.action-button').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const action = this.textContent;
+                    
+                    if (action === '👁') {
+                        alert('Opening live demo...');
+                    } else if (action === '💻') {
+                        alert('Opening GitHub repository...');
+                    } else if (action === '❤') {
+                        this.textContent = this.textContent === '❤' ? '💚' : '❤';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
