@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sriharsha Mudumba - AI Architect Portfolio</title>
+    <title>Sriharsha Mudumba - AI Content Stream</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap'); /* Adding a monospace font for technical feel */
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap'); /* For bold titles */
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap'); /* For technical elements */
 
         :root {
-            --primary-accent: #00C4CC; /* Deep Teal/Cyan */
-            --secondary-accent: #8C00FF; /* Subtle Violet/Magenta */
-            --background-dark: #0A0A0A; /* Even darker background */
-            --card-base: #1A1A1A;
-            --card-hover: #2A2A2A;
-            --text-light: #F0F0F0;
-            --text-medium: #B0B0B0;
-            --text-dark: #666666;
+            --primary-accent: #6C42F7; /* Deep Purple */
+            --secondary-accent: #00F0FF; /* Electric Blue */
+            --background-dark: #0A0A0F; /* Even deeper dark */
+            --card-base: #1A1A22; /* Darker, slightly blue-ish card */
+            --card-hover: #2A2A38;
+            --text-light: #E0E0FF; /* Soft white/blue */
+            --text-medium: #A0A0C0; /* Muted blue-grey */
+            --text-dark: #505070;
             --font-main: 'Inter', sans-serif;
+            --font-title: 'Oswald', sans-serif;
             --font-mono: 'Space Mono', monospace;
         }
 
@@ -36,6 +38,7 @@
             background-color: var(--background-dark);
             color: var(--text-light);
             padding-bottom: 90px;
+            overflow-x: hidden; /* Prevent horizontal scroll from subtle animations */
         }
 
         /* Utility for fade-in animation */
@@ -46,44 +49,62 @@
             }
         }
 
-        /* --- Navigation --- */
+        /* Background grid/dots effect (optional, subtle) */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at center, rgba(108, 66, 247, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        /* --- Navigation Bar: Platform UI --- */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 20px 50px;
+            padding: 20px 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            transition: background-color 0.4s ease;
+            transition: background-color 0.4s ease, border-bottom 0.4s ease;
+            border-bottom: 1px solid transparent;
         }
 
         .navbar.scrolled {
-            background-color: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(10px);
+            background-color: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .nav-logo {
-            font-family: var(--font-mono);
-            font-size: 2.2rem;
+            font-family: var(--font-title);
+            font-size: 2.5rem;
             font-weight: 700;
             color: var(--primary-accent);
             text-decoration: none;
-            text-shadow: 0 0 8px rgba(0, 196, 204, 0.5); /* Subtle glow */
+            letter-spacing: -1px;
+            text-shadow: 0 0 10px rgba(108, 66, 247, 0.7);
         }
 
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 40px;
+            gap: 45px;
         }
 
         .nav-links a {
             color: var(--text-light);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
+            font-size: 1.1rem;
+            transition: color 0.3s ease, transform 0.2s ease;
             position: relative;
         }
 
@@ -91,132 +112,166 @@
             content: '';
             position: absolute;
             width: 0;
-            height: 2px;
-            bottom: -5px;
+            height: 3px;
+            bottom: -8px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: var(--primary-accent);
+            background-color: var(--secondary-accent);
+            border-radius: 2px;
             transition: width 0.3s ease;
         }
 
         .nav-links a:hover::after {
             width: 100%;
         }
+        .nav-links a:hover {
+            color: var(--secondary-accent);
+            transform: translateY(-2px);
+        }
 
-        /* --- Hero Section: Neural Gateway --- */
+        /* --- Hero Section: Now Playing --- */
         .hero {
             height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            padding: 0 20px;
-            background: 
-                linear-gradient(to bottom, rgba(10,10,10,0) 0%, var(--background-dark) 100%),
-                radial-gradient(circle at top, rgba(0, 196, 204, 0.1) 0%, transparent 40%); /* Abstract gradient */
+            padding: 0 40px;
+            background: linear-gradient(135deg, rgba(10,10,15,0.9) 0%, rgba(108,66,247,0.1) 40%, rgba(0,240,255,0.1) 80%, rgba(10,10,15,0.9) 100%);
             position: relative;
             overflow: hidden;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Subtle background animation for tech feel */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            max-width: 1200px;
+            position: relative;
+            z-index: 2;
+            transform: translateY(-20px);
+            opacity: 0;
+            animation: fadeIn 1s forwards ease-out 0.5s;
+        }
+
+        .profile-picture-container {
+            position: relative;
+            width: 280px; /* Larger size */
+            height: 280px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary-accent), var(--secondary-accent));
+            padding: 5px; /* Border thickness */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.4);
+            animation: pulseGlow 2s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            from { box-shadow: 0 0 30px rgba(0, 240, 255, 0.4); }
+            to { box-shadow: 0 0 50px rgba(0, 240, 255, 0.8); }
+        }
+
+        .profile-picture {
             width: 100%;
             height: 100%;
-            background-image: radial-gradient(circle at center, rgba(0, 196, 204, 0.05) 1px, transparent 1px);
-            background-size: 30px 30px;
-            opacity: 0.1;
-            animation: backgroundFlow 60s linear infinite;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--background-dark); /* Inner border */
         }
 
-        @keyframes backgroundFlow {
-            from { background-position: 0 0; }
-            to { background-position: 100% 100%; }
+        .now-playing-tag {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-accent);
+            color: var(--text-light);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-family: var(--font-title);
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 5px 20px rgba(108, 66, 247, 0.5);
         }
-        
-        .hero-content {
-            max-width: 900px;
-            position: relative; /* Ensure content is above the pseudo-element */
-            z-index: 2;
+
+        .hero-text {
+            text-align: left;
         }
 
         .hero-title {
-            font-family: var(--font-main);
-            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            font-family: var(--font-title);
+            font-size: clamp(3rem, 7vw, 5.5rem);
             font-weight: 900;
             letter-spacing: -2px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 15px rgba(0, 196, 204, 0.7); /* Stronger glow for title */
-        }
-
-        .journey-intro-title {
-            font-family: var(--font-mono);
-            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-            color: var(--secondary-accent);
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
             margin-bottom: 15px;
+            line-height: 1.1;
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.7);
         }
-
+        
         .hero-subtitle {
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
             color: var(--text-medium);
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             line-height: 1.6;
+            max-width: 700px;
         }
         
         .hero-cta {
-            padding: 15px 35px;
-            background-color: var(--primary-accent);
+            padding: 18px 45px;
+            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
             color: var(--background-dark);
             text-decoration: none;
             font-weight: 700;
             border-radius: 50px;
-            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: inline-block;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             font-family: var(--font-main);
+            font-size: 1.1rem;
+            box-shadow: 0 5px 25px rgba(0, 240, 255, 0.3);
         }
 
         .hero-cta:hover {
             transform: scale(1.05);
-            background-color: var(--secondary-accent);
-            color: var(--text-light);
-            box-shadow: 0 0 20px rgba(140, 0, 255, 0.6);
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.8), 0 0 15px rgba(108, 66, 247, 0.6);
         }
 
         /* --- Section Styling --- */
         .section {
             padding: 100px 60px;
             overflow: hidden;
-            position: relative; /* For potential future section-specific effects */
+            position: relative;
         }
         
         .section.darker {
-            background-color: #050505; /* Slightly different dark */
+            background-color: #08080C; /* Slightly different dark */
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .section-title {
-            font-family: var(--font-main);
-            font-size: 2.8rem;
+            font-family: var(--font-title);
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
             font-weight: 700;
             margin-bottom: 50px;
             display: inline-block;
             position: relative;
             z-index: 1;
+            color: var(--text-light);
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+            letter-spacing: -1px;
         }
         
         .section-title span {
-            color: var(--primary-accent);
+            color: var(--secondary-accent);
+            font-size: 1.2em; /* Emphasize */
         }
 
-        /* --- Projects Section: Model Gallery --- */
+        /* --- Projects Section: My Content Library --- */
         .projects-carousel {
             position: relative;
         }
@@ -227,7 +282,6 @@
             overflow-x: auto;
             padding: 20px 0;
             scrollbar-width: none;
-            /* Custom scrollbar for subtle tech look */
             scrollbar-color: var(--primary-accent) var(--card-base);
         }
 
@@ -245,192 +299,243 @@
         }
 
         .project-card {
-            flex: 0 0 320px;
+            flex: 0 0 300px; /* Fixed width for card */
             height: 180px;
-            background-color: var(--card-base);
-            border-radius: 10px; /* Slightly more rounded */
+            border-radius: 12px;
             overflow: hidden;
             cursor: pointer;
             transition: all 0.4s ease;
             position: relative;
             display: flex;
-            flex-direction: column; /* Allow content to stack */
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: flex-end; /* Align title to bottom */
             padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+            border: 1px solid rgba(255, 255, 255, 0.1);
             opacity: 0;
             transform: translateY(20px);
             animation: fadeIn 0.5s ease forwards;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Soft initial shadow */
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Dynamic background for project cards (replace with actual images in production) */
+        .project-card[data-project="duracim"] { background: linear-gradient(to top right, #3C004F, #001030); }
+        .project-card[data-project="argus"] { background: linear-gradient(to bottom left, #004F40, #001030); }
+        .project-card[data-project="lexa"] { background: linear-gradient(to top, #4F3000, #100030); }
+        .project-card[data-project="1bitllm"] { background: linear-gradient(to bottom, #20004F, #001030); }
+        .project-card[data-project="snapea"] { background: linear-gradient(to top right, #400000, #001030); }
+        .project-card[data-project="license"] { background: linear-gradient(to bottom right, #00204F, #001030); }
+        /* Overlay for text readability on card */
+        .project-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; /* Cover full card for hover effect */
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%);
+            transition: background 0.3s ease;
+            z-index: 1;
+        }
+
+        .project-card:hover::before {
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%);
         }
 
         .project-card:hover {
-            transform: translateY(-10px) scale(1.03);
-            background-color: var(--card-hover);
-            box-shadow: 0 0 30px rgba(0, 196, 204, 0.6), 0 0 5px rgba(140, 0, 255, 0.4); /* Dual color glow */
-        }
-
-        .card-icon {
-            font-size: 3rem;
-            color: var(--primary-accent);
-            margin-bottom: 10px;
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 0 40px rgba(108, 66, 247, 0.5), 0 0 15px rgba(0, 240, 255, 0.4); /* Dual color glow */
+            border-color: var(--secondary-accent);
         }
 
         .card-title {
-            font-family: var(--font-main);
-            font-size: 1.4rem;
+            font-family: var(--font-title);
+            font-size: 1.6rem;
             font-weight: 700;
-            text-align: center;
+            text-align: left;
             color: var(--text-light);
+            position: relative; /* Ensure it's above overlay */
+            z-index: 2;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
         }
 
-        /* --- Skills Section: Computational Spectrum --- */
-        .skills-grid-container { /* Renamed for clarity */
+        /* --- Skills Section: Your Channels --- */
+        .skills-grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
 
-        .capability-block { /* Renamed from skill-playlist */
+        .channel-tile { /* Renamed from capability-block */
             background-color: var(--card-base);
-            border-radius: 12px;
-            padding: 25px;
+            border-radius: 16px; /* More rounded */
+            padding: 30px;
             transition: all 0.4s ease;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeIn 0.5s ease forwards;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden; /* For background effect */
         }
         
-        .capability-block:hover {
-            background-color: var(--card-hover);
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 196, 204, 0.3);
+        /* Subtle background pattern for channels */
+        .channel-tile::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%236C42F7' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zm1 6v-1L1 0h1z'/%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.1;
+            z-index: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .block-header { /* Renamed from playlist-header */
+        .channel-tile:hover::before {
+            opacity: 0.2;
+        }
+
+        .channel-tile:hover {
+            background-color: var(--card-hover);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 240, 255, 0.5);
+            border-color: var(--secondary-accent);
+        }
+
+        .tile-header { /* Renamed from block-header */
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 18px;
             margin-bottom: 25px;
+            position: relative; /* Ensure content is above pseudo-element */
+            z-index: 1;
         }
 
-        .block-icon { /* Renamed from skill-icon */
-            font-size: 2.2rem;
-            color: var(--primary-accent);
-            text-shadow: 0 0 10px rgba(0, 196, 204, 0.5);
+        .tile-icon { /* Renamed from block-icon */
+            font-size: 2.8rem; /* Larger icon */
+            color: var(--secondary-accent);
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.8);
         }
 
-        .block-title { /* Renamed from playlist-title */
-            font-family: var(--font-main);
-            font-size: 1.5rem;
+        .tile-title { /* Renamed from block-title */
+            font-family: var(--font-title);
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--text-light);
+            letter-spacing: -0.5px;
         }
 
-        .skill-list { /* Renamed from playlist-tracks */
+        .skill-list {
             list-style: none;
             counter-reset: skill-counter;
+            position: relative;
+            z-index: 1;
         }
 
         .skill-list li {
             color: var(--text-medium);
-            margin-bottom: 12px;
+            margin-bottom: 15px; /* More spacing */
             display: flex;
             align-items: center;
             gap: 15px;
             font-family: var(--font-main);
-            font-size: 1rem;
+            font-size: 1.05rem;
         }
         
         .skill-list li::before {
             counter-increment: skill-counter;
-            content: counter(skill-counter);
+            content: "S" counter(skill-counter); /* "S1", "S2" for stream/skill */
             font-weight: 500;
-            color: var(--primary-accent); /* Numbering with accent color */
+            color: var(--primary-accent);
             font-family: var(--font-mono);
-            font-size: 0.9em;
-            width: 20px; /* Align numbers */
+            font-size: 0.95em;
+            width: 30px;
             text-align: right;
+            opacity: 0.8;
         }
 
-        /* --- Footer: AI Console --- */
-        .ai-console-footer { /* Renamed from footer-navigation */
+        /* --- Footer: Control Panel --- */
+        .control-panel-footer { /* Renamed from ai-console-footer */
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             height: 90px;
-            background-color: #000;
-            border-top: 1px solid #282828;
+            background-color: #000000;
+            border-top: 1px solid #1C1C22;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             align-items: center;
-            padding: 0 30px;
+            padding: 0 40px;
             z-index: 200;
-            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.4);
         }
 
-        .console-left { /* Renamed from footer-left */
+        .footer-left-status { /* Renamed from console-left */
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
-        .status-text { /* Renamed from now-viewing-text */
+        .status-text {
             color: var(--text-medium);
             font-family: var(--font-mono);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
-        #current-focus { /* Renamed from now-viewing */
-            color: var(--text-light);
+        #current-content-focus { /* Renamed from current-focus */
+            color: var(--secondary-accent);
             font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .console-center { /* Renamed from footer-center */
+        .footer-center-controls { /* Renamed from console-center */
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 40px;
         }
         
-        .console-center a {
+        .footer-center-controls a {
             color: var(--text-medium);
             text-decoration: none;
-            font-size: 1.8rem;
+            font-size: 2.2rem; /* Larger icons */
             transition: all 0.3s ease;
         }
         
-        .console-center a:hover {
-            color: var(--primary-accent);
-            transform: scale(1.1);
-            text-shadow: 0 0 10px rgba(0, 196, 204, 0.6);
+        .footer-center-controls a:hover {
+            color: var(--secondary-accent);
+            transform: scale(1.2);
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.8);
         }
         
-        .console-right { /* Renamed from footer-right */
+        .footer-right-action { /* Renamed from console-right */
             display: flex;
             justify-content: flex-end;
         }
 
-        .console-right a {
+        .footer-right-action a {
             text-decoration: none;
             color: var(--text-light);
-            background-color: var(--secondary-accent);
+            background: linear-gradient(90deg, var(--secondary-accent), var(--primary-accent));
             font-weight: 700;
-            padding: 12px 25px;
+            padding: 14px 30px;
             border-radius: 30px;
             transition: all 0.3s ease;
             text-transform: uppercase;
             font-family: var(--font-main);
             letter-spacing: 1px;
+            font-size: 1rem;
+            box-shadow: 0 3px 15px rgba(0, 240, 255, 0.3);
         }
 
-        .console-right a:hover {
+        .footer-right-action a:hover {
             transform: scale(1.05);
-            background-color: var(--primary-accent);
-            box-shadow: 0 0 20px rgba(0, 196, 204, 0.5);
+            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+            box-shadow: 0 0 25px rgba(108, 66, 247, 0.6);
         }
         
         /* --- Project Modal --- */
@@ -440,102 +545,197 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.85); /* Slightly darker overlay */
-            backdrop-filter: blur(12px); /* Stronger blur */
+            background-color: rgba(0,0,0,0.9);
+            backdrop-filter: blur(18px); /* Even stronger blur */
             z-index: 300;
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
         .modal.active { opacity: 1; visibility: visible; }
         .modal-content {
             background-color: var(--card-base);
             width: 90%;
-            max-width: 800px;
+            max-width: 900px; /* Wider modal */
             max-height: 90vh;
-            border-radius: 12px; /* Slightly more rounded */
+            border-radius: 16px;
             overflow-y: auto;
             position: relative;
-            transform: translateY(20px) scale(0.95);
-            transition: transform 0.4s ease;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(0, 196, 204, 0.2); /* Subtle accent border */
+            transform: translateY(30px) scale(0.9);
+            transition: transform 0.5s ease;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8);
+            border: 2px solid var(--primary-accent); /* Stronger accent border */
         }
         .modal.active .modal-content { transform: translateY(0) scale(1); }
         .modal-header { 
-            padding: 40px; 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separator */
+            padding: 40px 50px; /* More padding */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
             position: sticky;
             top: 0;
             background-color: var(--card-base);
             z-index: 10;
         }
         .modal-title { 
-            font-family: var(--font-main);
-            font-size: 2.8rem; 
+            font-family: var(--font-title);
+            font-size: 3.5rem; /* Larger title */
             font-weight: 900; 
-            color: var(--primary-accent);
-            text-shadow: 0 0 10px rgba(0, 196, 204, 0.5);
+            color: var(--secondary-accent);
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.7);
+            letter-spacing: -1px;
         }
-        .modal-body { padding: 30px 40px 40px; } /* Adjusted padding */
+        .modal-body { padding: 30px 50px 50px; }
         .modal-description { 
-            font-size: 1.1rem; 
-            line-height: 1.7; 
+            font-size: 1.15rem; /* Slightly larger text */
+            line-height: 1.8; 
             color: var(--text-medium); 
-            margin-bottom: 30px; 
+            margin-bottom: 35px; 
         }
         .modal-tech-stack { 
             display: flex; 
             flex-wrap: wrap; 
-            gap: 12px; /* Increased gap */
-            margin-bottom: 30px; 
+            gap: 15px; 
+            margin-bottom: 40px; 
         }
         .tech-tag { 
-            background-color: #333; 
-            padding: 8px 18px; /* Slightly larger tags */
-            border-radius: 25px; /* More rounded */
-            font-size: 0.95rem; /* Slightly larger text */
+            background-color: #282835; /* Darker tag background */
+            padding: 10px 20px; 
+            border-radius: 30px; 
+            font-size: 1rem; 
             font-weight: 500; 
             color: var(--text-light);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(108, 66, 247, 0.3); /* Accent border for tags */
             font-family: var(--font-mono);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
         .modal-actions a { 
             display: inline-block; 
             text-decoration: none; 
             color: var(--background-dark); 
-            background-color: var(--primary-accent); 
-            padding: 14px 30px; /* Larger buttons */
-            border-radius: 30px; 
+            background: linear-gradient(90deg, var(--secondary-accent), var(--primary-accent));
+            padding: 16px 35px; 
+            border-radius: 35px; 
             font-weight: 700; 
-            margin-right: 15px; 
+            margin-right: 20px; 
             transition: all 0.3s ease; 
             text-transform: uppercase;
             font-family: var(--font-main);
-            letter-spacing: 1px;
+            letter-spacing: 1.2px;
+            font-size: 1.05rem;
+            box-shadow: 0 5px 20px rgba(0, 240, 255, 0.4);
         }
         .modal-actions a:hover { 
-            background-color: var(--secondary-accent); 
-            color: var(--text-light); 
-            box-shadow: 0 0 20px rgba(140, 0, 255, 0.6);
+            transform: scale(1.05);
+            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+            box-shadow: 0 0 30px rgba(108, 66, 247, 0.7), 0 0 10px rgba(0, 240, 255, 0.5);
+            color: var(--text-light);
         }
         .modal-close { 
             position: absolute; 
-            top: 20px; /* Adjusted position */
-            right: 25px; /* Adjusted position */
-            font-size: 2.5rem; /* Larger close button */
+            top: 25px; 
+            right: 30px; 
+            font-size: 3rem; 
             color: var(--text-dark); 
             cursor: pointer; 
-            transition: color 0.3s ease; 
-            z-index: 11; /* Ensure it's above header content */
+            transition: color 0.3s ease, transform 0.3s ease; 
+            z-index: 11; 
         }
         .modal-close:hover { 
-            color: var(--primary-accent); 
-            transform: scale(1.1);
-            text-shadow: 0 0 10px rgba(0, 196, 204, 0.5);
+            color: var(--secondary-accent); 
+            transform: rotate(90deg) scale(1.1);
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.7);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+            .profile-picture-container {
+                width: 220px;
+                height: 220px;
+            }
+            .hero-title {
+                font-size: clamp(2.8rem, 8vw, 4.5rem);
+            }
+            .hero-subtitle {
+                font-size: clamp(1rem, 2.8vw, 1.3rem);
+            }
+            .section {
+                padding: 80px 30px;
+            }
+            .navbar {
+                padding: 15px 30px;
+            }
+            .nav-links {
+                gap: 25px;
+            }
+            .section-title {
+                font-size: clamp(2rem, 6vw, 3.2rem);
+            }
+            .skills-grid-container {
+                grid-template-columns: 1fr;
+            }
+            .control-panel-footer {
+                grid-template-columns: 1fr;
+                height: auto;
+                padding: 15px 20px;
+                gap: 15px;
+            }
+            .footer-center-controls, .footer-right-action {
+                justify-content: center;
+            }
+            .footer-left-status {
+                justify-content: center;
+            }
+            .modal-header, .modal-body {
+                padding: 30px;
+            }
+            .modal-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            .nav-links {
+                gap: 15px;
+            }
+            .hero-content {
+                gap: 30px;
+            }
+            .profile-picture-container {
+                width: 180px;
+                height: 180px;
+            }
+            .hero-cta {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+            .project-card {
+                flex: 0 0 260px;
+                height: 160px;
+            }
+            .card-title {
+                font-size: 1.3rem;
+            }
+            .channel-tile {
+                padding: 20px;
+            }
+            .tile-title {
+                font-size: 1.5rem;
+            }
+            .modal-title {
+                font-size: 2rem;
+            }
         }
 
     </style>
@@ -546,58 +746,66 @@
     <nav class="navbar" id="navbar">
         <a href="#home" class="nav-logo">SM</a>
         <ul class="nav-links">
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Toolkit</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">My Content</a></li>
+            <li><a href="#skills">Tech Stack</a></li>
         </ul>
     </nav>
 
     <header class="hero" id="home">
         <div class="hero-content">
-            <h1 class="hero-title">Sriharsha Mudumba</h1>
-            <p class="journey-intro-title">Architecting the Future of Intelligence</p> 
-            <p class="hero-subtitle">As an **ML Engineer** and **AI Architect**, I specialize in crafting the next generation of intelligent systems. From high-performance **compute-in-memory frameworks** to scalable **RAG pipelines**, I build solutions that bridge the gap between data and discovery.</p>
-            <a href="Sriharsha_Mudumba_resume.pdf" class="hero-cta" download>Download My AI Blueprint</a>
+            <div class="profile-picture-container">
+                <img src="https://via.placeholder.com/300/404040/FFFFFF?text=YOUR+PIC" alt="Sriharsha Mudumba" class="profile-picture">
+                <span class="now-playing-tag">Now Playing</span>
+            </div>
+            <div class="hero-text">
+                <h1 class="hero-title">Sriharsha Mudumba</h1>
+                <p class="hero-subtitle">
+                    **AI Architect & ML Engineer** – Crafting high-performance intelligent systems from **compute-in-memory frameworks** to scalable **RAG pipelines**. I build the solutions that power tomorrow's innovations.
+                </p>
+                <a href="#projects" class="hero-cta">Watch My Story</a>
+            </div>
         </div>
     </header>
 
     <main>
         <section class="section" id="projects">
-            <h2 class="section-title">My Project Synapse<span>.</span></h2>
+            <h2 class="section-title">Top Picks for You: My ML & AI <span>Originals</span></h2>
             <div class="projects-carousel">
                 <div class="carousel-track">
-                    <div class="project-card" data-project="duracim"><i class="ri-chip-line card-icon"></i><div class="card-title">DURACIM</div></div>
-                    <div class="project-card" data-project="argus"><i class="ri-brain-line card-icon"></i><div class="card-title">ARGUS</div></div>
-                    <div class="project-card" data-project="lexa"><i class="ri-device-line card-icon"></i><div class="card-title">LEXA</div></div>
-                    <div class="project-card" data-project="1bitllm"><i class="ri-speed-line card-icon"></i><div class="card-title">1BitLLM Optimization</div></div>
-                    <div class="project-card" data-project="snapea"><i class="ri-node-tree card-icon"></i><div class="card-title">SnaPEA Accelerator</div></div>
-                    <div class="project-card" data-project="license"><i class="ri-car-line card-icon"></i><div class="card-title">License Plate Detection</div></div>
+                    <div class="project-card" data-project="duracim"><div class="card-title">DURACIM</div></div>
+                    <div class="project-card" data-project="argus"><div class="card-title">ARGUS RAG System</div></div>
+                    <div class="project-card" data-project="lexa"><div class="card-title">LEXA Edge Assistant</div></div>
+                    <div class="project-card" data-project="1bitllm"><div class="card-title">1BitLLM Optimization</div></div>
+                    <div class="project-card" data-project="snapea"><div class="card-title">SnaPEA Accelerator</div></div>
+                    <div class="project-card" data-project="license"><div class="card-title">License Plate Detection</div></div>
                 </div>
             </div>
         </section>
 
         <section class="section darker" id="skills">
-            <h2 class="section-title">My Computational Spectrum<span>.</span></h2>
+            <h2 class="section-title">Your Channels: Deep Dive into My <span>Expertise</span></h2>
             <div class="skills-grid-container">
-                <div class="capability-block">
-                    <div class="block-header"><i class="ri-braces-line block-icon"></i><h3 class="block-title">AI Frameworks</h3></div>
+                <div class="channel-tile">
+                    <div class="tile-header"><i class="ri-braces-line tile-icon"></i><h3 class="tile-title">AI Frameworks</h3></div>
                     <ol class="skill-list">
                         <li>PyTorch</li><li>TensorFlow</li><li>Scikit-learn</li><li>Langchain</li><li>ONNX</li>
                     </ol>
                 </div>
-                <div class="capability-block">
-                    <div class="block-header"><i class="ri-terminal-box-line block-icon"></i><h3 class="block-title">Languages & Data Systems</h3></div>
+                <div class="channel-tile">
+                    <div class="tile-header"><i class="ri-terminal-box-line tile-icon"></i><h3 class="tile-title">Languages & Data Systems</h3></div>
                     <ol class="skill-list">
                         <li>Python</li><li>C++ / C</li><li>SQL</li><li>Shell Scripting</li><li>Oracle 11g/12c/19c</li>
                     </ol>
                 </div>
-                <div class="capability-block">
-                    <div class="block-header"><i class="ri-server-line block-icon"></i><h3 class="block-title">HPC & System Design</h3></div>
+                <div class="channel-tile">
+                    <div class="tile-header"><i class="ri-server-line tile-icon"></i><h3 class="tile-title">HPC & System Design</h3></div>
                     <ol class="skill-list">
                        <li>OpenMP / MPI</li><li>Slurm</li><li>Distributed Systems</li><li>Linux</li>
                     </ol>
                 </div>
-                <div class="capability-block">
-                    <div class="block-header"><i class="ri-cloud-fill block-icon"></i><h3 class="block-title">Cloud & MLOps</h3></div>
+                <div class="channel-tile">
+                    <div class="tile-header"><i class="ri-cloud-fill tile-icon"></i><h3 class="tile-title">Cloud & MLOps</h3></div>
                     <ol class="skill-list">
                         <li>AWS</li><li>Docker</li><li>FastAPI</li><li>Benchmarking</li>
                     </ol>
@@ -606,19 +814,19 @@
         </section>
     </main>
 
-    <footer class="ai-console-footer">
-        <div class="console-left">
+    <footer class="control-panel-footer">
+        <div class="footer-left-status">
             <div class="status-text">
-                Current Focus: <span id="current-focus">Home</span>
+                Current Content: <span id="current-content-focus">Home</span>
             </div>
         </div>
-        <div class="console-center">
+        <div class="footer-center-controls">
             <a href="https://github.com/sriharshamudumba" target="_blank" title="GitHub"><i class="ri-github-fill"></i></a>
             <a href="https://www.linkedin.com/in/sriharshamudumba/" target="_blank" title="LinkedIn"><i class="ri-linkedin-box-fill"></i></a>
             <a href="mailto:srim@iastate.edu" title="Email"><i class="ri-mail-fill"></i></a>
         </div>
-        <div class="console-right">
-            <a href="#home">Return to Gateway</a>
+        <div class="footer-right-action">
+            <a href="#home">Browse Home</a>
         </div>
     </footer>
 
@@ -704,32 +912,33 @@
                 navbar.classList.toggle('scrolled', window.scrollY > 50);
             });
             
-            // Intersection Observer for scroll animations
+            // Intersection Observer for scroll animations and "Current Content" update
+            const observerOptions = { threshold: 0.2 }; // Increased threshold for more reliable updates
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.style.animationDelay = entry.target.dataset.delay || '0s';
                         entry.target.classList.add('visible');
                         
-                        // Update Current Focus
-                        let sectionName = entry.target.id.charAt(0).toUpperCase() + entry.target.id.slice(1);
-                        if (entry.target.id === 'home') sectionName = 'Gateway'; // Renamed for new theme
-                        else if (entry.target.id === 'projects') sectionName = 'Project Synapse'; // Renamed
-                        else if (entry.target.id === 'skills') sectionName = 'Computational Spectrum'; // Renamed
+                        let sectionName = '';
+                        if (entry.target.id === 'home') sectionName = 'Now Playing';
+                        else if (entry.target.id === 'projects') sectionName = 'My Content';
+                        else if (entry.target.id === 'skills') sectionName = 'Tech Stack';
 
-                        document.getElementById('current-focus').textContent = sectionName;
+                        if (sectionName) { // Only update if a valid section is found
+                           document.getElementById('current-content-focus').textContent = sectionName;
+                        }
                     }
                 });
-            }, { threshold: 0.1 });
+            }, observerOptions);
             
-            // Staggered animation for cards
-            document.querySelectorAll('.project-card, .capability-block').forEach((el, i) => { // Updated class name
+            document.querySelectorAll('.project-card, .channel-tile').forEach((el, i) => {
                 el.dataset.delay = `${i * 0.1}s`;
                 observer.observe(el);
             });
             
-            // Current Focus observer
-            document.querySelectorAll('section, header').forEach(section => {
+            // Observe sections for "Current Content" in footer
+            document.querySelectorAll('section[id], header[id]').forEach(section => {
                     observer.observe(section);
             });
         });
