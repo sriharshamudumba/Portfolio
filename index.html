@@ -130,7 +130,7 @@
         .indicator.active{background:var(--secondary-accent);transform:scale(1.2)}
         .indicator:hover{background:rgba(255,255,255,.6)}
 
-     
+
 
         /* --- Skills --- */
         .competencies-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px}
@@ -260,9 +260,6 @@
         <section class="platform-section" id="projects">
             <h2 class="section-header">Computational <span>Modules</span></h2>
             <div class="modules-grid-container">
-                <div class="auto-slide-control" id="autoSlideToggle">
-                    <i class="ri-play-circle-line"></i> Auto
-                </div>
                 <div class="module-viewport">
                     <div class="module-track" id="moduleTrack">
                         <div class="project-module" data-project="duracim">
@@ -541,16 +538,12 @@
                 this.track = document.getElementById('moduleTrack');
                 this.prevBtn = document.getElementById('navPrev');
                 this.nextBtn = document.getElementById('navNext');
-                this.autoToggle = document.getElementById('autoSlideToggle');
                 this.indicatorsContainer = document.getElementById('sliderIndicators');
                 
                 this.currentIndex = 0;
                 this.itemsVisible = 3;
                 this.totalItems = this.track.children.length;
                 this.itemWidth = 350 + 25; // card width + gap
-                
-                this.isAutoSliding = false;
-                this.autoSlideInterval = null;
                 
                 this.init();
             }
@@ -623,9 +616,6 @@
                 if (this.currentIndex < this.maxIndex) {
                     this.currentIndex++;
                     this.updateCarousel();
-                } else if (this.isAutoSliding) {
-                    this.currentIndex = 0;
-                    this.updateCarousel();
                 }
             }
             
@@ -636,54 +626,9 @@
                 }
             }
             
-            startAutoSlide() {
-                this.isAutoSliding = true;
-                this.autoToggle.classList.add('active');
-                this.autoToggle.innerHTML = '<i class="ri-pause-circle-line"></i> Auto';
-                this.autoSlideInterval = setInterval(() => this.next(), 4000);
-            }
-            
-            stopAutoSlide() {
-                this.isAutoSliding = false;
-                this.autoToggle.classList.remove('active');
-                this.autoToggle.innerHTML = '<i class="ri-play-circle-line"></i> Auto';
-                if (this.autoSlideInterval) {
-                    clearInterval(this.autoSlideInterval);
-                    this.autoSlideInterval = null;
-                }
-            }
-            
             bindEvents() {
-                this.nextBtn.addEventListener('click', () => {
-                    this.stopAutoSlide();
-                    this.next();
-                });
-                
-                this.prevBtn.addEventListener('click', () => {
-                    this.stopAutoSlide();
-                    this.prev();
-                });
-                
-                this.autoToggle.addEventListener('click', () => {
-                    if (this.isAutoSliding) {
-                        this.stopAutoSlide();
-                    } else {
-                        this.startAutoSlide();
-                    }
-                });
-                
-                // Pause auto-slide on hover
-                this.track.parentElement.addEventListener('mouseenter', () => {
-                    if (this.isAutoSliding) {
-                        clearInterval(this.autoSlideInterval);
-                    }
-                });
-                
-                this.track.parentElement.addEventListener('mouseleave', () => {
-                    if (this.isAutoSliding) {
-                        this.autoSlideInterval = setInterval(() => this.next(), 4000);
-                    }
-                });
+                this.nextBtn.addEventListener('click', () => this.next());
+                this.prevBtn.addEventListener('click', () => this.prev());
                 
                 // Handle window resize
                 let resizeTimeout;
