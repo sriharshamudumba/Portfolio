@@ -1,1037 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sriharsha Mudumba - AI-Core Platform</title>
-    <style>
-        /* Import Google Fonts for a consistent and modern look */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap'); /* For bold titles */
-        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap'); /* For technical elements */
-
-        /* Define CSS Variables for easy theme management */
-        :root {
-            --primary-accent: #6C42F7; /* Deep Purple */
-            --secondary-accent: #00F0FF; /* Electric Blue */
-            --background-dark: #0A0A0F; /* Even deeper dark */
-            --card-base: #1A1A22; /* Darker, slightly blue-ish card */
-            --card-hover: #2A2A38;
-            --text-light: #E0E0FF; /* Soft white/blue */
-            --text-medium: #A0A0C0; /* Muted blue-grey */
-            --text-dark: #505070;
-            --font-main: 'Inter', sans-serif;
-            --font-title: 'Oswald', sans-serif;
-            --font-mono: 'Space Mono', monospace;
-        }
-
-        /* Universal Box-Sizing and Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Smooth Scrolling for Anchor Links */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Body Styling */
-        body {
-            font-family: var(--font-main);
-            background-color: var(--background-dark);
-            color: var(--text-light);
-            padding-bottom: 90px; /* Space for fixed footer */
-            overflow-x: hidden; /* Prevent horizontal scroll from subtle animations */
-            position: relative; /* For the animated background pseudo-elements */
-        }
-
-        /* --- Animated Background: Abstract Data Flow (Layer 1: Grid) --- */
-        /* Creates a subtle, animated grid pattern in the background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* SVG for a subtle electric blue grid pattern, slightly more visible */
-            background-image: url('data:image/svg+xml,%3Csvg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%2300F0FF" fill-opacity="0.07" fill-rule="evenodd"%3E%3Cpath d="M0 0h40v40H0V0zm40 40h40v40H40V40z"/%3E%3C/g%3E%3C/svg%3E');
-            background-size: 80px 80px;
-            opacity: 0.15; /* Slightly more visible */
-            z-index: -1; /* Behind all content */
-            animation: backgroundPan 60s linear infinite; /* Slow pan animation */
-        }
-
-        /* Keyframe animation for background panning */
-        @keyframes backgroundPan {
-            from { background-position: 0 0; }
-            to { background-position: 80px 80px; } /* Move by one grid cell */
-        }
-
-        /* --- Animated Background: Abstract Data Flow (Layer 2: Dots) --- */
-        /* Adds a second pseudo-element for an additional layer of animated dots/texture */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* SVG for small purple dots */
-            background-image: url('data:image/svg+xml,%3Csvg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"%3E%3Ccircle cx="3" cy="3" r="0.5" fill="%236C42F7" opacity="0.1"%3E%3C/circle%3E%3C/svg%3E');
-            background-size: 6px 6px;
-            opacity: 0.2; /* Subtle opacity */
-            z-index: -2; /* Behind the grid layer */
-            animation: dotMove 120s linear infinite; /* Even slower movement for depth */
-        }
-
-        /* Keyframe animation for dot movement */
-        @keyframes dotMove {
-            from { background-position: 0 0; }
-            to { background-position: 60px 60px; } /* Move by multiple dot sizes */
-        }
-
-        /* Utility for fade-in animation, used across various elements */
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* --- Navigation Bar: System Menu --- */
-        .system-menu { /* Renamed from navbar for thematic consistency */
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100; /* Ensure it's above other content */
-            transition: background-color 0.4s ease, border-bottom 0.4s ease;
-            border-bottom: 1px solid transparent; /* Initial transparent border */
-        }
-
-        /* Styles for navbar when scrolled */
-        .system-menu.scrolled {
-            background-color: rgba(10, 10, 15, 0.9); /* Semi-transparent dark background */
-            backdrop-filter: blur(15px); /* Frosted glass effect */
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
-        }
-
-        .system-logo { /* Renamed from nav-logo */
-            font-family: var(--font-title);
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-accent);
-            text-decoration: none;
-            letter-spacing: -1px;
-        }
-
-        .menu-links { /* Renamed from nav-links */
-            list-style: none;
-            display: flex;
-            gap: 45px;
-        }
-
-        .menu-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            transition: color 0.3s ease, transform 0.2s ease;
-            position: relative;
-        }
-
-        /* Underline animation for menu links */
-        .menu-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 3px;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--secondary-accent);
-            border-radius: 2px;
-            transition: width 0.3s ease;
-        }
-
-        .menu-links a:hover::after {
-            width: 100%;
-        }
-        .menu-links a:hover {
-            color: var(--secondary-accent);
-            transform: translateY(-2px); /* Slight lift on hover */
-        }
-
-        /* --- Hero Section: Active Profile / Live Feed --- */
-        .platform-display { /* Renamed from hero */
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 40px;
-            /* Enhanced gradient background for hero section */
-            background: linear-gradient(135deg, rgba(10,10,15,0.95) 0%, rgba(108,66,247,0.15) 35%, rgba(0,240,255,0.15) 75%, rgba(10,10,15,0.95) 100%);
-            position: relative;
-            overflow: hidden;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.05); /* Subtle bottom border */
-        }
-
-        .display-content { /* Renamed from hero-content */
-            display: flex;
-            align-items: center;
-            gap: 60px;
-            max-width: 1200px;
-            position: relative;
-            z-index: 2;
-            transform: translateY(-20px);
-            opacity: 0;
-            animation: fadeIn 1s forwards ease-out 0.5s; /* Fade in animation */
-        }
-
-        .profile-matrix { /* Renamed from profile-picture-container */
-            position: relative;
-            width: 280px; /* Larger size */
-            height: 280px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--primary-accent), var(--secondary-accent)); /* Gradient border */
-            padding: 5px; /* Border thickness */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .profile-avatar { /* Renamed from profile-picture */
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--background-dark); /* Inner border to separate image from gradient */
-        }
-
-        /* --- UPDATED: Status Indicator with Play Button --- */
-        .status-indicator {
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            /* Dynamic gradient background for the indicator */
-            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
-            color: var(--text-light);
-            padding: 8px 15px 8px 25px; /* Adjusted padding to make space for the button */
-            border-radius: 30px;
-            font-family: var(--font-mono); /* Monospace font for a techy feel */
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); /* Soft shadow */
-            display: flex; /* Use flexbox to align text and button horizontally */
-            align-items: center;
-            gap: 10px; /* Space between text and button */
-            border: 2px solid var(--secondary-accent); /* Subtle accent border */
-            overflow: hidden; /* Ensures pseudo-element stays within bounds */
-        }
-
-        /* Animated "shine" effect for the status indicator background */
-        .status-indicator::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* Semi-transparent white gradient for the shine */
-            background: linear-gradient(90deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.05) 100%);
-            background-size: 200% 100%; /* Wider background for the shine effect */
-            animation: shineEffect 3s infinite linear; /* Continuous linear animation */
-            z-index: -1; /* Behind the content of the indicator */
-        }
-
-        @keyframes shineEffect {
-            0% { background-position: -100% 0; } /* Start shine off-left */
-            100% { background-position: 100% 0; } /* End shine off-right */
-        }
-
-        /* Styling for the text content within the status indicator */
-        .status-text-content {
-            white-space: nowrap; /* Prevent text from wrapping */
-            transition: color 0.3s ease; /* Smooth color transition */
-        }
-
-        /* Styles for the Play/Pause Action Button */
-        .status-action-button {
-            background-color: var(--background-dark); /* Dark background for the button */
-            border: none; /* No default border */
-            border-radius: 50%; /* Circular button */
-            width: 38px; /* Fixed width and height for a perfect circle */
-            height: 38px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            flex-shrink: 0; /* Prevent button from shrinking in flex container */
-            position: relative; /* For icon positioning */
-            box-shadow: 0 0 0 3px var(--text-light); /* Initial white ring around the button */
-        }
-
-        .status-action-button:hover {
-            background-color: var(--card-hover); /* Slightly lighter background on hover */
-            transform: scale(1.08); /* Slight enlargement on hover */
-            box-shadow: 0 0 0 3px var(--secondary-accent); /* Electric blue ring on hover */
-        }
-
-        /* Styles for the Remix Icons within the button */
-        .status-action-button i {
-            font-size: 1.5rem; /* Icon size */
-            color: var(--secondary-accent); /* Electric blue for icons */
-            position: absolute; /* Position icons relative to the button */
-            transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transitions for icon changes */
-        }
-
-        .status-action-button .ri-play-fill {
-            opacity: 1; /* Play icon visible by default */
-            transform: scale(1); /* Normal size */
-        }
-
-        .status-action-button .ri-pause-fill {
-            opacity: 0; /* Pause icon hidden by default */
-            transform: scale(0.8); /* Slightly smaller when hidden */
-        }
-
-        /* State when system is "paused" (or standby) */
-        .status-indicator.paused .status-text-content {
-            color: var(--text-medium); /* Muted text color when paused */
-        }
-
-        .status-indicator.paused .status-action-button {
-            box-shadow: 0 0 0 3px var(--primary-accent); /* Deep purple ring when paused */
-        }
-        .status-indicator.paused .status-action-button:hover {
-            box-shadow: 0 0 0 3px var(--secondary-accent); /* Electric blue ring on hover even when paused */
-        }
-
-        .status-indicator.paused .status-action-button .ri-play-fill {
-            opacity: 1; /* Play icon visible when paused */
-            transform: scale(1);
-        }
-
-        .status-indicator.paused .status-action-button .ri-pause-fill {
-            opacity: 0; /* Pause icon hidden when paused */
-            transform: scale(0.8);
-        }
-
-        /* Pulse animation for the active state indicator */
-        .status-indicator.active {
-            animation: activePulse 2s infinite alternate, flickerEffect 3s infinite step-end; /* Added flickerEffect */
-        }
-
-        @keyframes activePulse {
-            0% {
-                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4), /* Base shadow */
-                            0 0 10px rgba(0, 240, 255, 0.4); /* Subtle blue glow */
-            }
-            100% {
-                box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6), /* Slightly larger base shadow */
-                            0 0 20px rgba(0, 240, 255, 0.8); /* Brighter and wider blue glow */
-            }
-        }
-
-        /* NEW: Slow flickering effect */
-        @keyframes flickerEffect {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.9; } /* Subtle flicker to 90% opacity */
-            52% { opacity: 1; }
-            54% { opacity: 0.85; } /* Deeper flicker */
-            56% { opacity: 1; }
-            80% { opacity: 1; } /* Hold full opacity for a while */
-        }
-        /* --- END UPDATED STATUS INDICATOR --- */
-
-        .display-text { /* Renamed from hero-text */
-            text-align: left;
-        }
-
-        .display-title { /* Renamed from hero-title */
-            font-family: var(--font-title);
-            font-size: clamp(3rem, 7vw, 5.5rem);
-            font-weight: 900;
-            letter-spacing: -2px;
-            margin-bottom: 15px;
-            line-height: 1.1;
-        }
-        
-        .display-subtitle { /* Renamed from hero-subtitle */
-            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-            color: var(--text-medium);
-            margin-bottom: 30px;
-            line-height: 1.6;
-            max-width: 700px;
-        }
-        
-        .access-button { /* Renamed from hero-cta */
-            padding: 18px 45px;
-            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
-            color: var(--background-dark);
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 50px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: inline-block;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-family: var(--font-main);
-            font-size: 1.1rem;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3); /* Soft shadow */
-        }
-
-        .access-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
-        }
-
-        /* --- Section Styling --- */
-        .platform-section { /* Renamed from section */
-            padding: 100px 60px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .platform-section.darker {
-            background-color: #08080C; /* Slightly different dark */
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .section-header { /* Renamed from section-title */
-            font-family: var(--font-title);
-            font-size: clamp(2.5rem, 5vw, 3.8rem);
-            font-weight: 700;
-            margin-bottom: 50px;
-            display: inline-block;
-            position: relative;
-            z-index: 1;
-            color: var(--text-light);
-            letter-spacing: -1px;
-        }
-        
-        .section-header span {
-            color: var(--secondary-accent);
-            font-size: 1.2em; /* Emphasize */
-        }
-
-        /* --- Projects Section: Computational Modules --- */
-        .modules-grid-container { /* Renamed from projects-carousel */
-            position: relative;
-        }
-
-        .module-track { /* Renamed from carousel-track */
-            display: flex;
-            gap: 25px;
-            overflow-x: auto; /* Enable horizontal scrolling */
-            padding: 20px 0;
-            scrollbar-width: none; /* Hide scrollbar for Firefox */
-            scrollbar-color: var(--primary-accent) var(--card-base);
-        }
-
-        /* Hide scrollbar for Webkit browsers (Chrome, Safari) */
-        .module-track::-webkit-scrollbar {
-            height: 8px;
-        }
-        .module-track::-webkit-scrollbar-track {
-            background: var(--card-base);
-            border-radius: 10px;
-        }
-        .module-track::-webkit-scrollbar-thumb {
-            background-color: var(--primary-accent);
-            border-radius: 10px;
-            border: 2px solid var(--card-base);
-        }
-
-        .project-module { /* Renamed from project-card */
-            flex: 0 0 300px; /* Fixed width for card */
-            height: 180px;
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end; /* Align title to bottom */
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.5s ease forwards;
-            background-size: cover;
-            background-position: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); /* Soft shadow */
-            /* Add subtle internal patterns for uniqueness */
-            background-image: linear-gradient(45deg, rgba(108,66,247,0.05), rgba(0,240,255,0.05)),
-                              url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M0 10L10 0L20 10L10 20Z" fill="%2300F0FF" opacity="0.05"/%3E%3C/g%3E%3C/svg%3E'); /* Subtle diamond pattern */
-            background-repeat: repeat;
-            background-blend-mode: overlay;
-        }
-
-        /* Specific module backgrounds for visual variety */
-        .project-module[data-project="duracim"] { background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('DURACIM.png'); }
-        .project-module[data-project="argus"] { background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('ARGUS.png'); }
-        .project-module[data-project="lexa"] { background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('LEXA.png'); }
-        .project-module[data-project="1bitllm"] { background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('1bit.png'); }
-        .project-module[data-project="snapea"] { background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('Lazy.png'); }
-        .project-module[data-project="license"] { background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('Number_plate.png'); }
-        
-        /* Overlay for text readability on module cards */
-        .project-module::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%; /* Cover full module for hover effect */
-            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%);
-            transition: background 0.3s ease;
-            z-index: 1;
-        }
-
-        .project-module:hover::before {
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%);
-        }
-
-        .project-module:hover {
-            transform: translateY(-10px) scale(1.05); /* Lift and enlarge on hover */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
-            border-color: var(--secondary-accent); /* Accent border on hover */
-        }
-
-        .module-title { /* Renamed from card-title */
-            font-family: var(--font-title);
-            font-size: 1.6rem;
-            font-weight: 700;
-            text-align: left;
-            color: var(--text-light);
-            position: relative; /* Ensure it's above overlay */
-            z-index: 2;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Soft shadow for readability */
-        }
-
-        /* --- Skills Section: Core Competencies --- */
-        .competencies-grid { /* Renamed from skills-grid-container */
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Responsive grid */
-            gap: 30px;
-        }
-
-        .competency-card { /* Renamed from channel-tile */
-            background-color: var(--card-base);
-            border-radius: 16px; /* More rounded */
-            padding: 30px;
-            transition: all 0.4s ease;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.5s ease forwards;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Soft shadow */
-            position: relative;
-            overflow: hidden; /* For background effect */
-        }
-        
-        /* Subtle background pattern for competencies cards */
-        .competency-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* SVG for a subtle diagonal line pattern */
-            background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%236C42F7' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zm1 6v-1L1 0h1z'/%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.1;
-            z-index: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .competency-card:hover::before {
-            opacity: 0.2; /* Increase pattern visibility on hover */
-        }
-
-        .competency-card:hover {
-            background-color: var(--card-hover);
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
-            border-color: var(--secondary-accent);
-        }
-
-        .competency-header { /* Renamed from tile-header */
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            margin-bottom: 25px;
-            position: relative; /* Ensure content is above pseudo-element */
-            z-index: 1;
-        }
-
-        .competency-icon { /* Renamed from tile-icon */
-            font-size: 2.8rem; /* Larger icon */
-            color: var(--secondary-accent);
-        }
-
-        .competency-title { /* Renamed from tile-title */
-            font-family: var(--font-title);
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--text-light);
-            letter-spacing: -0.5px;
-        }
-
-        .skill-set { /* Renamed from skill-list */
-            list-style: none;
-            counter-reset: skill-counter; /* Initialize counter for list items */
-            position: relative;
-            z-index: 1;
-        }
-
-        .skill-set li {
-            color: var(--text-medium);
-            margin-bottom: 15px; /* More spacing */
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-family: var(--font-main);
-            font-size: 1.05rem;
-        }
-        
-        /* Custom counter for skill list items */
-        .skill-set li::before {
-            counter-increment: skill-counter;
-            content: "ID:" counter(skill-counter, decimal-leading-zero); /* "ID:01", "ID:02" etc. */
-            font-weight: 500;
-            color: var(--primary-accent);
-            font-family: var(--font-mono);
-            font-size: 0.95em;
-            width: 50px; /* Fixed width for alignment */
-            text-align: right;
-            opacity: 0.8;
-        }
-
-        /* --- Journey Section: System Log / Development Timeline --- */
-        .timeline-grid { /* Renamed from journey-grid */
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Responsive grid */
-            gap: 40px;
-        }
-
-        .log-entry-card { /* Renamed from journey-card */
-            background-color: var(--card-base);
-            border-radius: 16px;
-            padding: 35px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Soft shadow */
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.5s ease forwards;
-        }
-
-        .log-entry-card:hover {
-            background-color: var(--card-hover);
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
-            border-color: var(--primary-accent); /* Accent border on hover */
-        }
-
-        /* Colored bar at the top of timeline cards */
-        .log-entry-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: linear-gradient(to right, var(--primary-accent), var(--secondary-accent));
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-        }
-
-        .log-entry-card h3 {
-            font-family: var(--font-title);
-            font-size: 2rem;
-            color: var(--text-light);
-            margin-bottom: 10px;
-            padding-top: 15px; /* Space for the colored bar */
-        }
-
-        .log-entry-card h4 {
-            font-size: 1.2rem;
-            color: var(--secondary-accent);
-            margin-bottom: 5px;
-        }
-
-        .log-entry-card .timeline-date { /* Renamed from duration */
-            font-size: 0.95rem;
-            color: var(--text-medium);
-            margin-bottom: 20px;
-            font-family: var(--font-mono);
-        }
-
-        .log-entry-card p {
-            font-size: 1.05rem;
-            line-height: 1.6;
-            color: var(--text-medium);
-        }
-        
-        /* --- Get In Touch Section: Connect Protocol --- */
-        .contact-module { /* Renamed from contact-container */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 30px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .contact-module p {
-            font-size: 1.3rem;
-            color: var(--text-medium);
-            line-height: 1.7;
-        }
-
-        .connection-links { /* Renamed from contact-links */
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .connection-links a {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: var(--text-light);
-            background-color: var(--card-base);
-            padding: 15px 30px;
-            border-radius: 40px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
-        }
-
-        .connection-links a i {
-            font-size: 1.8rem;
-            color: var(--secondary-accent);
-            transition: color 0.3s ease;
-        }
-
-        .connection-links a:hover {
-            background-color: var(--card-hover);
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
-            border-color: var(--secondary-accent);
-        }
-
-        .connection-links a:hover i {
-            color: var(--primary-accent);
-        }
-
-
-        /* --- Footer: System Status Bar --- */
-        .system-status-bar { /* Renamed from control-panel-footer */
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 90px;
-            background-color: #000000;
-            border-top: 1px solid #1C1C22;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr; /* Three columns for left, center, right */
-            align-items: center;
-            padding: 0 40px;
-            z-index: 200;
-            box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.4); /* Soft shadow */
-        }
-
-        .status-left-info { /* Renamed from footer-left-status */
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .status-text {
-            color: var(--text-medium);
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-        }
-        #active-module-focus { /* Renamed from current-content-focus */
-            color: var(--secondary-accent);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .status-center-links { /* Renamed from footer-center-controls */
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-        }
-        
-        .status-center-links a {
-            color: var(--text-medium);
-            text-decoration: none;
-            font-size: 2.2rem; /* Larger icons */
-            transition: all 0.3s ease;
-        }
-        
-        .status-center-links a:hover {
-            color: var(--secondary-accent);
-            transform: scale(1.2);
-        }
-        
-        .status-right-action { /* Renamed from footer-right-action */
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .status-right-action a {
-            text-decoration: none;
-            color: var(--background-dark);
-            background: linear-gradient(90deg, var(--secondary-accent), var(--primary-accent));
-            font-weight: 700;
-            padding: 14px 30px;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-family: var(--font-main);
-            letter-spacing: 1px;
-            font-size: 1rem;
-            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3); /* Soft shadow */
-        }
-
-        .status-right-action a:hover {
-            transform: scale(1.05);
-            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
-            color: var(--text-light);
-        }
-        
-        /* --- Project Detail Modal (Retaining similar functionality) --- */
-        .data-modal { /* Renamed from modal */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            backdrop-filter: blur(18px); /* Even stronger blur */
-            z-index: 300;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-        .data-modal.active { opacity: 1; visibility: visible; }
-        .modal-content {
-            background-color: var(--card-base);
-            width: 90%;
-            max-width: 900px; /* Wider modal */
-            max-height: 90vh;
-            border-radius: 16px;
-            overflow-y: auto;
-            position: relative;
-            transform: translateY(30px) scale(0.9);
-            transition: transform 0.5s ease;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8); /* Soft shadow */
-            border: 2px solid var(--primary-accent); /* Stronger accent border */
-        }
-        .data-modal.active .modal-content { transform: translateY(0) scale(1); }
-        .modal-header { 
-            padding: 40px 50px; /* More padding */
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-            position: sticky;
-            top: 0;
-            background-color: var(--card-base);
-            z-index: 10;
-        }
-        .modal-title { 
-            font-family: var(--font-title);
-            font-size: 3.5rem; /* Larger title */
-            font-weight: 900; 
-            color: var(--secondary-accent);
-            letter-spacing: -1px;
-        }
-        .modal-body { padding: 30px 50px 50px; }
-        .modal-description { 
-            font-size: 1.15rem; /* Slightly larger text */
-            line-height: 1.8; 
-            color: var(--text-medium); 
-            margin-bottom: 35px; 
-        }
-        .modal-tech-stack { 
-            display: flex; 
-            flex-wrap: wrap; 
-            gap: 15px; 
-            margin-bottom: 40px; 
-        }
-        .tech-tag { 
-            background-color: #282835; /* Darker tag background */
-            padding: 10px 20px; 
-            border-radius: 30px; 
-            font-size: 1rem; 
-            font-weight: 500; 
-            color: var(--text-light);
-            border: 1px solid rgba(108, 66, 247, 0.3); /* Accent border for tags */
-            font-family: var(--font-mono);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
-        }
-        .modal-actions a { 
-            display: inline-block; 
-            text-decoration: none; 
-            color: var(--background-dark); 
-            background: linear-gradient(90deg, var(--secondary-accent), var(--primary-accent));
-            padding: 16px 35px; 
-            border-radius: 35px; 
-            font-weight: 700; 
-            margin-right: 20px; 
-            transition: all 0.3s ease; 
-            text-transform: uppercase;
-            font-family: var(--font-main);
-            letter-spacing: 1.2px;
-            font-size: 1.05rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); /* Soft shadow */
-        }
-        .modal-actions a:hover { 
-            transform: scale(1.05);
-            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
-            color: var(--text-light);
-        }
-        .modal-close { 
-            position: absolute; 
-            top: 25px; 
-            right: 30px; 
-            font-size: 3rem; 
-            color: var(--text-dark); 
-            cursor: pointer; 
-            transition: color 0.3s ease, transform 0.3s ease; 
-            z-index: 11; 
-        }
-        .modal-close:hover { 
-            color: var(--secondary-accent); 
-            transform: rotate(90deg) scale(1.1);
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 900px) {
-            .display-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 40px;
-            }
-            .profile-matrix {
-                width: 220px;
-                height: 220px;
-            }
-            .display-title {
-                font-size: clamp(2.8rem, 8vw, 4.5rem);
-            }
-            .display-subtitle {
-                font-size: clamp(1rem, 2.8vw, 1.3rem);
-            }
-            .platform-section {
-                padding: 80px 30px;
-            }
-            .system-menu {
-                padding: 15px 30px;
-            }
-            .menu-links {
-                gap: 25px;
-            }
-            .section-header {
-                font-size: clamp(2rem, 6vw, 3.2rem);
-            }
-            .competencies-grid {
-                grid-template-columns: 1fr;
-            }
-            .timeline-grid {
-                grid-template-columns: 1fr;
-            }
-            .system-status-bar {
-                grid-template-columns: 1fr;
-                height: auto;
-                padding: 15px 20px;
-                gap: 15px;
-            }
-            .status-center-links, .status-right-action {
-                justify-content: center;
-            }
-            .status-left-info {
-                justify-content: center;
-            }
-            .modal-header, .modal-body {
-                padding: 30px;
-            }
-            .modal-title {
-                font-size: 2.5rem;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .system-menu {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px 20px;
-            }
-            .menu-links {
-                gap: 15px;
-            }
-            .display-content {
-                gap: 30px;
-            }
-            .profile-matrix {
-                width: 180px;
-                height: 180px;
-            }
-            .access-button {
-                padding: 12px 25px;
-                font-size: 0.9rem;
-            }
-            .project-module {
-                flex: 0 0 260px;
-                height: 160px;
-            }
-            .module-title {
-                font-size: 1.3rem;
-            }
-            .competency-card {
-                padding: 20px;
-            }
-            .competency-title {
-                font-size: 1.5rem;
-            }
-            .modal-title {
-                font-size: 2rem;
-            }
-        }
-
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sriharsha Mudumba - AI-Core Platform (Updated)</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <style>
+        /* --- Fonts --- */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+        /* --- Theme Vars --- */
+        :root{
+            --primary-accent:#6C42F7;/* Deep Purple */
+            --secondary-accent:#00F0FF;/* Electric Blue */
+            --background-dark:#0A0A0F;
+            --card-base:#1A1A22;
+            --card-hover:#2A2A38;
+            --text-light:#E0E0FF;
+            --text-medium:#A0A0C0;
+            --text-dark:#505070;
+            --font-main:'Inter',sans-serif;
+            --font-title:'Oswald',sans-serif;
+            --font-mono:'Space Mono',monospace;
+        }
+
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{
+            font-family:var(--font-main);
+            background:var(--background-dark);
+            color:var(--text-light);
+            padding-bottom:90px;
+            overflow-x:hidden;
+            position:relative;
+        }
+
+        /* Animated bg layers */
+        body::before{
+            content:"";position:fixed;inset:0;z-index:-1;
+            background-image:url('data:image/svg+xml,%3Csvg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%2300F0FF" fill-opacity="0.07"%3E%3Cpath d="M0 0h40v40H0V0zm40 40h40v40H40V40z"/%3E%3C/g%3E%3C/svg%3E');
+            background-size:80px 80px;opacity:.15;animation:bgpan 60s linear infinite
+        }
+        @keyframes bgpan{from{background-position:0 0}to{background-position:80px 80px}}
+        body::after{
+            content:"";position:fixed;inset:0;z-index:-2;opacity:.2;
+            background-image:url('data:image/svg+xml,%3Csvg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"%3E%3Ccircle cx="3" cy="3" r="0.5" fill="%236C42F7" opacity="0.1"/%3E%3C/svg%3E');
+            background-size:6px 6px;animation:dotMove 120s linear infinite
+        }
+        @keyframes dotMove{from{background-position:0 0}to{background-position:60px 60px}}
+
+        @keyframes fadeIn{to{opacity:1;transform:translateY(0)}}
+
+        /* --- System menu --- */
+        .system-menu{position:fixed;top:0;left:0;right:0;padding:20px 60px;display:flex;justify-content:space-between;align-items:center;z-index:100;transition:background-color .4s ease,border-bottom .4s ease;border-bottom:1px solid transparent}
+        .system-menu.scrolled{background-color:rgba(10,10,15,.9);backdrop-filter:blur(15px);border-bottom:1px solid rgba(255,255,255,.1)}
+        .system-logo{font-family:var(--font-title);font-size:2.5rem;font-weight:700;color:var(--primary-accent);text-decoration:none;letter-spacing:-1px}
+        .menu-links{list-style:none;display:flex;gap:45px}
+        .menu-links a{color:var(--text-light);text-decoration:none;font-weight:500;font-size:1.1rem;transition:color .3s ease,transform .2s ease;position:relative}
+        .menu-links a::after{content:"";position:absolute;width:0;height:3px;bottom:-8px;left:50%;transform:translateX(-50%);background:var(--secondary-accent);border-radius:2px;transition:width .3s ease}
+        .menu-links a:hover{color:var(--secondary-accent);transform:translateY(-2px)}
+        .menu-links a:hover::after{width:100%}
+
+        /* --- Hero --- */
+        .platform-display{height:100vh;display:flex;align-items:center;justify-content:center;padding:0 40px;background:linear-gradient(135deg,rgba(10,10,15,.95) 0%, rgba(108,66,247,.15) 35%, rgba(0,240,255,.15) 75%, rgba(10,10,15,.95) 100%);position:relative;overflow:hidden;border-bottom:2px solid rgba(255,255,255,.05)}
+        .display-content{display:flex;align-items:center;gap:60px;max-width:1200px;position:relative;z-index:2;transform:translateY(-20px);opacity:0;animation:fadeIn 1s forwards ease-out .5s}
+        .profile-matrix{position:relative;width:280px;height:280px;border-radius:50%;background:linear-gradient(45deg,var(--primary-accent),var(--secondary-accent));padding:5px;display:flex;align-items:center;justify-content:center}
+        .profile-avatar{width:100%;height:100%;border-radius:50%;object-fit:cover;border:4px solid var(--background-dark)}
+
+        /* Status indicator */
+        .status-indicator{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,var(--primary-accent),var(--secondary-accent));color:var(--text-light);padding:8px 15px 8px 25px;border-radius:30px;font-family:var(--font-mono);font-size:1.1rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;box-shadow:0 5px 20px rgba(0,0,0,.4);display:flex;align-items:center;gap:10px;border:2px solid var(--secondary-accent);overflow:hidden}
+        .status-indicator::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.05) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,.05) 100%);background-size:200% 100%;animation:shine 3s infinite linear;z-index:-1}
+        @keyframes shine{0%{background-position:-100% 0}100%{background-position:100% 0}}
+        .status-action-button{background:var(--background-dark);border:none;border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background-color .3s ease,transform .2s ease,box-shadow .3s ease;flex-shrink:0;position:relative;box-shadow:0 0 0 3px var(--text-light)}
+        .status-action-button:hover{background:var(--card-hover);transform:scale(1.08);box-shadow:0 0 0 3px var(--secondary-accent)}
+        .status-action-button i{font-size:1.5rem;color:var(--secondary-accent);position:absolute;transition:opacity .3s ease,transform .3s ease}
+        .status-indicator.paused .status-action-button{box-shadow:0 0 0 3px var(--primary-accent)}
+        .status-indicator.active{animation:activePulse 2s infinite alternate, flickerEffect 3s infinite step-end}
+        @keyframes activePulse{0%{box-shadow:0 5px 20px rgba(0,0,0,.4),0 0 10px rgba(0,240,255,.4)}100%{box-shadow:0 5px 25px rgba(0,0,0,.6),0 0 20px rgba(0,240,255,.8)}}
+        @keyframes flickerEffect{0%,100%{opacity:1}50%{opacity:.9}52%{opacity:1}54%{opacity:.85}56%{opacity:1}}
+
+        .display-text{text-align:left}
+        .display-title{font-family:var(--font-title);font-size:clamp(3rem,7vw,5.5rem);font-weight:900;letter-spacing:-2px;margin-bottom:15px;line-height:1.1}
+        .display-subtitle{font-size:clamp(1.2rem,2.5vw,1.6rem);color:var(--text-medium);margin-bottom:30px;line-height:1.6;max-width:700px}
+        .access-button{padding:18px 45px;background:linear-gradient(90deg,var(--primary-accent),var(--secondary-accent));color:var(--background-dark);text-decoration:none;font-weight:700;border-radius:50px;transition:transform .3s ease,box-shadow .3s ease;display:inline-block;text-transform:uppercase;letter-spacing:1.5px;font-size:1.1rem;box-shadow:0 5px 25px rgba(0,0,0,.3)}
+        .access-button:hover{transform:scale(1.05);box-shadow:0 5px 30px rgba(0,0,0,.5)}
+
+        /* --- Sections --- */
+        .platform-section{padding:100px 60px;overflow:hidden;position:relative}
+        .platform-section.darker{background:#08080C;border-top:1px solid rgba(255,255,255,.05)}
+        .section-header{font-family:var(--font-title);font-size:clamp(2.5rem,5vw,3.8rem);font-weight:700;margin-bottom:50px;display:inline-block;position:relative;z-index:1;color:var(--text-light);letter-spacing:-1px}
+        .section-header span{color:var(--secondary-accent);font-size:1.2em}
+
+        /* --- Projects: image-free cards + slider --- */
+        .modules-grid-container{position:relative}
+        .module-viewport{overflow:hidden;position:relative}
+        .module-track{display:flex;gap:25px;overflow-x:auto;padding:20px 0;scrollbar-width:none}
+        .module-track::-webkit-scrollbar{height:8px}
+        .module-track::-webkit-scrollbar-track{background:var(--card-base);border-radius:10px}
+        .module-track::-webkit-scrollbar-thumb{background-color:var(--primary-accent);border-radius:10px;border:2px solid var(--card-base)}
+        .project-module{flex:0 0 320px;height:180px;border-radius:14px;cursor:pointer;transition:all .4s ease;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;border:1px solid rgba(255,255,255,.1);opacity:0;transform:translateY(20px);animation:fadeIn .5s ease forwards;background:
+            radial-gradient(1200px 300px at 0% 100%, rgba(0,240,255,.18) 0%, rgba(0,0,0,0) 60%),
+            radial-gradient(1200px 300px at 100% 0%, rgba(108,66,247,.18) 0%, rgba(0,0,0,0) 60%),
+            linear-gradient(180deg, rgba(255,255,255,.04) 0%, rgba(255,255,255,0) 100%),
+            var(--card-base);
+            background-blend-mode:screen,screen,overlay,normal;
+        }
+        .project-module::before{content:"";position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.6) 0%, rgba(0,0,0,0) 60%);transition:background .3s ease;z-index:1;border-radius:14px}
+        .project-module:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 10px 30px rgba(0,0,0,.5);border-color:var(--secondary-accent)}
+        .project-module:hover::before{background:linear-gradient(to top, rgba(0,0,0,.75) 0%, rgba(0,0,0,.1) 60%)}
+        .module-title{font-family:var(--font-title);font-size:1.6rem;font-weight:700;text-align:left;color:var(--text-light);position:relative;z-index:2;text-shadow:0 2px 5px rgba(0,0,0,.5)}
+
+        .module-nav{position:absolute;inset:0;pointer-events:none}
+        .module-nav button{position:absolute;top:50%;transform:translateY(-50%);background:rgba(10,10,15,.8);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(6px);color:var(--text-light);width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .2s ease,background .3s ease,box-shadow .3s ease;pointer-events:auto}
+        .module-nav button:hover{transform:translateY(-50%) scale(1.07);background:rgba(20,20,30,.95);box-shadow:0 6px 20px rgba(0,0,0,.3)}
+        .module-nav .prev{left:0}
+        .module-nav .next{right:0}
+
+        /* --- Skills --- */
+        .competencies-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px}
+        .competency-card{background:var(--card-base);border-radius:16px;padding:30px;transition:all .4s ease;opacity:0;transform:translateY(20px);animation:fadeIn .5s ease forwards;border:1px solid rgba(255,255,255,.08);box-shadow:0 6px 20px rgba(0,0,0,.2);position:relative;overflow:hidden}
+        .competency-card::before{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%236C42F7' fill-opacity='0.1'%3E%3Cpath d='M5 0h1L0 6V5zm1 6v-1L1 0h1z'/%3E%3C/g%3E%3C/svg%3E");opacity:.1;transition:opacity .3s ease;z-index:0}
+        .competency-card:hover{background:var(--card-hover);transform:translateY(-8px) scale(1.02);box-shadow:0 10px 30px rgba(0,0,0,.5);border-color:var(--secondary-accent)}
+        .competency-card:hover::before{opacity:.2}
+        .competency-header{display:flex;align-items:center;gap:18px;margin-bottom:25px;position:relative;z-index:1}
+        .competency-icon{font-size:2.8rem;color:var(--secondary-accent)}
+        .competency-title{font-family:var(--font-title);font-size:1.8rem;font-weight:700;color:var(--text-light);letter-spacing:-.5px}
+        .skill-set{list-style:none;counter-reset:skill-counter;position:relative;z-index:1}
+        .skill-set li{color:var(--text-medium);margin-bottom:15px;display:flex;align-items:center;gap:15px;font-size:1.05rem}
+        .skill-set li::before{counter-increment:skill-counter;content:"ID:" counter(skill-counter, decimal-leading-zero);font-weight:500;color:var(--primary-accent);font-family:var(--font-mono);font-size:.95em;width:50px;text-align:right;opacity:.8}
+
+        /* --- Timeline --- */
+        .timeline-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:40px}
+        .log-entry-card{background:var(--card-base);border-radius:16px;padding:35px;border:1px solid rgba(255,255,255,.08);box-shadow:0 6px 20px rgba(0,0,0,.2);position:relative;overflow:hidden;transition:all .4s ease;opacity:0;transform:translateY(20px);animation:fadeIn .5s ease forwards}
+        .log-entry-card:hover{background:var(--card-hover);transform:translateY(-8px) scale(1.02);box-shadow:0 10px 30px rgba(0,0,0,.5);border-color:var(--primary-accent)}
+        .log-entry-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:8px;background:linear-gradient(to right,var(--primary-accent),var(--secondary-accent));border-top-left-radius:15px;border-top-right-radius:15px}
+        .log-entry-card h3{font-family:var(--font-title);font-size:2rem;color:var(--text-light);margin-bottom:10px;padding-top:15px}
+        .log-entry-card h4{font-size:1.2rem;color:var(--secondary-accent);margin-bottom:5px}
+        .timeline-date{font-size:.95rem;color:var(--text-medium);margin-bottom:20px;font-family:var(--font-mono)}
+        .log-entry-card p{font-size:1.05rem;line-height:1.6;color:var(--text-medium)}
+
+        /* --- Contact --- */
+        .contact-module{display:flex;flex-direction:column;align-items:center;text-align:center;gap:30px;max-width:800px;margin:0 auto}
+        .contact-module p{font-size:1.3rem;color:var(--text-medium);line-height:1.7}
+        .connection-links{display:flex;gap:30px;flex-wrap:wrap;justify-content:center}
+        .connection-links a{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text-light);background:var(--card-base);padding:15px 30px;border-radius:40px;font-size:1.1rem;font-weight:500;transition:all .3s ease;border:1px solid rgba(255,255,255,.1);box-shadow:0 4px 15px rgba(0,0,0,.2)}
+        .connection-links a i{font-size:1.8rem;color:var(--secondary-accent);transition:color .3s ease}
+        .connection-links a:hover{background:var(--card-hover);transform:translateY(-5px) scale(1.02);box-shadow:0 8px 25px rgba(0,0,0,.4);border-color:var(--secondary-accent)}
+        .connection-links a:hover i{color:var(--primary-accent)}
+
+        /* --- Footer status bar --- */
+        .system-status-bar{position:fixed;bottom:0;left:0;width:100%;height:90px;background:#000;border-top:1px solid #1C1C22;display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;padding:0 40px;z-index:200;box-shadow:0 -5px 25px rgba(0,0,0,.4)}
+        .status-left-info{display:flex;align-items:center;gap:15px}
+        .status-text{color:var(--text-medium);font-family:var(--font-mono);font-size:.9rem}
+        #active-module-focus{color:var(--secondary-accent);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+        .status-center-links{display:flex;justify-content:center;gap:40px}
+        .status-center-links a{color:var(--text-medium);text-decoration:none;font-size:2.2rem;transition:all .3s ease}
+        .status-center-links a:hover{color:var(--secondary-accent);transform:scale(1.2)}
+        .status-right-action{display:flex;justify-content:flex-end}
+        .status-right-action a{text-decoration:none;color:var(--background-dark);background:linear-gradient(90deg,var(--secondary-accent),var(--primary-accent));font-weight:700;padding:14px 30px;border-radius:30px;transition:all .3s ease;text-transform:uppercase;letter-spacing:1px;font-size:1rem;box-shadow:0 3px 15px rgba(0,0,0,.3)}
+        .status-right-action a:hover{transform:scale(1.05);background:linear-gradient(90deg,var(--primary-accent),var(--secondary-accent));box-shadow:0 5px 20px rgba(0,0,0,.4);color:var(--text-light)}
+
+        /* --- Modal --- */
+        .data-modal{position:fixed;inset:0;background:rgba(0,0,0,.9);backdrop-filter:blur(18px);z-index:300;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease}
+        .data-modal.active{opacity:1;visibility:visible}
+        .modal-content{background:var(--card-base);width:90%;max-width:900px;max-height:90vh;border-radius:16px;overflow-y:auto;position:relative;transform:translateY(30px) scale(.9);transition:transform .5s ease;box-shadow:0 15px 50px rgba(0,0,0,.8);border:2px solid var(--primary-accent)}
+        .data-modal.active .modal-content{transform:translateY(0) scale(1)}
+        .modal-header{padding:40px 50px;border-bottom:1px solid rgba(255,255,255,.15);position:sticky;top:0;background:var(--card-base);z-index:10}
+        .modal-title{font-family:var(--font-title);font-size:3.2rem;font-weight:900;color:var(--secondary-accent);letter-spacing:-1px}
+        .modal-body{padding:30px 50px 50px}
+        .modal-description{font-size:1.1rem;line-height:1.8;color:var(--text-medium);margin-bottom:28px}
+        .modal-tech-stack{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px}
+        .tech-tag{background:#282835;padding:10px 16px;border-radius:30px;font-size:.95rem;font-weight:500;color:var(--text-light);border:1px solid rgba(108,66,247,.3);font-family:var(--font-mono);box-shadow:0 2px 8px rgba(0,0,0,.2)}
+        .modal-actions a{display:inline-block;text-decoration:none;color:var(--background-dark);background:linear-gradient(90deg,var(--secondary-accent),var(--primary-accent));padding:14px 26px;border-radius:30px;font-weight:700;margin-right:16px;transition:all .3s ease;text-transform:uppercase;letter-spacing:1.2px;font-size:1rem;box-shadow:0 5px 20px rgba(0,0,0,.3)}
+        .modal-actions a:hover{transform:scale(1.05);background:linear-gradient(90deg,var(--primary-accent),var(--secondary-accent));color:var(--text-light)}
+        .modal-close{position:absolute;top:18px;right:22px;font-size:2.6rem;color:var(--text-dark);cursor:pointer;transition:color .3s ease,transform .3s ease;z-index:11}
+        .modal-close:hover{color:var(--secondary-accent);transform:rotate(90deg) scale(1.08)}
+
+        /* --- Responsive tweaks --- */
+        @media (max-width:900px){
+            .display-content{flex-direction:column;text-align:center;gap:40px}
+            .profile-matrix{width:220px;height:220px}
+            .platform-section{padding:80px 30px}
+            .system-menu{padding:15px 30px}
+            .menu-links{gap:25px}
+            .system-status-bar{grid-template-columns:1fr;height:auto;padding:15px 20px;gap:15px}
+            .status-center-links,.status-right-action{justify-content:center}
+            .status-left-info{justify-content:center}
+            .modal-header,.modal-body{padding:30px}
+            .modal-title{font-size:2.5rem}
+        }
+        @media (max-width:600px){
+            .system-menu{flex-direction:column;gap:15px;padding:15px 20px}
+            .menu-links{gap:15px}
+            .profile-matrix{width:180px;height:180px}
+            .access-button{padding:12px 25px;font-size:.9rem}
+            .project-module{flex:0 0 260px;height:160px}
+            .module-title{font-size:1.3rem}
+            .competency-card{padding:20px}
+            .competency-title{font-size:1.5rem}
+            .modal-title{font-size:2rem}
+        }
+    </style>
 </head>
 <body>
-
     <nav class="system-menu" id="navbar">
         <a href="#home" class="system-logo">SM</a>
         <ul class="menu-links">
@@ -1046,8 +219,8 @@
     <header class="platform-display" id="home">
         <div class="display-content">
             <div class="profile-matrix">
-                <img src="Dp_imaage.jpg" alt="Sriharsha Mudumba" class="profile-avatar">
-                <!-- UPDATED: Status Indicator with Play/Pause Button -->
+                <!-- Keep your avatar file or replace src; project images removed per request -->
+                <img src="Dp_imaage.jpg" alt="Sriharsha Mudumba" class="profile-avatar" />
                 <span class="status-indicator" id="system-status-indicator">
                     <span class="status-text-content">Currently Playing</span>
                     <button class="status-action-button" id="toggleSystemStatus">
@@ -1055,12 +228,11 @@
                         <i class="ri-pause-fill"></i>
                     </button>
                 </span>
-                <!-- END UPDATED -->
             </div>
             <div class="display-text">
                 <h1 class="display-title">Sriharsha Mudumba</h1>
                 <p class="display-subtitle">
-                    AI Architect & ML Engineer – Crafting high-performance intelligent systems from compute-in-memory frameworks to scalable RAG pipelines. I build the solutions that power tomorrow's innovations hopefully !!
+                    AI Architect & ML Engineer — building high‑performance intelligent systems from compute‑in‑memory frameworks to scalable RAG pipelines. I build the solutions that power tomorrow's innovations.
                 </p>
                 <a href="#projects" class="access-button">Explore</a>
             </div>
@@ -1071,25 +243,20 @@
         <section class="platform-section" id="projects">
             <h2 class="section-header">Computational <span>Modules</span></h2>
             <div class="modules-grid-container">
-                <div class="module-track">
-                    <!-- DURACIM Project Module -->
-                    <div class="project-module" data-project="duracim"><div class="module-title">DURACIM</div></div>
-                    <!-- ARGUS Project Module -->
-                    <div class="project-module" data-project="argus"><div class="module-title">ARGUS RAG System</div></div>
-                    <!-- LEXA Project Module -->
-                    <div class="project-module" data-project="lexa"><div class="module-title">LEXA Edge Assistant</div></div>
-                    <!-- 1BitLLM Project Module -->
-                    <div class="project-module" data-project="1bitllm"><div class="module-title">1BitLLM Optimization</div></div>
-                    <!-- SNAPE-A Project Module -->
-                    <div class="project-module" data-project="snapea"><div class="module-title">SnaPEA Accelerator</div></div>
-                    <!-- LICENSE Project Module -->
-                    <div class="project-module" data-project="license"><div class="module-title">License Plate Detection</div></div>
+                <div class="module-viewport">
+                    <div class="module-track" id="moduleTrack">
+                        <div class="project-module" data-project="duracim"><div class="module-title">DURACIM</div></div>
+                        <div class="project-module" data-project="torchweave"><div class="module-title">TorchWeave‑LLM</div></div>
+                        <div class="project-module" data-project="argus"><div class="module-title">ARGUS RAG</div></div>
+                        <div class="project-module" data-project="lexa"><div class="module-title">LEXA Edge</div></div>
+                    </div>
+                    <div class="module-nav">
+                        <button class="prev" id="navPrev" title="Previous"><i class="ri-arrow-left-s-line"></i></button>
+                        <button class="next" id="navNext" title="Next"><i class="ri-arrow-right-s-line"></i></button>
+                    </div>
                 </div>
             </div>
         </section>
-
-        <!-- Separator for visual distinction -->
-        <!-- --- -->
 
         <section class="platform-section darker" id="skills">
             <h2 class="section-header">Core <span>Competencies</span></h2>
@@ -1097,7 +264,7 @@
                 <div class="competency-card">
                     <div class="competency-header"><i class="ri-braces-line competency-icon"></i><h3 class="competency-title">AI Frameworks</h3></div>
                     <ol class="skill-set">
-                        <li>PyTorch</li><li>TensorFlow</li><li>Scikit-learn</li><li>Langchain</li><li>ONNX</li>
+                        <li>PyTorch</li><li>TensorFlow</li><li>ONNX</li><li>IREE</li><li>MLIR</li><li>scikit‑learn</li>
                     </ol>
                 </div>
                 <div class="competency-card">
@@ -1109,7 +276,7 @@
                 <div class="competency-card">
                     <div class="competency-header"><i class="ri-server-line competency-icon"></i><h3 class="competency-title">HPC & System Design</h3></div>
                     <ol class="skill-set">
-                       <li>OpenMP / MPI</li><li>Slurm</li><li>Distributed Systems</li><li>Linux</li>
+                        <li>OpenMP / MPI</li><li>Slurm</li><li>Distributed Systems</li><li>Linux</li>
                     </ol>
                 </div>
                 <div class="competency-card">
@@ -1121,9 +288,6 @@
             </div>
         </section>
 
-        <!-- Separator for visual distinction -->
-        <!-- --- -->
-
         <section class="platform-section" id="journey">
             <h2 class="section-header">System Log: <span>Development Timeline</span></h2>
             <div class="timeline-grid">
@@ -1131,79 +295,70 @@
                     <h3>Master's Degree</h3>
                     <h4>Iowa State University</h4>
                     <p class="timeline-date">August 2023 – August 2025</p>
-                    <p>Focused on Computer Engineering with specialization in Machine Learning and High-Performance Computing. Researched Compute-in-Memory (CiM) architectures and Retrieval-Augmented Generation (RAG) systems and HPC systems, contributing to the design and optimization of advanced AI hardware and software systems.</p>
+                    <p>
+                        Computer Engineering with focus on Machine Learning and High‑Performance Computing. Researched Compute‑in‑Memory (CiM) architectures and Retrieval‑Augmented Generation (RAG) systems, contributing to co‑designed AI hardware‑software optimizations.
+                    </p>
                 </div>
                 <div class="log-entry-card">
-                    <h3>Associate Database Administrator</h3>
-                    <h4>Cognizant</h4>
-                    <p class="timeline-date">august 2020 – July 2023</p>
-                    <p>Managed and maintained critical database infrastructure, ensuring high availability, performance, and security. Focused on Oracle 11g/12c/19c administration, including database patching, backup/recovery, performance tuning, and incident resolution. Collaborated with development teams to optimize SQL queries and schema designs.</p>
+                    <h3>Associate Software Engineer</h3>
+                    <h4>Cognizant Technology Solutions</h4>
+                    <p class="timeline-date">August 2020 – July 2023</p>
+                    <p>
+                        Worked with DBA team and designed and maintained scalable data and compute pipelines, improving overall reliability and efficiency across enterprise‑scale systems. Automated Linux‑based workflows for replication, patching, and monitoring, reducing downtime by 50% and ensuring consistent high availability. Optimized performance across large deployments by mitigating latency, I/O bottlenecks, and memory overhead, and collaborated with cross‑functional teams to deliver secure, high‑performance infrastructure for mission‑critical workloads.
+                    </p>
                 </div>
                 <div class="log-entry-card">
                     <h3>Intern</h3>
-                    <h4>ISRO - Indian Space Research Organization</h4>
-                    <p class="timeline-date">February 2019 – June 2019 (5 months)</p>
-                    <p>Interned at Laboratory for Electro-Optics Systems (LEOS), where I worked on the implementation of Serial Peripheral Interface (SPI) protocols for a Micro Digital Sun Sensor (MDSS). My work involved communicating with a ProASIC FPGA via Arduino Uno, developing strong skills in VHDL coding and embedded systems integration.</p>
+                    <h4>ISRO — LEOS</h4>
+                    <p class="timeline-date">February 2019 – June 2019</p>
+                    <p>
+                        Implemented SPI for a Micro Digital Sun Sensor; interfaced ProASIC FPGA via Arduino; developed VHDL and embedded integration skills.
+                    </p>
                 </div>
                 <div class="log-entry-card">
                     <h3>Intern</h3>
-                    <h4>DRDO, Ministry of Defence, Govt. of India</h4>
-                    <p class="timeline-date">May 2018 – July 2018 (3 months)</p>
-                    <p>Interned at Research Centre Imarat (RCI), focusing on RTL-SDR and Xilinx FPGA programming. Performed simulations of analog frontend components (filters, mixers, ADC, DAC). Conducted baseband processing for digital up/down converters, DC offset correction, and various modulation/demodulation techniques. Also gained experience in Telemetry, Tracking, Commanding, and Monitoring (TTCM) systems.</p>
+                    <h4>DRDO — RCI</h4>
+                    <p class="timeline-date">May 2018 – July 2018</p>
+                    <p>
+                        Worked on RTL‑SDR and Xilinx FPGA programming; simulated analog front‑end blocks and baseband DSP; exposure to TTCM systems.
+                    </p>
                 </div>
                 <div class="log-entry-card">
                     <h3>Bachelor's Degree</h3>
-                    <h4>Amrita Vishwa Vidyapeetham Bengaluru</h4>
+                    <h4>Amrita Vishwa Vidyapeetham, Bengaluru</h4>
                     <p class="timeline-date">July 2016 – August 2020</p>
-                    <p>Completed a Bachelor's in Electronics and Communication, building foundational knowledge in algorithms, data structures, and software development, with early exposure to AI concepts.</p>
+                    <p>
+                        Electronics and Communication; foundations in algorithms, data structures, and early AI topics.
+                    </p>
                 </div>
             </div>
         </section>
 
-        <!-- Separator for visual distinction -->
-        <!-- --- -->
-
         <section class="platform-section darker" id="contact">
             <h2 class="section-header">Connect <span>Protocol</span></h2>
             <div class="contact-module">
-                <p>
-                    Seeking to initiate a new project, discuss a complex AI challenge, or explore collaboration on future innovations? Get in touch through the channels below.
-                </p>
+                <p>Want to kick off a project, tackle a tricky AI problem, or explore collaboration? Reach out below.</p>
                 <div class="connection-links">
-                    <a href="mailto:srim@iastate.edu" target="_blank">
-                        <i class="ri-mail-fill"></i> Email
-                    </a>
-                    <a href="https://www.linkedin.com/in/sriharshamudumba/" target="_blank">
-                        <i class="ri-linkedin-box-fill"></i> LinkedIn
-                    </a>
-                    <a href="https://github.com/sriharshamudumba" target="_blank">
-                        <i class="ri-github-fill"></i> GitHub
-                    </a>
-                    <a href="SriHarsha_Mudumba_Resume.pdf" download>
-                        <i class="ri-file-download-line"></i> Download Resume
-                    </a>
+                    <a href="mailto:srim@iastate.edu" target="_blank"><i class="ri-mail-fill"></i> Email</a>
+                    <a href="https://www.linkedin.com/in/sriharshamudumba/" target="_blank"><i class="ri-linkedin-box-fill"></i> LinkedIn</a>
+                    <a href="https://github.com/sriharshamudumba" target="_blank"><i class="ri-github-fill"></i> GitHub</a>
+                    <a href="SriHarsha_Mudumba_Resume.pdf" download><i class="ri-file-download-line"></i> Download Resume</a>
                 </div>
             </div>
         </section>
     </main>
 
     <footer class="system-status-bar">
-        <div class="status-left-info">
-            <div class="status-text">
-                Active Module: <span id="active-module-focus">Home</span>
-            </div>
-        </div>
+        <div class="status-left-info"><div class="status-text">Active Module: <span id="active-module-focus">Home</span></div></div>
         <div class="status-center-links">
             <a href="https://github.com/sriharshamudumba" target="_blank" title="GitHub"><i class="ri-github-fill"></i></a>
             <a href="https://www.linkedin.com/in/sriharshamudumba/" target="_blank" title="LinkedIn"><i class="ri-linkedin-box-fill"></i></a>
             <a href="mailto:srim@iastate.edu" title="Email"><i class="ri-mail-fill"></i></a>
         </div>
-        <div class="status-right-action">
-            <a href="#home">Backto Home</a>
-        </div>
+        <div class="status-right-action"><a href="#home">Back to Home</a></div>
     </footer>
 
-    <!-- Project Detail Modal (retained functionality) -->
+    <!-- Modal -->
     <div class="data-modal" id="projectModal">
         <div class="modal-content">
             <div class="modal-close" id="modalClose">&times;</div>
@@ -1217,141 +372,112 @@
     </div>
 
     <script>
-        // Data for project modals
+        // Project details grounded in resume
         const projectData = {
             duracim: {
-                title: "",
-                description: "Architected an early-exit ResNet-50 with dynamic branches for Compute-in-Memory platforms, achieving a 3.8x latency reduction while preserving baseline model accuracy. Implemented entropy-based threshold optimization using policy-gradient RL, enabling a 78% early exit rate.",
-                tech: ["PyTorch", "ResNet", "Reinforcement Learning", "CiM"],
-                links: { github: "https://github.com/sriharshamudumba" }
+                title: "DURACIM — Compute‑in‑Memory Early‑Exit Framework",
+                description:
+                    "Designed an early‑exit ResNet‑50 that adapts to hardware constraints while maintaining accuracy. Achieved ~21.7% lower energy and ~10.5% faster inference, extending system lifetime from ~92 to ~165 days. Integrated CIMLOOP for cycle‑accurate co‑design and used reinforcement learning to optimize the energy–accuracy frontier.",
+                tech: ["Python","PyTorch","ResNet‑50","Reinforcement Learning","CIMLOOP"],
+                links: { github: "https://github.com/sriharshamudumba/DURACIM" }
+            },
+            torchweave: {
+                title: "TorchWeave‑LLM: Continuous Batching Inference Server",
+                description:
+                    "Custom LLM serving stack for multi‑user, low‑latency inference. Implemented continuous batching with async scheduling, reducing TTFT by ~35% and boosting throughput by ~2–5×. Added per‑request KV‑cache management and SSE token streaming. Containerized services for reproducible builds and scale‑out to ECS/Kubernetes.",
+                tech: ["Python","PyTorch","Transformers","FastAPI","Docker"],
+                links: { github: "https://github.com/sriharshamudumba/TorchWeave_LLM" }
             },
             argus: {
-                title: "ARGUS RAG System",
-                description: "Designed and implemented a Retrieval-Augmented Generation (RAG) pipeline with semantic search and chunk-based processing, tested on 100+ research documents and architected to scale to over 100,000 documents. Deployed on AWS EC2 with a FastAPI interface.",
-                tech: ["Python", "LangChain", "Cohere", "FAISS", "AWS", "Docker"],
+                title: "ARGUS: Multimodal Retrieval‑Augmented Generation",
+                description:
+                    "Hybrid RAG with FAISS semantic search and re‑ranking. Orchestrated with LangGraph for modular agents; deployed on AWS with Docker and CI/CD. Achieved sub‑second responses on 100+ docs; architecture validated for 100k+ embeddings.",
+                tech: ["Python","LangChain","LangGraph","OpenAI","FAISS","AWS","Docker"],
                 links: { github: "https://github.com/sriharshamudumba/ARGUS" }
             },
             lexa: {
-                title: "LEXA Edge Assistant",
-                description: "Built an edge-optimized RAG system with the TinyLlama 1.1B model and MiniLM embeddings for privacy-first applications. Implemented an adaptive early-exit mechanism that reduced mean response time by 40% and GPU power consumption by 30%.",
-                tech: ["Python", "FastAPI", "TinyLlama", "HuggingFace"],
+                title: "LEXA: Lightweight Local RAG",
+                description:
+                    "Fully‑local RAG on TinyLlama 1.1B optimized for an RTX 4060 with custom CUDA memory controls. Implemented adaptive early‑exit thresholding, cutting mean response time by ~40% and GPU power by ~30%.",
+                tech: ["Python","FastAPI","TinyLlama","HuggingFace","SentenceTransformers"],
                 links: { github: "https://github.com/sriharshamudumba/LEXA" }
-            },
-            "1bitllm": {
-                title: "1BitLLM Optimization",
-                description: "Engineered a comprehensive benchmarking suite for 1-bit quantized LLMs across ONNX and IREE compilation backends. Achieved a 2.3x inference speedup and a 44% memory reduction compared to the PyTorch baseline through aggressive quantization.",
-                tech: ["Python", "ONNX", "IREE", "PyTorch", "Quantization"],
-                links: { github: "https://github.com/sriharshamudumba/Benchmark-1BitLLM" }
-            },
-            snapea: {
-                title: "SnaPEA Accelerator",
-                description: "Developed a sparse activation pruning with an early-exit architecture for efficient edge inference. Combined pruning and early termination strategies for a 74% FLOP reduction while maintaining 98.5% accuracy on CIFAR-100.",
-                tech: ["TensorFlow", "PyTorch", "Neural Architecture Optimization"],
-                links: { github: "https://github.com->sriharshamudumba/SnaPEA" }
-            },
-            license: {
-                title: "Real-Time License Plate Detection",
-                description: "Architected a real-time license plate detection system using OpenCV and EasyOCR with MPI-based parallel processing. Scaled processing across a 16-process HPC cluster, achieving an 18x speedup for video analysis.",
-                tech: ["C++", "OpenCV", "Python", "MPI", "Computer Vision"],
-                links: { github: "https://github.com/sriharshamudumba/Real-Time-Video-Processing-and-Analysis-MPI-" }
             }
         };
 
         document.addEventListener('DOMContentLoaded', () => {
             const modal = document.getElementById('projectModal');
             const modalClose = document.getElementById('modalClose');
+            const track = document.getElementById('moduleTrack');
+            const btnPrev = document.getElementById('navPrev');
+            const btnNext = document.getElementById('navNext');
 
-            // Event listeners for opening project modals
+            // Open modal for project
             document.querySelectorAll('.project-module').forEach(card => {
                 card.addEventListener('click', () => {
                     const data = projectData[card.dataset.project];
+                    if(!data) return;
                     document.getElementById('modalTitle').textContent = data.title;
                     document.getElementById('modalDescription').textContent = data.description;
-                    
-                    const techStackContainer = document.getElementById('modalTechStack');
-                    techStackContainer.innerHTML = data.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('');
-                    
-                    const actionsContainer = document.getElementById('modalActions');
-                    actionsContainer.innerHTML = data.links.github ? `<a href="${data.links.github}" target="_blank">View on GitHub <i class="ri-external-link-line"></i></a>` : '';
-
-                    modal.classList.add('active'); // Show the modal
+                    const tech = document.getElementById('modalTechStack');
+                    tech.innerHTML = data.tech.map(t => `<span class="tech-tag">${t}</span>`).join('');
+                    const actions = document.getElementById('modalActions');
+                    actions.innerHTML = data.links.github ? `<a href="${data.links.github}" target="_blank">View on GitHub <i class="ri-external-link-line"></i></a>` : '';
+                    modal.classList.add('active');
                 });
             });
 
-            // Event listeners for closing project modals
+            // Close modal
             const closeModal = () => modal.classList.remove('active');
             modalClose.addEventListener('click', closeModal);
-            // Close modal if clicking outside the content
             modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-            // Navbar scroll effect: adds 'scrolled' class to navbar when scrolled down
+            // Navbar scroll style
             const navbar = document.getElementById('navbar');
             window.addEventListener('scroll', () => {
                 navbar.classList.toggle('scrolled', window.scrollY > 50);
             });
-            
-            // Intersection Observer for scroll animations and "Current Content" update in footer
-            const observerOptions = { threshold: 0.2 }; // Trigger when 20% of element is visible
+
+            // Intersection Observer for active section + staggered animations
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Apply staggered fade-in animation
                         entry.target.style.animationDelay = entry.target.dataset.delay || '0s';
                         entry.target.classList.add('visible');
-                        
-                        // Update "Active Module" text in the footer
                         let sectionName = '';
                         if (entry.target.id === 'home') sectionName = 'Active Profile';
                         else if (entry.target.id === 'projects') sectionName = 'Computational Modules';
                         else if (entry.target.id === 'skills') sectionName = 'Core Competencies';
                         else if (entry.target.id === 'journey') sectionName = 'Development Timeline';
                         else if (entry.target.id === 'contact') sectionName = 'Connect Protocol';
-
-                        if (sectionName) { 
-                           document.getElementById('active-module-focus').textContent = sectionName;
-                        }
-                    } else {
-                        // Optional: Remove 'visible' class if you want elements to fade out when scrolled away
-                        // entry.target.classList.remove('visible');
+                        if (sectionName) document.getElementById('active-module-focus').textContent = sectionName;
                     }
                 });
-            }, observerOptions);
-            
-            // Observe elements for staggered fade-in animation
+            }, { threshold: 0.2 });
+
             document.querySelectorAll('.project-module, .competency-card, .log-entry-card, .connection-links a').forEach((el, i) => {
-                el.dataset.delay = `${i * 0.1}s`; // Set a delay for staggered animation
+                el.dataset.delay = `${i * 0.1}s`;
                 observer.observe(el);
             });
-            
-            // Observe sections for "Current Content" in footer
-            document.querySelectorAll('section[id], header[id]').forEach(section => {
-                    observer.observe(section);
-            });
+            document.querySelectorAll('section[id], header[id]').forEach(section => observer.observe(section));
 
-            // NEW: System Status Toggle Logic for the "Currently Playing" button
+            // Status toggle
             const systemStatusIndicator = document.getElementById('system-status-indicator');
             const toggleSystemStatusButton = document.getElementById('toggleSystemStatus');
-            const statusTextContent = systemStatusIndicator.querySelector('.status-text-content');
-
-            let isSystemActive = true; // Initial state: "Playing" (active)
-
-            // Set initial state class to 'active' for the pulse animation to start immediately
-            systemStatusIndicator.classList.add('active'); 
-
-            // Add click listener to the toggle button
+            let isSystemActive = true;
+            systemStatusIndicator.classList.add('active');
             toggleSystemStatusButton.addEventListener('click', () => {
-                isSystemActive = !isSystemActive; // Toggle the state
+                isSystemActive = !isSystemActive;
+                systemStatusIndicator.classList.toggle('paused', !isSystemActive);
+                systemStatusIndicator.classList.toggle('active', isSystemActive);
+            });
 
-                if (isSystemActive) {
-                    // When active (playing)
-                    systemStatusIndicator.classList.remove('paused'); // Remove 'paused' class
-                    systemStatusIndicator.classList.add('active'); // Add 'active' class for pulse animation
-                } else {
-                    // When paused (not playing)
-                    systemStatusIndicator.classList.add('paused'); // Add 'paused' class
-                    systemStatusIndicator.classList.remove('active'); // Remove 'active' class to stop pulse
-                }
-                // The text content remains "Currently Playing" regardless of the button state.
+            // Slider controls — smooth scroll by viewport width
+            const scrollByAmount = () => Math.min(track.clientWidth * 0.9, 800);
+            btnPrev.addEventListener('click', () => {
+                track.scrollBy({ left: -scrollByAmount(), behavior: 'smooth' });
+            });
+            btnNext.addEventListener('click', () => {
+                track.scrollBy({ left: scrollByAmount(), behavior: 'smooth' });
             });
         });
     </script>
