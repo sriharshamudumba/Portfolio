@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sriharsha Mudumba - AI-Core Platform (Updated)</title>
+    <title>Sriharsha Mudumba - AI-Core Platform (Enhanced)</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
     <style>
         /* --- Fonts --- */
@@ -93,30 +93,47 @@
         .section-header{font-family:var(--font-title);font-size:clamp(2.5rem,5vw,3.8rem);font-weight:700;margin-bottom:50px;display:inline-block;position:relative;z-index:1;color:var(--text-light);letter-spacing:-1px}
         .section-header span{color:var(--secondary-accent);font-size:1.2em}
 
-        /* --- Projects: image-free cards + slider --- */
-        .modules-grid-container{position:relative}
-        .module-viewport{overflow:hidden;position:relative}
-        .module-track{display:flex;gap:25px;overflow-x:auto;padding:20px 0;scrollbar-width:none}
-        .module-track::-webkit-scrollbar{height:8px}
-        .module-track::-webkit-scrollbar-track{background:var(--card-base);border-radius:10px}
-        .module-track::-webkit-scrollbar-thumb{background-color:var(--primary-accent);border-radius:10px;border:2px solid var(--card-base)}
-        .project-module{flex:0 0 320px;height:180px;border-radius:14px;cursor:pointer;transition:all .4s ease;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;border:1px solid rgba(255,255,255,.1);opacity:0;transform:translateY(20px);animation:fadeIn .5s ease forwards;background:
-            radial-gradient(1200px 300px at 0% 100%, rgba(0,240,255,.18) 0%, rgba(0,0,0,0) 60%),
-            radial-gradient(1200px 300px at 100% 0%, rgba(108,66,247,.18) 0%, rgba(0,0,0,0) 60%),
-            linear-gradient(180deg, rgba(255,255,255,.04) 0%, rgba(255,255,255,0) 100%),
+        /* --- Enhanced Projects Slider --- */
+        .modules-grid-container{position:relative;max-width:1200px;margin:0 auto}
+        .module-viewport{overflow:hidden;position:relative;border-radius:20px;background:rgba(255,255,255,.02);padding:30px 0;box-shadow:0 10px 40px rgba(0,0,0,.2)}
+        .module-track{display:flex;gap:25px;transition:transform .5s cubic-bezier(0.25,0.46,0.45,0.94);padding:0 30px}
+        
+        /* Enhanced Project Cards (No Images) */
+        .project-module{flex:0 0 350px;height:220px;border-radius:16px;cursor:pointer;transition:all .4s cubic-bezier(0.25,0.46,0.45,0.94);position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:30px;border:2px solid rgba(255,255,255,.1);background:
+            radial-gradient(600px 200px at 0% 100%, rgba(0,240,255,.15) 0%, rgba(0,0,0,0) 70%),
+            radial-gradient(600px 200px at 100% 0%, rgba(108,66,247,.15) 0%, rgba(0,0,0,0) 70%),
+            linear-gradient(135deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.02) 100%),
             var(--card-base);
-            background-blend-mode:screen,screen,overlay,normal;
         }
-        .project-module::before{content:"";position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.6) 0%, rgba(0,0,0,0) 60%);transition:background .3s ease;z-index:1;border-radius:14px}
-        .project-module:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 10px 30px rgba(0,0,0,.5);border-color:var(--secondary-accent)}
-        .project-module:hover::before{background:linear-gradient(to top, rgba(0,0,0,.75) 0%, rgba(0,0,0,.1) 60%)}
-        .module-title{font-family:var(--font-title);font-size:1.6rem;font-weight:700;text-align:left;color:var(--text-light);position:relative;z-index:2;text-shadow:0 2px 5px rgba(0,0,0,.5)}
+        .project-module::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg, rgba(108,66,247,.1) 0%, rgba(0,240,255,.1) 100%);opacity:0;transition:opacity .3s ease;border-radius:14px}
+        .project-module:hover{transform:translateY(-15px) scale(1.03);box-shadow:0 20px 50px rgba(0,0,0,.4);border-color:var(--secondary-accent)}
+        .project-module:hover::before{opacity:1}
+        .project-module.active{transform:translateY(-5px) scale(1.01);border-color:var(--primary-accent)}
+        
+        .module-title{font-family:var(--font-title);font-size:1.8rem;font-weight:700;color:var(--text-light);margin-bottom:15px;line-height:1.2}
+        .module-preview{font-size:1rem;color:var(--text-medium);line-height:1.5;opacity:0.9}
+        .module-tech-preview{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
+        .tech-preview-tag{background:rgba(108,66,247,.2);color:var(--secondary-accent);padding:4px 10px;border-radius:15px;font-size:0.8rem;font-family:var(--font-mono);border:1px solid rgba(108,66,247,.3)}
 
-        .module-nav{position:absolute;inset:0;pointer-events:none}
-        .module-nav button{position:absolute;top:50%;transform:translateY(-50%);background:rgba(10,10,15,.8);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(6px);color:var(--text-light);width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .2s ease,background .3s ease,box-shadow .3s ease;pointer-events:auto}
-        .module-nav button:hover{transform:translateY(-50%) scale(1.07);background:rgba(20,20,30,.95);box-shadow:0 6px 20px rgba(0,0,0,.3)}
-        .module-nav .prev{left:0}
-        .module-nav .next{right:0}
+        /* Enhanced Navigation Controls */
+        .module-nav{display:flex;justify-content:center;align-items:center;gap:20px;margin-top:30px}
+        .module-nav button{background:var(--card-base);border:2px solid rgba(255,255,255,.15);color:var(--text-light);width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s cubic-bezier(0.25,0.46,0.45,0.94);backdrop-filter:blur(10px)}
+        .module-nav button:hover{background:var(--card-hover);transform:scale(1.1);border-color:var(--secondary-accent);box-shadow:0 5px 20px rgba(0,0,0,.3)}
+        .module-nav button:active{transform:scale(0.95)}
+        .module-nav button i{font-size:1.8rem}
+        .module-nav button:disabled{opacity:0.4;cursor:not-allowed;transform:none}
+        .module-nav button:disabled:hover{background:var(--card-base);border-color:rgba(255,255,255,.15);box-shadow:none}
+
+        /* Slider Indicators */
+        .slider-indicators{display:flex;justify-content:center;gap:12px;margin-top:25px}
+        .indicator{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .3s ease}
+        .indicator.active{background:var(--secondary-accent);transform:scale(1.2)}
+        .indicator:hover{background:rgba(255,255,255,.6)}
+
+        /* Auto-slide control */
+        .auto-slide-control{position:absolute;top:20px;right:20px;background:rgba(0,0,0,.8);border:1px solid rgba(255,255,255,.2);color:var(--text-light);padding:8px 12px;border-radius:20px;font-family:var(--font-mono);font-size:0.9rem;cursor:pointer;transition:all .3s ease}
+        .auto-slide-control:hover{background:rgba(0,0,0,.9);border-color:var(--secondary-accent)}
+        .auto-slide-control.active{color:var(--secondary-accent)}
 
         /* --- Skills --- */
         .competencies-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px}
@@ -185,6 +202,8 @@
             .platform-section{padding:80px 30px}
             .system-menu{padding:15px 30px}
             .menu-links{gap:25px}
+            .project-module{flex:0 0 300px;height:200px;padding:25px}
+            .module-title{font-size:1.6rem}
             .system-status-bar{grid-template-columns:1fr;height:auto;padding:15px 20px;gap:15px}
             .status-center-links,.status-right-action{justify-content:center}
             .status-left-info{justify-content:center}
@@ -196,11 +215,13 @@
             .menu-links{gap:15px}
             .profile-matrix{width:180px;height:180px}
             .access-button{padding:12px 25px;font-size:.9rem}
-            .project-module{flex:0 0 260px;height:160px}
-            .module-title{font-size:1.3rem}
+            .project-module{flex:0 0 280px;height:180px;padding:20px}
+            .module-title{font-size:1.4rem}
             .competency-card{padding:20px}
             .competency-title{font-size:1.5rem}
             .modal-title{font-size:2rem}
+            .module-nav{gap:15px}
+            .module-nav button{width:45px;height:45px}
         }
     </style>
 </head>
@@ -219,7 +240,6 @@
     <header class="platform-display" id="home">
         <div class="display-content">
             <div class="profile-matrix">
-                <!-- Keep your avatar file or replace src; project images removed per request -->
                 <img src="Dp_imaage.jpg" alt="Sriharsha Mudumba" class="profile-avatar" />
                 <span class="status-indicator" id="system-status-indicator">
                     <span class="status-text-content">Currently Playing</span>
@@ -243,243 +263,73 @@
         <section class="platform-section" id="projects">
             <h2 class="section-header">Computational <span>Modules</span></h2>
             <div class="modules-grid-container">
+                <div class="auto-slide-control" id="autoSlideToggle">
+                    <i class="ri-play-circle-line"></i> Auto
+                </div>
                 <div class="module-viewport">
                     <div class="module-track" id="moduleTrack">
-                        <div class="project-module" data-project="duracim"><div class="module-title">DURACIM</div></div>
-                        <div class="project-module" data-project="torchweave"><div class="module-title">TorchWeave‑LLM</div></div>
-                        <div class="project-module" data-project="argus"><div class="module-title">ARGUS RAG</div></div>
-                        <div class="project-module" data-project="lexa"><div class="module-title">LEXA Edge</div></div>
+                        <div class="project-module" data-project="duracim">
+                            <div class="module-title">DURACIM</div>
+                            <div class="module-preview">Compute‑in‑Memory Early‑Exit Framework with RL optimization</div>
+                            <div class="module-tech-preview">
+                                <span class="tech-preview-tag">PyTorch</span>
+                                <span class="tech-preview-tag">ResNet‑50</span>
+                                <span class="tech-preview-tag">RL</span>
+                            </div>
+                        </div>
+                        <div class="project-module" data-project="torchweave">
+                            <div class="module-title">TorchWeave‑LLM</div>
+                            <div class="module-preview">Continuous Batching Inference Server for multi‑user LLM deployment</div>
+                            <div class="module-tech-preview">
+                                <span class="tech-preview-tag">PyTorch</span>
+                                <span class="tech-preview-tag">FastAPI</span>
+                                <span class="tech-preview-tag">Docker</span>
+                            </div>
+                        </div>
+                        <div class="project-module" data-project="argus">
+                            <div class="module-title">ARGUS RAG</div>
+                            <div class="module-preview">Multimodal Retrieval‑Augmented Generation with hybrid search</div>
+                            <div class="module-tech-preview">
+                                <span class="tech-preview-tag">LangChain</span>
+                                <span class="tech-preview-tag">FAISS</span>
+                                <span class="tech-preview-tag">AWS</span>
+                            </div>
+                        </div>
+                        <div class="project-module" data-project="lexa">
+                            <div class="module-title">LEXA Edge</div>
+                            <div class="module-preview">Lightweight Local RAG optimized for edge deployment</div>
+                            <div class="module-tech-preview">
+                                <span class="tech-preview-tag">TinyLlama</span>
+                                <span class="tech-preview-tag">FastAPI</span>
+                                <span class="tech-preview-tag">CUDA</span>
+                            </div>
+                        </div>
+                        <div class="project-module" data-project="neuromorphic">
+                            <div class="module-title">Neuromorphic Vision</div>
+                            <div class="module-preview">Event‑based computer vision with spiking neural networks</div>
+                            <div class="module-tech-preview">
+                                <span class="tech-preview-tag">SNN</span>
+                                <span class="tech-preview-tag">DVS</span>
+                                <span class="tech-preview-tag">Real‑time</span>
+                            </div>
+                        </div>
+                        <div class="project-module" data-project="quantflow">
+                            <div class="module-title">QuantFlow</div>
+                            <div class="module-preview">Model quantization pipeline for deployment optimization</div>
+                            <div class="module-tech-preview">
+                                <span class="tech-preview-tag">Quantization</span>
+                                <span class="tech-preview-tag">ONNX</span>
+                                <span class="tech-preview-tag">TensorRT</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="module-nav">
-                        <button class="prev" id="navPrev" title="Previous"><i class="ri-arrow-left-s-line"></i></button>
-                        <button class="next" id="navNext" title="Next"><i class="ri-arrow-right-s-line"></i></button>
-                    </div>
                 </div>
-            </div>
-        </section>
-
-        <section class="platform-section darker" id="skills">
-            <h2 class="section-header">Core <span>Competencies</span></h2>
-            <div class="competencies-grid">
-                <div class="competency-card">
-                    <div class="competency-header"><i class="ri-braces-line competency-icon"></i><h3 class="competency-title">AI Frameworks</h3></div>
-                    <ol class="skill-set">
-                        <li>PyTorch</li><li>TensorFlow</li><li>ONNX</li><li>IREE</li><li>MLIR</li><li>scikit‑learn</li>
-                    </ol>
+                <div class="module-nav">
+                    <button class="prev" id="navPrev" title="Previous">
+                        <i class="ri-arrow-left-s-line"></i>
+                    </button>
+                    <button class="next" id="navNext" title="Next">
+                        <i class="ri-arrow-right-s-line"></i>
+                    </button>
                 </div>
-                <div class="competency-card">
-                    <div class="competency-header"><i class="ri-terminal-box-line competency-icon"></i><h3 class="competency-title">Languages & Data Systems</h3></div>
-                    <ol class="skill-set">
-                        <li>Python</li><li>C++ / C</li><li>SQL</li><li>Shell Scripting</li><li>Oracle 11g/12c/19c</li>
-                    </ol>
-                </div>
-                <div class="competency-card">
-                    <div class="competency-header"><i class="ri-server-line competency-icon"></i><h3 class="competency-title">HPC & System Design</h3></div>
-                    <ol class="skill-set">
-                        <li>OpenMP / MPI</li><li>Slurm</li><li>Distributed Systems</li><li>Linux</li>
-                    </ol>
-                </div>
-                <div class="competency-card">
-                    <div class="competency-header"><i class="ri-cloud-fill competency-icon"></i><h3 class="competency-title">Cloud & MLOps</h3></div>
-                    <ol class="skill-set">
-                        <li>AWS</li><li>Docker</li><li>FastAPI</li><li>Benchmarking</li>
-                    </ol>
-                </div>
-            </div>
-        </section>
-
-        <section class="platform-section" id="journey">
-            <h2 class="section-header">System Log: <span>Development Timeline</span></h2>
-            <div class="timeline-grid">
-                <div class="log-entry-card">
-                    <h3>Master's Degree</h3>
-                    <h4>Iowa State University</h4>
-                    <p class="timeline-date">August 2023 – August 2025</p>
-                    <p>
-                        Computer Engineering with focus on Machine Learning and High‑Performance Computing. Researched Compute‑in‑Memory (CiM) architectures and Retrieval‑Augmented Generation (RAG) systems, contributing to co‑designed AI hardware‑software optimizations.
-                    </p>
-                </div>
-                <div class="log-entry-card">
-                    <h3>Associate Software Engineer</h3>
-                    <h4>Cognizant Technology Solutions</h4>
-                    <p class="timeline-date">August 2020 – July 2023</p>
-                    <p>
-                        Worked with DBA team and designed and maintained scalable data and compute pipelines, improving overall reliability and efficiency across enterprise‑scale systems. Automated Linux‑based workflows for replication, patching, and monitoring, reducing downtime by 50% and ensuring consistent high availability. Optimized performance across large deployments by mitigating latency, I/O bottlenecks, and memory overhead, and collaborated with cross‑functional teams to deliver secure, high‑performance infrastructure for mission‑critical workloads.
-                    </p>
-                </div>
-                <div class="log-entry-card">
-                    <h3>Intern</h3>
-                    <h4>ISRO — LEOS</h4>
-                    <p class="timeline-date">February 2019 – June 2019</p>
-                    <p>
-                        Implemented SPI for a Micro Digital Sun Sensor; interfaced ProASIC FPGA via Arduino; developed VHDL and embedded integration skills.
-                    </p>
-                </div>
-                <div class="log-entry-card">
-                    <h3>Intern</h3>
-                    <h4>DRDO — RCI</h4>
-                    <p class="timeline-date">May 2018 – July 2018</p>
-                    <p>
-                        Worked on RTL‑SDR and Xilinx FPGA programming; simulated analog front‑end blocks and baseband DSP; exposure to TTCM systems.
-                    </p>
-                </div>
-                <div class="log-entry-card">
-                    <h3>Bachelor's Degree</h3>
-                    <h4>Amrita Vishwa Vidyapeetham, Bengaluru</h4>
-                    <p class="timeline-date">July 2016 – August 2020</p>
-                    <p>
-                        Electronics and Communication; foundations in algorithms, data structures, and early AI topics.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="platform-section darker" id="contact">
-            <h2 class="section-header">Connect <span>Protocol</span></h2>
-            <div class="contact-module">
-                <p>Want to kick off a project, tackle a tricky AI problem, or explore collaboration? Reach out below.</p>
-                <div class="connection-links">
-                    <a href="mailto:srim@iastate.edu" target="_blank"><i class="ri-mail-fill"></i> Email</a>
-                    <a href="https://www.linkedin.com/in/sriharshamudumba/" target="_blank"><i class="ri-linkedin-box-fill"></i> LinkedIn</a>
-                    <a href="https://github.com/sriharshamudumba" target="_blank"><i class="ri-github-fill"></i> GitHub</a>
-                    <a href="SriHarsha_Mudumba_Resume.pdf" download><i class="ri-file-download-line"></i> Download Resume</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="system-status-bar">
-        <div class="status-left-info"><div class="status-text">Active Module: <span id="active-module-focus">Home</span></div></div>
-        <div class="status-center-links">
-            <a href="https://github.com/sriharshamudumba" target="_blank" title="GitHub"><i class="ri-github-fill"></i></a>
-            <a href="https://www.linkedin.com/in/sriharshamudumba/" target="_blank" title="LinkedIn"><i class="ri-linkedin-box-fill"></i></a>
-            <a href="mailto:srim@iastate.edu" title="Email"><i class="ri-mail-fill"></i></a>
-        </div>
-        <div class="status-right-action"><a href="#home">Back to Home</a></div>
-    </footer>
-
-    <!-- Modal -->
-    <div class="data-modal" id="projectModal">
-        <div class="modal-content">
-            <div class="modal-close" id="modalClose">&times;</div>
-            <div class="modal-header"><h2 class="modal-title" id="modalTitle"></h2></div>
-            <div class="modal-body">
-                <p class="modal-description" id="modalDescription"></p>
-                <div class="modal-tech-stack" id="modalTechStack"></div>
-                <div class="modal-actions" id="modalActions"></div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Project details grounded in resume
-        const projectData = {
-            duracim: {
-                title: "DURACIM — Compute‑in‑Memory Early‑Exit Framework",
-                description:
-                    "Designed an early‑exit ResNet‑50 that adapts to hardware constraints while maintaining accuracy. Achieved ~21.7% lower energy and ~10.5% faster inference, extending system lifetime from ~92 to ~165 days. Integrated CIMLOOP for cycle‑accurate co‑design and used reinforcement learning to optimize the energy–accuracy frontier.",
-                tech: ["Python","PyTorch","ResNet‑50","Reinforcement Learning","CIMLOOP"],
-                links: { github: "https://github.com/sriharshamudumba/DURACIM" }
-            },
-            torchweave: {
-                title: "TorchWeave‑LLM: Continuous Batching Inference Server",
-                description:
-                    "Custom LLM serving stack for multi‑user, low‑latency inference. Implemented continuous batching with async scheduling, reducing TTFT by ~35% and boosting throughput by ~2–5×. Added per‑request KV‑cache management and SSE token streaming. Containerized services for reproducible builds and scale‑out to ECS/Kubernetes.",
-                tech: ["Python","PyTorch","Transformers","FastAPI","Docker"],
-                links: { github: "https://github.com/sriharshamudumba/TorchWeave_LLM" }
-            },
-            argus: {
-                title: "ARGUS: Multimodal Retrieval‑Augmented Generation",
-                description:
-                    "Hybrid RAG with FAISS semantic search and re‑ranking. Orchestrated with LangGraph for modular agents; deployed on AWS with Docker and CI/CD. Achieved sub‑second responses on 100+ docs; architecture validated for 100k+ embeddings.",
-                tech: ["Python","LangChain","LangGraph","OpenAI","FAISS","AWS","Docker"],
-                links: { github: "https://github.com/sriharshamudumba/ARGUS" }
-            },
-            lexa: {
-                title: "LEXA: Lightweight Local RAG",
-                description:
-                    "Fully‑local RAG on TinyLlama 1.1B optimized for an RTX 4060 with custom CUDA memory controls. Implemented adaptive early‑exit thresholding, cutting mean response time by ~40% and GPU power by ~30%.",
-                tech: ["Python","FastAPI","TinyLlama","HuggingFace","SentenceTransformers"],
-                links: { github: "https://github.com/sriharshamudumba/LEXA" }
-            }
-        };
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const modal = document.getElementById('projectModal');
-            const modalClose = document.getElementById('modalClose');
-            const track = document.getElementById('moduleTrack');
-            const btnPrev = document.getElementById('navPrev');
-            const btnNext = document.getElementById('navNext');
-
-            // Open modal for project
-            document.querySelectorAll('.project-module').forEach(card => {
-                card.addEventListener('click', () => {
-                    const data = projectData[card.dataset.project];
-                    if(!data) return;
-                    document.getElementById('modalTitle').textContent = data.title;
-                    document.getElementById('modalDescription').textContent = data.description;
-                    const tech = document.getElementById('modalTechStack');
-                    tech.innerHTML = data.tech.map(t => `<span class="tech-tag">${t}</span>`).join('');
-                    const actions = document.getElementById('modalActions');
-                    actions.innerHTML = data.links.github ? `<a href="${data.links.github}" target="_blank">View on GitHub <i class="ri-external-link-line"></i></a>` : '';
-                    modal.classList.add('active');
-                });
-            });
-
-            // Close modal
-            const closeModal = () => modal.classList.remove('active');
-            modalClose.addEventListener('click', closeModal);
-            modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-
-            // Navbar scroll style
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', () => {
-                navbar.classList.toggle('scrolled', window.scrollY > 50);
-            });
-
-            // Intersection Observer for active section + staggered animations
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animationDelay = entry.target.dataset.delay || '0s';
-                        entry.target.classList.add('visible');
-                        let sectionName = '';
-                        if (entry.target.id === 'home') sectionName = 'Active Profile';
-                        else if (entry.target.id === 'projects') sectionName = 'Computational Modules';
-                        else if (entry.target.id === 'skills') sectionName = 'Core Competencies';
-                        else if (entry.target.id === 'journey') sectionName = 'Development Timeline';
-                        else if (entry.target.id === 'contact') sectionName = 'Connect Protocol';
-                        if (sectionName) document.getElementById('active-module-focus').textContent = sectionName;
-                    }
-                });
-            }, { threshold: 0.2 });
-
-            document.querySelectorAll('.project-module, .competency-card, .log-entry-card, .connection-links a').forEach((el, i) => {
-                el.dataset.delay = `${i * 0.1}s`;
-                observer.observe(el);
-            });
-            document.querySelectorAll('section[id], header[id]').forEach(section => observer.observe(section));
-
-            // Status toggle
-            const systemStatusIndicator = document.getElementById('system-status-indicator');
-            const toggleSystemStatusButton = document.getElementById('toggleSystemStatus');
-            let isSystemActive = true;
-            systemStatusIndicator.classList.add('active');
-            toggleSystemStatusButton.addEventListener('click', () => {
-                isSystemActive = !isSystemActive;
-                systemStatusIndicator.classList.toggle('paused', !isSystemActive);
-                systemStatusIndicator.classList.toggle('active', isSystemActive);
-            });
-
-            // Slider controls — smooth scroll by viewport width
-            const scrollByAmount = () => Math.min(track.clientWidth * 0.9, 800);
-            btnPrev.addEventListener('click', () => {
-                track.scrollBy({ left: -scrollByAmount(), behavior: 'smooth' });
-            });
-            btnNext.addEventListener('click', () => {
-                track.scrollBy({ left: scrollByAmount(), behavior: 'smooth' });
-            });
-        });
-    </script>
-</body>
-</html>
+                <div class="slider-indicators" id="sliderIndicators"></div>
