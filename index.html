@@ -1150,8 +1150,8 @@
         <div class="contact-container">
             <div class="contact-grid">
                 <a id="emailLink" href="mailto:sri19harsha98@gmail.com?subject=Portfolio%20Contact&body=Hi%20Sriharsha%2C%0A%0A" class="contact-card">
-                  <i class="ri-mail-fill contact-icon"></i>
-                  <span class="contact-label">Email</span>
+                    <i class="ri-mail-fill contact-icon"></i>
+                    <span class="contact-label">Email</span>
                 </a>
                 <a href="https://www.linkedin.com/in/sriharshamudumba/" target="_blank" class="contact-card">
                     <i class="ri-linkedin-box-fill contact-icon"></i>
@@ -1161,7 +1161,7 @@
                     <i class="ri-github-fill contact-icon"></i>
                     <span class="contact-label">GitHub</span>
                 </a>
-                <a href="Sriharsha_Mudumba_Resume_Spotify.pdf" download class="contact-card">
+                <a id="resumeDownload" href="Sriharsha_Mudumba_Resume_Spotify.pdf" download class="contact-card">
                     <i class="ri-file-download-line contact-icon"></i>
                     <span class="contact-label">Resume</span>
                 </a>
@@ -1175,7 +1175,7 @@
             <div class="footer-social">
                 <a href="https://github.com/sriharshamudumba" target="_blank"><i class="ri-github-fill"></i></a>
                 <a href="https://www.linkedin.com/in/sriharshamudumba/" target="_blank"><i class="ri-linkedin-box-fill"></i></a>
-                <a href="mailto:sri19harsha98@gmail.com"><i class="ri-mail-fill"></i></a>
+                <a href="/cdn-cgi/l/email-protection#d4a7a6bde5edbcb5a6a7bcb5edec94b3b9b5bdb8fab7bbb9"><i class="ri-mail-fill"></i></a>
             </div>
             <p class="footer-text">© 2025 Sriharsha Mudumba. Designed with inspiration from Spotify.</p>
         </div>
@@ -1198,7 +1198,7 @@
         </div>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Project Data
         const projectData = {
             duracim: {
@@ -1575,23 +1575,69 @@ Full User Agent: ${visitorInfo.userAgent}
             const weekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
             return visits.filter(v => new Date(v.timestamp).getTime() > weekAgo).length;
         }
-        <script>
-  (function () {
-    const email = "sri19harsha98@gmail.com";
-    const emailLink = document.getElementById("emailLink");
-    if (!emailLink) return;
 
-    emailLink.addEventListener("click", async () => {
-      setTimeout(async () => {
-        if (document.visibilityState === "visible") {
-          try {
-            await navigator.clipboard.writeText(email);
-            alert("Email copied: " + email);
-          } catch (_) {
-            prompt("Copy this email:", email);
-          }
+        function getUniqueLocations(visits) {
+            const locations = new Set(visits.map(v => v.location).filter(Boolean));
+            return locations.size;
         }
-      }, 700);
-    });
-  })();
-</script>
+
+        // ========================================
+        // EVENT TRACKING FOR HIGH-INTENT ACTIONS
+        // ========================================
+        
+        // Track meaningful user interactions (resume download, email click)
+        async function sendEventEmail(eventName) {
+            try {
+                const payload = {
+                    event: eventName,
+                    timestamp: new Date().toISOString(),
+                    url: window.location.href,
+                    referrer: document.referrer || 'Direct',
+                    platform: navigator.platform,
+                    userAgent: navigator.userAgent
+                };
+
+                await fetch(TRACKING_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        subject: `Portfolio Event: ${eventName}`,
+                        message: JSON.stringify(payload, null, 2),
+                        _replyto: 'noreply@portfolio.local'
+                    })
+                });
+
+                console.log(`Event tracked: ${eventName}`);
+            } catch (e) {
+                console.error('Event tracking failed', e);
+            }
+        }
+
+        // Track resume downloads
+        document.getElementById('resumeDownload')?.addEventListener('click', () => {
+            sendEventEmail('Resume Download Click');
+        });
+
+        // Track email clicks with copy-to-clipboard
+        const emailLink = document.getElementById('emailLink');
+        if (emailLink) {
+            emailLink.addEventListener('click', async (e) => {
+                sendEventEmail('Email Click');
+                
+                // After a short delay, copy email to clipboard if user is still on page
+                setTimeout(async () => {
+                    if (document.visibilityState === 'visible') {
+                        const email = 'sri19harsha98@gmail.com';
+                        try {
+                            await navigator.clipboard.writeText(email);
+                            console.log('Email copied to clipboard');
+                        } catch (err) {
+                            console.log('Clipboard copy not available');
+                        }
+                    }
+                }, 700);
+            });
+        }
+    </script>
+</body>
+</html>
