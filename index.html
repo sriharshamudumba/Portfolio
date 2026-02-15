@@ -1149,7 +1149,18 @@
                 </div>
             </div>
 
-               <div class="timeline-item">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">August 2020 – July 2023</div>
+                    <h3 class="timeline-title">Associate Database Administrator</h3>
+                    <div class="timeline-subtitle">Cognizant</div>
+                    <p class="timeline-description">
+                        Managed enterprise-scale database infrastructure (Oracle 11g/12c/19c), ensuring high availability and performance. Led performance tuning initiatives, automated backup/recovery processes, and collaborated with development teams on query optimization.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="timeline-date">July 2025 – Present</div>
                     <h3 class="timeline-title">AI Engineer Intern</h3>
@@ -1163,20 +1174,7 @@
             <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="timeline-date">August 2020 – July 2023</div>
-                    <h3 class="timeline-title">Software Engineer </h3>
-                    <div class="timeline-subtitle">Cognizant</div>
-                    <p class="timeline-description">
-                        Managed enterprise-scale database infrastructure (Oracle 11g/12c/19c), ensuring high availability and performance. Led performance tuning initiatives, automated backup/recovery processes, and collaborated with development teams on query optimization.
-                    </p>
-                </div>
-            </div>
-
-         
-
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">August 2020 – July 2023</div>
-                    <h3 class="timeline-title">Software Engineer Intern</h3>
+                    <h3 class="timeline-title">Software Engineer</h3>
                     <div class="timeline-subtitle">Cognizant Technology Solutions</div>
                     <p class="timeline-description">
                         Operated production-grade data systems serving latency-sensitive analytics and ML applications with strict SLAs. Performed deep performance profiling across query execution, memory utilization, and I/O paths, identifying bottlenecks and improving end-to-end throughput for compute-intensive workloads. Supported large-scale data ingestion and feature-serving workflows, ensuring data correctness and consistency for downstream ML inference pipelines. Collaborated cross-functionally with infrastructure teams on distributed systems debugging and reliability improvements.
@@ -1219,7 +1217,7 @@
         </div>
         <div class="contact-container">
             <div class="contact-grid">
-                <a href="/cdn-cgi/l/email-protection#dcafaeb5b19cb5bdafa8bda8b9f2b9b8a9" class="contact-card">
+                <a href="mailto:sri19harsha98@gmail.com" class="contact-card">
                     <i class="ri-mail-fill contact-icon"></i>
                     <span class="contact-label">Email</span>
                 </a>
@@ -1231,7 +1229,7 @@
                     <i class="ri-github-fill contact-icon"></i>
                     <span class="contact-label">GitHub</span>
                 </a>
-                <a href="SriharshaMudumba_ML_Engineer_Spotify.pdf" download class="contact-card">
+                <a href="Sriharsha_Mudumba_Resume_Spotify.pdf" download class="contact-card">
                     <i class="ri-file-download-line contact-icon"></i>
                     <span class="contact-label">Resume</span>
                 </a>
@@ -1245,7 +1243,7 @@
             <div class="footer-social">
                 <a href="https://github.com/sriharshamudumba" target="_blank"><i class="ri-github-fill"></i></a>
                 <a href="https://www.linkedin.com/in/sriharshamudumba/" target="_blank"><i class="ri-linkedin-box-fill"></i></a>
-                <a href="/cdn-cgi/l/email-protection#413233282c01282032352035246f242534"><i class="ri-mail-fill"></i></a>
+                <a href="mailto:sri19harsha98@gmail.com"><i class="ri-mail-fill"></i></a>
             </div>
             <p class="footer-text">© 2025 Sriharsha Mudumba. Designed with inspiration from Spotify.</p>
         </div>
@@ -1401,4 +1399,255 @@
 
         document.querySelectorAll('.project-card, .skill-card, .timeline-item').forEach(el => {
             el.style.opacity = '0';
-            el.sty
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // ========================================
+        // VISITOR TRACKING SYSTEM (Admin Only)
+        // ========================================
+        
+        // Configuration
+        const ADMIN_EMAILS = ['harsha@myjobsmail.com', 'srim@iastate.edu', 'sri19harsha98@gmail.com']; // Your email addresses
+        const TRACKING_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'; // Replace with your Formspree form ID
+        
+        // Get visitor information
+        async function getVisitorInfo() {
+            const info = {
+                timestamp: new Date().toISOString(),
+                url: window.location.href,
+                referrer: document.referrer || 'Direct visit',
+                userAgent: navigator.userAgent,
+                screenResolution: `${screen.width}x${screen.height}`,
+                language: navigator.language,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                platform: navigator.platform
+            };
+
+            // Get approximate location (country/city) using IP geolocation API
+            try {
+                const geoResponse = await fetch('https://ipapi.co/json/');
+                const geoData = await geoResponse.json();
+                info.location = `${geoData.city}, ${geoData.region}, ${geoData.country_name}`;
+                info.ip = geoData.ip;
+                info.org = geoData.org; // ISP/Organization
+            } catch (error) {
+                info.location = 'Unknown';
+                info.ip = 'Unknown';
+            }
+
+            return info;
+        }
+
+        // Send tracking data
+        async function trackVisitor() {
+            try {
+                const visitorInfo = await getVisitorInfo();
+                
+                // Create a readable summary
+                const summary = `
+🔔 New Portfolio Visit
+
+📅 Time: ${new Date(visitorInfo.timestamp).toLocaleString()}
+🌍 Location: ${visitorInfo.location}
+📱 Device: ${visitorInfo.platform}
+🖥️  Screen: ${visitorInfo.screenResolution}
+🌐 Browser: ${getBrowserName(visitorInfo.userAgent)}
+🔗 Referrer: ${visitorInfo.referrer}
+📍 IP: ${visitorInfo.ip}
+🏢 ISP: ${visitorInfo.org}
+🌍 Timezone: ${visitorInfo.timezone}
+🗣️  Language: ${visitorInfo.language}
+
+Full User Agent: ${visitorInfo.userAgent}
+                `.trim();
+
+                // Send to Formspree
+                await fetch(TRACKING_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        subject: `Portfolio Visit - ${visitorInfo.location}`,
+                        message: summary,
+                        _replyto: 'noreply@portfolio.com'
+                    })
+                });
+
+                // Also store in localStorage for your own tracking page
+                storeVisitLocally(visitorInfo);
+
+            } catch (error) {
+                console.error('Tracking error:', error);
+            }
+        }
+
+        // Store visit data locally for admin dashboard
+        function storeVisitLocally(visitorInfo) {
+            try {
+                const visits = JSON.parse(localStorage.getItem('portfolioVisits') || '[]');
+                visits.unshift(visitorInfo); // Add to beginning
+                
+                // Keep only last 100 visits
+                if (visits.length > 100) visits.pop();
+                
+                localStorage.setItem('portfolioVisits', JSON.stringify(visits));
+            } catch (e) {
+                // LocalStorage might be full or blocked
+            }
+        }
+
+        // Helper: Extract browser name
+        function getBrowserName(userAgent) {
+            if (userAgent.includes('Firefox')) return 'Firefox';
+            if (userAgent.includes('Chrome')) return 'Chrome';
+            if (userAgent.includes('Safari')) return 'Safari';
+            if (userAgent.includes('Edge')) return 'Edge';
+            if (userAgent.includes('Opera')) return 'Opera';
+            return 'Unknown Browser';
+        }
+
+        // Track page visibility changes (when user comes back to tab)
+        let visitDuration = 0;
+        let visitStartTime = Date.now();
+        
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                visitDuration += Date.now() - visitStartTime;
+            } else {
+                visitStartTime = Date.now();
+            }
+        });
+
+        // Track time spent before leaving
+        window.addEventListener('beforeunload', () => {
+            visitDuration += Date.now() - visitStartTime;
+            const minutes = Math.floor(visitDuration / 60000);
+            const seconds = Math.floor((visitDuration % 60000) / 1000);
+            
+            // Store visit duration
+            if (localStorage.getItem('portfolioVisits')) {
+                try {
+                    const visits = JSON.parse(localStorage.getItem('portfolioVisits'));
+                    if (visits.length > 0) {
+                        visits[0].duration = `${minutes}m ${seconds}s`;
+                        localStorage.setItem('portfolioVisits', JSON.stringify(visits));
+                    }
+                } catch (e) {}
+            }
+        });
+
+        // Initialize tracking on page load
+        window.addEventListener('load', () => {
+            // Small delay to ensure everything is loaded
+            setTimeout(trackVisitor, 1000);
+        });
+
+        // ========================================
+        // ADMIN DASHBOARD (Ctrl+Shift+A to open)
+        // ========================================
+        
+        document.addEventListener('keydown', (e) => {
+            // Ctrl+Shift+A (or Cmd+Shift+A on Mac)
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'A') {
+                e.preventDefault();
+                showAdminDashboard();
+            }
+        });
+
+        function showAdminDashboard() {
+            const visits = JSON.parse(localStorage.getItem('portfolioVisits') || '[]');
+            
+            const dashboardHTML = `
+                <div style="position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 10000; overflow-y: auto; color: #fff; font-family: monospace; padding: 40px;">
+                    <div style="max-width: 1200px; margin: 0 auto;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                            <h1 style="color: #1DB954; margin: 0;">📊 Portfolio Analytics Dashboard</h1>
+                            <button onclick="this.parentElement.parentElement.parentElement.remove()" style="background: #1DB954; color: #000; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold;">Close</button>
+                        </div>
+                        
+                        <div style="background: #181818; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                            <h2 style="color: #1DB954; margin-top: 0;">Summary</h2>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                                <div style="background: #282828; padding: 15px; border-radius: 8px;">
+                                    <div style="color: #B3B3B3; font-size: 12px;">TOTAL VISITS</div>
+                                    <div style="font-size: 32px; font-weight: bold; color: #1DB954;">${visits.length}</div>
+                                </div>
+                                <div style="background: #282828; padding: 15px; border-radius: 8px;">
+                                    <div style="color: #B3B3B3; font-size: 12px;">TODAY</div>
+                                    <div style="font-size: 32px; font-weight: bold; color: #1DB954;">${getVisitsToday(visits)}</div>
+                                </div>
+                                <div style="background: #282828; padding: 15px; border-radius: 8px;">
+                                    <div style="color: #B3B3B3; font-size: 12px;">THIS WEEK</div>
+                                    <div style="font-size: 32px; font-weight: bold; color: #1DB954;">${getVisitsThisWeek(visits)}</div>
+                                </div>
+                                <div style="background: #282828; padding: 15px; border-radius: 8px;">
+                                    <div style="color: #B3B3B3; font-size: 12px;">UNIQUE LOCATIONS</div>
+                                    <div style="font-size: 32px; font-weight: bold; color: #1DB954;">${getUniqueLocations(visits)}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="background: #181818; padding: 20px; border-radius: 12px;">
+                            <h2 style="color: #1DB954; margin-top: 0;">Recent Visits</h2>
+                            <div style="overflow-x: auto;">
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <thead>
+                                        <tr style="border-bottom: 2px solid #282828;">
+                                            <th style="padding: 12px; text-align: left; color: #B3B3B3;">Time</th>
+                                            <th style="padding: 12px; text-align: left; color: #B3B3B3;">Location</th>
+                                            <th style="padding: 12px; text-align: left; color: #B3B3B3;">Device</th>
+                                            <th style="padding: 12px; text-align: left; color: #B3B3B3;">Browser</th>
+                                            <th style="padding: 12px; text-align: left; color: #B3B3B3;">Referrer</th>
+                                            <th style="padding: 12px; text-align: left; color: #B3B3B3;">Duration</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${visits.map(v => `
+                                            <tr style="border-bottom: 1px solid #282828;">
+                                                <td style="padding: 12px; color: #fff;">${new Date(v.timestamp).toLocaleString()}</td>
+                                                <td style="padding: 12px; color: #fff;">${v.location || 'Unknown'}</td>
+                                                <td style="padding: 12px; color: #fff;">${v.platform || 'Unknown'}</td>
+                                                <td style="padding: 12px; color: #fff;">${getBrowserName(v.userAgent)}</td>
+                                                <td style="padding: 12px; color: #B3B3B3; font-size: 12px; max-width: 200px; overflow: hidden; text-overflow: ellipsis;">${v.referrer || 'Direct'}</td>
+                                                <td style="padding: 12px; color: #1DB954;">${v.duration || 'Active'}</td>
+                                            </tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #181818; border-radius: 8px; color: #B3B3B3; font-size: 12px;">
+                            <strong style="color: #1DB954;">💡 Tip:</strong> Press Ctrl+Shift+A (Cmd+Shift+A on Mac) anytime to open this dashboard. 
+                            Data is stored locally in your browser. To export visits, open DevTools Console and type: <code style="background: #000; padding: 2px 6px; border-radius: 4px;">copy(JSON.parse(localStorage.getItem('portfolioVisits')))</code>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            const dashboard = document.createElement('div');
+            dashboard.innerHTML = dashboardHTML;
+            document.body.appendChild(dashboard);
+        }
+
+        // Helper functions for dashboard
+        function getVisitsToday(visits) {
+            const today = new Date().toDateString();
+            return visits.filter(v => new Date(v.timestamp).toDateString() === today).length;
+        }
+
+        function getVisitsThisWeek(visits) {
+            const weekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+            return visits.filter(v => new Date(v.timestamp).getTime() > weekAgo).length;
+        }
+
+        function getUniqueLocations(visits) {
+            const locations = new Set(visits.map(v => v.location).filter(Boolean));
+            return locations.size;
+        }
+    </script>
+</body>
+</html>
