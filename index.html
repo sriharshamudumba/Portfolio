@@ -1142,9 +1142,9 @@
         </div>
         <div class="contact-container">
             <div class="contact-grid">
-                <a href="mailto:sri19harsha98@gmail.com" class="contact-card">
-                    <i class="ri-mail-fill contact-icon"></i>
-                    <span class="contact-label">Email</span>
+                <a id="emailLink" href="mailto:sri19harsha98@gmail.com?subject=Portfolio%20Contact&body=Hi%20Sriharsha%2C%0A%0A" class="contact-card">
+                  <i class="ri-mail-fill contact-icon"></i>
+                  <span class="contact-label">Email</span>
                 </a>
                 <a href="https://www.linkedin.com/in/sriharshamudumba/" target="_blank" class="contact-card">
                     <i class="ri-linkedin-box-fill contact-icon"></i>
@@ -1568,3 +1568,23 @@ Full User Agent: ${visitorInfo.userAgent}
             const weekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
             return visits.filter(v => new Date(v.timestamp).getTime() > weekAgo).length;
         }
+        <script>
+  (function () {
+    const email = "sri19harsha98@gmail.com";
+    const emailLink = document.getElementById("emailLink");
+    if (!emailLink) return;
+
+    emailLink.addEventListener("click", async () => {
+      setTimeout(async () => {
+        if (document.visibilityState === "visible") {
+          try {
+            await navigator.clipboard.writeText(email);
+            alert("Email copied: " + email);
+          } catch (_) {
+            prompt("Copy this email:", email);
+          }
+        }
+      }, 700);
+    });
+  })();
+</script>
