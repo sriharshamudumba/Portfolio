@@ -276,7 +276,7 @@
                     <div class="timeline-date">July 2025 – Present</div>
                     <h3 class="timeline-title">AI Engineer Intern</h3>
                     <div class="timeline-subtitle">HCLTech</div>
-                    <p class="timeline-description">Building production-grade ML systems with focus on NLP pipelines and Retrieval-Augmented Generation. Implemented text preprocessing, tokenization, sentiment analysis, and topic modeling workflows, achieving 20% accuracy improvement in information extraction. Developed RAG pipelines using LangChain, transformers, and vector databases (FAISS), increasing response relevance by 25%. Established experiment tracking and model versioning practices using MLflow, improving reproducibility across team workflows.</p>
+                    <p class="timeline-description">Built transformer-based NLP and embedding pipelines for internal and client AI solutions, improving information extraction accuracy by 20%. Designed semantic search and reranking systems using LangChain, transformers, and vector databases (FAISS, Pinecone), increasing top-k retrieval relevance by 25%. Deployed batch and real-time inference services with FastAPI and Docker, incorporating latency monitoring and reliability logging. Implemented experiment tracking and model versioning with MLflow, establishing reproducible training workflows across team deliverables.</p>
                 </div>
             </div>
             <div class="timeline-item">
@@ -284,7 +284,7 @@
                     <div class="timeline-date">August 2020 – July 2023</div>
                     <h3 class="timeline-title">Software Engineer</h3>
                     <div class="timeline-subtitle">Cognizant Technology Solutions</div>
-                    <p class="timeline-description">Operated production-grade data systems serving latency-sensitive analytics and ML applications with strict SLAs. Performed deep performance profiling across query execution, memory utilization, and I/O paths, identifying bottlenecks and improving end-to-end throughput for compute-intensive workloads. Supported large-scale data ingestion and feature-serving workflows, ensuring data correctness and consistency for downstream ML inference pipelines.</p>
+                    <p class="timeline-description">Managed and optimized production databases (5+ TB scale) serving ML training and inference pipelines, maintaining 99.9% uptime under strict SLAs. Reduced query execution latency by ~30% through systematic profiling of execution plans, memory utilization, and I/O bottlenecks, directly improving throughput for compute-intensive ML workloads. Designed and maintained data ingestion workflows processing millions of records daily, ensuring correctness and timely availability for downstream ML feature pipelines. Collaborated with ML and infrastructure teams across 4+ projects to resolve data quality issues impacting model training runs, reducing pipeline failures and improving data reliability.</p>
                 </div>
             </div>
             <div class="timeline-item">
@@ -464,16 +464,8 @@
     </div>
 
     <script>
-        // ================================================================
-        //  👇 ONLY LINE YOU NEED TO CHANGE
-        //  Replace YOUR_FORM_ID with the ID from formspree.io
-        //  e.g.  'https://formspree.io/f/xabcd123'
-        // ================================================================
         const TRACKING_ENDPOINT = 'https://formspree.io/f/xeelnaep';
 
-        // ================================================================
-        //  VISITOR TRACKING  –  fires automatically on every page load
-        // ================================================================
         function getBrowserName(ua) {
             if (ua.includes('Firefox')) return 'Firefox';
             if (ua.includes('Edg'))     return 'Edge';
@@ -484,7 +476,7 @@
         }
 
         async function trackVisitor() {
-            if (TRACKING_ENDPOINT.includes('YOUR_FORM_ID')) return; // not configured yet
+            if (TRACKING_ENDPOINT.includes('YOUR_FORM_ID')) return;
 
             const info = {
                 timestamp: new Date().toISOString(),
@@ -528,7 +520,6 @@
                 });
             } catch(e) {}
 
-            // Cache locally for admin dashboard
             try {
                 const visits = JSON.parse(localStorage.getItem('portfolioVisits') || '[]');
                 visits.unshift(info);
@@ -537,7 +528,6 @@
             } catch(e) {}
         }
 
-        // Track time on page
         let visitStart = Date.now(), hiddenDuration = 0, hiddenAt = null;
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) { hiddenAt = Date.now(); }
@@ -554,11 +544,6 @@
 
         window.addEventListener('load', () => setTimeout(trackVisitor, 1000));
 
-        // ================================================================
-        //  HIGH-INTENT EVENTS  –  resume download & email click
-        //  These send a separate priority email so you know a recruiter
-        //  is actively engaging with your portfolio
-        // ================================================================
         async function trackEvent(name) {
             if (TRACKING_ENDPOINT.includes('YOUR_FORM_ID')) return;
             try {
@@ -584,10 +569,6 @@
             }, 700);
         });
 
-        // ================================================================
-        //  ADMIN DASHBOARD  –  Ctrl+Shift+A  (Cmd+Shift+A on Mac)
-        //  Shows all locally-cached visits in a table
-        // ================================================================
         document.addEventListener('keydown', e => {
             if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'A') { e.preventDefault(); showAdminDashboard(); }
         });
@@ -644,9 +625,6 @@
             document.body.appendChild(el);
         }
 
-        // ================================================================
-        //  UI — Navbar · Modal · Smooth scroll · Scroll animations
-        // ================================================================
         window.addEventListener('scroll', () => {
             document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
         });
