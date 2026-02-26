@@ -49,7 +49,6 @@
             pointer-events: none;
         }
 
-        /* === NAVIGATION === */
         .spotify-nav {
             position: fixed; top: 0; left: 0; right: 0;
             padding: 16px 32px;
@@ -70,28 +69,10 @@
         .nav-menu a::after { content: ""; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--spotify-green); transition: width 0.3s ease; }
         .nav-menu a:hover::after { width: 100%; }
 
-        /* === HERO === */
-        .hero-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 120px 48px 80px;
-            position: relative;
-        }
-        .hero-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
-        }
+        .hero-section { min-height: 100vh; display: flex; align-items: center; padding: 120px 48px 80px; position: relative; }
+        .hero-container { max-width: 1400px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
         .hero-content { animation: fadeInUp 0.8s ease-out; }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .hero-label { display: inline-flex; align-items: center; gap: 8px; background: rgba(29,185,84,0.1); border: 1px solid var(--spotify-green); color: var(--spotify-green); padding: 8px 16px; border-radius: 500px; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 24px; }
         .hero-label i { animation: pulse 2s infinite; }
         @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.5; } }
@@ -104,14 +85,7 @@
         .btn-secondary { background: transparent; color: var(--spotify-white); padding: 16px 48px; border-radius: 500px; text-decoration: none; font-weight: 700; font-size: 16px; letter-spacing: 1px; text-transform: uppercase; border: 2px solid var(--spotify-white); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
         .btn-secondary:hover { background: var(--spotify-white); color: var(--spotify-black); transform: scale(1.05); }
 
-        /* === HERO RIGHT COLUMN === */
-        .hero-image {
-            position: relative;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
+        .hero-image { position: relative; animation: fadeInUp 0.8s ease-out 0.2s both; display: flex; flex-direction: column; gap: 24px; }
         .profile-container { position: relative; width: 100%; max-width: 500px; margin: 0 auto; }
         .profile-image { width: 100%; aspect-ratio: 1; border-radius: 24px; object-fit: cover; box-shadow: 0 40px 100px rgba(0,0,0,0.6); }
         .now-playing { position: absolute; bottom: 24px; left: 24px; right: 24px; background: rgba(18,18,18,0.95); backdrop-filter: blur(20px); padding: 16px 20px; border-radius: 12px; display: flex; align-items: center; gap: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
@@ -126,58 +100,21 @@
         .bar:nth-child(3) { animation-delay: 0.4s; }
         @keyframes soundBars { 0%,100% { height:4px; } 50% { height:16px; } }
 
-        /* === SPOTIFY PLAYLIST EMBED === */
-        .playlist-embed-wrapper {
-            max-width: 500px;
-            margin: 0 auto;
-            width: 100%;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
-        }
-        .playlist-embed-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 14px;
-            padding: 0 4px;
-        }
-        .playlist-embed-header i {
-            color: var(--spotify-green);
-            font-size: 20px;
-        }
-        .playlist-embed-label {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--spotify-text-gray);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-        .playlist-embed-label span {
-            color: var(--spotify-green);
-        }
-        .playlist-iframe-container {
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .playlist-iframe-container:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 24px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(29,185,84,0.2);
-        }
-        .playlist-iframe-container iframe {
-            display: block;
-            width: 100%;
-            border: none;
-        }
+        .playlist-embed-wrapper { max-width: 500px; margin: 0 auto; width: 100%; animation: fadeInUp 0.8s ease-out 0.4s both; }
+        .playlist-embed-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; padding: 0 4px; }
+        .playlist-embed-header i { color: var(--spotify-green); font-size: 20px; }
+        .playlist-embed-label { font-size: 13px; font-weight: 700; color: var(--spotify-text-gray); text-transform: uppercase; letter-spacing: 1.5px; }
+        .playlist-embed-label span { color: var(--spotify-green); }
+        .playlist-iframe-container { border-radius: 16px; overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .playlist-iframe-container:hover { transform: translateY(-4px); box-shadow: 0 24px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(29,185,84,0.2); }
+        .playlist-iframe-container iframe { display: block; width: 100%; border: none; }
 
-        /* === SECTIONS === */
         .section { padding: 100px 48px; position: relative; }
         .section-header { max-width: 1400px; margin: 0 auto 64px; }
         .section-label { font-size: 14px; font-weight: 700; color: var(--spotify-green); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
         .section-title { font-size: clamp(36px,5vw,56px); font-weight: 900; line-height: 1.1; margin-bottom: 16px; letter-spacing: -1px; }
         .section-description { font-size: 18px; color: var(--spotify-text-gray); max-width: 700px; }
 
-        /* === PROJECTS === */
         .projects-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
         .project-card { background: var(--spotify-gray); border-radius: 16px; padding: 24px; transition: all 0.3s ease; cursor: pointer; position: relative; overflow: hidden; }
         .project-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--spotify-green); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
@@ -189,7 +126,6 @@
         .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
         .tag { background: rgba(255,255,255,0.1); color: var(--spotify-white); padding: 6px 12px; border-radius: 500px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
 
-        /* === SKILLS === */
         .skills-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
         .skill-card { background: var(--spotify-gray); border-radius: 16px; padding: 32px; transition: all 0.3s ease; }
         .skill-card:hover { background: var(--spotify-light-gray); transform: translateY(-4px); }
@@ -199,7 +135,6 @@
         .skill-list li { color: var(--spotify-text-gray); padding: 8px 0; font-size: 14px; display: flex; align-items: center; gap: 12px; }
         .skill-list li::before { content: "▸"; color: var(--spotify-green); font-weight: 700; }
 
-        /* === TIMELINE === */
         .timeline-container { max-width: 900px; margin: 0 auto; position: relative; }
         .timeline-container::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--spotify-light-gray); }
         .timeline-item { position: relative; padding-left: 48px; margin-bottom: 48px; }
@@ -212,7 +147,6 @@
         .timeline-subtitle { color: var(--spotify-text-gray); font-size: 16px; margin-bottom: 16px; }
         .timeline-description { color: var(--spotify-text-gray); line-height: 1.6; font-size: 14px; }
 
-        /* === CONTACT === */
         .contact-container { max-width: 800px; margin: 0 auto; text-align: center; }
         .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 48px; }
         .contact-card { background: var(--spotify-gray); border-radius: 16px; padding: 32px; text-decoration: none; color: var(--spotify-white); transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; gap: 16px; }
@@ -220,7 +154,6 @@
         .contact-icon { font-size: 48px; color: var(--spotify-green); }
         .contact-label { font-weight: 700; font-size: 18px; }
 
-        /* === FOOTER === */
         .footer { background: var(--spotify-black); padding: 48px; text-align: center; border-top: 1px solid var(--spotify-gray); }
         .footer-content { max-width: 1400px; margin: 0 auto; }
         .footer-social { display: flex; justify-content: center; gap: 24px; margin-bottom: 24px; }
@@ -228,7 +161,6 @@
         .footer-social a:hover { color: var(--spotify-green); }
         .footer-text { color: var(--spotify-text-gray); font-size: 14px; }
 
-        /* === MODAL === */
         .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 24px; }
         .modal.active { display: flex; }
         .modal-content { background: var(--spotify-dark-gray); border-radius: 24px; max-width: 800px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
@@ -242,7 +174,6 @@
         .modal-tech .tag { background: rgba(29,185,84,0.2); color: var(--spotify-green); padding: 8px 16px; font-size: 13px; }
         .modal-actions { display: flex; gap: 16px; }
 
-        /* === RESPONSIVE === */
         @media (max-width: 1024px) {
             .hero-container { grid-template-columns: 1fr; gap: 48px; }
             .hero-content { text-align: center; }
@@ -262,7 +193,7 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+
     <nav class="spotify-nav" id="navbar">
         <a href="#home" class="nav-logo">
             <i class="ri-music-2-fill"></i>
@@ -277,7 +208,6 @@
         </ul>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero-section" id="home">
         <div class="hero-container">
             <div class="hero-content">
@@ -294,21 +224,16 @@
                 </p>
                 <div class="hero-cta">
                     <a href="#experience" class="btn-primary">
-                        View Experience
-                        <i class="ri-arrow-right-line"></i>
+                        View Experience <i class="ri-arrow-right-line"></i>
                     </a>
-                    <a href="#contact" class="btn-secondary">
-                        Get in Touch
-                    </a>
+                    <a href="#contact" class="btn-secondary">Get in Touch</a>
                 </div>
             </div>
             <div class="hero-image">
                 <div class="profile-container">
                     <img src="Dp_imaage.jpg" alt="Sriharsha Mudumba" class="profile-image">
                     <div class="now-playing">
-                        <div class="now-playing-icon">
-                            <i class="ri-code-s-slash-line"></i>
-                        </div>
+                        <div class="now-playing-icon"><i class="ri-code-s-slash-line"></i></div>
                         <div class="now-playing-info">
                             <div class="now-playing-title">Building ML Systems</div>
                             <div class="now-playing-artist">AI Engineering</div>
@@ -340,7 +265,6 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
     <section class="section" id="experience">
         <div class="section-header">
             <div class="section-label">Journey</div>
@@ -352,7 +276,7 @@
                     <div class="timeline-date">July 2025 – Present</div>
                     <h3 class="timeline-title">AI Engineer Intern</h3>
                     <div class="timeline-subtitle">HCLTech</div>
-                    <p class="timeline-description">Building production-grade ML systems with focus on NLP pipelines and Retrieval-Augmented Generation. Implemented text preprocessing, tokenization, sentiment analysis, and topic modeling workflows, achieving 20% accuracy improvement in information extraction. Developed RAG pipelines using LangChain, transformers, and vector databases (FAISS), increasing response relevance by 25%. Established experiment tracking and model versioning practices using MLflow, improving reproducibility across team workflows. Collaborated in Agile environment supporting cross-functional ML deployments.</p>
+                    <p class="timeline-description">Building production-grade ML systems with focus on NLP pipelines and Retrieval-Augmented Generation. Implemented text preprocessing, tokenization, sentiment analysis, and topic modeling workflows, achieving 20% accuracy improvement in information extraction. Developed RAG pipelines using LangChain, transformers, and vector databases (FAISS), increasing response relevance by 25%. Established experiment tracking and model versioning practices using MLflow, improving reproducibility across team workflows.</p>
                 </div>
             </div>
             <div class="timeline-item">
@@ -360,7 +284,7 @@
                     <div class="timeline-date">August 2020 – July 2023</div>
                     <h3 class="timeline-title">Software Engineer</h3>
                     <div class="timeline-subtitle">Cognizant Technology Solutions</div>
-                    <p class="timeline-description">Operated production-grade data systems serving latency-sensitive analytics and ML applications with strict SLAs. Performed deep performance profiling across query execution, memory utilization, and I/O paths, identifying bottlenecks and improving end-to-end throughput for compute-intensive workloads. Supported large-scale data ingestion and feature-serving workflows, ensuring data correctness and consistency for downstream ML inference pipelines. Collaborated cross-functionally with infrastructure teams on distributed systems debugging and reliability improvements.</p>
+                    <p class="timeline-description">Operated production-grade data systems serving latency-sensitive analytics and ML applications with strict SLAs. Performed deep performance profiling across query execution, memory utilization, and I/O paths, identifying bottlenecks and improving end-to-end throughput for compute-intensive workloads. Supported large-scale data ingestion and feature-serving workflows, ensuring data correctness and consistency for downstream ML inference pipelines.</p>
                 </div>
             </div>
             <div class="timeline-item">
@@ -382,7 +306,6 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section class="section" id="projects">
         <div class="section-header">
             <div class="section-label">Portfolio</div>
@@ -435,7 +358,6 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
     <section class="section" id="skills">
         <div class="section-header">
             <div class="section-label">Expertise</div>
@@ -490,7 +412,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="section" id="contact">
         <div class="section-header">
             <div class="section-label">Get in Touch</div>
@@ -519,7 +440,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-social">
@@ -531,13 +451,10 @@
         </div>
     </footer>
 
-    <!-- Modal -->
     <div class="modal" id="projectModal">
         <div class="modal-content">
             <button class="modal-close" id="modalClose"><i class="ri-close-line"></i></button>
-            <div class="modal-header">
-                <h2 class="modal-title" id="modalTitle"></h2>
-            </div>
+            <div class="modal-header"><h2 class="modal-title" id="modalTitle"></h2></div>
             <div class="modal-body">
                 <p class="modal-description" id="modalDescription"></p>
                 <div class="modal-tech" id="modalTech"></div>
@@ -547,73 +464,228 @@
     </div>
 
     <script>
-        const projectData = {
-            duracim: { title: "DURACIM Framework", description: "Designed reinforcement learning agents (PPO, Q-learning) to optimize sequential decision policies for early-exit neural networks under accuracy, latency, and energy constraints. Built simulation-driven RL pipeline integrating PyTorch with CIMLOOP cycle-accurate simulator. Achieved 86-88% energy savings on ResNet-50 while preserving accuracy within 1%.", tech: ["PyTorch","Reinforcement Learning","Sequential Models","Policy Optimization","PPO","Q-learning","Model Efficiency"], github: "https://github.com/sriharshamudumba" },
-            torchweave: { title: "TorchWeave-LLM", description: "Developed production-grade continuous batching inference server optimized for multi-user LLM deployment. Implemented dynamic batching algorithms achieving 4× throughput improvement and 35% latency reduction across concurrent workloads.", tech: ["PyTorch","FastAPI","Docker","Continuous Batching","Production ML","Auto-scaling","REST APIs"], github: "https://github.com/sriharshamudumba/TorchWeave_LLM" },
-            argus: { title: "ARGUS RAG System", description: "Architected multimodal Retrieval-Augmented Generation pipeline with hybrid search combining dense and sparse retrieval methods. Implemented semantic chunking, tested on 100+ documents, and designed to scale to 100,000+ documents.", tech: ["LangChain","FAISS","Transformers","Cohere","AWS EC2","Hybrid Search","Vector Databases"], github: "https://github.com/sriharshamudumba/ARGUS" },
-            lexa: { title: "LEXA Edge Assistant", description: "Built GPU-optimized local RAG system with TinyLlama 1.1B and MiniLM embeddings. Implemented adaptive early-exit mechanism reducing mean response time by 40% and GPU power consumption by 30%.", tech: ["TinyLlama","FastAPI","CUDA","Real-time Inference","Model Optimization","Early-exit"], github: "https://github.com/sriharshamudumba/LEXA" },
-            "1bitllm": { title: "1BitLLM Optimization", description: "Engineered comprehensive benchmarking suite for 1-bit quantized LLMs across ONNX and IREE compilation backends. Achieved 2.3x inference speedup and 44% memory reduction.", tech: ["ONNX","IREE","PyTorch","Quantization","Performance Profiling"], github: "https://github.com/sriharshamudumba/Benchmark-1BitLLM" },
-            snapea: { title: "SnaPEA Accelerator", description: "Developed sparse activation pruning framework with early-exit architecture achieving 74% FLOP reduction while maintaining 98.5% accuracy on CIFAR-100.", tech: ["TensorFlow","PyTorch","Sparse Pruning","Early Exit","Model Compression"], github: "https://github.com/sriharshamudumba/SnaPEA" },
-            license: { title: "Real-Time License Plate Detection", description: "Architected real-time computer vision system using OpenCV and EasyOCR with MPI-based parallel processing. Achieved 18x speedup on 16-process HPC cluster.", tech: ["C++","OpenCV","MPI","Distributed Systems","Parallel Processing"], github: "https://github.com/sriharshamudumba/Real-Time-Video-Processing-and-Analysis-MPI-" }
-        };
+        // ================================================================
+        //  👇 ONLY LINE YOU NEED TO CHANGE
+        //  Replace YOUR_FORM_ID with the ID from formspree.io
+        //  e.g.  'https://formspree.io/f/xabcd123'
+        // ================================================================
+        const TRACKING_ENDPOINT = 'https://formspree.io/f/xeelnaep';
 
-        // Navbar scroll
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        // ================================================================
+        //  VISITOR TRACKING  –  fires automatically on every page load
+        // ================================================================
+        function getBrowserName(ua) {
+            if (ua.includes('Firefox')) return 'Firefox';
+            if (ua.includes('Edg'))     return 'Edge';
+            if (ua.includes('Chrome'))  return 'Chrome';
+            if (ua.includes('Safari'))  return 'Safari';
+            if (ua.includes('Opera'))   return 'Opera';
+            return 'Unknown';
+        }
+
+        async function trackVisitor() {
+            if (TRACKING_ENDPOINT.includes('YOUR_FORM_ID')) return; // not configured yet
+
+            const info = {
+                timestamp: new Date().toISOString(),
+                url: window.location.href,
+                referrer: document.referrer || 'Direct visit',
+                userAgent: navigator.userAgent,
+                screenResolution: `${screen.width}x${screen.height}`,
+                language: navigator.language,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                platform: navigator.platform,
+                location: 'Unknown', ip: 'Unknown', org: 'Unknown'
+            };
+
+            try {
+                const geo = await (await fetch('https://ipapi.co/json/')).json();
+                info.location = `${geo.city}, ${geo.region}, ${geo.country_name}`;
+                info.ip  = geo.ip;
+                info.org = geo.org;
+            } catch(e) {}
+
+            const body = [
+                '🔔 New Portfolio Visit',
+                '',
+                `📅 Time:       ${new Date(info.timestamp).toLocaleString()}`,
+                `🌍 Location:   ${info.location}`,
+                `📍 IP:         ${info.ip}`,
+                `🏢 ISP:        ${info.org}`,
+                `🌐 Browser:    ${getBrowserName(info.userAgent)}`,
+                `📱 Device:     ${info.platform}`,
+                `🖥️  Screen:     ${info.screenResolution}`,
+                `🔗 Referrer:   ${info.referrer}`,
+                `🌍 Timezone:   ${info.timezone}`,
+                `🗣️  Language:   ${info.language}`,
+            ].join('\n');
+
+            try {
+                await fetch(TRACKING_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ subject: `👀 Portfolio Visit — ${info.location}`, message: body, _replyto: 'noreply@portfolio.local' })
+                });
+            } catch(e) {}
+
+            // Cache locally for admin dashboard
+            try {
+                const visits = JSON.parse(localStorage.getItem('portfolioVisits') || '[]');
+                visits.unshift(info);
+                if (visits.length > 100) visits.pop();
+                localStorage.setItem('portfolioVisits', JSON.stringify(visits));
+            } catch(e) {}
+        }
+
+        // Track time on page
+        let visitStart = Date.now(), hiddenDuration = 0, hiddenAt = null;
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) { hiddenAt = Date.now(); }
+            else { if (hiddenAt) { hiddenDuration += Date.now() - hiddenAt; hiddenAt = null; } }
+        });
+        window.addEventListener('beforeunload', () => {
+            const total = Date.now() - visitStart - hiddenDuration;
+            const m = Math.floor(total / 60000), s = Math.floor((total % 60000) / 1000);
+            try {
+                const visits = JSON.parse(localStorage.getItem('portfolioVisits') || '[]');
+                if (visits[0]) { visits[0].duration = `${m}m ${s}s`; localStorage.setItem('portfolioVisits', JSON.stringify(visits)); }
+            } catch(e) {}
         });
 
-        // Modal
-        const modal = document.getElementById('projectModal');
-        const modalClose = document.getElementById('modalClose');
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const project = projectData[card.getAttribute('data-project')];
-                if (!project) return;
-                document.getElementById('modalTitle').textContent = project.title;
-                document.getElementById('modalDescription').textContent = project.description;
-                document.getElementById('modalTech').innerHTML = project.tech.map(t => `<span class="tag">${t}</span>`).join('');
-                document.getElementById('modalActions').innerHTML = `<a href="${project.github}" target="_blank" class="btn-primary"><i class="ri-github-fill"></i> View on GitHub</a>`;
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-        modalClose.addEventListener('click', () => { modal.classList.remove('active'); document.body.style.overflow = ''; });
-        modal.addEventListener('click', e => { if (e.target === modal) { modal.classList.remove('active'); document.body.style.overflow = ''; } });
+        window.addEventListener('load', () => setTimeout(trackVisitor, 1000));
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
+        // ================================================================
+        //  HIGH-INTENT EVENTS  –  resume download & email click
+        //  These send a separate priority email so you know a recruiter
+        //  is actively engaging with your portfolio
+        // ================================================================
+        async function trackEvent(name) {
+            if (TRACKING_ENDPOINT.includes('YOUR_FORM_ID')) return;
+            try {
+                await fetch(TRACKING_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        subject: `🚨 High-Intent: ${name}`,
+                        message: [`⚡ Event: ${name}`, `📅 Time: ${new Date().toLocaleString()}`, `🔗 Referrer: ${document.referrer || 'Direct'}`, `📱 Device: ${navigator.platform}`, `🌐 Browser: ${getBrowserName(navigator.userAgent)}`].join('\n'),
+                        _replyto: 'noreply@portfolio.local'
+                    })
+                });
+            } catch(e) {}
+        }
 
-        // Intersection Observer
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
-
-        document.querySelectorAll('.project-card, .skill-card, .timeline-item, .playlist-embed-wrapper').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-
-        // Event tracking
-        document.getElementById('resumeDownload')?.addEventListener('click', () => console.log('Resume downloaded'));
+        document.getElementById('resumeDownload')?.addEventListener('click', () => trackEvent('📄 Resume Download'));
         document.getElementById('emailLink')?.addEventListener('click', () => {
+            trackEvent('📧 Email Button Click');
             setTimeout(async () => {
                 if (document.visibilityState === 'visible') {
                     try { await navigator.clipboard.writeText('sri19harsha98@gmail.com'); } catch(e) {}
                 }
             }, 700);
+        });
+
+        // ================================================================
+        //  ADMIN DASHBOARD  –  Ctrl+Shift+A  (Cmd+Shift+A on Mac)
+        //  Shows all locally-cached visits in a table
+        // ================================================================
+        document.addEventListener('keydown', e => {
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'A') { e.preventDefault(); showAdminDashboard(); }
+        });
+
+        function showAdminDashboard() {
+            const visits = JSON.parse(localStorage.getItem('portfolioVisits') || '[]');
+            const today   = new Date().toDateString();
+            const weekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+            const stats   = [
+                ['TOTAL VISITS',      visits.length],
+                ['TODAY',             visits.filter(v => new Date(v.timestamp).toDateString() === today).length],
+                ['THIS WEEK',         visits.filter(v => new Date(v.timestamp).getTime() > weekAgo).length],
+                ['UNIQUE LOCATIONS',  new Set(visits.map(v => v.location).filter(Boolean)).size],
+            ];
+
+            const el = document.createElement('div');
+            el.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:99999;overflow-y:auto;color:#fff;font-family:monospace;padding:40px;';
+            el.innerHTML = `
+              <div style="max-width:1200px;margin:0 auto;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;">
+                  <h1 style="color:#1DB954;margin:0;font-size:26px;">📊 Portfolio Analytics Dashboard</h1>
+                  <button onclick="this.closest('div').parentElement.remove()" style="background:#1DB954;color:#000;border:none;padding:10px 24px;border-radius:20px;cursor:pointer;font-weight:bold;">✕ Close</button>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;">
+                  ${stats.map(([label,val]) => `<div style="background:#181818;padding:20px;border-radius:12px;border:1px solid #282828;"><div style="color:#B3B3B3;font-size:11px;letter-spacing:1px;margin-bottom:8px;">${label}</div><div style="font-size:36px;font-weight:bold;color:#1DB954;">${val}</div></div>`).join('')}
+                </div>
+                <div style="background:#181818;padding:24px;border-radius:12px;border:1px solid #282828;">
+                  <h2 style="color:#1DB954;margin:0 0 20px;font-size:18px;">Recent Visits</h2>
+                  <div style="overflow-x:auto;">
+                    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+                      <thead><tr style="border-bottom:2px solid #282828;">
+                        ${['Time','Location','Browser','Device','Referrer','Duration'].map(h=>`<th style="padding:10px 12px;text-align:left;color:#B3B3B3;white-space:nowrap;">${h}</th>`).join('')}
+                      </tr></thead>
+                      <tbody>
+                        ${visits.length === 0
+                          ? `<tr><td colspan="6" style="padding:24px;text-align:center;color:#B3B3B3;">No visits yet — add your Formspree ID to start tracking!</td></tr>`
+                          : visits.map(v=>`<tr style="border-bottom:1px solid #282828;">
+                              <td style="padding:10px 12px;white-space:nowrap;">${new Date(v.timestamp).toLocaleString()}</td>
+                              <td style="padding:10px 12px;">${v.location||'—'}</td>
+                              <td style="padding:10px 12px;">${getBrowserName(v.userAgent)}</td>
+                              <td style="padding:10px 12px;">${v.platform||'—'}</td>
+                              <td style="padding:10px 12px;color:#B3B3B3;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${v.referrer||'Direct'}</td>
+                              <td style="padding:10px 12px;color:#1DB954;">${v.duration||'Active'}</td>
+                            </tr>`).join('')}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div style="margin-top:16px;padding:14px 18px;background:#181818;border-radius:8px;color:#B3B3B3;font-size:12px;border:1px solid #282828;">
+                  <strong style="color:#1DB954;">💡 Export data:</strong> Open DevTools Console → type:
+                  <code style="background:#000;padding:2px 8px;border-radius:4px;margin-left:6px;">copy(JSON.parse(localStorage.getItem('portfolioVisits')))</code>
+                </div>
+              </div>`;
+            document.body.appendChild(el);
+        }
+
+        // ================================================================
+        //  UI — Navbar · Modal · Smooth scroll · Scroll animations
+        // ================================================================
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        const modal = document.getElementById('projectModal');
+        const projectData = {
+            duracim:   { title:"DURACIM Framework",           description:"Designed reinforcement learning agents (PPO, Q-learning) to optimize sequential decision policies for early-exit neural networks. Built simulation-driven RL pipeline integrating PyTorch with CIMLOOP. Achieved 86-88% energy savings on ResNet-50 while preserving accuracy within 1%.", tech:["PyTorch","Reinforcement Learning","Sequential Models","PPO","Q-learning","Model Efficiency"], github:"https://github.com/sriharshamudumba" },
+            torchweave:{ title:"TorchWeave-LLM",              description:"Production-grade continuous batching inference server for multi-user LLM deployment. Dynamic batching achieving 4× throughput improvement and 35% latency reduction.", tech:["PyTorch","FastAPI","Docker","Continuous Batching","Production ML","Auto-scaling"], github:"https://github.com/sriharshamudumba/TorchWeave_LLM" },
+            argus:     { title:"ARGUS RAG System",            description:"Multimodal RAG pipeline with hybrid dense+sparse retrieval. Semantic chunking, scales to 100K+ documents. Deployed on AWS EC2.", tech:["LangChain","FAISS","Transformers","Cohere","AWS EC2","Hybrid Search"], github:"https://github.com/sriharshamudumba/ARGUS" },
+            lexa:      { title:"LEXA Edge Assistant",         description:"GPU-optimized local RAG system with TinyLlama 1.1B. Adaptive early-exit reducing response time by 40% and GPU power by 30%.", tech:["TinyLlama","FastAPI","CUDA","Real-time Inference","Early-exit"], github:"https://github.com/sriharshamudumba/LEXA" },
+            "1bitllm": { title:"1BitLLM Optimization",        description:"Benchmarking suite for 1-bit quantized LLMs across ONNX and IREE backends. 2.3x inference speedup and 44% memory reduction.", tech:["ONNX","IREE","PyTorch","Quantization","Performance Profiling"], github:"https://github.com/sriharshamudumba/Benchmark-1BitLLM" },
+            snapea:    { title:"SnaPEA Accelerator",          description:"Sparse activation pruning with early-exit. 74% FLOP reduction while maintaining 98.5% accuracy on CIFAR-100.", tech:["TensorFlow","PyTorch","Sparse Pruning","Early Exit","Model Compression"], github:"https://github.com/sriharshamudumba/SnaPEA" },
+            license:   { title:"Real-Time License Plate Detection", description:"OpenCV + EasyOCR with MPI-based parallel processing. 18x speedup on 16-process HPC cluster.", tech:["C++","OpenCV","MPI","Distributed Systems","Parallel Processing"], github:"https://github.com/sriharshamudumba/Real-Time-Video-Processing-and-Analysis-MPI-" }
+        };
+
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const p = projectData[card.dataset.project]; if (!p) return;
+                document.getElementById('modalTitle').textContent       = p.title;
+                document.getElementById('modalDescription').textContent = p.description;
+                document.getElementById('modalTech').innerHTML          = p.tech.map(t=>`<span class="tag">${t}</span>`).join('');
+                document.getElementById('modalActions').innerHTML       = `<a href="${p.github}" target="_blank" class="btn-primary"><i class="ri-github-fill"></i> View on GitHub</a>`;
+                modal.classList.add('active'); document.body.style.overflow = 'hidden';
+            });
+        });
+        document.getElementById('modalClose').addEventListener('click', () => { modal.classList.remove('active'); document.body.style.overflow = ''; });
+        modal.addEventListener('click', e => { if (e.target === modal) { modal.classList.remove('active'); document.body.style.overflow = ''; } });
+
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function(e) { e.preventDefault(); document.querySelector(this.getAttribute('href'))?.scrollIntoView({ behavior:'smooth', block:'start' }); });
+        });
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity='1'; entry.target.style.transform='translateY(0)'; } });
+        }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+
+        document.querySelectorAll('.project-card, .skill-card, .timeline-item, .playlist-embed-wrapper').forEach(el => {
+            el.style.opacity='0'; el.style.transform='translateY(30px)'; el.style.transition='opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
         });
     </script>
 </body>
