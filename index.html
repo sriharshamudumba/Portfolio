@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sriharsha Mudumba - ML Engineer</title>
+    <title>Sriharsha Mudumba - ML Inference Engineer</title>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -24,42 +24,16 @@
             --spotify-light-gray: #282828;
             --spotify-white: #FFFFFF;
             --spotify-text-gray: #B3B3B3;
-            --spotify-hover: #1A1A1A;
             --font-main: 'Montserrat', 'Circular Std', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body { font-family: var(--font-main); background: var(--spotify-black); color: var(--spotify-white); overflow-x: hidden; line-height: 1.6; }
 
-        body {
-            font-family: var(--font-main);
-            background: var(--spotify-black);
-            color: var(--spotify-white);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+        body::before { content: ""; position: fixed; top: 0; left: 0; right: 0; height: 60vh; background: linear-gradient(180deg, rgba(29,185,84,0.3) 0%, rgba(18,18,18,0) 100%); z-index: -1; pointer-events: none; }
 
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            height: 60vh;
-            background: linear-gradient(180deg, rgba(29,185,84,0.3) 0%, rgba(18,18,18,0) 100%);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .spotify-nav {
-            position: fixed; top: 0; left: 0; right: 0;
-            padding: 16px 32px;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
+        .spotify-nav { position: fixed; top: 0; left: 0; right: 0; padding: 16px 32px; background: rgba(0,0,0,0.7); backdrop-filter: blur(20px); z-index: 1000; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
         .spotify-nav.scrolled { background: rgba(0,0,0,0.95); box-shadow: 0 4px 60px rgba(0,0,0,0.5); }
         .nav-logo { display: flex; align-items: center; gap: 12px; font-size: 24px; font-weight: 800; color: var(--spotify-white); text-decoration: none; letter-spacing: -0.5px; }
         .nav-logo i { color: var(--spotify-green); font-size: 32px; }
@@ -69,7 +43,7 @@
         .nav-menu a::after { content: ""; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--spotify-green); transition: width 0.3s ease; }
         .nav-menu a:hover::after { width: 100%; }
 
-        .hero-section { min-height: 100vh; display: flex; align-items: center; padding: 120px 48px 80px; position: relative; }
+        .hero-section { min-height: 100vh; display: flex; align-items: center; padding: 120px 48px 80px; }
         .hero-container { max-width: 1400px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
         .hero-content { animation: fadeInUp 0.8s ease-out; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
@@ -95,9 +69,7 @@
         .now-playing-artist { font-size: 12px; color: var(--spotify-text-gray); }
         .now-playing-bars { display: flex; gap: 3px; align-items: flex-end; height: 16px; }
         .bar { width: 3px; background: var(--spotify-green); border-radius: 2px; animation: soundBars 0.8s ease-in-out infinite; }
-        .bar:nth-child(1) { animation-delay: 0s; }
-        .bar:nth-child(2) { animation-delay: 0.2s; }
-        .bar:nth-child(3) { animation-delay: 0.4s; }
+        .bar:nth-child(1) { animation-delay: 0s; } .bar:nth-child(2) { animation-delay: 0.2s; } .bar:nth-child(3) { animation-delay: 0.4s; }
         @keyframes soundBars { 0%,100% { height:4px; } 50% { height:16px; } }
 
         .playlist-embed-wrapper { max-width: 500px; margin: 0 auto; width: 100%; animation: fadeInUp 0.8s ease-out 0.4s both; }
@@ -109,7 +81,7 @@
         .playlist-iframe-container:hover { transform: translateY(-4px); box-shadow: 0 24px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(29,185,84,0.2); }
         .playlist-iframe-container iframe { display: block; width: 100%; border: none; }
 
-        .section { padding: 100px 48px; position: relative; }
+        .section { padding: 100px 48px; }
         .section-header { max-width: 1400px; margin: 0 auto 64px; }
         .section-label { font-size: 14px; font-weight: 700; color: var(--spotify-green); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
         .section-title { font-size: clamp(36px,5vw,56px); font-weight: 900; line-height: 1.1; margin-bottom: 16px; letter-spacing: -1px; }
@@ -178,8 +150,7 @@
             .hero-container { grid-template-columns: 1fr; gap: 48px; }
             .hero-content { text-align: center; }
             .hero-cta { justify-content: center; }
-            .profile-container { max-width: 400px; }
-            .playlist-embed-wrapper { max-width: 400px; }
+            .profile-container, .playlist-embed-wrapper { max-width: 400px; }
         }
         @media (max-width: 768px) {
             .spotify-nav { padding: 16px 24px; }
@@ -220,12 +191,10 @@
                     <span class="highlight">Mudumba</span>
                 </h1>
                 <p class="hero-subtitle">
-                    Machine Learning Engineer with expertise in production ML systems, recommendation engines, and transformer architectures. Passionate about building personalized experiences through sequential models, large-scale inference optimization, and data-driven experimentation at scale.
+                    ML Inference Engineer with 3+ years shipping production LLM serving systems in Python and C++. Built a continuous batching server from scratch delivering 4x throughput and 35% p95 latency drop. Deep expertise in vLLM-style batching, CUDA and Triton kernel optimization, speculative decoding, and fault-tolerant inference system design at scale.
                 </p>
                 <div class="hero-cta">
-                    <a href="#experience" class="btn-primary">
-                        View Experience <i class="ri-arrow-right-line"></i>
-                    </a>
+                    <a href="#experience" class="btn-primary">View Experience <i class="ri-arrow-right-line"></i></a>
                     <a href="#contact" class="btn-secondary">Get in Touch</a>
                 </div>
             </div>
@@ -235,29 +204,21 @@
                     <div class="now-playing">
                         <div class="now-playing-icon"><i class="ri-code-s-slash-line"></i></div>
                         <div class="now-playing-info">
-                            <div class="now-playing-title">Building ML Systems</div>
-                            <div class="now-playing-artist">AI Engineering</div>
+                            <div class="now-playing-title">Building Inference Systems</div>
+                            <div class="now-playing-artist">ML Engineering</div>
                         </div>
                         <div class="now-playing-bars">
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                            <div class="bar"></div>
+                            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
                         </div>
                     </div>
                 </div>
-
                 <div class="playlist-embed-wrapper">
                     <div class="playlist-embed-header">
                         <i class="ri-spotify-fill"></i>
                         <span class="playlist-embed-label">My <span>Coding</span> Playlist</span>
                     </div>
                     <div class="playlist-iframe-container">
-                        <iframe
-                            src="https://open.spotify.com/embed/playlist/37i9dQZF1EIeQG8xzHUNqL?utm_source=generator&theme=0"
-                            height="352"
-                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                            loading="lazy">
-                        </iframe>
+                        <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1EIeQG8xzHUNqL?utm_source=generator&theme=0" height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                     </div>
                 </div>
             </div>
@@ -270,30 +231,43 @@
             <h2 class="section-title">Experience & Education</h2>
         </div>
         <div class="timeline-container">
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">October 2025 – Present</div>
+                    <h3 class="timeline-title">Machine Learning Engineer</h3>
+                    <div class="timeline-subtitle">Procal Technologies — Remote, US</div>
+                    <p class="timeline-description">Restructured the Python/C++ inference stack for T-Mobile and Verizon, eliminating memory transfer waste at the op level and cutting p95 latency by 35% with no model quality regression. Built internal benchmarking and developer tooling used by 4 engineers, standardizing latency, throughput, and regression tracking before every production release. Shipped a circuit-breaker and async retry layer for inference serving, dropping weekly SLA breaches to near-zero. Optimized multi-threaded data ingestion pipelines, resolving I/O contention under concurrent load and improving serving stability by 40%.</p>
+                </div>
+            </div>
+
             <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="timeline-date">August 2020 – July 2023</div>
                     <h3 class="timeline-title">Software Engineer</h3>
-                    <div class="timeline-subtitle">Cognizant Technology Solutions</div>
-                    <p class="timeline-description">Managed and optimized production databases (5+ TB scale) serving ML training and inference pipelines, maintaining 99.9% uptime under strict SLAs. Reduced query execution latency by ~30% through systematic profiling of execution plans, memory utilization, and I/O bottlenecks, directly improving throughput for compute-intensive ML workloads. Designed and maintained data ingestion workflows processing millions of records daily, ensuring correctness and timely availability for downstream ML feature pipelines. Collaborated with ML and infrastructure teams across 4+ projects to resolve data quality issues impacting model training runs, reducing pipeline failures and improving data reliability.</p>
+                    <div class="timeline-subtitle">Cognizant Technology Solutions — Bengaluru, India</div>
+                    <p class="timeline-description">Profiled query execution across 5+ TB production databases, resolved memory allocation bottlenecks, and cut query latency by 30%, directly unblocking stalled ML training pipelines. Led code and design reviews across 3 distributed pipeline projects, enforcing fault-tolerance patterns and catching critical I/O contention issues before production. Traced intermittent distributed ingestion failures to 3 root causes, restoring on-time data delivery at 99.9% uptime.</p>
                 </div>
             </div>
+
             <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="timeline-date">August 2023 – August 2025</div>
-                    <h3 class="timeline-title">Master's Degree in Computer Engineering</h3>
-                    <div class="timeline-subtitle">Iowa State University</div>
-                    <p class="timeline-description">Specialized in Machine Learning and High-Performance Computing. Research focus on Compute-in-Memory (CiM) architectures and Retrieval-Augmented Generation (RAG) systems, contributing to next-generation AI hardware and software optimization.</p>
+                    <h3 class="timeline-title">Master of Science, Computer Engineering</h3>
+                    <div class="timeline-subtitle">Iowa State University — Ames, IA</div>
+                    <p class="timeline-description">Specialized in Machine Learning and High-Performance Computing. Research on RL-guided early-exit inference for Compute-in-Memory systems, achieving 86-88% energy savings on ResNet-50. Publication targeting HPCA 2026 (IEEE Int'l Symposium on High-Performance Computer Architecture).</p>
                 </div>
             </div>
+
             <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="timeline-date">July 2016 – August 2020</div>
-                    <h3 class="timeline-title">Bachelor's in Electronics & Communication</h3>
-                    <div class="timeline-subtitle">Amrita Vishwa Vidyapeetham, Bengaluru</div>
-                    <p class="timeline-description">Built foundational knowledge in algorithms, data structures, and software development with early exposure to AI concepts and embedded systems.</p>
+                    <h3 class="timeline-title">Bachelor of Technology, Electronics and Communication</h3>
+                    <div class="timeline-subtitle">Amrita Vishwa Vidyapeetham — Bengaluru, India</div>
+                    <p class="timeline-description">Built foundational knowledge in algorithms, data structures, and software development with early exposure to embedded systems and hardware-aware programming.</p>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -301,51 +275,52 @@
         <div class="section-header">
             <div class="section-label">Portfolio</div>
             <h2 class="section-title">Featured Projects</h2>
-            <p class="section-description">Production-scale ML systems spanning sequential models, transformer architectures, and scalable inference optimization for personalized experiences.</p>
+            <p class="section-description">Production-grade LLM inference systems, hardware-aware ML optimization, and kernel-level performance engineering.</p>
         </div>
         <div class="projects-grid">
-            <div class="project-card" data-project="duracim">
-                <div class="project-icon"><i class="ri-cpu-line"></i></div>
-                <h3 class="project-title">DURACIM Framework</h3>
-                <p class="project-description">RL-optimized early-exit ResNet-50 with sequential decision policies. Achieved 86-88% energy savings and 3.8x latency reduction using policy-gradient methods (PPO, Q-learning) while maintaining accuracy.</p>
-                <div class="project-tags"><span class="tag">PyTorch</span><span class="tag">Sequential Models</span><span class="tag">RL</span><span class="tag">Optimization</span></div>
-            </div>
+
             <div class="project-card" data-project="torchweave">
                 <div class="project-icon"><i class="ri-server-line"></i></div>
                 <h3 class="project-title">TorchWeave-LLM</h3>
-                <p class="project-description">Production-scale continuous batching inference server for multi-user LLM deployment. Achieved 4× throughput improvement and 35% latency reduction with dynamic batching and auto-scaling.</p>
-                <div class="project-tags"><span class="tag">PyTorch</span><span class="tag">FastAPI</span><span class="tag">Production ML</span><span class="tag">Scale</span></div>
+                <p class="project-description">vLLM-style continuous batching inference server built from scratch. Async scheduling with dynamic batching eliminated head-of-line blocking. 4x throughput, 35% p95 latency reduction. Includes speculative decoding prototype with token acceptance rate benchmarking.</p>
+                <div class="project-tags"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">FastAPI</span><span class="tag">Continuous Batching</span><span class="tag">Speculative Decoding</span></div>
             </div>
+
+            <div class="project-card" data-project="lexa">
+                <div class="project-icon"><i class="ri-cpu-line"></i></div>
+                <h3 class="project-title">LEXA Inference Engine</h3>
+                <p class="project-description">Early-exit inference engine with custom CUDA and Triton kernels. Fused confidence scoring and layer norm ops to eliminate redundant kernel launches. 40% latency reduction, 30% GPU power savings. Triton kernels reduced exit-layer compute by 2x vs PyTorch baseline.</p>
+                <div class="project-tags"><span class="tag">CUDA</span><span class="tag">Triton</span><span class="tag">PyTorch</span><span class="tag">TinyLlama</span><span class="tag">Kernel Fusion</span></div>
+            </div>
+
+            <div class="project-card" data-project="duracim">
+                <div class="project-icon"><i class="ri-flashlight-line"></i></div>
+                <h3 class="project-title">DURACIM Framework</h3>
+                <p class="project-description">RL-guided early-exit co-design for Compute-in-Memory systems. PPO and Q-learning agents learn per-layer exit policies under accuracy, latency, and energy constraints. 86-88% inference energy savings on ResNet-50 within 1% accuracy. Publication targeting HPCA 2026.</p>
+                <div class="project-tags"><span class="tag">PyTorch</span><span class="tag">CUDA</span><span class="tag">PPO</span><span class="tag">RL</span><span class="tag">CIMLOOP</span></div>
+            </div>
+
             <div class="project-card" data-project="argus">
                 <div class="project-icon"><i class="ri-search-eye-line"></i></div>
                 <h3 class="project-title">ARGUS RAG System</h3>
-                <p class="project-description">Production RAG pipeline with hybrid search (dense + sparse retrieval) for personalized content discovery. Architected to scale to 100K+ documents with semantic chunking and real-time inference.</p>
+                <p class="project-description">Production RAG pipeline with hybrid dense and sparse retrieval. Semantic chunking scales to 100K+ documents with real-time inference. Deployed on AWS EC2.</p>
                 <div class="project-tags"><span class="tag">LangChain</span><span class="tag">FAISS</span><span class="tag">Transformers</span><span class="tag">AWS</span></div>
             </div>
-            <div class="project-card" data-project="lexa">
-                <div class="project-icon"><i class="ri-tablet-line"></i></div>
-                <h3 class="project-title">LEXA Edge Assistant</h3>
-                <p class="project-description">Real-time RAG system with adaptive early-exit for low-latency personalization. 40% faster response time and 30% GPU power reduction using TinyLlama 1.1B and optimized inference.</p>
-                <div class="project-tags"><span class="tag">TinyLlama</span><span class="tag">Real-time</span><span class="tag">Optimization</span></div>
-            </div>
+
             <div class="project-card" data-project="1bitllm">
                 <div class="project-icon"><i class="ri-speed-up-line"></i></div>
                 <h3 class="project-title">1BitLLM Optimization</h3>
-                <p class="project-description">Benchmarking suite for 1-bit quantized LLMs. 2.3x inference speedup with 44% memory reduction.</p>
-                <div class="project-tags"><span class="tag">ONNX</span><span class="tag">IREE</span><span class="tag">Quantization</span></div>
+                <p class="project-description">Benchmarking suite for 1-bit quantized LLMs across ONNX and IREE backends. 2.3x inference speedup with 44% memory reduction.</p>
+                <div class="project-tags"><span class="tag">ONNX</span><span class="tag">IREE</span><span class="tag">Quantization</span><span class="tag">PyTorch</span></div>
             </div>
+
             <div class="project-card" data-project="snapea">
                 <div class="project-icon"><i class="ri-scissors-cut-line"></i></div>
                 <h3 class="project-title">SnaPEA Accelerator</h3>
-                <p class="project-description">Sparse activation pruning with early-exit architecture. 74% FLOP reduction while maintaining 98.5% accuracy.</p>
-                <div class="project-tags"><span class="tag">TensorFlow</span><span class="tag">Pruning</span><span class="tag">PyTorch</span></div>
+                <p class="project-description">Sparse activation pruning with early-exit architecture. 74% FLOP reduction while maintaining 98.5% accuracy on CIFAR-100.</p>
+                <div class="project-tags"><span class="tag">TensorFlow</span><span class="tag">Pruning</span><span class="tag">PyTorch</span><span class="tag">Sparsity</span></div>
             </div>
-            <div class="project-card" data-project="license">
-                <div class="project-icon"><i class="ri-car-line"></i></div>
-                <h3 class="project-title">License Plate Detection</h3>
-                <p class="project-description">Real-time detection with MPI-based parallel processing. 18x speedup on 16-process HPC cluster.</p>
-                <div class="project-tags"><span class="tag">C++</span><span class="tag">OpenCV</span><span class="tag">MPI</span></div>
-            </div>
+
         </div>
     </section>
 
@@ -353,51 +328,51 @@
         <div class="section-header">
             <div class="section-label">Expertise</div>
             <h2 class="section-title">Technical Skills</h2>
-            <p class="section-description">Full-stack ML engineering with deep expertise in AI frameworks, systems programming, and cloud infrastructure.</p>
+            <p class="section-description">Deep expertise in LLM inference systems, kernel-level optimization, and production ML engineering.</p>
         </div>
         <div class="skills-container">
             <div class="skill-card">
-                <div class="skill-icon"><i class="ri-brain-line"></i></div>
-                <h3 class="skill-title">ML & Deep Learning</h3>
+                <div class="skill-icon"><i class="ri-speed-up-line"></i></div>
+                <h3 class="skill-title">Inference Systems</h3>
                 <ul class="skill-list">
-                    <li>PyTorch & TensorFlow (Production)</li>
-                    <li>Transformer Models & Sequential Models</li>
-                    <li>Recommendation Systems</li>
-                    <li>Model Optimization & Quantization</li>
-                    <li>Hugging Face Ecosystem</li>
-                </ul>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="ri-database-2-line"></i></div>
-                <h3 class="skill-title">NLP & GenAI</h3>
-                <ul class="skill-list">
-                    <li>LangChain & RAG Systems</li>
-                    <li>Vector Databases (FAISS, Pinecone)</li>
-                    <li>Text Preprocessing & NER</li>
-                    <li>Sentiment Analysis & Topic Modeling</li>
-                    <li>Fine-tuning LLMs</li>
+                    <li>vLLM, TGI, TensorRT, ONNX Runtime</li>
+                    <li>Continuous Batching and KV Cache</li>
+                    <li>Speculative Decoding</li>
+                    <li>Async Scheduling and Memory-Efficient Execution</li>
+                    <li>Latency and Throughput Profiling</li>
                 </ul>
             </div>
             <div class="skill-card">
                 <div class="skill-icon"><i class="ri-code-box-line"></i></div>
-                <h3 class="skill-title">Programming & Systems</h3>
+                <h3 class="skill-title">Languages and Frameworks</h3>
                 <ul class="skill-list">
-                    <li>Python (Expert Level)</li>
-                    <li>C++ / C (Performance)</li>
-                    <li>SQL & Data Processing</li>
-                    <li>Distributed Systems (MPI, OpenMP)</li>
-                    <li>Linux & Shell Scripting</li>
+                    <li>Python and C/C++ (Production)</li>
+                    <li>CUDA and Triton Kernel Development</li>
+                    <li>PyTorch and Hugging Face</li>
+                    <li>DeepSpeed and IREE</li>
+                    <li>Bash and Linux Systems</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="ri-settings-3-line"></i></div>
+                <h3 class="skill-title">Systems and Low-Level</h3>
+                <ul class="skill-list">
+                    <li>Multi-threading and Memory Management</li>
+                    <li>Kernel Optimization and Op Fusion</li>
+                    <li>I/O Profiling (cProfile, perf)</li>
+                    <li>Fault-Tolerant Pipeline Design</li>
+                    <li>Distributed Systems</li>
                 </ul>
             </div>
             <div class="skill-card">
                 <div class="skill-icon"><i class="ri-cloud-fill"></i></div>
-                <h3 class="skill-title">MLOps & Infrastructure</h3>
+                <h3 class="skill-title">Deployment and MLOps</h3>
                 <ul class="skill-list">
-                    <li>AWS (EC2, S3, Lambda, SageMaker)</li>
-                    <li>Docker & Model Serving</li>
-                    <li>FastAPI & REST APIs</li>
-                    <li>MLflow & Experiment Tracking</li>
-                    <li>CI/CD for ML Systems</li>
+                    <li>AWS (EC2, S3, SageMaker)</li>
+                    <li>FastAPI and Docker</li>
+                    <li>MLflow and CI/CD for ML</li>
+                    <li>Real-Time and Batch Inference Serving</li>
+                    <li>Model Monitoring and Observability</li>
                 </ul>
             </div>
         </div>
@@ -407,7 +382,7 @@
         <div class="section-header">
             <div class="section-label">Get in Touch</div>
             <h2 class="section-title">Let's Connect</h2>
-            <p class="section-description">Open to discussing ML projects, research collaborations, or opportunities to build innovative AI systems together.</p>
+            <p class="section-description">Open to discussing ML inference roles, research collaborations, or opportunities to build high-performance AI systems.</p>
         </div>
         <div class="contact-container">
             <div class="contact-grid">
@@ -423,7 +398,7 @@
                     <i class="ri-github-fill contact-icon"></i>
                     <span class="contact-label">GitHub</span>
                 </a>
-                <a id="resumeDownload" href="Sriharsha_mudumba_resume.pdf" download class="contact-card">
+                <a id="resumeDownload" href="SriHarsha_Mudumba_TogetherAI_Resume" download class="contact-card">
                     <i class="ri-file-download-line contact-icon"></i>
                     <span class="contact-label">Resume</span>
                 </a>
@@ -468,176 +443,65 @@
 
         async function trackVisitor() {
             if (TRACKING_ENDPOINT.includes('YOUR_FORM_ID')) return;
-
-            const info = {
-                timestamp: new Date().toISOString(),
-                url: window.location.href,
-                referrer: document.referrer || 'Direct visit',
-                userAgent: navigator.userAgent,
-                screenResolution: `${screen.width}x${screen.height}`,
-                language: navigator.language,
-                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-                platform: navigator.platform,
-                location: 'Unknown', ip: 'Unknown', org: 'Unknown'
-            };
-
-            try {
-                const geo = await (await fetch('https://ipapi.co/json/')).json();
-                info.location = `${geo.city}, ${geo.region}, ${geo.country_name}`;
-                info.ip  = geo.ip;
-                info.org = geo.org;
-            } catch(e) {}
-
-            const body = [
-                '🔔 New Portfolio Visit',
-                '',
-                `📅 Time:       ${new Date(info.timestamp).toLocaleString()}`,
-                `🌍 Location:   ${info.location}`,
-                `📍 IP:         ${info.ip}`,
-                `🏢 ISP:        ${info.org}`,
-                `🌐 Browser:    ${getBrowserName(info.userAgent)}`,
-                `📱 Device:     ${info.platform}`,
-                `🖥️  Screen:     ${info.screenResolution}`,
-                `🔗 Referrer:   ${info.referrer}`,
-                `🌍 Timezone:   ${info.timezone}`,
-                `🗣️  Language:   ${info.language}`,
-            ].join('\n');
-
-            try {
-                await fetch(TRACKING_ENDPOINT, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ subject: `👀 Portfolio Visit — ${info.location}`, message: body, _replyto: 'noreply@portfolio.local' })
-                });
-            } catch(e) {}
-
-            try {
-                const visits = JSON.parse(localStorage.getItem('portfolioVisits') || '[]');
-                visits.unshift(info);
-                if (visits.length > 100) visits.pop();
-                localStorage.setItem('portfolioVisits', JSON.stringify(visits));
-            } catch(e) {}
+            const info = { timestamp: new Date().toISOString(), url: window.location.href, referrer: document.referrer || 'Direct visit', userAgent: navigator.userAgent, screenResolution: `${screen.width}x${screen.height}`, language: navigator.language, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone, platform: navigator.platform, location: 'Unknown', ip: 'Unknown', org: 'Unknown' };
+            try { const geo = await (await fetch('https://ipapi.co/json/')).json(); info.location = `${geo.city}, ${geo.region}, ${geo.country_name}`; info.ip = geo.ip; info.org = geo.org; } catch(e) {}
+            const body = ['🔔 New Portfolio Visit', '', `📅 Time: ${new Date(info.timestamp).toLocaleString()}`, `🌍 Location: ${info.location}`, `📍 IP: ${info.ip}`, `🏢 ISP: ${info.org}`, `🌐 Browser: ${getBrowserName(info.userAgent)}`, `📱 Device: ${info.platform}`, `🖥️ Screen: ${info.screenResolution}`, `🔗 Referrer: ${info.referrer}`, `🌍 Timezone: ${info.timezone}`, `🗣️ Language: ${info.language}`].join('\n');
+            try { await fetch(TRACKING_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ subject: `👀 Portfolio Visit — ${info.location}`, message: body, _replyto: 'noreply@portfolio.local' }) }); } catch(e) {}
+            try { const visits = JSON.parse(localStorage.getItem('portfolioVisits') || '[]'); visits.unshift(info); if (visits.length > 100) visits.pop(); localStorage.setItem('portfolioVisits', JSON.stringify(visits)); } catch(e) {}
         }
 
         let visitStart = Date.now(), hiddenDuration = 0, hiddenAt = null;
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) { hiddenAt = Date.now(); }
-            else { if (hiddenAt) { hiddenDuration += Date.now() - hiddenAt; hiddenAt = null; } }
-        });
+        document.addEventListener('visibilitychange', () => { if (document.hidden) { hiddenAt = Date.now(); } else { if (hiddenAt) { hiddenDuration += Date.now() - hiddenAt; hiddenAt = null; } } });
         window.addEventListener('beforeunload', () => {
             const total = Date.now() - visitStart - hiddenDuration;
             const m = Math.floor(total / 60000), s = Math.floor((total % 60000) / 1000);
-            try {
-                const visits = JSON.parse(localStorage.getItem('portfolioVisits') || '[]');
-                if (visits[0]) { visits[0].duration = `${m}m ${s}s`; localStorage.setItem('portfolioVisits', JSON.stringify(visits)); }
-            } catch(e) {}
+            try { const visits = JSON.parse(localStorage.getItem('portfolioVisits') || '[]'); if (visits[0]) { visits[0].duration = `${m}m ${s}s`; localStorage.setItem('portfolioVisits', JSON.stringify(visits)); } } catch(e) {}
         });
-
         window.addEventListener('load', () => setTimeout(trackVisitor, 1000));
 
         async function trackEvent(name) {
             if (TRACKING_ENDPOINT.includes('YOUR_FORM_ID')) return;
-            try {
-                await fetch(TRACKING_ENDPOINT, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        subject: `🚨 High-Intent: ${name}`,
-                        message: [`⚡ Event: ${name}`, `📅 Time: ${new Date().toLocaleString()}`, `🔗 Referrer: ${document.referrer || 'Direct'}`, `📱 Device: ${navigator.platform}`, `🌐 Browser: ${getBrowserName(navigator.userAgent)}`].join('\n'),
-                        _replyto: 'noreply@portfolio.local'
-                    })
-                });
-            } catch(e) {}
+            try { await fetch(TRACKING_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ subject: `🚨 High-Intent: ${name}`, message: [`⚡ Event: ${name}`, `📅 Time: ${new Date().toLocaleString()}`, `🔗 Referrer: ${document.referrer || 'Direct'}`, `📱 Device: ${navigator.platform}`, `🌐 Browser: ${getBrowserName(navigator.userAgent)}`].join('\n'), _replyto: 'noreply@portfolio.local' }) }); } catch(e) {}
         }
 
         document.getElementById('resumeDownload')?.addEventListener('click', () => trackEvent('📄 Resume Download'));
         document.getElementById('emailLink')?.addEventListener('click', () => {
             trackEvent('📧 Email Button Click');
-            setTimeout(async () => {
-                if (document.visibilityState === 'visible') {
-                    try { await navigator.clipboard.writeText('sri19harsha98@gmail.com'); } catch(e) {}
-                }
-            }, 700);
+            setTimeout(async () => { if (document.visibilityState === 'visible') { try { await navigator.clipboard.writeText('sri19harsha98@gmail.com'); } catch(e) {} } }, 700);
         });
 
-        document.addEventListener('keydown', e => {
-            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'A') { e.preventDefault(); showAdminDashboard(); }
-        });
+        document.addEventListener('keydown', e => { if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'A') { e.preventDefault(); showAdminDashboard(); } });
 
         function showAdminDashboard() {
             const visits = JSON.parse(localStorage.getItem('portfolioVisits') || '[]');
-            const today   = new Date().toDateString();
+            const today = new Date().toDateString();
             const weekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
-            const stats   = [
-                ['TOTAL VISITS',      visits.length],
-                ['TODAY',             visits.filter(v => new Date(v.timestamp).toDateString() === today).length],
-                ['THIS WEEK',         visits.filter(v => new Date(v.timestamp).getTime() > weekAgo).length],
-                ['UNIQUE LOCATIONS',  new Set(visits.map(v => v.location).filter(Boolean)).size],
-            ];
-
+            const stats = [['TOTAL VISITS', visits.length], ['TODAY', visits.filter(v => new Date(v.timestamp).toDateString() === today).length], ['THIS WEEK', visits.filter(v => new Date(v.timestamp).getTime() > weekAgo).length], ['UNIQUE LOCATIONS', new Set(visits.map(v => v.location).filter(Boolean)).size]];
             const el = document.createElement('div');
             el.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:99999;overflow-y:auto;color:#fff;font-family:monospace;padding:40px;';
-            el.innerHTML = `
-              <div style="max-width:1200px;margin:0 auto;">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;">
-                  <h1 style="color:#1DB954;margin:0;font-size:26px;">📊 Portfolio Analytics Dashboard</h1>
-                  <button onclick="this.closest('div').parentElement.remove()" style="background:#1DB954;color:#000;border:none;padding:10px 24px;border-radius:20px;cursor:pointer;font-weight:bold;">✕ Close</button>
-                </div>
-                <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;">
-                  ${stats.map(([label,val]) => `<div style="background:#181818;padding:20px;border-radius:12px;border:1px solid #282828;"><div style="color:#B3B3B3;font-size:11px;letter-spacing:1px;margin-bottom:8px;">${label}</div><div style="font-size:36px;font-weight:bold;color:#1DB954;">${val}</div></div>`).join('')}
-                </div>
-                <div style="background:#181818;padding:24px;border-radius:12px;border:1px solid #282828;">
-                  <h2 style="color:#1DB954;margin:0 0 20px;font-size:18px;">Recent Visits</h2>
-                  <div style="overflow-x:auto;">
-                    <table style="width:100%;border-collapse:collapse;font-size:13px;">
-                      <thead><tr style="border-bottom:2px solid #282828;">
-                        ${['Time','Location','Browser','Device','Referrer','Duration'].map(h=>`<th style="padding:10px 12px;text-align:left;color:#B3B3B3;white-space:nowrap;">${h}</th>`).join('')}
-                      </tr></thead>
-                      <tbody>
-                        ${visits.length === 0
-                          ? `<tr><td colspan="6" style="padding:24px;text-align:center;color:#B3B3B3;">No visits yet — add your Formspree ID to start tracking!</td></tr>`
-                          : visits.map(v=>`<tr style="border-bottom:1px solid #282828;">
-                              <td style="padding:10px 12px;white-space:nowrap;">${new Date(v.timestamp).toLocaleString()}</td>
-                              <td style="padding:10px 12px;">${v.location||'—'}</td>
-                              <td style="padding:10px 12px;">${getBrowserName(v.userAgent)}</td>
-                              <td style="padding:10px 12px;">${v.platform||'—'}</td>
-                              <td style="padding:10px 12px;color:#B3B3B3;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${v.referrer||'Direct'}</td>
-                              <td style="padding:10px 12px;color:#1DB954;">${v.duration||'Active'}</td>
-                            </tr>`).join('')}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <div style="margin-top:16px;padding:14px 18px;background:#181818;border-radius:8px;color:#B3B3B3;font-size:12px;border:1px solid #282828;">
-                  <strong style="color:#1DB954;">💡 Export data:</strong> Open DevTools Console → type:
-                  <code style="background:#000;padding:2px 8px;border-radius:4px;margin-left:6px;">copy(JSON.parse(localStorage.getItem('portfolioVisits')))</code>
-                </div>
-              </div>`;
+            el.innerHTML = `<div style="max-width:1200px;margin:0 auto;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;"><h1 style="color:#1DB954;margin:0;font-size:26px;">📊 Portfolio Analytics</h1><button onclick="this.closest('div').parentElement.remove()" style="background:#1DB954;color:#000;border:none;padding:10px 24px;border-radius:20px;cursor:pointer;font-weight:bold;">✕ Close</button></div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;">${stats.map(([label,val]) => `<div style="background:#181818;padding:20px;border-radius:12px;border:1px solid #282828;"><div style="color:#B3B3B3;font-size:11px;letter-spacing:1px;margin-bottom:8px;">${label}</div><div style="font-size:36px;font-weight:bold;color:#1DB954;">${val}</div></div>`).join('')}</div><div style="background:#181818;padding:24px;border-radius:12px;border:1px solid #282828;"><h2 style="color:#1DB954;margin:0 0 20px;font-size:18px;">Recent Visits</h2><div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:13px;"><thead><tr style="border-bottom:2px solid #282828;">${['Time','Location','Browser','Device','Referrer','Duration'].map(h=>`<th style="padding:10px 12px;text-align:left;color:#B3B3B3;white-space:nowrap;">${h}</th>`).join('')}</tr></thead><tbody>${visits.length===0?`<tr><td colspan="6" style="padding:24px;text-align:center;color:#B3B3B3;">No visits yet!</td></tr>`:visits.map(v=>`<tr style="border-bottom:1px solid #282828;"><td style="padding:10px 12px;white-space:nowrap;">${new Date(v.timestamp).toLocaleString()}</td><td style="padding:10px 12px;">${v.location||'—'}</td><td style="padding:10px 12px;">${getBrowserName(v.userAgent)}</td><td style="padding:10px 12px;">${v.platform||'—'}</td><td style="padding:10px 12px;color:#B3B3B3;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${v.referrer||'Direct'}</td><td style="padding:10px 12px;color:#1DB954;">${v.duration||'Active'}</td></tr>`).join('')}</tbody></table></div></div></div>`;
             document.body.appendChild(el);
         }
 
-        window.addEventListener('scroll', () => {
-            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-        });
+        window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50); });
 
         const modal = document.getElementById('projectModal');
         const projectData = {
-            duracim:   { title:"DURACIM Framework",           description:"Designed reinforcement learning agents (PPO, Q-learning) to optimize sequential decision policies for early-exit neural networks. Built simulation-driven RL pipeline integrating PyTorch with CIMLOOP. Achieved 86-88% energy savings on ResNet-50 while preserving accuracy within 1%.", tech:["PyTorch","Reinforcement Learning","Sequential Models","PPO","Q-learning","Model Efficiency"], github:"https://github.com/sriharshamudumba" },
-            torchweave:{ title:"TorchWeave-LLM",              description:"Production-grade continuous batching inference server for multi-user LLM deployment. Dynamic batching achieving 4× throughput improvement and 35% latency reduction.", tech:["PyTorch","FastAPI","Docker","Continuous Batching","Production ML","Auto-scaling"], github:"https://github.com/sriharshamudumba/TorchWeave_LLM" },
-            argus:     { title:"ARGUS RAG System",            description:"Multimodal RAG pipeline with hybrid dense+sparse retrieval. Semantic chunking, scales to 100K+ documents. Deployed on AWS EC2.", tech:["LangChain","FAISS","Transformers","Cohere","AWS EC2","Hybrid Search"], github:"https://github.com/sriharshamudumba/ARGUS" },
-            lexa:      { title:"LEXA Edge Assistant",         description:"GPU-optimized local RAG system with TinyLlama 1.1B. Adaptive early-exit reducing response time by 40% and GPU power by 30%.", tech:["TinyLlama","FastAPI","CUDA","Real-time Inference","Early-exit"], github:"https://github.com/sriharshamudumba/LEXA" },
-            "1bitllm": { title:"1BitLLM Optimization",        description:"Benchmarking suite for 1-bit quantized LLMs across ONNX and IREE backends. 2.3x inference speedup and 44% memory reduction.", tech:["ONNX","IREE","PyTorch","Quantization","Performance Profiling"], github:"https://github.com/sriharshamudumba/Benchmark-1BitLLM" },
-            snapea:    { title:"SnaPEA Accelerator",          description:"Sparse activation pruning with early-exit. 74% FLOP reduction while maintaining 98.5% accuracy on CIFAR-100.", tech:["TensorFlow","PyTorch","Sparse Pruning","Early Exit","Model Compression"], github:"https://github.com/sriharshamudumba/SnaPEA" },
-            license:   { title:"Real-Time License Plate Detection", description:"OpenCV + EasyOCR with MPI-based parallel processing. 18x speedup on 16-process HPC cluster.", tech:["C++","OpenCV","MPI","Distributed Systems","Parallel Processing"], github:"https://github.com/sriharshamudumba/Real-Time-Video-Processing-and-Analysis-MPI-" }
+            torchweave: { title: "TorchWeave-LLM", description: "Built a vLLM-style continuous batching inference server from scratch in Python. Async scheduling with dynamic batching eliminated head-of-line blocking across variable sequence lengths. Benchmarked at 4x throughput improvement and 35% p95 latency reduction over static batching. Prototyped speculative decoding with a draft model, measuring token acceptance rates across temperature settings and validating wall-clock speedup vs baseline greedy decoding.", tech: ["Python","PyTorch","FastAPI","Continuous Batching","Speculative Decoding","Async Scheduling"], github: "https://github.com/sriharshamudumba/TorchWeave_LLM" },
+            lexa: { title: "LEXA Early-Exit Inference Engine", description: "Early-exit inference engine with custom CUDA and Triton kernels written for the confidence-scoring router. Fused confidence scoring and layer normalization ops to eliminate redundant kernel launches and memory round-trips. Achieved 40% latency reduction and 30% GPU power savings with no model retraining. Triton kernels reduced exit-layer compute by 2x versus the PyTorch baseline.", tech: ["CUDA","Triton","PyTorch","TinyLlama 1.1B","Kernel Fusion","Early-Exit"], github: "https://github.com/sriharshamudumba/LEXA" },
+            duracim: { title: "DURACIM Framework", description: "RL-guided early-exit co-design for Compute-in-Memory inference systems. Trained PPO and Q-learning agents to learn per-layer exit policies under simultaneous accuracy, latency, and energy constraints, using CIMLOOP for cycle-accurate hardware reward signals. PPO policies achieved 86-88% inference energy savings on ResNet-50 within 1% accuracy, extended RRAM hardware lifetime to 1.02x10^7 years, and outperformed the Q-learning baseline by 1.9x. Publication targeting HPCA 2026.", tech: ["PyTorch","CUDA","Python","PPO","Q-Learning","CIMLOOP","RL"], github: "https://github.com/sriharshamudumba" },
+            argus: { title: "ARGUS RAG System", description: "Production RAG pipeline with hybrid dense and sparse retrieval for personalized content discovery. Semantic chunking architecture scales to 100K+ documents with real-time inference. Deployed on AWS EC2.", tech: ["LangChain","FAISS","Transformers","Cohere","AWS EC2","Hybrid Search"], github: "https://github.com/sriharshamudumba/ARGUS" },
+            "1bitllm": { title: "1BitLLM Optimization", description: "Benchmarking suite for 1-bit quantized LLMs across ONNX and IREE backends. Systematic evaluation of inference speedup and memory reduction tradeoffs. 2.3x inference speedup and 44% memory reduction.", tech: ["ONNX","IREE","PyTorch","Quantization","Performance Profiling"], github: "https://github.com/sriharshamudumba/Benchmark-1BitLLM" },
+            snapea: { title: "SnaPEA Accelerator", description: "Sparse activation pruning combined with early-exit architecture. 74% FLOP reduction while maintaining 98.5% accuracy on CIFAR-100.", tech: ["TensorFlow","PyTorch","Sparse Pruning","Early Exit","Model Compression"], github: "https://github.com/sriharshamudumba/SnaPEA" }
         };
 
         document.querySelectorAll('.project-card').forEach(card => {
             card.addEventListener('click', () => {
                 const p = projectData[card.dataset.project]; if (!p) return;
-                document.getElementById('modalTitle').textContent       = p.title;
+                document.getElementById('modalTitle').textContent = p.title;
                 document.getElementById('modalDescription').textContent = p.description;
-                document.getElementById('modalTech').innerHTML          = p.tech.map(t=>`<span class="tag">${t}</span>`).join('');
-                document.getElementById('modalActions').innerHTML       = `<a href="${p.github}" target="_blank" class="btn-primary"><i class="ri-github-fill"></i> View on GitHub</a>`;
+                document.getElementById('modalTech').innerHTML = p.tech.map(t=>`<span class="tag">${t}</span>`).join('');
+                document.getElementById('modalActions').innerHTML = `<a href="${p.github}" target="_blank" class="btn-primary"><i class="ri-github-fill"></i> View on GitHub</a>`;
                 modal.classList.add('active'); document.body.style.overflow = 'hidden';
             });
         });
