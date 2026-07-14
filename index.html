@@ -232,14 +232,30 @@
         </div>
         <div class="timeline-container">
 
-            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">October 2025 – Present</div>
+                    <h3 class="timeline-title">Machine Learning Engineer</h3>
+                    <div class="timeline-subtitle">Procal Technologies — Remote, US</div>
+                    <p class="timeline-description">Building the post-training stack for TelecomLM, running domain-adaptive fine-tuning with LoRA over 135,000+ curated QA pairs for telecom clients including T-Mobile, Verizon, and Motorola. Distilled a Gemma 4 31B teacher into a production 4B student model and shipped an LLM-as-judge evaluation pipeline that replaced manual release review. Wrote custom fused CUDA kernels and restructured the C++ inference stack, cutting p95 latency 35% under concurrent load, and deployed serving with vLLM.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">August 2023 – August 2025</div>
+                    <h3 class="timeline-title">ML Research, DURACIM</h3>
+                    <div class="timeline-subtitle">Iowa State University — Ames, IA</div>
+                    <p class="timeline-description">Designed multi-objective reward shaping for PPO and Q-learning agents to co-optimize accuracy, latency, and RRAM endurance in Compute-in-Memory hardware, achieving 86-88% inference energy savings on ResNet-50 within 1% accuracy. Integrated PyTorch with CIMLOOP to translate hardware simulation state into training signals; PPO outperformed the fixed-exit baseline 1.9x. Publication in progress.</p>
+                </div>
+            </div>
 
             <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="timeline-date">August 2020 – July 2023</div>
                     <h3 class="timeline-title">Software Engineer</h3>
                     <div class="timeline-subtitle">Cognizant Technology Solutions — Bengaluru, India</div>
-                    <p class="timeline-description">Profiled query execution across 5+ TB production databases, resolved memory allocation bottlenecks, and cut query latency by 30%, directly unblocking stalled ML training pipelines. Led code and design reviews across 3 distributed pipeline projects, enforcing fault-tolerance patterns and catching critical I/O contention issues before production. Traced intermittent distributed ingestion failures to 3 root causes, restoring on-time data delivery at 99.9% uptime.</p>
+                    <p class="timeline-description">Worked directly on client accounts including BioMarin and Intuit. Profiled query execution across 5+ TB production databases, resolved memory allocation bottlenecks, and cut query latency by 30%, directly unblocking stalled ML training pipelines. Traced intermittent distributed ingestion failures across ETL stages and implemented validation checkpoints that restored SLA-compliant delivery.</p>
                 </div>
             </div>
 
@@ -248,7 +264,7 @@
                     <div class="timeline-date">August 2023 – August 2025</div>
                     <h3 class="timeline-title">Master of Science, Computer Engineering</h3>
                     <div class="timeline-subtitle">Iowa State University — Ames, IA</div>
-                    <p class="timeline-description">Specialized in Machine Learning and High-Performance Computing. Research on RL-guided early-exit inference for Compute-in-Memory systems, achieving 86-88% energy savings on ResNet-50. Publication targeting HPCA 2026 (IEEE Int'l Symposium on High-Performance Computer Architecture).</p>
+                    <p class="timeline-description">Specialized in Machine Learning and High-Performance Computing. Research on RL-guided early-exit inference for Compute-in-Memory systems, achieving 86-88% energy savings on ResNet-50.</p>
                 </div>
             </div>
 
@@ -482,7 +498,7 @@
         const projectData = {
             torchweave: { title: "TorchWeave-LLM", description: "Built a vLLM-style continuous batching inference server from scratch in Python. Async scheduling with dynamic batching eliminated head-of-line blocking across variable sequence lengths. Benchmarked at 4x throughput improvement and 35% p95 latency reduction over static batching. Prototyped speculative decoding with a draft model, measuring token acceptance rates across temperature settings and validating wall-clock speedup vs baseline greedy decoding.", tech: ["Python","PyTorch","FastAPI","Continuous Batching","Speculative Decoding","Async Scheduling"], github: "https://github.com/sriharshamudumba/TorchWeave_LLM" },
             lexa: { title: "LEXA Early-Exit Inference Engine", description: "Early-exit inference engine with custom CUDA and Triton kernels written for the confidence-scoring router. Fused confidence scoring and layer normalization ops to eliminate redundant kernel launches and memory round-trips. Achieved 40% latency reduction and 30% GPU power savings with no model retraining. Triton kernels reduced exit-layer compute by 2x versus the PyTorch baseline.", tech: ["CUDA","Triton","PyTorch","TinyLlama 1.1B","Kernel Fusion","Early-Exit"], github: "https://github.com/sriharshamudumba/LEXA" },
-            duracim: { title: "DURACIM Framework", description: "RL-guided early-exit co-design for Compute-in-Memory inference systems. Trained PPO and Q-learning agents to learn per-layer exit policies under simultaneous accuracy, latency, and energy constraints, using CIMLOOP for cycle-accurate hardware reward signals. PPO policies achieved 86-88% inference energy savings on ResNet-50 within 1% accuracy, extended RRAM hardware lifetime to 1.02x10^7 years, and outperformed the Q-learning baseline by 1.9x. Publication targeting HPCA 2026.", tech: ["PyTorch","CUDA","Python","PPO","Q-Learning","CIMLOOP","RL"], github: "https://github.com/sriharshamudumba" },
+            duracim: { title: "DURACIM Framework", description: "RL-guided early-exit co-design for Compute-in-Memory inference systems. Trained PPO and Q-learning agents to learn per-layer exit policies under simultaneous accuracy, latency, and energy constraints, using CIMLOOP for cycle-accurate hardware reward signals. PPO policies achieved 86-88% inference energy savings on ResNet-50 within 1% accuracy, extended RRAM hardware lifetime to 1.02x10^7 years, and outperformed the Q-learning baseline by 1.9x. Publication in progress.", tech: ["PyTorch","CUDA","Python","PPO","Q-Learning","CIMLOOP","RL"], github: "https://github.com/sriharshamudumba" },
             argus: { title: "ARGUS RAG System", description: "Production RAG pipeline with hybrid dense and sparse retrieval for personalized content discovery. Semantic chunking architecture scales to 100K+ documents with real-time inference. Deployed on AWS EC2.", tech: ["LangChain","FAISS","Transformers","Cohere","AWS EC2","Hybrid Search"], github: "https://github.com/sriharshamudumba/ARGUS" },
             "1bitllm": { title: "1BitLLM Optimization", description: "Benchmarking suite for 1-bit quantized LLMs across ONNX and IREE backends. Systematic evaluation of inference speedup and memory reduction tradeoffs. 2.3x inference speedup and 44% memory reduction.", tech: ["ONNX","IREE","PyTorch","Quantization","Performance Profiling"], github: "https://github.com/sriharshamudumba/Benchmark-1BitLLM" },
             snapea: { title: "SnaPEA Accelerator", description: "Sparse activation pruning combined with early-exit architecture. 74% FLOP reduction while maintaining 98.5% accuracy on CIFAR-100.", tech: ["TensorFlow","PyTorch","Sparse Pruning","Early Exit","Model Compression"], github: "https://github.com/sriharshamudumba/SnaPEA" }
