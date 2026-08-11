@@ -191,7 +191,7 @@
                     <span class="highlight">Mudumba</span>
                 </h1>
                 <p class="hero-subtitle">
-                    ML Inference Engineer with 3+ years shipping production LLM serving systems in Python and C++. Built a continuous batching server from scratch delivering 4x throughput and 35% p95 latency drop. Deep expertise in vLLM-style batching, CUDA and Triton kernel optimization, speculative decoding, and fault-tolerant inference system design at scale.
+                    ML Systems Engineer with 3+ years shipping production LLM inference and machine learning infrastructure in Python and C++. Built Kubernetes/AWS-based ML infrastructure for distributed training and serving, cut p95 latency 35% with custom fused CUDA kernels, and reduced GPU memory usage 40% through LoRA/QLoRA optimization. Deep expertise in distributed systems, GPU performance engineering, and reliable, reproducible ML pipelines at scale.
                 </p>
                 <div class="hero-cta">
                     <a href="#experience" class="btn-primary">View Experience <i class="ri-arrow-right-line"></i></a>
@@ -237,7 +237,7 @@
                     <div class="timeline-date">October 2025 – Present</div>
                     <h3 class="timeline-title">Machine Learning Engineer</h3>
                     <div class="timeline-subtitle">Procal Technologies — Remote, US</div>
-                    <p class="timeline-description">Building the post-training stack for TelecomLM, running domain-adaptive fine-tuning with LoRA over 135,000+ curated QA pairs for telecom clients including T-Mobile, Verizon, and Motorola. Distilled a Gemma 4 31B teacher into a production 4B student model and shipped an LLM-as-judge evaluation pipeline that replaced manual release review. Wrote custom fused CUDA kernels and restructured the C++ inference stack, cutting p95 latency 35% under concurrent load, and deployed serving with vLLM.</p>
+                    <p class="timeline-description">Built and operated machine learning infrastructure for LLM inference and evaluation on Kubernetes and AWS, integrating vLLM-compatible model servers and Google ADK-based multi-agent orchestration with autoscaling and load balancing. Developed end-to-end data pipelines for post-training and evaluation with MLflow-backed experiment tracking for reproducible runs. Wrote custom fused CUDA kernels that cut p95 inference latency 35%, and applied LoRA/QLoRA fine-tuning that reduced GPU memory usage 40% while maintaining accuracy. Built a benchmarking harness that caught two critical latency regressions before they reached production.</p>
                 </div>
             </div>
 
@@ -246,7 +246,7 @@
                     <div class="timeline-date">August 2023 – August 2025</div>
                     <h3 class="timeline-title">ML Research, DURACIM</h3>
                     <div class="timeline-subtitle">Iowa State University — Ames, IA</div>
-                    <p class="timeline-description">Designed multi-objective reward shaping for PPO and Q-learning agents to co-optimize accuracy, latency, and RRAM endurance in Compute-in-Memory hardware, achieving 86-88% inference energy savings on ResNet-50 within 1% accuracy. Integrated PyTorch with CIMLOOP to translate hardware simulation state into training signals; PPO outperformed the fixed-exit baseline 1.9x. Publication in progress.</p>
+                    <p class="timeline-description">Designed multi-objective reward shaping for PPO and Q-learning agents to co-optimize accuracy, latency, and RRAM endurance in Compute-in-Memory hardware, achieving 86-88% inference energy savings on ResNet-50 within 1% accuracy. Scaled distributed training with PyTorch Distributed Data Parallel across multi-node A100 clusters, using gradient clipping and generalized advantage estimation to stabilize training on variable-length rollout sequences. Integrated PyTorch with CIMLOOP to translate hardware simulation state into training signals; PPO outperformed the fixed-exit baseline 1.9x. Publication in progress.</p>
                 </div>
             </div>
 
@@ -255,7 +255,7 @@
                     <div class="timeline-date">August 2020 – July 2023</div>
                     <h3 class="timeline-title">Software Engineer</h3>
                     <div class="timeline-subtitle">Cognizant Technology Solutions — Bengaluru, India</div>
-                    <p class="timeline-description">Worked directly on client accounts including BioMarin and Intuit. Profiled query execution across 5+ TB production databases, resolved memory allocation bottlenecks, and cut query latency by 30%, directly unblocking stalled ML training pipelines. Traced intermittent distributed ingestion failures across ETL stages and implemented validation checkpoints that restored SLA-compliant delivery.</p>
+                    <p class="timeline-description">Designed and operated production data pipelines for feature and analytics workloads in Python, SQL, and Oracle, with schema contracts and automated validation for compliance-driven environments. Profiled query execution across 5+ TB production databases and redesigned indexes and join strategies, cutting data warehouse query latency 40% and unblocking downstream ML training pipelines. Hardened reliability practices with CI/CD, Docker-based deployments, canary and rollback runbooks, and monitoring dashboards to maintain SLA adherence across critical pipelines.</p>
                 </div>
             </div>
 
@@ -291,43 +291,29 @@
             <div class="project-card" data-project="torchweave">
                 <div class="project-icon"><i class="ri-server-line"></i></div>
                 <h3 class="project-title">TorchWeave-LLM</h3>
-                <p class="project-description">vLLM-style continuous batching inference server built from scratch. Async scheduling with dynamic batching eliminated head-of-line blocking. 4x throughput, 35% p95 latency reduction. Includes speculative decoding prototype with token acceptance rate benchmarking.</p>
-                <div class="project-tags"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">FastAPI</span><span class="tag">Continuous Batching</span><span class="tag">Speculative Decoding</span></div>
+                <p class="project-description">Continuous batching LLM inference server built from scratch. Async scheduling with dynamic batching eliminated head-of-line blocking. 4x throughput, 35% p95 latency reduction.</p>
+                <div class="project-tags"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">FastAPI</span><span class="tag">Continuous Batching</span></div>
             </div>
 
             <div class="project-card" data-project="lexa">
                 <div class="project-icon"><i class="ri-cpu-line"></i></div>
                 <h3 class="project-title">LEXA Inference Engine</h3>
-                <p class="project-description">Early-exit inference engine with custom CUDA and Triton kernels. Fused confidence scoring and layer norm ops to eliminate redundant kernel launches. 40% latency reduction, 30% GPU power savings. Triton kernels reduced exit-layer compute by 2x vs PyTorch baseline.</p>
-                <div class="project-tags"><span class="tag">CUDA</span><span class="tag">Triton</span><span class="tag">PyTorch</span><span class="tag">TinyLlama</span><span class="tag">Kernel Fusion</span></div>
+                <p class="project-description">Early-exit inference engine with custom CUDA kernels. Fused confidence scoring and layer norm ops to eliminate redundant kernel launches. 40% latency reduction, 30% GPU power savings.</p>
+                <div class="project-tags"><span class="tag">CUDA</span><span class="tag">PyTorch</span><span class="tag">TinyLlama</span><span class="tag">Kernel Fusion</span></div>
             </div>
 
             <div class="project-card" data-project="duracim">
                 <div class="project-icon"><i class="ri-flashlight-line"></i></div>
                 <h3 class="project-title">DURACIM Framework</h3>
-                <p class="project-description">RL-guided early-exit co-design for Compute-in-Memory systems. PPO and Q-learning agents learn per-layer exit policies under accuracy, latency, and energy constraints. 86-88% inference energy savings on ResNet-50 within 1% accuracy. Publication targeting HPCA 2026.</p>
+                <p class="project-description">RL-guided early-exit co-design for Compute-in-Memory systems, developed collaboratively at Iowa State. PPO and Q-learning agents learn per-layer exit policies under accuracy, latency, and energy constraints. 86-88% inference energy savings on ResNet-50 within 1% accuracy. Publication in progress.</p>
                 <div class="project-tags"><span class="tag">PyTorch</span><span class="tag">CUDA</span><span class="tag">PPO</span><span class="tag">RL</span><span class="tag">CIMLOOP</span></div>
             </div>
 
             <div class="project-card" data-project="argus">
                 <div class="project-icon"><i class="ri-search-eye-line"></i></div>
                 <h3 class="project-title">ARGUS RAG System</h3>
-                <p class="project-description">Production RAG pipeline with hybrid dense and sparse retrieval. Semantic chunking scales to 100K+ documents with real-time inference. Deployed on AWS EC2.</p>
+                <p class="project-description">Two-tier RAG pipeline over 10,000+ arXiv papers with hybrid dense and sparse retrieval. FAISS + Cohere embeddings, deployed on AWS with sub-200ms p95 retrieval.</p>
                 <div class="project-tags"><span class="tag">LangChain</span><span class="tag">FAISS</span><span class="tag">Transformers</span><span class="tag">AWS</span></div>
-            </div>
-
-            <div class="project-card" data-project="1bitllm">
-                <div class="project-icon"><i class="ri-speed-up-line"></i></div>
-                <h3 class="project-title">1BitLLM Optimization</h3>
-                <p class="project-description">Benchmarking suite for 1-bit quantized LLMs across ONNX and IREE backends. 2.3x inference speedup with 44% memory reduction.</p>
-                <div class="project-tags"><span class="tag">ONNX</span><span class="tag">IREE</span><span class="tag">Quantization</span><span class="tag">PyTorch</span></div>
-            </div>
-
-            <div class="project-card" data-project="snapea">
-                <div class="project-icon"><i class="ri-scissors-cut-line"></i></div>
-                <h3 class="project-title">SnaPEA Accelerator</h3>
-                <p class="project-description">Sparse activation pruning with early-exit architecture. 74% FLOP reduction while maintaining 98.5% accuracy on CIFAR-100.</p>
-                <div class="project-tags"><span class="tag">TensorFlow</span><span class="tag">Pruning</span><span class="tag">PyTorch</span><span class="tag">Sparsity</span></div>
             </div>
 
         </div>
@@ -337,16 +323,15 @@
         <div class="section-header">
             <div class="section-label">Expertise</div>
             <h2 class="section-title">Technical Skills</h2>
-            <p class="section-description">Deep expertise in LLM inference systems, kernel-level optimization, and production ML engineering.</p>
+            <p class="section-description">Deep expertise in ML infrastructure, LLM inference systems, and production ML engineering.</p>
         </div>
         <div class="skills-container">
             <div class="skill-card">
                 <div class="skill-icon"><i class="ri-speed-up-line"></i></div>
                 <h3 class="skill-title">Inference Systems</h3>
                 <ul class="skill-list">
-                    <li>vLLM, TGI, TensorRT, ONNX Runtime</li>
-                    <li>Continuous Batching and KV Cache</li>
-                    <li>Speculative Decoding</li>
+                    <li>vLLM, Continuous Batching</li>
+                    <li>KV Cache Management</li>
                     <li>Async Scheduling and Memory-Efficient Execution</li>
                     <li>Latency and Throughput Profiling</li>
                 </ul>
@@ -356,21 +341,19 @@
                 <h3 class="skill-title">Languages and Frameworks</h3>
                 <ul class="skill-list">
                     <li>Python and C/C++ (Production)</li>
-                    <li>CUDA and Triton Kernel Development</li>
+                    <li>CUDA Kernel Development</li>
                     <li>PyTorch and Hugging Face</li>
-                    <li>DeepSpeed and IREE</li>
                     <li>Bash and Linux Systems</li>
                 </ul>
             </div>
             <div class="skill-card">
                 <div class="skill-icon"><i class="ri-settings-3-line"></i></div>
-                <h3 class="skill-title">Systems and Low-Level</h3>
+                <h3 class="skill-title">ML Infrastructure</h3>
                 <ul class="skill-list">
-                    <li>Multi-threading and Memory Management</li>
+                    <li>Kubernetes and Docker</li>
+                    <li>Distributed Training (PyTorch DDP)</li>
                     <li>Kernel Optimization and Op Fusion</li>
-                    <li>I/O Profiling (cProfile, perf)</li>
                     <li>Fault-Tolerant Pipeline Design</li>
-                    <li>Distributed Systems</li>
                 </ul>
             </div>
             <div class="skill-card">
@@ -381,7 +364,6 @@
                     <li>FastAPI and Docker</li>
                     <li>MLflow and CI/CD for ML</li>
                     <li>Real-Time and Batch Inference Serving</li>
-                    <li>Model Monitoring and Observability</li>
                 </ul>
             </div>
         </div>
@@ -391,11 +373,11 @@
         <div class="section-header">
             <div class="section-label">Get in Touch</div>
             <h2 class="section-title">Let's Connect</h2>
-            <p class="section-description">Open to discussing ML inference roles, research collaborations, or opportunities to build high-performance AI systems.</p>
+            <p class="section-description">Open to discussing ML infrastructure and inference roles, research collaborations, or opportunities to build high-performance AI systems.</p>
         </div>
         <div class="contact-container">
             <div class="contact-grid">
-                <a id="emailLink" href="mailto:sri19harsha98@gmail.com?subject=Portfolio%20Contact&body=Hi%20Sriharsha%2C%0A%0A" class="contact-card">
+                <a id="emailLink" href="mailto:sriharshamudumba@gmail.com?subject=Portfolio%20Contact&body=Hi%20Sriharsha%2C%0A%0A" class="contact-card">
                     <i class="ri-mail-fill contact-icon"></i>
                     <span class="contact-label">Email</span>
                 </a>
@@ -420,7 +402,7 @@
             <div class="footer-social">
                 <a href="https://github.com/sriharshamudumba" target="_blank"><i class="ri-github-fill"></i></a>
                 <a href="https://www.linkedin.com/in/sriharshamudumba/" target="_blank"><i class="ri-linkedin-box-fill"></i></a>
-                <a href="mailto:sri19harsha98@gmail.com"><i class="ri-mail-fill"></i></a>
+                <a href="mailto:sriharshamudumba@gmail.com"><i class="ri-mail-fill"></i></a>
             </div>
             <p class="footer-text">© 2025 Sriharsha Mudumba. Designed with inspiration from Spotify.</p>
         </div>
@@ -439,69 +421,14 @@
     </div>
 
     <script>
-        const TRACKING_ENDPOINT = 'https://formspree.io/f/xeelnaep';
-
-        function getBrowserName(ua) {
-            if (ua.includes('Firefox')) return 'Firefox';
-            if (ua.includes('Edg'))     return 'Edge';
-            if (ua.includes('Chrome'))  return 'Chrome';
-            if (ua.includes('Safari'))  return 'Safari';
-            if (ua.includes('Opera'))   return 'Opera';
-            return 'Unknown';
-        }
-
-        async function trackVisitor() {
-            if (TRACKING_ENDPOINT.includes('YOUR_FORM_ID')) return;
-            const info = { timestamp: new Date().toISOString(), url: window.location.href, referrer: document.referrer || 'Direct visit', userAgent: navigator.userAgent, screenResolution: `${screen.width}x${screen.height}`, language: navigator.language, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone, platform: navigator.platform, location: 'Unknown', ip: 'Unknown', org: 'Unknown' };
-            try { const geo = await (await fetch('https://ipapi.co/json/')).json(); info.location = `${geo.city}, ${geo.region}, ${geo.country_name}`; info.ip = geo.ip; info.org = geo.org; } catch(e) {}
-            const body = ['🔔 New Portfolio Visit', '', `📅 Time: ${new Date(info.timestamp).toLocaleString()}`, `🌍 Location: ${info.location}`, `📍 IP: ${info.ip}`, `🏢 ISP: ${info.org}`, `🌐 Browser: ${getBrowserName(info.userAgent)}`, `📱 Device: ${info.platform}`, `🖥️ Screen: ${info.screenResolution}`, `🔗 Referrer: ${info.referrer}`, `🌍 Timezone: ${info.timezone}`, `🗣️ Language: ${info.language}`].join('\n');
-            try { await fetch(TRACKING_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ subject: `👀 Portfolio Visit — ${info.location}`, message: body, _replyto: 'noreply@portfolio.local' }) }); } catch(e) {}
-            try { const visits = JSON.parse(localStorage.getItem('portfolioVisits') || '[]'); visits.unshift(info); if (visits.length > 100) visits.pop(); localStorage.setItem('portfolioVisits', JSON.stringify(visits)); } catch(e) {}
-        }
-
-        let visitStart = Date.now(), hiddenDuration = 0, hiddenAt = null;
-        document.addEventListener('visibilitychange', () => { if (document.hidden) { hiddenAt = Date.now(); } else { if (hiddenAt) { hiddenDuration += Date.now() - hiddenAt; hiddenAt = null; } } });
-        window.addEventListener('beforeunload', () => {
-            const total = Date.now() - visitStart - hiddenDuration;
-            const m = Math.floor(total / 60000), s = Math.floor((total % 60000) / 1000);
-            try { const visits = JSON.parse(localStorage.getItem('portfolioVisits') || '[]'); if (visits[0]) { visits[0].duration = `${m}m ${s}s`; localStorage.setItem('portfolioVisits', JSON.stringify(visits)); } } catch(e) {}
-        });
-        window.addEventListener('load', () => setTimeout(trackVisitor, 1000));
-
-        async function trackEvent(name) {
-            if (TRACKING_ENDPOINT.includes('YOUR_FORM_ID')) return;
-            try { await fetch(TRACKING_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ subject: `🚨 High-Intent: ${name}`, message: [`⚡ Event: ${name}`, `📅 Time: ${new Date().toLocaleString()}`, `🔗 Referrer: ${document.referrer || 'Direct'}`, `📱 Device: ${navigator.platform}`, `🌐 Browser: ${getBrowserName(navigator.userAgent)}`].join('\n'), _replyto: 'noreply@portfolio.local' }) }); } catch(e) {}
-        }
-
-        document.getElementById('resumeDownload')?.addEventListener('click', () => trackEvent('📄 Resume Download'));
-        document.getElementById('emailLink')?.addEventListener('click', () => {
-            trackEvent('📧 Email Button Click');
-            setTimeout(async () => { if (document.visibilityState === 'visible') { try { await navigator.clipboard.writeText('sri19harsha98@gmail.com'); } catch(e) {} } }, 700);
-        });
-
-        document.addEventListener('keydown', e => { if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'A') { e.preventDefault(); showAdminDashboard(); } });
-
-        function showAdminDashboard() {
-            const visits = JSON.parse(localStorage.getItem('portfolioVisits') || '[]');
-            const today = new Date().toDateString();
-            const weekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
-            const stats = [['TOTAL VISITS', visits.length], ['TODAY', visits.filter(v => new Date(v.timestamp).toDateString() === today).length], ['THIS WEEK', visits.filter(v => new Date(v.timestamp).getTime() > weekAgo).length], ['UNIQUE LOCATIONS', new Set(visits.map(v => v.location).filter(Boolean)).size]];
-            const el = document.createElement('div');
-            el.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:99999;overflow-y:auto;color:#fff;font-family:monospace;padding:40px;';
-            el.innerHTML = `<div style="max-width:1200px;margin:0 auto;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;"><h1 style="color:#1DB954;margin:0;font-size:26px;">📊 Portfolio Analytics</h1><button onclick="this.closest('div').parentElement.remove()" style="background:#1DB954;color:#000;border:none;padding:10px 24px;border-radius:20px;cursor:pointer;font-weight:bold;">✕ Close</button></div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;">${stats.map(([label,val]) => `<div style="background:#181818;padding:20px;border-radius:12px;border:1px solid #282828;"><div style="color:#B3B3B3;font-size:11px;letter-spacing:1px;margin-bottom:8px;">${label}</div><div style="font-size:36px;font-weight:bold;color:#1DB954;">${val}</div></div>`).join('')}</div><div style="background:#181818;padding:24px;border-radius:12px;border:1px solid #282828;"><h2 style="color:#1DB954;margin:0 0 20px;font-size:18px;">Recent Visits</h2><div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:13px;"><thead><tr style="border-bottom:2px solid #282828;">${['Time','Location','Browser','Device','Referrer','Duration'].map(h=>`<th style="padding:10px 12px;text-align:left;color:#B3B3B3;white-space:nowrap;">${h}</th>`).join('')}</tr></thead><tbody>${visits.length===0?`<tr><td colspan="6" style="padding:24px;text-align:center;color:#B3B3B3;">No visits yet!</td></tr>`:visits.map(v=>`<tr style="border-bottom:1px solid #282828;"><td style="padding:10px 12px;white-space:nowrap;">${new Date(v.timestamp).toLocaleString()}</td><td style="padding:10px 12px;">${v.location||'—'}</td><td style="padding:10px 12px;">${getBrowserName(v.userAgent)}</td><td style="padding:10px 12px;">${v.platform||'—'}</td><td style="padding:10px 12px;color:#B3B3B3;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${v.referrer||'Direct'}</td><td style="padding:10px 12px;color:#1DB954;">${v.duration||'Active'}</td></tr>`).join('')}</tbody></table></div></div></div>`;
-            document.body.appendChild(el);
-        }
-
         window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50); });
 
         const modal = document.getElementById('projectModal');
         const projectData = {
-            torchweave: { title: "TorchWeave-LLM", description: "Built a vLLM-style continuous batching inference server from scratch in Python. Async scheduling with dynamic batching eliminated head-of-line blocking across variable sequence lengths. Benchmarked at 4x throughput improvement and 35% p95 latency reduction over static batching. Prototyped speculative decoding with a draft model, measuring token acceptance rates across temperature settings and validating wall-clock speedup vs baseline greedy decoding.", tech: ["Python","PyTorch","FastAPI","Continuous Batching","Speculative Decoding","Async Scheduling"], github: "https://github.com/sriharshamudumba/TorchWeave_LLM" },
-            lexa: { title: "LEXA Early-Exit Inference Engine", description: "Early-exit inference engine with custom CUDA and Triton kernels written for the confidence-scoring router. Fused confidence scoring and layer normalization ops to eliminate redundant kernel launches and memory round-trips. Achieved 40% latency reduction and 30% GPU power savings with no model retraining. Triton kernels reduced exit-layer compute by 2x versus the PyTorch baseline.", tech: ["CUDA","Triton","PyTorch","TinyLlama 1.1B","Kernel Fusion","Early-Exit"], github: "https://github.com/sriharshamudumba/LEXA" },
-            duracim: { title: "DURACIM Framework", description: "RL-guided early-exit co-design for Compute-in-Memory inference systems. Trained PPO and Q-learning agents to learn per-layer exit policies under simultaneous accuracy, latency, and energy constraints, using CIMLOOP for cycle-accurate hardware reward signals. PPO policies achieved 86-88% inference energy savings on ResNet-50 within 1% accuracy, extended RRAM hardware lifetime to 1.02x10^7 years, and outperformed the Q-learning baseline by 1.9x. Publication in progress.", tech: ["PyTorch","CUDA","Python","PPO","Q-Learning","CIMLOOP","RL"], github: "https://github.com/sriharshamudumba" },
-            argus: { title: "ARGUS RAG System", description: "Production RAG pipeline with hybrid dense and sparse retrieval for personalized content discovery. Semantic chunking architecture scales to 100K+ documents with real-time inference. Deployed on AWS EC2.", tech: ["LangChain","FAISS","Transformers","Cohere","AWS EC2","Hybrid Search"], github: "https://github.com/sriharshamudumba/ARGUS" },
-            "1bitllm": { title: "1BitLLM Optimization", description: "Benchmarking suite for 1-bit quantized LLMs across ONNX and IREE backends. Systematic evaluation of inference speedup and memory reduction tradeoffs. 2.3x inference speedup and 44% memory reduction.", tech: ["ONNX","IREE","PyTorch","Quantization","Performance Profiling"], github: "https://github.com/sriharshamudumba/Benchmark-1BitLLM" },
-            snapea: { title: "SnaPEA Accelerator", description: "Sparse activation pruning combined with early-exit architecture. 74% FLOP reduction while maintaining 98.5% accuracy on CIFAR-100.", tech: ["TensorFlow","PyTorch","Sparse Pruning","Early Exit","Model Compression"], github: "https://github.com/sriharshamudumba/SnaPEA" }
+            torchweave: { title: "TorchWeave-LLM", description: "Built a continuous batching inference server from scratch in Python. Async scheduling with dynamic batching eliminated head-of-line blocking across variable sequence lengths. Benchmarked at 4x throughput improvement and 35% p95 latency reduction over static batching.", tech: ["Python","PyTorch","FastAPI","Continuous Batching","Async Scheduling"], github: "https://github.com/sriharshamudumba/TorchWeave_LLM" },
+            lexa: { title: "LEXA Early-Exit Inference Engine", description: "Early-exit inference engine with custom CUDA kernels written for the confidence-scoring router. Fused confidence scoring and layer normalization ops to eliminate redundant kernel launches and memory round-trips. Achieved 40% latency reduction and 30% GPU power savings with no model retraining.", tech: ["CUDA","PyTorch","TinyLlama 1.1B","Kernel Fusion","Early-Exit"], github: "https://github.com/sriharshamudumba/LEXA" },
+            duracim: { title: "DURACIM Framework", description: "RL-guided early-exit co-design for Compute-in-Memory inference systems, developed collaboratively as part of graduate research at Iowa State University. Trained PPO and Q-learning agents to learn per-layer exit policies under simultaneous accuracy, latency, and energy constraints, using CIMLOOP for cycle-accurate hardware reward signals. PPO policies achieved 86-88% inference energy savings on ResNet-50 within 1% accuracy, and outperformed the Q-learning baseline by 1.9x. Publication in progress.", tech: ["PyTorch","CUDA","Python","PPO","Q-Learning","CIMLOOP","RL"], github: "https://github.com/sriharshamudumba" },
+            argus: { title: "ARGUS RAG System", description: "Two-tier RAG pipeline over 10,000+ arXiv papers with hybrid dense and sparse retrieval. FAISS and Cohere embeddings with LangChain orchestration, deployed on AWS with FastAPI and Docker, achieving sub-200ms p95 retrieval.", tech: ["LangChain","FAISS","Transformers","AWS","Hybrid Search"], github: "https://github.com/sriharshamudumba/ARGUS" }
         };
 
         document.querySelectorAll('.project-card').forEach(card => {
